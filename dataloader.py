@@ -166,6 +166,22 @@ class FireDataset_Graph_npy(Dataset):
         random.shuffle(self.path_list)
         self.mm_dict = self._min_max_vec()
 
+    def loadGraph(self, data):
+        '''
+           data: T, F, N
+        '''
+        (windowSize, numberFeatures, numberNodes) = data.shape
+        graphWindow = np.zeros((windowSize, numberNodes, numberNodes)) ##sparse matrix if it doesn't fit...
+        for time in range(windowSize):
+            X = np.copy(data[time])
+            L2 = np.sum((X[:, np.newaxis, :]-X[:,:,np.newaxis])**2, axis=0) #compute matrix distance
+            tmpMax = np.max(L2) #normalization?...
+##            L2 /=tmpMax ##data is already normalized
+
+#            L2[L2<1e-5] = 1e-5 ##handle numeric errors
+#            L2[L2 > alpha] = 0.0 ##is this necessary?
+            graphWindow[time] = tmpMax-L2
+        return graphWindow
     def combine_dynamic_static_inputs(self, dynamic, static, clc):
         '''
            dynamic: T, F, W, H
@@ -248,9 +264,11 @@ class FireDataset_Graph_npy(Dataset):
             clc = np.nan_to_num(clc, nan=0)
         else:
             clc = 0
+         
 #        data = np.load(str(path).replace('dynamic.npy', 'graph.npz'))
 #        graph = data['graph']
-        return self.combine_dynamic_static_inputs(dynamic, static, clc), labels, np.array([])
+        data = self.combine_dynamic_static_inputs(dynamic, static, clc)
+        return data, labels, self.loadGraph(data)
 #    def __getitem__(self, idx):
 #        path, labels = self.path_list[idx]
 #        dynamic = np.load(path)

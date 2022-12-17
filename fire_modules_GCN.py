@@ -63,9 +63,12 @@ class SpatioTemporalGCN(nn.Module):
 
 #
 #        #S5: zigzag persistence representation learning
-#    #    topo_cnn = self.cnn(zigzag_PI) #B, hidden_dim/2, hidden_dim/2
+        print(zigzag_PI.shape, "<<=========")
+        topo_cnn = self.cnn(zigzag_PI) #B, hidden_dim/2, hidden_dim/2
+        print(topo_cnn.shape, "llllllllllllll")
         x_tgconv = x_gconv #torch.einsum('bno,bo->bno',x_gconv, topo_cnn)
         x_twconv = x_wconv #torch.einsum('bno,bo->bno',x_wconv, topo_cnn)
+        exit(0)
 #
 #        #S6: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
@@ -121,7 +124,7 @@ class GCN_GRU(nn.Module):
             state = hidden_state[layer_idx]
             output_inner = []
             for t in range(seq_len):
-                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings, zigzag_PI) #zigzag PI input shape
+                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings, zigzag_PI[:,t,:,:]) #zigzag PI input shape
                         #node_embeddings, zigzag_PI[:,t, :, :].view(-1, 1, 625, 625)) #zigzag PI input shape
                                                   #node_embeddings, zigzag_PI[:, :, :].view(-1, 1, 625, 625)) #zigzag PI input shape
                 output_inner.append(state)
