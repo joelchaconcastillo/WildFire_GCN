@@ -1,0 +1,208 @@
+MARK LINE
+73
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.9625841760398409
+0.9158831219559714
+              precision    recall  f1-score   support
+
+           0      0.888     0.953     0.920      8814
+           1      0.891     0.760     0.820      4407
+
+    accuracy                          0.889     13221
+   macro avg      0.890     0.857     0.870     13221
+weighted avg      0.889     0.889     0.887     13221
+
+{'precision': 0.8909574468085106, 'recall': 0.7601542999773089, 'f1-score': 0.8203746785845476, 'support': 4407, 'AUC': 0.9625841760398409, 'AUCPR': 0.9158831219559714, 'TP': 3350, 'FP': 410, 'TN': 8404, 'FN': 1057}
+MARK LINE
+187
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.9631819368170025
+0.9152487436045271
+              precision    recall  f1-score   support
+
+           0      0.893     0.957     0.924      8814
+           1      0.899     0.770     0.829      4407
+
+    accuracy                          0.894     13221
+   macro avg      0.896     0.863     0.876     13221
+weighted avg      0.895     0.894     0.892     13221
+
+{'precision': 0.8990193479989398, 'recall': 0.7696845926934422, 'f1-score': 0.8293398533007335, 'support': 4407, 'AUC': 0.9631819368170025, 'AUCPR': 0.9152487436045271, 'TP': 3392, 'FP': 381, 'TN': 8433, 'FN': 1015}
+MARK LINE
+302
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.9613353376945489
+0.9103914961141721
+              precision    recall  f1-score   support
+
+           0      0.872     0.955     0.912      8814
+           1      0.889     0.720     0.795      4407
+
+    accuracy                          0.876     13221
+   macro avg      0.880     0.837     0.853     13221
+weighted avg      0.878     0.876     0.873     13221
+
+{'precision': 0.8885154061624649, 'recall': 0.7197640117994101, 'f1-score': 0.7952864485395513, 'support': 4407, 'AUC': 0.9613353376945489, 'AUCPR': 0.9103914961141721, 'TP': 3172, 'FP': 398, 'TN': 8416, 'FN': 1235}
+MARK LINE
+417
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.9616666174947349
+0.9168065429420074
+              precision    recall  f1-score   support
+
+           0      0.869     0.956     0.911      8814
+           1      0.891     0.713     0.792      4407
+
+    accuracy                          0.875     13221
+   macro avg      0.880     0.835     0.851     13221
+weighted avg      0.877     0.875     0.871     13221
+
+{'precision': 0.8908111174134997, 'recall': 0.7127297481279782, 'f1-score': 0.7918820118492373, 'support': 4407, 'AUC': 0.9616666174947349, 'AUCPR': 0.9168065429420074, 'TP': 3141, 'FP': 385, 'TN': 8429, 'FN': 1266}
+MARK LINE
+529
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+MARK LINE
+638
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.961268813992056
+0.9115338729626854
+              precision    recall  f1-score   support
+
+           0      0.875     0.954     0.913      8814
+           1      0.888     0.728     0.800      4407
+
+    accuracy                          0.879     13221
+   macro avg      0.882     0.841     0.857     13221
+weighted avg      0.880     0.879     0.875     13221
+
+{'precision': 0.8883965660481861, 'recall': 0.7279328341275244, 'f1-score': 0.800199551010227, 'support': 4407, 'AUC': 0.961268813992056, 'AUCPR': 0.9115338729626854, 'TP': 3208, 'FP': 403, 'TN': 8411, 'FN': 1199}
+MARK LINE
+756
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.9630409858606753
+0.91630873806414
+              precision    recall  f1-score   support
+
+           0      0.894     0.953     0.923      8814
+           1      0.892     0.774     0.829      4407
+
+    accuracy                          0.894     13221
+   macro avg      0.893     0.864     0.876     13221
+weighted avg      0.893     0.894     0.891     13221
+
+{'precision': 0.8920261437908497, 'recall': 0.7742228273201724, 'f1-score': 0.8289601554907676, 'support': 4407, 'AUC': 0.9630409858606753, 'AUCPR': 0.91630873806414, 'TP': 3412, 'FP': 413, 'TN': 8401, 'FN': 995}
+MARK LINE
+868
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.9621922422756172
+0.9155383819586458
+              precision    recall  f1-score   support
+
+           0      0.883     0.953     0.917      8814
+           1      0.889     0.747     0.812      4407
+
+    accuracy                          0.885     13221
+   macro avg      0.886     0.850     0.864     13221
+weighted avg      0.885     0.885     0.882     13221
+
+{'precision': 0.8890388768898488, 'recall': 0.7472203312911277, 'f1-score': 0.8119837258044631, 'support': 4407, 'AUC': 0.9621922422756172, 'AUCPR': 0.9155383819586458, 'TP': 3293, 'FP': 411, 'TN': 8403, 'FN': 1114}
+MARK LINE
+982
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.9615471889127436
+0.9093044696201701
+              precision    recall  f1-score   support
+
+           0      0.862     0.952     0.905      8814
+           1      0.880     0.695     0.777      4407
+
+    accuracy                          0.867     13221
+   macro avg      0.871     0.824     0.841     13221
+weighted avg      0.868     0.867     0.862     13221
+
+{'precision': 0.8796668581275129, 'recall': 0.6950306330837305, 'f1-score': 0.7765242743059958, 'support': 4407, 'AUC': 0.9615471889127436, 'AUCPR': 0.9093044696201701, 'TP': 3063, 'FP': 419, 'TN': 8395, 'FN': 1344}
+MARK LINE
+96
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.9629597878120442
+0.9115591317773407
+              precision    recall  f1-score   support
+
+           0      0.892     0.956     0.923      8814
+           1      0.898     0.769     0.829      4407
+
+    accuracy                          0.894     13221
+   macro avg      0.895     0.863     0.876     13221
+weighted avg      0.894     0.894     0.892     13221
+
+{'precision': 0.8982511923688394, 'recall': 0.7692307692307693, 'f1-score': 0.8287495416208287, 'support': 4407, 'AUC': 0.9629597878120442, 'AUCPR': 0.9115591317773407, 'TP': 3390, 'FP': 384, 'TN': 8430, 'FN': 1017}
+MARK LINE
+207
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+0.9631762215453488
+0.9115144911891707
+              precision    recall  f1-score   support
+
+           0      0.897     0.957     0.926      8814
+           1      0.900     0.779     0.835      4407
+
+    accuracy                          0.898     13221
+   macro avg      0.898     0.868     0.881     13221
+weighted avg      0.898     0.898     0.896     13221
+
+{'precision': 0.9001310615989515, 'recall': 0.7792148854095757, 'f1-score': 0.8353198735100948, 'support': 4407, 'AUC': 0.9631762215453488, 'AUCPR': 0.9115144911891707, 'TP': 3434, 'FP': 381, 'TN': 8433, 'FN': 973}

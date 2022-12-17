@@ -1,0 +1,19 @@
+##_target_: wildfire_forecasting.models.greece_fire_models_gcn.GCN_fire_model
+##
+##dynamic_features: ${sel_dynamic_features}
+##static_features: ${sel_static_features}
+##positive_weight: 0.5
+##lr: 0.0001
+##lr_scheduler_step: 100
+##lr_scheduler_gamma: 0.1
+##weight_decay: 0.035
+##input_dim: 25
+##output_dim: 2 #binary classification..
+##embed_dim: 50
+##rnn_units: 32 #64
+##num_layers: 2
+##link_len: 2
+##window_len: 10
+##patch_width: 25
+##patch_height: 25
+##horizon: 1

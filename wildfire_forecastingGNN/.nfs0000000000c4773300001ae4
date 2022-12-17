@@ -1,0 +1,22 @@
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+seed 1
+8
+[0]	validation_0-logloss:0.48936	validation_1-logloss:0.56252
+{'precision': 0.9037170882808466, 'recall': 0.7944179714091218, 'f1-score': 0.8455500543412631, 'support': 4407, 'AUC': 0.9678100196332454, 'AUCPR': 0.9349275350236834, 'TP': 3501, 'FP': 373, 'TN': 8441, 'FN': 906}
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
