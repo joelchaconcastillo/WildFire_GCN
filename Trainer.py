@@ -6,7 +6,10 @@ import copy
 import numpy as np
 import scipy.sparse as sp
 from logger import get_logger
-from metrics import All_Metrics
+from sklearn.metrics import classification_report, roc_auc_score, average_precision_score, confusion_matrix
+from sklearn import metrics
+
+#from metrics import All_Metrics
 
 class Trainer(object):
     def __init__(self, model, loss, optimizer, train_loader, val_loader, test_loader,
@@ -39,20 +42,39 @@ class Trainer(object):
     def val_epoch(self, epoch, val_dataloader):
         self.model.eval()
         total_val_loss = 0
+        preds = np.array([])
+        targets = np.array([])
+        probs = np.array([])
 
         with torch.no_grad():
-            for batch_idx, (ori_data, target, PI_data) in enumerate(val_dataloader):
-                data = ori_data[..., :self.args.input_dim] # input_dim = 3
-                #x_full = ori_data[..., :self.args.input_dim]
-                label = target[..., :self.args.output_dim]
-                #output = self.model(data, target, PI_data, teacher_forcing_ratio=0.)
+            for batch_idx, (data, label, PI_data) in enumerate(val_dataloader):
                 output = self.model(data, PI_data)
+
+                preds = np.concatenate((preds, torch.argmax(output, dim=1).cpu().numpy()))
+                targets= np.concatenate((targets, label.cpu().numpy()))
+                probs = np.concatenate((probs, (torch.exp(output)[:, 1]).cpu().numpy()))
+
 #                if self.args.real_value:
 #                    label = self.scaler.inverse_transform(label)
-                loss = self.loss(output.cuda(), label)
+                loss = self.loss(output, label)
                 #a whole batch of Metr_LA is filtered
                 if not torch.isnan(loss):
                     total_val_loss += loss.item()
+
+        tn, fp, fn, tp = metrics.confusion_matrix(targets, preds).ravel()
+        auc = roc_auc_score(targets, probs)
+        aucpr = average_precision_score(targets, probs)
+        summary = classification_report(targets, preds, digits=3, output_dict=True)['1.0']
+        summary['AUC']=auc
+        summary['AUCPR']=aucpr
+        summary['TP']=tp
+        summary['FP']=fp
+        summary['TN']=tn
+        summary['FN']=fn
+        print("\n")
+        print(summary)
+        print("\n")
+
         val_loss = total_val_loss / len(val_dataloader)
         self.logger.info('**********Val Epoch {}: average Loss: {:.6f}'.format(epoch, val_loss))
         return val_loss
@@ -60,9 +82,7 @@ class Trainer(object):
     def train_epoch(self, epoch):
         self.model.train()
         total_loss = 0
-        for batch_idx, (ori_data, target, PI_data) in enumerate(self.train_loader):
-            data = ori_data #ori_data[..., :self.args.input_dim]
-            label = target #target[..., :self.args.output_dim]  # (..., 1)
+        for batch_idx, (data, label, PI_data) in enumerate(self.train_loader):
             self.optimizer.zero_grad()
             #teacher_forcing for RNN encoder-decoder model
             #if teacher_forcing_ratio = 1: use label as input in the decoder for all steps
@@ -89,7 +109,8 @@ class Trainer(object):
                 self.logger.info('Train Epoch {}: {}/{} Loss: {:.6f}'.format(
                     epoch, batch_idx, self.train_per_epoch, loss.item()))
         train_epoch_loss = total_loss/self.train_per_epoch
-        self.logger.info('**********Train Epoch {}: averaged Loss: {:.6f}, tf_ratio: {:.6f}'.format(epoch, train_epoch_loss, teacher_forcing_ratio))
+#        self.logger.info('**********Train Epoch {}: averaged Loss: {:.6f}, tf_ratio: {:.6f}'.format(epoch, train_epoch_loss, teacher_forcing_ratio))
+        self.logger.info('**********Train Epoch {}: averaged Loss: {:.6f} '.format(epoch, train_epoch_loss))
 
         #learning rate decay
         if self.args.lr_decay:
@@ -177,32 +198,47 @@ class Trainer(object):
             model.load_state_dict(state_dict)
             model.to(args.device)
         model.eval()
-        y_pred = []
-        y_true = []
+        preds = np.array([])
+        targets = np.array([])
+        probs = np.array([])
+
         with torch.no_grad():
-            for batch_idx, (ori_data, target, PI_data) in enumerate(data_loader):
-                data = ori_data[..., :args.input_dim]
-                #x_full = ori_data[..., :args.input_dim]
-                label = target[..., :args.output_dim]
+            for batch_idx, (data, label, PI_data) in enumerate(data_loader):
                 #output = model(data, target, PI_data, teacher_forcing_ratio=0)
                 output = model(data, PI_data)
-                y_true.append(label)
-                y_pred.append(output)
+                preds = np.concatenate((preds, torch.argmax(output, dim=1).cpu().numpy()))
+                targets= np.concatenate((targets, label.cpu().numpy()))
+                probs = np.concatenate((probs, (torch.exp(output)[:, 1]).cpu().numpy()))
+#                y_true.append(label)
+#                y_pred.append(output)
 #        y_true = scaler.inverse_transform(torch.cat(y_true, dim=0))
-        if args.real_value:
-            y_pred = torch.cat(y_pred, dim=0)
+#        if args.real_value:
+#            y_pred = torch.cat(y_pred, dim=0)
 #        else:
 #            y_pred = scaler.inverse_transform(torch.cat(y_pred, dim=0))
-        np.save('./{}_true.npy'.format(args.dataset), y_true.cpu().numpy())
-        np.save('./{}_pred.npy'.format(args.dataset), y_pred.cpu().numpy())
-        for t in range(y_true.shape[1]):
-            mae, rmse, mape, _, _ = All_Metrics(y_pred[:, t, ...], y_true[:, t, ...],
-                                                args.mae_thresh, args.mape_thresh)
-            logger.info("Horizon {:02d}, MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
-                t + 1, mae, rmse, mape*100))
-        mae, rmse, mape, _, _ = All_Metrics(y_pred, y_true, args.mae_thresh, args.mape_thresh)
-        logger.info("Average Horizon, MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
-                    mae, rmse, mape*100))
+        np.save('./{}_true.npy'.format(args.dataset), targets)
+        np.save('./{}_pred.npy'.format(args.dataset), preds)
+
+        tn, fp, fn, tp = metrics.confusion_matrix(targets, preds).ravel()
+        auc = roc_auc_score(targets, probs)
+        aucpr = average_precision_score(targets, probs)
+        summary = classification_report(targets, preds, digits=3, output_dict=True)['1.0']
+        summary['AUC']=auc
+        summary['AUCPR']=aucpr
+        summary['TP']=tp
+        summary['FP']=fp
+        summary['TN']=tn
+        summary['FN']=fn
+        print("\n")
+        print(summary)
+        print("\n")
+
+
+#            logger.info("Horizon {:02d}, MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
+#                t + 1, mae, rmse, mape*100))
+#        mae, rmse, mape, _, _ = All_Metrics(y_pred, y_true, args.mae_thresh, args.mape_thresh)
+#        logger.info("Average Horizon, MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
+#                    mae, rmse, mape*100))
 
     @staticmethod
     def _compute_sampling_threshold(global_step, k):
