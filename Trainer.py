@@ -125,10 +125,9 @@ class Trainer(object):
         val_loss_list = []
         start_time = time.time()
         for epoch in range(1, self.args.epochs + 1): # 总 epochs
-            #epoch_time = time.time()
+            epoch_time = time.time()
             train_epoch_loss = self.train_epoch(epoch)
-            #print(time.time()-epoch_time)
-            #exit()
+            print(time.time()-epoch_time)
             if self.val_loader == None:
                 val_dataloader = self.test_loader
             else:
@@ -166,6 +165,7 @@ class Trainer(object):
             self.model.load_state_dict(best_model)
             # self.val_epoch(self.args.epochs, self.test_loader)
             self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
+
 
         training_time = time.time() - start_time
         self.logger.info("Total training time: {:.4f}min, best loss: {:.6f}".format((training_time / 60), best_loss))
