@@ -206,7 +206,7 @@ class Trainer(object):
         summary['FP']=fp
         summary['TN']=tn
         summary['FN']=fn
-        logger.info("\n {} \n", summary)
+        logger.info("\n Testing metrics {} \n".format(summary))
 
     @staticmethod
     def _compute_sampling_threshold(global_step, k):
