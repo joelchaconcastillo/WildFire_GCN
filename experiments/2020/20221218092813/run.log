@@ -1,0 +1,18 @@
+2022-12-18 09:28: log dir: /home/jcc/WildFire_GCN/experiments/2020/20221218092813
+2022-12-18 09:28: Experiment log path in: /home/jcc/WildFire_GCN/experiments/2020/20221218092813
+2022-12-18 09:28: Train Epoch 1: 0/48 Loss: 0.709786
+2022-12-18 09:29: Train Epoch 1: 20/48 Loss: 1.711852
+2022-12-18 09:30: Train Epoch 1: 40/48 Loss: 1.921117
+2022-12-18 09:31: **********Train Epoch 1: averaged Loss: 2.165511 
+2022-12-18 09:31: 
+Epoch time elapsed: 188.70680952072144
+
+2022-12-18 09:32: 
+ metrics validation: {'precision': 0.3333333333333333, 'recall': 1.0, 'f1-score': 0.5, 'support': 32, 'AUC': 0.61083984375, 'AUCPR': 0.4574912063148413, 'TP': 32, 'FP': 64, 'TN': 0, 'FN': 0} 
+
+2022-12-18 09:32: **********Val Epoch 1: average Loss: 0.789381
+2022-12-18 09:32: *********************************Current best model saved!
+2022-12-18 09:33: 
+ {} 
+
+2022-12-18 09:33: Train Epoch 2: 0/48 Loss: 0.489614

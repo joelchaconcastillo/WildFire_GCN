@@ -33,6 +33,7 @@ class Trainer(object):
         if os.path.isdir(args.log_dir) == False and not args.debug:
             os.makedirs(args.log_dir, exist_ok=True)
         self.logger = get_logger(args.log_dir, name=args.model, debug=args.debug)
+        self.logger.info('log dir: {}'.format(args.log_dir))
         self.logger.info('Experiment log path in: {}'.format(args.log_dir))
         #if not args.debug:
         #self.logger.info("Argument: %r", args)
@@ -47,8 +48,8 @@ class Trainer(object):
         probs = np.array([])
 
         with torch.no_grad():
-            for batch_idx, (data, label, PI_data) in enumerate(val_dataloader):
-                output = self.model(data, PI_data)
+            for batch_idx, (data, label) in enumerate(val_dataloader):
+                output = self.model(data)
 
                 preds = np.concatenate((preds, torch.argmax(output, dim=1).cpu().numpy()))
                 targets= np.concatenate((targets, label.cpu().numpy()))
@@ -71,9 +72,7 @@ class Trainer(object):
         summary['FP']=fp
         summary['TN']=tn
         summary['FN']=fn
-        print("\n")
-        print(summary)
-        print("\n")
+        self.logger.info("\n metrics validation: {} \n".format(summary))
 
         val_loss = total_val_loss / len(val_dataloader)
         self.logger.info('**********Val Epoch {}: average Loss: {:.6f}'.format(epoch, val_loss))
@@ -82,19 +81,9 @@ class Trainer(object):
     def train_epoch(self, epoch):
         self.model.train()
         total_loss = 0
-        for batch_idx, (data, label, PI_data) in enumerate(self.train_loader):
+        for batch_idx, (data, label) in enumerate(self.train_loader):
             self.optimizer.zero_grad()
-            #teacher_forcing for RNN encoder-decoder model
-            #if teacher_forcing_ratio = 1: use label as input in the decoder for all steps
-#            if self.args.teacher_forcing:
-#                global_step = (epoch - 1) * self.train_per_epoch + batch_idx
-#                teacher_forcing_ratio = self._compute_sampling_threshold(global_step, self.args.tf_decay_steps)
-#            else:
-#                teacher_forcing_ratio = 1.
-            #output = self.model(data, target, PI_data, teacher_forcing_ratio=teacher_forcing_ratio)
-            output = self.model(data, PI_data)
-#            if self.args.real_value:
-#                label = self.scaler.inverse_transform(label)
+            output = self.model(data)
             loss = self.loss(output, label)
             loss.backward()
 
@@ -109,7 +98,6 @@ class Trainer(object):
                 self.logger.info('Train Epoch {}: {}/{} Loss: {:.6f}'.format(
                     epoch, batch_idx, self.train_per_epoch, loss.item()))
         train_epoch_loss = total_loss/self.train_per_epoch
-#        self.logger.info('**********Train Epoch {}: averaged Loss: {:.6f}, tf_ratio: {:.6f}'.format(epoch, train_epoch_loss, teacher_forcing_ratio))
         self.logger.info('**********Train Epoch {}: averaged Loss: {:.6f} '.format(epoch, train_epoch_loss))
 
         #learning rate decay
@@ -127,21 +115,18 @@ class Trainer(object):
         for epoch in range(1, self.args.epochs + 1): # 总 epochs
             epoch_time = time.time()
             train_epoch_loss = self.train_epoch(epoch)
-            print(time.time()-epoch_time)
+            self.logger.info('\nEpoch time elapsed: {}\n'.format(time.time() - epoch_time))
             if self.val_loader == None:
                 val_dataloader = self.test_loader
             else:
                 val_dataloader = self.val_loader
             val_epoch_loss = self.val_epoch(epoch, val_dataloader)
 
-            #print('LR:', self.optimizer.param_groups[0]['lr'])
             train_loss_list.append(train_epoch_loss)
             val_loss_list.append(val_epoch_loss)
-            if train_epoch_loss > 1e6:
+            if train_epoch_loss > 1e7:
                 self.logger.warning('Gradient explosion detected. Ending...')
                 break
-            #if self.val_loader == None:
-            #val_epoch_loss = train_epoch_loss
             if val_epoch_loss < best_loss:
                 best_loss = val_epoch_loss
                 not_improved_count = 0
@@ -164,7 +149,7 @@ class Trainer(object):
             # test
             self.model.load_state_dict(best_model)
             # self.val_epoch(self.args.epochs, self.test_loader)
-            self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
+            #self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
 
 
         training_time = time.time() - start_time
@@ -203,19 +188,11 @@ class Trainer(object):
         probs = np.array([])
 
         with torch.no_grad():
-            for batch_idx, (data, label, PI_data) in enumerate(data_loader):
-                #output = model(data, target, PI_data, teacher_forcing_ratio=0)
-                output = model(data, PI_data)
+            for batch_idx, (data, label) in enumerate(data_loader):
+                output = model(data)
                 preds = np.concatenate((preds, torch.argmax(output, dim=1).cpu().numpy()))
                 targets= np.concatenate((targets, label.cpu().numpy()))
                 probs = np.concatenate((probs, (torch.exp(output)[:, 1]).cpu().numpy()))
-#                y_true.append(label)
-#                y_pred.append(output)
-#        y_true = scaler.inverse_transform(torch.cat(y_true, dim=0))
-#        if args.real_value:
-#            y_pred = torch.cat(y_pred, dim=0)
-#        else:
-#            y_pred = scaler.inverse_transform(torch.cat(y_pred, dim=0))
         np.save('./{}_true.npy'.format(args.dataset), targets)
         np.save('./{}_pred.npy'.format(args.dataset), preds)
 
@@ -229,16 +206,7 @@ class Trainer(object):
         summary['FP']=fp
         summary['TN']=tn
         summary['FN']=fn
-        print("\n")
-        print(summary)
-        print("\n")
-
-
-#            logger.info("Horizon {:02d}, MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
-#                t + 1, mae, rmse, mape*100))
-#        mae, rmse, mape, _, _ = All_Metrics(y_pred, y_true, args.mae_thresh, args.mape_thresh)
-#        logger.info("Average Horizon, MAE: {:.2f}, RMSE: {:.2f}, MAPE: {:.4f}%".format(
-#                    mae, rmse, mape*100))
+        logger.info("\n {} \n", summary)
 
     @staticmethod
     def _compute_sampling_threshold(global_step, k):

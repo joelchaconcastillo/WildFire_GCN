@@ -264,64 +264,9 @@ class FireDataset_Graph_npy(Dataset):
             clc = np.nan_to_num(clc, nan=0)
         else:
             clc = 0
-         
-#        data = np.load(str(path).replace('dynamic.npy', 'graph.npz'))
-#        graph = data['graph']
+
         data = self.combine_dynamic_static_inputs(dynamic, static, clc)
-        return data, labels, self.loadGraph(data)
-#    def __getitem__(self, idx):
-#        path, labels = self.path_list[idx]
-#        dynamic = np.load(path)
-#        static = np.load(str(path).replace('dynamic', 'static'))
-#        dynamic = dynamic[:, self.dynamic_idx, ...]
-#        static = static[self.static_idx]
-#
-#        def _min_max_scaling(in_vec, max_vec, min_vec):
-#            return (in_vec - min_vec) / (max_vec - min_vec)
-#
-#        dynamic = _min_max_scaling(dynamic, self.mm_dict['max']['dynamic'], self.mm_dict['min']['dynamic'])
-#        static = _min_max_scaling(static, self.mm_dict['max']['static'], self.mm_dict['min']['static'])
-#
-#        with warnings.catch_warnings():
-#            warnings.simplefilter("ignore", category=RuntimeWarning)
-#            feat_mean = np.nanmean(dynamic, axis=(2, 3))
-#            feat_mean = feat_mean[..., np.newaxis, np.newaxis]
-#            feat_mean = np.repeat(feat_mean, dynamic.shape[2], axis=2)
-#            feat_mean = np.repeat(feat_mean, dynamic.shape[3], axis=3)
-#            dynamic = np.where(np.isnan(dynamic), feat_mean, dynamic)
-#        if self.nan_fill:
-#            dynamic = np.nan_to_num(dynamic, nan=self.nan_fill)
-#            static = np.nan_to_num(static, nan=self.nan_fill)
-#
-#        if self.clc == 'mode':
-#            clc = np.load(str(path).replace('dynamic', 'clc_mode'))
-#        elif self.clc == 'vec':
-#            clc = np.load(str(path).replace('dynamic', 'clc_vec'))
-#            clc = np.nan_to_num(clc, nan=0)
-#        else:
-#            clc = 0
-#        print(dynamic.shape)
-##        data = np.load(str(path).replace('dynamic.npy', 'graph.npz'))
-##        graph = data['graph']
-#        return self.combine_dynamic_static_inputs(dynamic, static, clc), labels, np.array([])
-
-#def data_loader(X, Y, batch_size, shuffle=True, drop_last=True):
-#    cuda = True if torch.cuda.is_available() else False
-#    TensorFloat = torch.cuda.FloatTensor if cuda else torch.FloatTensor
-#    X, Y = TensorFloat(X), TensorFloat(Y)
-#    data = torch.utils.data.TensorDataset(X, Y)
-#    dataloader = torch.utils.data.DataLoader(data, batch_size=batch_size,
-#                                             shuffle=shuffle, drop_last=drop_last)
-#    return dataloader
-
-#def triple_data_loader(X, PI, Y, batch_size, shuffle=True, drop_last=True):
-#    cuda = True if torch.cuda.is_available() else False
-#    TensorFloat = torch.cuda.FloatTensor if cuda else torch.FloatTensor
-#    X, PI, Y = TensorFloat(X), TensorFloat(PI), TensorFloat(Y)
-#    data = torch.utils.data.TensorDataset(X, PI, Y)
-#    dataloader = torch.utils.data.DataLoader(data, batch_size=batch_size,
-#                                             shuffle=shuffle, drop_last=drop_last)
-#    return dataloader
+        return data, labels #, self.loadGraph(data)
 
 def get_dataloaders(args):
 

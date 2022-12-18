@@ -15,7 +15,7 @@ from dataloader import get_dataloaders
 #-----------------------------------------------------------------------------#
 # dataset and
 Mode = 'train'
-DEBUG = 'True'
+DEBUG = 'False'
 DATASET = '2020'
 DEVICE = 'cuda:0'
 MODEL = 'fire_GCN'
@@ -203,7 +203,7 @@ trainer = Trainer(model, loss, optimizer, train_loader, val_loader, test_loader,
 if args.mode == 'train':
     trainer.train()
 elif args.mode == 'test':
-    model.load_state_dict(torch.load('pre-trained/{}.pth'.format(args.dataset)))
+    model.load_state_dict(torch.load('{}.pth'.format(args.dataset)))
     print("Load saved model")
     trainer.test(model, trainer.args, test_loader, scaler, trainer.logger)
 else:

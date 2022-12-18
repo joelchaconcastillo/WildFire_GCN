@@ -37,40 +37,43 @@ class SpatioTemporalGCN(nn.Module):
         self.bias_pool = nn.Parameter(torch.FloatTensor(embed_dim, hidden_dim))
         self.T = nn.Parameter(torch.FloatTensor(window_len))
         self.cnn = CNN(int(hidden_dim/ 2))
-    def forward(self, x, x_window, node_embeddings, zigzag_PI):
-        #S1: Laplacian construction
-        node_num = node_embeddings.shape[0]
+    def forward(self, x, x_window, node_embeddings):
+
+        (batch_size, lag, node_num, dim) = x_window.shape
+        #S1: Graph construction, a suggestion is to pre-process graph, however since wildfire requires ~1TB for pre-processing graph we create it from fly
+        
+
+        #S2: Laplacian construction
         supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
         support_set = [torch.eye(node_num).to(supports.device), supports]
         #support_set = [torch.eye(node_num), supports]
 
-        #S2: Laplacianlink
+        #S3: Laplacianlink
         for k in range(2, self.link_len):
             support_set.append(torch.mm(supports, support_set[k-1]))
         supports = torch.stack(support_set, dim=0)
-        #S3: spatial graph convolution
+
+        #S4: spatial graph convolution
         weights = torch.einsum('nd,dkio->nkio', node_embeddings, self.weights_pool) #N, link_len, dim_in, hidden_dim/2 : on E
         bias = torch.matmul(node_embeddings, self.bias_pool) #N, hidden_dim : on E
         x_g = torch.einsum("knm,bmc->bknc", supports, x) #B, link_len, N, dim_in : on N
         x_g = x_g.permute(0, 2, 1, 3) #B, N, link_len, dim_in  : on 
         x_gconv = torch.einsum('bnki,nkio->bno', x_g, weights) #B, N, hidden_dim/2
 
-        #S4: temporal feature transformation
+        #S5: temporal feature transformation
         weights_window = torch.einsum('nd,dio->nio', node_embeddings, self.weights_window)  #N, dim_in, hidden_dim/2 : on E
         x_w = torch.einsum('btni,nio->btno', x_window, weights_window)  #B, T, N, hidden_dim/2: on D
         x_w = x_w.permute(0, 2, 3, 1)  #B, N, hidden_dim/2, T 
         x_wconv = torch.matmul(x_w, self.T)  #B, N, hidden_dim/2: on T
 
 #
-#        #S5: zigzag persistence representation learning
-        print(zigzag_PI.shape, "<<=========")
-        topo_cnn = self.cnn(zigzag_PI) #B, hidden_dim/2, hidden_dim/2
-        print(topo_cnn.shape, "llllllllllllll")
+#        #S6: Transform graph information to [hidden_dim/2, hidden_dim/2] 
+ #       graph_cnn = self.cnn(adjMatrix) #B, hidden_dim/2, hidden_dim/2
         x_tgconv = x_gconv #torch.einsum('bno,bo->bno',x_gconv, topo_cnn)
         x_twconv = x_wconv #torch.einsum('bno,bo->bno',x_wconv, topo_cnn)
-        exit(0)
+ #       exit(0)
 #
-#        #S6: combination operation
+#        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
 #        x_gwconv = torch.cat([torch.randn(x_twconv.shape), x_twconv], dim=-1)
         return x_gwconv
@@ -83,15 +86,15 @@ class GCN_GRU_Cell(nn.Module):
         self.gate = SpatioTemporalGCN(dim_in+self.hidden_dim, 2*hidden_dim, window_len, link_len, embed_dim)
         self.update = SpatioTemporalGCN(dim_in+self.hidden_dim, hidden_dim, window_len, link_len, embed_dim)
 
-    def forward(self, x, state, x_full, node_embeddings, zigzag_PI):
+    def forward(self, x, state, x_full, node_embeddings):
         #x: B, num_nodes, input_dim
         #state: B, num_nodes, hidden_dim
         h_current = state.to(x.device)
         input_and_state = torch.cat((x, h_current), dim=-1) #x + state
-        z_r = torch.sigmoid(self.gate(input_and_state, x_full, node_embeddings, zigzag_PI))
+        z_r = torch.sigmoid(self.gate(input_and_state, x_full, node_embeddings))
         z, r = torch.split(z_r, self.hidden_dim, dim=-1)
         candidate = torch.cat((x, r*h_current), dim=-1)
-        n = torch.tanh(self.update(candidate, x_full, node_embeddings, zigzag_PI))
+        n = torch.tanh(self.update(candidate, x_full, node_embeddings))
         h_next = (1.0-z)*n + z*h_current
         return h_next
 
@@ -113,7 +116,7 @@ class GCN_GRU(nn.Module):
             cur_input_dim = dim_in if i == 0 else hidden_dim
             self.cell_list.append(GCN_GRU_Cell(node_num, cur_input_dim, hidden_dim, window_len, link_len, embed_dim))
 
-    def forward(self, x, node_embeddings, zigzag_PI, hidden_state = None):
+    def forward(self, x, node_embeddings, hidden_state = None):
         assert x.shape[2] == self.node_num and x.shape[3] == self.input_dim
         (batch_size, seq_len, input_dim, n) = x.shape
         hidden_state = self.init_hidden(batch_size)
@@ -124,7 +127,7 @@ class GCN_GRU(nn.Module):
             state = hidden_state[layer_idx]
             output_inner = []
             for t in range(seq_len):
-                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings, zigzag_PI[:,t,:,:]) #zigzag PI input shape
+                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings) #zigzag PI input shape
                         #node_embeddings, zigzag_PI[:,t, :, :].view(-1, 1, 625, 625)) #zigzag PI input shape
                                                   #node_embeddings, zigzag_PI[:, :, :].view(-1, 1, 625, 625)) #zigzag PI input shape
                 output_inner.append(state)
@@ -178,7 +181,7 @@ class GCN(nn.Module):
 #
 #      self.fc3 = nn.Linear(self.hidden_dim, 2)
 
-   def forward(self, x: torch.Tensor, graph: torch.Tensor):
+   def forward(self, x: torch.Tensor):
       '''
          x :     batch, time, features, nodes (width x height pixels)
          graph:  batch, time, nodes, nodes
@@ -187,7 +190,7 @@ class GCN(nn.Module):
       x = x.permute(0, 1, 3, 2).float() ## B, T, N, D
       (B,T,N,D) = x.shape
       x = self.ln1(x)
-      x, _ = self.encoder(x, self.node_embeddings, graph.float()) #B, T, N, hidden_dim
+      x, _ = self.encoder(x, self.node_embeddings) #B, T, N, hidden_dim
       x = x[0][:, -1:, :, :] #B, 1, N, hidden_dim
 
 #      x = torch.flatten(x, 1) #B, 1*N*hidden_dim
