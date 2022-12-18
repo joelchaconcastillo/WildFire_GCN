@@ -37,8 +37,8 @@ class Trainer(object):
         self.logger.info('Experiment log path in: {}'.format(args.log_dir))
         #if not args.debug:
         self.logger.info("Argument: %r", args)
-         for arg, value in sorted(vars(args).items()):
-             self.logger.info("Argument %s: %r", arg, value)
+        for arg, value in sorted(vars(args).items()):
+            self.logger.info("Argument %s: %r", arg, value)
 
     def val_epoch(self, epoch, val_dataloader):
         self.model.eval()
