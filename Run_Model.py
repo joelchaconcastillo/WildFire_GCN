@@ -45,8 +45,6 @@ args.add_argument('--test_ratio', default=config['data']['test_ratio'], type=flo
 args.add_argument('--lag', default=config['data']['lag'], type=int)
 args.add_argument('--horizon', default=config['data']['horizon'], type=int)
 args.add_argument('--num_nodes', default=config['data']['num_nodes'], type=int)
-args.add_argument('--tod', default=config['data']['tod'], type=eval)
-args.add_argument('--normalizer', default=config['data']['normalizer'], type=str)
 args.add_argument('--column_wise', default=config['data']['column_wise'], type=eval)
 args.add_argument('--default_graph', default=config['data']['default_graph'], type=eval)
 args.add_argument('--dataset_root', default=config['data']['dataset_root'], type=str)

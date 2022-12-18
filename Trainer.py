@@ -36,9 +36,9 @@ class Trainer(object):
         self.logger.info('log dir: {}'.format(args.log_dir))
         self.logger.info('Experiment log path in: {}'.format(args.log_dir))
         #if not args.debug:
-        #self.logger.info("Argument: %r", args)
-        # for arg, value in sorted(vars(args).items()):
-        #     self.logger.info("Argument %s: %r", arg, value)
+        self.logger.info("Argument: %r", args)
+         for arg, value in sorted(vars(args).items()):
+             self.logger.info("Argument %s: %r", arg, value)
 
     def val_epoch(self, epoch, val_dataloader):
         self.model.eval()
@@ -207,13 +207,3 @@ class Trainer(object):
         summary['TN']=tn
         summary['FN']=fn
         logger.info("\n Testing metrics {} \n".format(summary))
-
-    @staticmethod
-    def _compute_sampling_threshold(global_step, k):
-        """
-        Computes the sampling probability for scheduled sampling using inverse sigmoid.
-        :param global_step:
-        :param k:
-        :return:
-        """
-        return k / (k + math.exp(global_step / k))

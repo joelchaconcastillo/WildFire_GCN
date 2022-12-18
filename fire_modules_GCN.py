@@ -38,11 +38,16 @@ class SpatioTemporalGCN(nn.Module):
         self.T = nn.Parameter(torch.FloatTensor(window_len))
         self.cnn = CNN(int(hidden_dim/ 2))
     def forward(self, x, x_window, node_embeddings):
-
+        '''
+           x: B, N, F
+        '''
         (batch_size, lag, node_num, dim) = x_window.shape
         #S1: Graph construction, a suggestion is to pre-process graph, however since wildfire requires ~1TB for pre-processing graph we create it from fly
-        
-
+        adjMatrix = torch.cdist(x, x, p=2.0)  #B, N, N
+        maxv = torch.max(adjMatrix)
+        adjMatrix = maxv - adjMatrix
+        adjMatrix = torch.unsqueeze(adjMatrix, 1)
+         
         #S2: Laplacian construction
         supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
         support_set = [torch.eye(node_num).to(supports.device), supports]
@@ -68,10 +73,9 @@ class SpatioTemporalGCN(nn.Module):
 
 #
 #        #S6: Transform graph information to [hidden_dim/2, hidden_dim/2] 
- #       graph_cnn = self.cnn(adjMatrix) #B, hidden_dim/2, hidden_dim/2
+        graph_cnn = self.cnn(adjMatrix) #B, hidden_dim/2, hidden_dim/2
         x_tgconv = x_gconv #torch.einsum('bno,bo->bno',x_gconv, topo_cnn)
         x_twconv = x_wconv #torch.einsum('bno,bo->bno',x_wconv, topo_cnn)
- #       exit(0)
 #
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
@@ -128,8 +132,6 @@ class GCN_GRU(nn.Module):
             output_inner = []
             for t in range(seq_len):
                 state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings) #zigzag PI input shape
-                        #node_embeddings, zigzag_PI[:,t, :, :].view(-1, 1, 625, 625)) #zigzag PI input shape
-                                                  #node_embeddings, zigzag_PI[:, :, :].view(-1, 1, 625, 625)) #zigzag PI input shape
                 output_inner.append(state)
             layer_output = torch.stack(output_inner, dim=1)
             cur_layer_input = layer_output
@@ -145,7 +147,6 @@ class GCN_GRU(nn.Module):
         for i in range(self.num_layers):
             init_states.append(self.cell_list[i].init_hidden_state(batch_size))
         return init_states
-#        return torch.stack(init_states, dim=0) #(num_layers, B, N, hidden_dim)
 
 
 
