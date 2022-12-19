@@ -44,13 +44,12 @@ class SpatioTemporalGCN(nn.Module):
         (batch_size, lag, node_num, dim) = x_window.shape
         #S1: Graph construction, a suggestion is to pre-process graph, however since wildfire requires ~1TB for pre-processing graph we create it from fly
 #        adjMatrix = torch.cdist(x, x, p=2.0)  #B, N, N
-#        adjMatrix = 1.0 (torch.max(adjMatrix)/maxv)
+#        adjMatrix = 1.0 - (torch.max(adjMatrix)/maxv)
 #        adjMatrix = torch.unsqueeze(adjMatrix, 1) # B, N, N
          
         #S2: Laplacian construction
         supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
         support_set = [torch.eye(node_num).to(supports.device), supports]
-        #support_set = [torch.eye(node_num), supports]
 
         #S3: Laplacianlink
         for k in range(2, self.link_len):
