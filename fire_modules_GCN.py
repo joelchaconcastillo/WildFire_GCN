@@ -43,9 +43,9 @@ class SpatioTemporalGCN(nn.Module):
         '''
         (batch_size, lag, node_num, dim) = x_window.shape
         #S1: Graph construction, a suggestion is to pre-process graph, however since wildfire requires ~1TB for pre-processing graph we create it from fly
-#        adjMatrix = torch.cdist(x, x, p=2.0)  #B, N, N
-#        adjMatrix = 1.0 - (torch.max(adjMatrix)/maxv)
-#        adjMatrix = torch.unsqueeze(adjMatrix, 1) # B, N, N
+        adjMatrix = torch.cdist(x, x, p=2.0)  #B, N, N
+        adjMatrix = 1.0 - (adjMatrix/torch.max(adjMatrix))
+        adjMatrix = torch.unsqueeze(adjMatrix, 1) # B, N, N
          
         #S2: Laplacian construction
         supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
@@ -70,9 +70,9 @@ class SpatioTemporalGCN(nn.Module):
         x_wconv = torch.matmul(x_w, self.T)  #B, N, hidden_dim/2: on T
 
 #        #S6: Transform graph information to [hidden_dim/2, hidden_dim/2] 
-#        graph_cnn = self.cnn(adjMatrix) #B, hidden_dim/2, hidden_dim/2
-        x_tgconv = x_gconv #torch.einsum('bno,bo->bno',x_gconv, topo_cnn)
-        x_twconv = x_wconv #torch.einsum('bno,bo->bno',x_wconv, topo_cnn)
+        graph_cnn = self.cnn(adjMatrix) #B, hidden_dim/2, hidden_dim/2
+        x_tgconv = torch.einsum('bno,bo->bno',x_gconv, graph_cnn)
+        x_twconv = torch.einsum('bno,bo->bno',x_wconv, graph_cnn)
 #
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
