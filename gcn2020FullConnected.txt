@@ -821,3 +821,72 @@ Epoch time elapsed: 3575.540184736252
 2022-12-18 21:14: Train Epoch 5: 58/159 Loss: 0.300036
 2022-12-18 21:15: Train Epoch 5: 59/159 Loss: 0.269662
 2022-12-18 21:16: Train Epoch 5: 60/159 Loss: 0.266900
+2022-12-18 21:16: Train Epoch 5: 61/159 Loss: 0.256777
+2022-12-18 21:17: Train Epoch 5: 62/159 Loss: 0.315819
+2022-12-18 21:17: Train Epoch 5: 63/159 Loss: 0.327156
+2022-12-18 21:18: Train Epoch 5: 64/159 Loss: 0.324542
+2022-12-18 21:18: Train Epoch 5: 65/159 Loss: 0.301627
+2022-12-18 21:19: Train Epoch 5: 66/159 Loss: 0.320230
+2022-12-18 21:19: Train Epoch 5: 67/159 Loss: 0.312173
+2022-12-18 21:20: Train Epoch 5: 68/159 Loss: 0.313487
+2022-12-18 21:20: Train Epoch 5: 69/159 Loss: 0.239027
+2022-12-18 21:21: Train Epoch 5: 70/159 Loss: 0.342239
+2022-12-18 21:22: Train Epoch 5: 71/159 Loss: 0.298073
+2022-12-18 21:22: Train Epoch 5: 72/159 Loss: 0.311852
+2022-12-18 21:23: Train Epoch 5: 73/159 Loss: 0.262423
+2022-12-18 21:23: Train Epoch 5: 74/159 Loss: 0.273596
+2022-12-18 21:24: Train Epoch 5: 75/159 Loss: 0.297124
+2022-12-18 21:24: Train Epoch 5: 76/159 Loss: 0.219343
+2022-12-18 21:25: Train Epoch 5: 77/159 Loss: 0.357671
+2022-12-18 21:25: Train Epoch 5: 78/159 Loss: 0.267399
+2022-12-18 21:26: Train Epoch 5: 79/159 Loss: 0.310836
+2022-12-18 21:27: Train Epoch 5: 80/159 Loss: 0.314305
+2022-12-18 21:27: Train Epoch 5: 81/159 Loss: 0.303451
+2022-12-18 21:28: Train Epoch 5: 82/159 Loss: 0.263522
+2022-12-18 21:28: Train Epoch 5: 83/159 Loss: 0.246941
+2022-12-18 21:29: Train Epoch 5: 84/159 Loss: 0.254247
+2022-12-18 21:29: Train Epoch 5: 85/159 Loss: 0.305178
+2022-12-18 21:30: Train Epoch 5: 86/159 Loss: 0.279042
+2022-12-18 21:30: Train Epoch 5: 87/159 Loss: 0.291947
+2022-12-18 21:31: Train Epoch 5: 88/159 Loss: 0.324153
+2022-12-18 21:31: Train Epoch 5: 89/159 Loss: 0.320101
+2022-12-18 21:32: Train Epoch 5: 90/159 Loss: 0.339240
+2022-12-18 21:33: Train Epoch 5: 91/159 Loss: 0.303788
+2022-12-18 21:33: Train Epoch 5: 92/159 Loss: 0.338257
+2022-12-18 21:34: Train Epoch 5: 93/159 Loss: 0.277334
+2022-12-18 21:34: Train Epoch 5: 94/159 Loss: 0.305346
+2022-12-18 21:35: Train Epoch 5: 95/159 Loss: 0.335537
+2022-12-18 21:35: Train Epoch 5: 96/159 Loss: 0.361702
+2022-12-18 21:36: Train Epoch 5: 97/159 Loss: 0.357431
+2022-12-18 21:36: Train Epoch 5: 98/159 Loss: 0.273251
+2022-12-18 21:37: Train Epoch 5: 99/159 Loss: 0.334183
+2022-12-18 21:38: Train Epoch 5: 100/159 Loss: 0.259232
+2022-12-18 21:38: Train Epoch 5: 101/159 Loss: 0.276549
+2022-12-18 21:39: Train Epoch 5: 102/159 Loss: 0.284712
+2022-12-18 21:39: Train Epoch 5: 103/159 Loss: 0.292209
+2022-12-18 21:40: Train Epoch 5: 104/159 Loss: 0.292832
+2022-12-18 21:40: Train Epoch 5: 105/159 Loss: 0.303248
+2022-12-18 21:41: Train Epoch 5: 106/159 Loss: 0.310686
+2022-12-18 21:41: Train Epoch 5: 107/159 Loss: 0.308939
+2022-12-18 21:42: Train Epoch 5: 108/159 Loss: 0.310274
+2022-12-18 21:43: Train Epoch 5: 109/159 Loss: 0.353721
+2022-12-18 21:43: Train Epoch 5: 110/159 Loss: 0.295387
+2022-12-18 21:44: Train Epoch 5: 111/159 Loss: 0.299230
+2022-12-18 21:44: Train Epoch 5: 112/159 Loss: 0.307635
+2022-12-18 21:45: Train Epoch 5: 113/159 Loss: 0.260153
+2022-12-18 21:45: Train Epoch 5: 114/159 Loss: 0.272911
+2022-12-18 21:46: Train Epoch 5: 115/159 Loss: 0.297737
+2022-12-18 21:46: Train Epoch 5: 116/159 Loss: 0.319780
+2022-12-18 21:47: Train Epoch 5: 117/159 Loss: 0.317500
+Traceback (most recent call last):
+  File "Run_Model.py", line 201, in <module>
+    trainer.train()
+  File "/home/joel.chacon/tmp/WildFire_GCN/Trainer.py", line 117, in train
+    train_epoch_loss = self.train_epoch(epoch)
+  File "/home/joel.chacon/tmp/WildFire_GCN/Trainer.py", line 88, in train_epoch
+    loss.backward()
+  File "/home/joel.chacon/.local/lib/python3.8/site-packages/torch/tensor.py", line 245, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/home/joel.chacon/.local/lib/python3.8/site-packages/torch/autograd/__init__.py", line 145, in backward
+    Variable._execution_engine.run_backward(
+KeyboardInterrupt
