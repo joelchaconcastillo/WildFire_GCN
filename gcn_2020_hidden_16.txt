@@ -259,3 +259,15 @@ Epoch time elapsed: 13475.628562688828
 2022-12-20 12:04: 
  Testing metrics {'precision': 0.6923076923076923, 'recall': 0.10260586319218241, 'f1-score': 0.17872340425531916, 'support': 1228, 'AUC': 0.831005004031873, 'AUCPR': 0.6773849788895518, 'TP': 126, 'FP': 56, 'TN': 2400, 'FN': 1102} 
 
+Traceback (most recent call last):
+  File "Run_Model.py", line 201, in <module>
+    trainer.train()
+  File "/home/joel.chacon/tmp/WildFire_GCN/Trainer.py", line 117, in train
+    train_epoch_loss = self.train_epoch(epoch)
+  File "/home/joel.chacon/tmp/WildFire_GCN/Trainer.py", line 88, in train_epoch
+    loss.backward()
+  File "/home/joel.chacon/.local/lib/python3.6/site-packages/torch/_tensor.py", line 307, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/home/joel.chacon/.local/lib/python3.6/site-packages/torch/autograd/__init__.py", line 156, in backward
+    allow_unreachable=True, accumulate_grad=True)  # allow_unreachable flag
+KeyboardInterrupt
