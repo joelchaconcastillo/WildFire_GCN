@@ -38,7 +38,7 @@ class SpatioTemporalGCN(nn.Module):
            self.weights_window = nn.Parameter(torch.FloatTensor(embed_dim, int(dim_in/2), int(hidden_dim / 2)))
         self.bias_pool = nn.Parameter(torch.FloatTensor(embed_dim, hidden_dim))
         self.T = nn.Parameter(torch.FloatTensor(window_len))
-        self.cnn = CNN(int(hidden_dim/ 2))
+#        self.cnn = CNN(int(hidden_dim/ 2))
 
 
     def forward(self, x, x_window, node_embeddings):
@@ -72,13 +72,13 @@ class SpatioTemporalGCN(nn.Module):
         x_wconv = torch.matmul(x_w, self.T)  #B, N, hidden_dim/2: on T
 
 #        #S6: Transform graph information to [hidden_dim/2, hidden_dim/2] 
-        xemb = torch.einsum('bnf,ne->bef', x, node_embeddings).contiguous() #B, E, F
-        graph_embed = torch.cdist(xemb, xemb, p=2.0)  #B, E, E
-        graph_embed = 1.0 - (graph_embed/torch.max(graph_embed)) #B, E, E
-        graph_embed = torch.unsqueeze(graph_embed, 1)
-        graph_embed= self.cnn(graph_embed)
-        x_tgconv = torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
-        x_twconv = torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
+    #    xemb = torch.einsum('bnf,ne->bef', x, node_embeddings).contiguous() #B, E, F
+    #    graph_embed = torch.cdist(xemb, xemb, p=2.0)  #B, E, E
+    #    graph_embed = 1.0 - (graph_embed/torch.max(graph_embed)) #B, E, E
+    #    graph_embed = torch.unsqueeze(graph_embed, 1)
+    #    graph_embed = self.cnn(graph_embed)
+        x_tgconv = x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
+        x_twconv = x_wconv #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
 
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
