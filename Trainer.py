@@ -144,6 +144,7 @@ class Trainer(object):
             if best_state == True:
                 self.logger.info('*********************************Current best model saved!')
                 best_model = copy.deepcopy(self.model.state_dict())
+                torch.save(best_model, self.best_path)
 
             # apply the best model to test dataset
             # test
