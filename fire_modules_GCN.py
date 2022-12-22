@@ -184,7 +184,7 @@ class GCN(nn.Module):
 #      self.drop2 = nn.Dropout(dropout)
 #
 #      self.fc3 = nn.Linear(self.hidden_dim, 2)
-
+#
    def forward(self, x: torch.Tensor):
       '''
          x :     batch, time, features, nodes (width x height pixels)
