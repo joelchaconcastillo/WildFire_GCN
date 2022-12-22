@@ -77,8 +77,8 @@ class SpatioTemporalGCN(nn.Module):
     #    graph_embed = 1.0 - (graph_embed/torch.max(graph_embed)) #B, E, E
     #    graph_embed = torch.unsqueeze(graph_embed, 1)
     #    graph_embed = self.cnn(graph_embed)
-        x_tgconv = x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
-        x_twconv = x_wconv #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
+        x_tgconv = x_gconv #x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
+        x_twconv = x_gconv #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
 
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
@@ -160,6 +160,8 @@ class GCN(nn.Module):
       if args.clc == 'vec':
           input_dim += 10
       self.num_nodes = int(args.patch_width)*int(args.patch_height)
+      self.patch_width = args.patch_width
+      self.patch_height = args.patch_height
       self.hidden_dim = args.rnn_units
       self.input_dim = args.input_dim
       self.output_dim = args.output_dim
@@ -174,16 +176,18 @@ class GCN(nn.Module):
       self.node_embeddings = nn.Parameter(torch.randn(self.num_nodes, self.embed_dim), requires_grad=True)
       self.encoder = GCN_GRU(self.num_nodes, self.input_dim, self.hidden_dim, self.link_len, self.embed_dim, self.num_layers, self.window_len)
         #predictor
-      #self.end_conv = nn.Conv2d(1, self.horizon * self.output_dim, kernel_size=(1, self.hidden_dim), bias=True)
       self.end_conv = nn.Conv2d(1, self.horizon * self.output_dim, kernel_size=(self.num_nodes, self.hidden_dim), bias=True)
+
         # fully-connected part
-#      self.fc1 = nn.Linear(self.num_nodes* self.hidden_dim, 2 * self.hidden_dim)
-#      self.drop1 = nn.Dropout(dropout)
-#
-#      self.fc2 = nn.Linear(2 * self.hidden_dim, self.hidden_dim)
-#      self.drop2 = nn.Dropout(dropout)
-#
-#      self.fc3 = nn.Linear(self.hidden_dim, 2)
+##      kernel_size=3
+##      self.conv1 = nn.Conv2d(self.hidden_dim, self.hidden_dim, kernel_size=(kernel_size, kernel_size), stride=(1, 1), padding=(1, 1))
+##      self.fc1 = nn.Linear(int(self.patch_width//2)*int(self.patch_height//2)*self.hidden_dim, 2 * self.hidden_dim)
+##      self.drop1 = nn.Dropout(dropout)
+###
+##      self.fc2 = nn.Linear(2 * self.hidden_dim, self.hidden_dim)
+##      self.drop2 = nn.Dropout(dropout)
+###
+##      self.fc3 = nn.Linear(self.hidden_dim, 2)
 
    def forward(self, x: torch.Tensor):
       '''
@@ -196,14 +200,21 @@ class GCN(nn.Module):
       x = self.ln1(x)
       x, _ = self.encoder(x, self.node_embeddings) #B, T, N, hidden_dim
       x = x[0][:, -1:, :, :] #B, 1, N, hidden_dim
-
-#      x = torch.flatten(x, 1) #B, 1*N*hidden_dim
-#      x = F.relu(self.drop1(self.fc1(x))) #2*hidden_dim
-#      x = F.relu(self.drop2(self.fc2(x))) #2
-#      x = self.fc3(x)
-#      return torch.nn.functional.log_softmax(x, dim=1)
       #CNN based predictor
       x = self.end_conv((x)) #B, T*C, N, 1
       x = x.squeeze(-1).reshape(-1, self.output_dim)
       return torch.nn.functional.log_softmax(x, dim=-1)
-
+      print(x[0,...],"<===")
+#      x = x.squeeze(1).permute(0,2,1) # B, hidden_dim, N
+#      x = x.reshape(B, self.hidden_dim, self.patch_width, self.patch_height)
+#
+#      x = F.max_pool2d(F.relu(self.conv1(x)), 2) #B, hidden, 12, 12
+#
+#      # fully-connected
+#      x = torch.flatten(x, 1) ##B, hidden*12*12 (4608)
+#      x = F.relu(self.drop1(self.fc1(x)))  ##B, 64
+#
+#      x = F.relu(self.drop2(self.fc2(x)))  ##B, 32
+#      x = self.fc3(x) ##B, 2
+#      print(torch.nn.functional.log_softmax(x, dim=1)[0,...])
+#      return torch.nn.functional.log_softmax(x, dim=1)

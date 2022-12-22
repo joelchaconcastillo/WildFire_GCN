@@ -1,0 +1,263 @@
+2022-12-21 16:28: log dir: /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/20221221162836
+2022-12-21 16:28: Experiment log path in: /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/20221221162836
+2022-12-21 16:28: Argument: Namespace(batch_size=256, clc='vec', cuda=True, dataset='2020', dataset_root='/home/joel.chacon/tmp/datasets_grl/', debug=False, default_graph=True, device='cpu', dynamic_features=['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh'], early_stop=True, early_stop_patience=5, embed_dim=64, epochs=30, gamma=1.0, grad_norm=False, horizon=1, input_dim=25, lag=10, link_len=2, log_dir='/home/joel.chacon/tmp/WildFire_GCN/experiments/2020/20221221162836', log_step=1, loss_func='nllloss', lr_decay=True, lr_decay_rate=0.1, lr_decay_step='10, 15, 20, 25', lr_init=0.0005, mae_thresh=None, mape_thresh=0.0, max_grad_norm=5, mode='train', model='fire_GCN', nan_fill=0.5, num_layers=1, num_nodes=625, num_workers=12, output_dim=2, patch_height=25, patch_width=25, persistent_workers=True, pin_memory=True, plot=False, positive_weight=0.5, prefetch_factor=2, real_value=True, rnn_units=32, seed=1992, static_features=['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density'], teacher_forcing=False, test_ratio=0.2, val_ratio=0.2, weight_decay=0.01, window_len=10)
+2022-12-21 16:28: Argument batch_size: 256
+2022-12-21 16:28: Argument clc: 'vec'
+2022-12-21 16:28: Argument cuda: True
+2022-12-21 16:28: Argument dataset: '2020'
+2022-12-21 16:28: Argument dataset_root: '/home/joel.chacon/tmp/datasets_grl/'
+2022-12-21 16:28: Argument debug: False
+2022-12-21 16:28: Argument default_graph: True
+2022-12-21 16:28: Argument device: 'cpu'
+2022-12-21 16:28: Argument dynamic_features: ['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh']
+2022-12-21 16:28: Argument early_stop: True
+2022-12-21 16:28: Argument early_stop_patience: 5
+2022-12-21 16:28: Argument embed_dim: 64
+2022-12-21 16:28: Argument epochs: 30
+2022-12-21 16:28: Argument gamma: 1.0
+2022-12-21 16:28: Argument grad_norm: False
+2022-12-21 16:28: Argument horizon: 1
+2022-12-21 16:28: Argument input_dim: 25
+2022-12-21 16:28: Argument lag: 10
+2022-12-21 16:28: Argument link_len: 2
+2022-12-21 16:28: Argument log_dir: '/home/joel.chacon/tmp/WildFire_GCN/experiments/2020/20221221162836'
+2022-12-21 16:28: Argument log_step: 1
+2022-12-21 16:28: Argument loss_func: 'nllloss'
+2022-12-21 16:28: Argument lr_decay: True
+2022-12-21 16:28: Argument lr_decay_rate: 0.1
+2022-12-21 16:28: Argument lr_decay_step: '10, 15, 20, 25'
+2022-12-21 16:28: Argument lr_init: 0.0005
+2022-12-21 16:28: Argument mae_thresh: None
+2022-12-21 16:28: Argument mape_thresh: 0.0
+2022-12-21 16:28: Argument max_grad_norm: 5
+2022-12-21 16:28: Argument mode: 'train'
+2022-12-21 16:28: Argument model: 'fire_GCN'
+2022-12-21 16:28: Argument nan_fill: 0.5
+2022-12-21 16:28: Argument num_layers: 1
+2022-12-21 16:28: Argument num_nodes: 625
+2022-12-21 16:28: Argument num_workers: 12
+2022-12-21 16:28: Argument output_dim: 2
+2022-12-21 16:28: Argument patch_height: 25
+2022-12-21 16:28: Argument patch_width: 25
+2022-12-21 16:28: Argument persistent_workers: True
+2022-12-21 16:28: Argument pin_memory: True
+2022-12-21 16:28: Argument plot: False
+2022-12-21 16:28: Argument positive_weight: 0.5
+2022-12-21 16:28: Argument prefetch_factor: 2
+2022-12-21 16:28: Argument real_value: True
+2022-12-21 16:28: Argument rnn_units: 32
+2022-12-21 16:28: Argument seed: 1992
+2022-12-21 16:28: Argument static_features: ['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density']
+2022-12-21 16:28: Argument teacher_forcing: False
+2022-12-21 16:28: Argument test_ratio: 0.2
+2022-12-21 16:28: Argument val_ratio: 0.2
+2022-12-21 16:28: Argument weight_decay: 0.01
+2022-12-21 16:28: Argument window_len: 10
+2022-12-21 16:28: Train Epoch 1: 0/23 Loss: 0.655349
+2022-12-21 16:28: Train Epoch 1: 1/23 Loss: 0.702029
+2022-12-21 16:29: Train Epoch 1: 2/23 Loss: 0.675128
+2022-12-21 16:29: Train Epoch 1: 3/23 Loss: 0.640714
+2022-12-21 16:29: Train Epoch 1: 4/23 Loss: 0.657486
+2022-12-21 16:29: Train Epoch 1: 5/23 Loss: 0.664188
+2022-12-21 16:29: Train Epoch 1: 6/23 Loss: 0.630580
+2022-12-21 16:29: Train Epoch 1: 7/23 Loss: 0.608040
+2022-12-21 16:29: Train Epoch 1: 8/23 Loss: 0.573777
+2022-12-21 16:29: Train Epoch 1: 9/23 Loss: 0.613964
+2022-12-21 16:29: Train Epoch 1: 10/23 Loss: 0.583796
+2022-12-21 16:29: Train Epoch 1: 11/23 Loss: 0.587414
+2022-12-21 16:30: Train Epoch 1: 12/23 Loss: 0.556093
+2022-12-21 16:30: Train Epoch 1: 13/23 Loss: 0.530796
+2022-12-21 16:30: Train Epoch 1: 14/23 Loss: 0.546028
+2022-12-21 16:30: Train Epoch 1: 15/23 Loss: 0.528835
+2022-12-21 16:30: Train Epoch 1: 16/23 Loss: 0.492125
+2022-12-21 16:30: Train Epoch 1: 17/23 Loss: 0.463624
+2022-12-21 16:30: Train Epoch 1: 18/23 Loss: 0.497920
+2022-12-21 16:30: Train Epoch 1: 19/23 Loss: 0.487828
+2022-12-21 16:30: Train Epoch 1: 20/23 Loss: 0.518750
+2022-12-21 16:31: Train Epoch 1: 21/23 Loss: 0.452649
+2022-12-21 16:31: Train Epoch 1: 22/23 Loss: 0.462687
+2022-12-21 16:31: **********Train Epoch 1: averaged Loss: 0.570861 
+2022-12-21 16:31: 
+Epoch time elapsed: 151.37803483009338
+
+2022-12-21 16:31: 
+ metrics validation: {'precision': 0.5245700245700246, 'recall': 0.32846153846153847, 'f1-score': 0.40397350993377484, 'support': 1300, 'AUC': 0.642315976331361, 'AUCPR': 0.45378520097716835, 'TP': 427, 'FP': 387, 'TN': 2213, 'FN': 873} 
+
+2022-12-21 16:31: **********Val Epoch 1: average Loss: 0.628452
+2022-12-21 16:31: *********************************Current best model saved!
+2022-12-21 16:32: 
+ Testing metrics {'precision': 0.6741071428571429, 'recall': 0.6148208469055375, 'f1-score': 0.6431005110732538, 'support': 1228, 'AUC': 0.8115706134813101, 'AUCPR': 0.633661129475675, 'TP': 755, 'FP': 365, 'TN': 2091, 'FN': 473} 
+
+2022-12-21 16:32: Train Epoch 2: 0/23 Loss: 0.443466
+2022-12-21 16:32: Train Epoch 2: 1/23 Loss: 0.448757
+2022-12-21 16:32: Train Epoch 2: 2/23 Loss: 0.409380
+2022-12-21 16:32: Train Epoch 2: 3/23 Loss: 0.399727
+2022-12-21 16:32: Train Epoch 2: 4/23 Loss: 0.370762
+2022-12-21 16:32: Train Epoch 2: 5/23 Loss: 0.444252
+2022-12-21 16:32: Train Epoch 2: 6/23 Loss: 0.349984
+2022-12-21 16:33: Train Epoch 2: 7/23 Loss: 0.325826
+2022-12-21 16:33: Train Epoch 2: 8/23 Loss: 0.354746
+2022-12-21 16:33: Train Epoch 2: 9/23 Loss: 0.367641
+2022-12-21 16:33: Train Epoch 2: 10/23 Loss: 0.324732
+2022-12-21 16:33: Train Epoch 2: 11/23 Loss: 0.366347
+2022-12-21 16:33: Train Epoch 2: 12/23 Loss: 0.338533
+2022-12-21 16:33: Train Epoch 2: 13/23 Loss: 0.337323
+2022-12-21 16:33: Train Epoch 2: 14/23 Loss: 0.332159
+2022-12-21 16:33: Train Epoch 2: 15/23 Loss: 0.298344
+2022-12-21 16:34: Train Epoch 2: 16/23 Loss: 0.264630
+2022-12-21 16:34: Train Epoch 2: 17/23 Loss: 0.355001
+2022-12-21 16:34: Train Epoch 2: 18/23 Loss: 0.276324
+2022-12-21 16:34: Train Epoch 2: 19/23 Loss: 0.303229
+2022-12-21 16:34: Train Epoch 2: 20/23 Loss: 0.283024
+2022-12-21 16:34: Train Epoch 2: 21/23 Loss: 0.282285
+2022-12-21 16:34: Train Epoch 2: 22/23 Loss: 0.331353
+2022-12-21 16:34: **********Train Epoch 2: averaged Loss: 0.348166 
+2022-12-21 16:34: 
+Epoch time elapsed: 156.656152009964
+
+2022-12-21 16:35: 
+ metrics validation: {'precision': 0.6642201834862386, 'recall': 0.556923076923077, 'f1-score': 0.6058577405857741, 'support': 1300, 'AUC': 0.7261426035502959, 'AUCPR': 0.6199047444301998, 'TP': 724, 'FP': 366, 'TN': 2234, 'FN': 576} 
+
+2022-12-21 16:35: **********Val Epoch 2: average Loss: 0.673905
+2022-12-21 16:35: 
+ Testing metrics {'precision': 0.6741071428571429, 'recall': 0.6148208469055375, 'f1-score': 0.6431005110732538, 'support': 1228, 'AUC': 0.8115706134813101, 'AUCPR': 0.633661129475675, 'TP': 755, 'FP': 365, 'TN': 2091, 'FN': 473} 
+
+2022-12-21 16:35: Train Epoch 3: 0/23 Loss: 0.451498
+2022-12-21 16:35: Train Epoch 3: 1/23 Loss: 0.425732
+2022-12-21 16:35: Train Epoch 3: 2/23 Loss: 0.395307
+2022-12-21 16:35: Train Epoch 3: 3/23 Loss: 0.425828
+2022-12-21 16:36: Train Epoch 3: 4/23 Loss: 0.423039
+2022-12-21 16:36: Train Epoch 3: 5/23 Loss: 0.394151
+2022-12-21 16:36: Train Epoch 3: 6/23 Loss: 0.370009
+2022-12-21 16:36: Train Epoch 3: 7/23 Loss: 0.400762
+2022-12-21 16:36: Train Epoch 3: 8/23 Loss: 0.358705
+2022-12-21 16:36: Train Epoch 3: 9/23 Loss: 0.362085
+2022-12-21 16:36: Train Epoch 3: 10/23 Loss: 0.350833
+2022-12-21 16:36: Train Epoch 3: 11/23 Loss: 0.343188
+2022-12-21 16:36: Train Epoch 3: 12/23 Loss: 0.340225
+2022-12-21 16:37: Train Epoch 3: 13/23 Loss: 0.334199
+2022-12-21 16:37: Train Epoch 3: 14/23 Loss: 0.307039
+2022-12-21 16:37: Train Epoch 3: 15/23 Loss: 0.332201
+2022-12-21 16:37: Train Epoch 3: 16/23 Loss: 0.298932
+2022-12-21 16:37: Train Epoch 3: 17/23 Loss: 0.325970
+2022-12-21 16:37: Train Epoch 3: 18/23 Loss: 0.275086
+2022-12-21 16:37: Train Epoch 3: 19/23 Loss: 0.315728
+2022-12-21 16:37: Train Epoch 3: 20/23 Loss: 0.315354
+2022-12-21 16:38: Train Epoch 3: 21/23 Loss: 0.254356
+2022-12-21 16:38: Train Epoch 3: 22/23 Loss: 0.279358
+2022-12-21 16:38: **********Train Epoch 3: averaged Loss: 0.351286 
+2022-12-21 16:38: 
+Epoch time elapsed: 151.63567733764648
+
+2022-12-21 16:38: 
+ metrics validation: {'precision': 0.7895652173913044, 'recall': 0.34923076923076923, 'f1-score': 0.4842666666666667, 'support': 1300, 'AUC': 0.7306647928994082, 'AUCPR': 0.6249322172578057, 'TP': 454, 'FP': 121, 'TN': 2479, 'FN': 846} 
+
+2022-12-21 16:38: **********Val Epoch 3: average Loss: 0.727284
+2022-12-21 16:38: 
+ Testing metrics {'precision': 0.6741071428571429, 'recall': 0.6148208469055375, 'f1-score': 0.6431005110732538, 'support': 1228, 'AUC': 0.8115706134813101, 'AUCPR': 0.633661129475675, 'TP': 755, 'FP': 365, 'TN': 2091, 'FN': 473} 
+
+2022-12-21 16:39: Train Epoch 4: 0/23 Loss: 0.430699
+2022-12-21 16:39: Train Epoch 4: 1/23 Loss: 0.425999
+2022-12-21 16:39: Train Epoch 4: 2/23 Loss: 0.407440
+2022-12-21 16:39: Train Epoch 4: 3/23 Loss: 0.402120
+2022-12-21 16:39: Train Epoch 4: 4/23 Loss: 0.377129
+2022-12-21 16:39: Train Epoch 4: 5/23 Loss: 0.383783
+2022-12-21 16:39: Train Epoch 4: 6/23 Loss: 0.404662
+2022-12-21 16:39: Train Epoch 4: 7/23 Loss: 0.388475
+2022-12-21 16:39: Train Epoch 4: 8/23 Loss: 0.421320
+2022-12-21 16:40: Train Epoch 4: 9/23 Loss: 0.380503
+2022-12-21 16:40: Train Epoch 4: 10/23 Loss: 0.376535
+2022-12-21 16:40: Train Epoch 4: 11/23 Loss: 0.393377
+2022-12-21 16:40: Train Epoch 4: 12/23 Loss: 0.382638
+2022-12-21 16:40: Train Epoch 4: 13/23 Loss: 0.384802
+2022-12-21 16:40: Train Epoch 4: 14/23 Loss: 0.335854
+2022-12-21 16:40: Train Epoch 4: 15/23 Loss: 0.318837
+2022-12-21 16:40: Train Epoch 4: 16/23 Loss: 0.322442
+2022-12-21 16:40: Train Epoch 4: 17/23 Loss: 0.319457
+2022-12-21 16:41: Train Epoch 4: 18/23 Loss: 0.296597
+2022-12-21 16:41: Train Epoch 4: 19/23 Loss: 0.301324
+2022-12-21 16:41: Train Epoch 4: 20/23 Loss: 0.321807
+2022-12-21 16:41: Train Epoch 4: 21/23 Loss: 0.292710
+2022-12-21 16:41: Train Epoch 4: 22/23 Loss: 0.295775
+2022-12-21 16:41: **********Train Epoch 4: averaged Loss: 0.363665 
+2022-12-21 16:41: 
+Epoch time elapsed: 157.3195765018463
+
+2022-12-21 16:42: 
+ metrics validation: {'precision': 0.6773869346733669, 'recall': 0.5184615384615384, 'f1-score': 0.5873638344226579, 'support': 1300, 'AUC': 0.7268748520710059, 'AUCPR': 0.6212854238096216, 'TP': 674, 'FP': 321, 'TN': 2279, 'FN': 626} 
+
+2022-12-21 16:42: **********Val Epoch 4: average Loss: 0.644866
+2022-12-21 16:42: 
+ Testing metrics {'precision': 0.6741071428571429, 'recall': 0.6148208469055375, 'f1-score': 0.6431005110732538, 'support': 1228, 'AUC': 0.8115706134813101, 'AUCPR': 0.633661129475675, 'TP': 755, 'FP': 365, 'TN': 2091, 'FN': 473} 
+
+2022-12-21 16:42: Train Epoch 5: 0/23 Loss: 0.495098
+2022-12-21 16:42: Train Epoch 5: 1/23 Loss: 0.453088
+2022-12-21 16:42: Train Epoch 5: 2/23 Loss: 0.409525
+2022-12-21 16:42: Train Epoch 5: 3/23 Loss: 0.380296
+2022-12-21 16:42: Train Epoch 5: 4/23 Loss: 0.359494
+2022-12-21 16:43: Train Epoch 5: 5/23 Loss: 0.366107
+2022-12-21 16:43: Train Epoch 5: 6/23 Loss: 0.358368
+2022-12-21 16:43: Train Epoch 5: 7/23 Loss: 0.408986
+2022-12-21 16:43: Train Epoch 5: 8/23 Loss: 0.419387
+2022-12-21 16:43: Train Epoch 5: 9/23 Loss: 0.361163
+2022-12-21 16:43: Train Epoch 5: 10/23 Loss: 0.411415
+2022-12-21 16:43: Train Epoch 5: 11/23 Loss: 0.357733
+2022-12-21 16:43: Train Epoch 5: 12/23 Loss: 0.328023
+2022-12-21 16:43: Train Epoch 5: 13/23 Loss: 0.325374
+2022-12-21 16:44: Train Epoch 5: 14/23 Loss: 0.314986
+2022-12-21 16:44: Train Epoch 5: 15/23 Loss: 0.332744
+2022-12-21 16:44: Train Epoch 5: 16/23 Loss: 0.321503
+2022-12-21 16:44: Train Epoch 5: 17/23 Loss: 0.273271
+2022-12-21 16:44: Train Epoch 5: 18/23 Loss: 0.332232
+2022-12-21 16:44: Train Epoch 5: 19/23 Loss: 0.308898
+2022-12-21 16:44: Train Epoch 5: 20/23 Loss: 0.350145
+2022-12-21 16:44: Train Epoch 5: 21/23 Loss: 0.292271
+2022-12-21 16:44: Train Epoch 5: 22/23 Loss: 0.327010
+2022-12-21 16:44: **********Train Epoch 5: averaged Loss: 0.360309 
+2022-12-21 16:44: 
+Epoch time elapsed: 148.06454420089722
+
+2022-12-21 16:45: 
+ metrics validation: {'precision': 0.782608695652174, 'recall': 0.31846153846153846, 'f1-score': 0.4527063969382176, 'support': 1300, 'AUC': 0.7240032544378698, 'AUCPR': 0.6118267000334844, 'TP': 414, 'FP': 115, 'TN': 2485, 'FN': 886} 
+
+2022-12-21 16:45: **********Val Epoch 5: average Loss: 0.731180
+2022-12-21 16:45: 
+ Testing metrics {'precision': 0.6741071428571429, 'recall': 0.6148208469055375, 'f1-score': 0.6431005110732538, 'support': 1228, 'AUC': 0.8115706134813101, 'AUCPR': 0.633661129475675, 'TP': 755, 'FP': 365, 'TN': 2091, 'FN': 473} 
+
+2022-12-21 16:45: Train Epoch 6: 0/23 Loss: 0.437427
+2022-12-21 16:45: Train Epoch 6: 1/23 Loss: 0.416347
+2022-12-21 16:46: Train Epoch 6: 2/23 Loss: 0.430339
+2022-12-21 16:46: Train Epoch 6: 3/23 Loss: 0.414724
+2022-12-21 16:46: Train Epoch 6: 4/23 Loss: 0.411937
+2022-12-21 16:46: Train Epoch 6: 5/23 Loss: 0.393195
+2022-12-21 16:46: Train Epoch 6: 6/23 Loss: 0.389577
+2022-12-21 16:46: Train Epoch 6: 7/23 Loss: 0.357352
+2022-12-21 16:46: Train Epoch 6: 8/23 Loss: 0.437855
+2022-12-21 16:46: Train Epoch 6: 9/23 Loss: 0.359518
+2022-12-21 16:46: Train Epoch 6: 10/23 Loss: 0.364833
+2022-12-21 16:47: Train Epoch 6: 11/23 Loss: 0.356435
+2022-12-21 16:47: Train Epoch 6: 12/23 Loss: 0.331619
+2022-12-21 16:47: Train Epoch 6: 13/23 Loss: 0.323926
+2022-12-21 16:47: Train Epoch 6: 14/23 Loss: 0.291889
+2022-12-21 16:47: Train Epoch 6: 15/23 Loss: 0.334028
+2022-12-21 16:47: Train Epoch 6: 16/23 Loss: 0.327550
+2022-12-21 16:47: Train Epoch 6: 17/23 Loss: 0.277993
+2022-12-21 16:47: Train Epoch 6: 18/23 Loss: 0.280472
+2022-12-21 16:48: Train Epoch 6: 19/23 Loss: 0.313873
+2022-12-21 16:48: Train Epoch 6: 20/23 Loss: 0.286942
+2022-12-21 16:48: Train Epoch 6: 21/23 Loss: 0.299570
+2022-12-21 16:48: Train Epoch 6: 22/23 Loss: 0.299685
+2022-12-21 16:48: **********Train Epoch 6: averaged Loss: 0.353786 
+2022-12-21 16:48: 
+Epoch time elapsed: 154.2673852443695
+
+2022-12-21 16:48: 
+ metrics validation: {'precision': 0.7432795698924731, 'recall': 0.42538461538461536, 'f1-score': 0.5410958904109588, 'support': 1300, 'AUC': 0.7281331360946744, 'AUCPR': 0.6207746365652628, 'TP': 553, 'FP': 191, 'TN': 2409, 'FN': 747} 
+
+2022-12-21 16:48: **********Val Epoch 6: average Loss: 0.694547
+2022-12-21 16:48: Validation performance didn't improve for 5 epochs. Training stops.
+2022-12-21 16:48: Total training time: 20.2007min, best loss: 0.628452
+2022-12-21 16:48: Saving current best model to /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/20221221162836/best_model.pth
+2022-12-21 16:49: 
+ Testing metrics {'precision': 0.6741071428571429, 'recall': 0.6148208469055375, 'f1-score': 0.6431005110732538, 'support': 1228, 'AUC': 0.8115706134813101, 'AUCPR': 0.633661129475675, 'TP': 755, 'FP': 365, 'TN': 2091, 'FN': 473} 
+
