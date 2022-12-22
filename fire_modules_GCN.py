@@ -7,18 +7,20 @@ class CNN(nn.Module):
    def __init__(self, dim_out):
       super(CNN, self).__init__()
       self.dim_out = dim_out
-      self.features = nn.Sequential(
-          nn.Conv2d(1, 8, kernel_size=3, stride=2), #channel of ZPI is 1
-          nn.ReLU(inplace=True),
-          nn.MaxPool2d(kernel_size=3, stride=2),
-          nn.Conv2d(8, dim_out, kernel_size=3, stride=2),
-          nn.ReLU(inplace=True),
-          nn.MaxPool2d(kernel_size=3, stride=2),
-      )
-      self.maxpool = nn.MaxPool2d(38,38)
 
-   def forward(self, zigzag_window_PI):
-      feature = self.features(zigzag_window_PI)
+      self.features = nn.Sequential(
+          nn.Conv2d(1, int(dim_out/2), kernel_size=3, stride=1),
+          nn.ReLU(inplace=True),
+          nn.MaxPool2d(kernel_size=3, stride=1),
+          nn.Conv2d(int(dim_out/2), dim_out, kernel_size=3, stride=1),
+          nn.ReLU(inplace=True),
+          nn.MaxPool2d(kernel_size=3, stride=1),
+      )
+      #self.maxpool = nn.MaxPool2d(2,2)
+      self.maxpool = nn.AdaptiveMaxPool2d((1,1))
+
+   def forward(self, graph):
+      feature = self.features(graph)
       feature = self.maxpool(feature)
       feature = feature.view(-1, self.dim_out) #B, dim_out
       return feature
@@ -36,16 +38,16 @@ class SpatioTemporalGCN(nn.Module):
            self.weights_window = nn.Parameter(torch.FloatTensor(embed_dim, int(dim_in/2), int(hidden_dim / 2)))
         self.bias_pool = nn.Parameter(torch.FloatTensor(embed_dim, hidden_dim))
         self.T = nn.Parameter(torch.FloatTensor(window_len))
-        self.cnn = CNN(int(hidden_dim/ 2))
+#        self.cnn = CNN(int(hidden_dim/ 2))
+
+
     def forward(self, x, x_window, node_embeddings):
         '''
            x: B, N, F
+           node_num :  N, E
         '''
         (batch_size, lag, node_num, dim) = x_window.shape
         #S1: Graph construction, a suggestion is to pre-process graph, however since wildfire requires ~1TB for pre-processing graph we create it from fly
-        adjMatrix = torch.cdist(x, x, p=2.0)  #B, N, N
-        adjMatrix = 1.0 - (adjMatrix/torch.max(adjMatrix))
-        adjMatrix = torch.unsqueeze(adjMatrix, 1) # B, N, N
          
         #S2: Laplacian construction
         supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
@@ -70,10 +72,14 @@ class SpatioTemporalGCN(nn.Module):
         x_wconv = torch.matmul(x_w, self.T)  #B, N, hidden_dim/2: on T
 
 #        #S6: Transform graph information to [hidden_dim/2, hidden_dim/2] 
-        graph_cnn = self.cnn(adjMatrix) #B, hidden_dim/2, hidden_dim/2
-        x_tgconv = torch.einsum('bno,bo->bno',x_gconv, graph_cnn)
-        x_twconv = torch.einsum('bno,bo->bno',x_wconv, graph_cnn)
-#
+    #    xemb = torch.einsum('bnf,ne->bef', x, node_embeddings).contiguous() #B, E, F
+    #    graph_embed = torch.cdist(xemb, xemb, p=2.0)  #B, E, E
+    #    graph_embed = 1.0 - (graph_embed/torch.max(graph_embed)) #B, E, E
+    #    graph_embed = torch.unsqueeze(graph_embed, 1)
+    #    graph_embed = self.cnn(graph_embed)
+        x_tgconv = x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
+        x_twconv = x_wconv #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
+
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
 #        x_gwconv = torch.cat([torch.randn(x_twconv.shape), x_twconv], dim=-1)
@@ -128,7 +134,7 @@ class GCN_GRU(nn.Module):
             state = hidden_state[layer_idx]
             output_inner = []
             for t in range(seq_len):
-                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings) #zigzag PI input shape
+                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings)
                 output_inner.append(state)
             layer_output = torch.stack(output_inner, dim=1)
             cur_layer_input = layer_output
