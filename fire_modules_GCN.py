@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 
-from fire_modules import SimpleConvLSTM
+from convlstm import ConvLSTM
 
 class CNN(nn.Module):
    def __init__(self, dim_out):
@@ -162,6 +162,8 @@ class GCN(nn.Module):
       if args.clc == 'vec':
           input_dim += 10
       self.num_nodes = int(args.patch_width)*int(args.patch_height)
+      self.patch_width = args.patch_width
+      self.patch_height = args.patch_height
       self.hidden_dim = args.rnn_units
       self.input_dim = args.input_dim
       self.output_dim = args.output_dim
@@ -224,7 +226,7 @@ class GCN(nn.Module):
 ###      x = x.squeeze(-1).reshape(-1, self.output_dim)
 ###      return torch.nn.functional.log_softmax(x, dim=-1)
       (B, T, D, N) = x.shape
-      x = x.permute(0, 1, ).float().reshape(B, T, D, self.patch_width, self.patch_height)
+      x = x.float().reshape(B, T, D, self.patch_width, self.patch_height)
       _, last_states = self.convlstm(x)
       x = last_states[0][0]
       # cnn
