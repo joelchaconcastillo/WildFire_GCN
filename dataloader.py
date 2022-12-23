@@ -129,8 +129,8 @@ class FireDataset_Graph_npy(Dataset):
         val_year = 2019
         test_year = 2020 #min(val_year + 1, 2021)
 
-        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < 2011]
-        #self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < val_year]
+#        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < 2012]
+        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < val_year]
         self.val_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == val_year]
         self.test_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year]
 

@@ -86,7 +86,6 @@ class Trainer(object):
             output = self.model(data)
             loss = self.loss(output, label)
             loss.backward()
-
             # add max grad clipping
             if self.args.grad_norm:
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.max_grad_norm)
