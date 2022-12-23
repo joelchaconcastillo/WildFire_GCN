@@ -148,7 +148,7 @@ class Trainer(object):
 
             # apply the best model to test dataset
             # test
-            self.model.load_state_dict(best_model)
+#            self.model.load_state_dict(best_model)
             # self.val_epoch(self.args.epochs, self.test_loader)
             self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
 
