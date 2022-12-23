@@ -176,18 +176,19 @@ class GCN(nn.Module):
       self.node_embeddings = nn.Parameter(torch.randn(self.num_nodes, self.embed_dim), requires_grad=True)
       self.encoder = GCN_GRU(self.num_nodes, self.input_dim, self.hidden_dim, self.link_len, self.embed_dim, self.num_layers, self.window_len)
         #predictor
-      self.end_conv = nn.Conv2d(1, self.horizon * self.output_dim, kernel_size=(self.num_nodes, self.hidden_dim), bias=True)
+#      self.end_conv = nn.Conv2d(1, self.horizon * self.output_dim, kernel_size=(self.num_nodes, self.hidden_dim), bias=True)
 
         # fully-connected part
-##      kernel_size=3
-##      self.conv1 = nn.Conv2d(self.hidden_dim, self.hidden_dim, kernel_size=(kernel_size, kernel_size), stride=(1, 1), padding=(1, 1))
-##      self.fc1 = nn.Linear(int(self.patch_width//2)*int(self.patch_height//2)*self.hidden_dim, 2 * self.hidden_dim)
-##      self.drop1 = nn.Dropout(dropout)
+      kernel_size=3
+      self.ln2 = torch.nn.LayerNorm(self.hidden_dim)
+      self.conv1 = nn.Conv2d(self.hidden_dim, self.hidden_dim, kernel_size=(kernel_size, kernel_size), stride=(1, 1), padding=(1, 1))
+      self.fc1 = nn.Linear(int(self.patch_width//2)*int(self.patch_height//2)*self.hidden_dim, 2 * self.hidden_dim)
+      self.drop1 = nn.Dropout(dropout)
 ###
-##      self.fc2 = nn.Linear(2 * self.hidden_dim, self.hidden_dim)
-##      self.drop2 = nn.Dropout(dropout)
+      self.fc2 = nn.Linear(2 * self.hidden_dim, self.hidden_dim)
+      self.drop2 = nn.Dropout(dropout)
 ###
-##      self.fc3 = nn.Linear(self.hidden_dim, 2)
+      self.fc3 = nn.Linear(self.hidden_dim, 2)
 
    def forward(self, x: torch.Tensor):
       '''
@@ -200,21 +201,21 @@ class GCN(nn.Module):
       x = self.ln1(x)
       x, _ = self.encoder(x, self.node_embeddings) #B, T, N, hidden_dim
       x = x[0][:, -1:, :, :] #B, 1, N, hidden_dim
-      #CNN based predictor
-      x = self.end_conv((x)) #B, T*C, N, 1
-      x = x.squeeze(-1).reshape(-1, self.output_dim)
-      return torch.nn.functional.log_softmax(x, dim=-1)
-      print(x[0,...],"<===")
-#      x = x.squeeze(1).permute(0,2,1) # B, hidden_dim, N
-#      x = x.reshape(B, self.hidden_dim, self.patch_width, self.patch_height)
-#
-#      x = F.max_pool2d(F.relu(self.conv1(x)), 2) #B, hidden, 12, 12
-#
-#      # fully-connected
-#      x = torch.flatten(x, 1) ##B, hidden*12*12 (4608)
-#      x = F.relu(self.drop1(self.fc1(x)))  ##B, 64
-#
-#      x = F.relu(self.drop2(self.fc2(x)))  ##B, 32
-#      x = self.fc3(x) ##B, 2
-#      print(torch.nn.functional.log_softmax(x, dim=1)[0,...])
-#      return torch.nn.functional.log_softmax(x, dim=1)
+#      #CNN based predictor
+#      x = self.end_conv((x)) #B, T*C, N, 1
+#      x = x.squeeze(-1).reshape(-1, self.output_dim)
+#      return torch.nn.functional.log_softmax(x, dim=-1)
+#      print(x[0,...],"<===")
+      x = self.ln2(x)
+      x = x.squeeze(1).permute(0,2,1) # B, hidden_dim, N
+      x = x.reshape(B, self.hidden_dim, self.patch_width, self.patch_height)
+
+      x = F.max_pool2d(F.relu(self.conv1(x)), 2) #B, hidden, 12, 12
+
+      # fully-connected
+      x = torch.flatten(x, 1) ##B, hidden*12*12 (4608)
+      x = F.relu(self.drop1(self.fc1(x)))  ##B, 64
+
+      x = F.relu(self.drop2(self.fc2(x)))  ##B, 32
+      x = self.fc3(x) ##B, 2
+      return torch.nn.functional.log_softmax(x, dim=1)
