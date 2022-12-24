@@ -78,7 +78,7 @@ class SpatioTemporalGCN(nn.Module):
     #    graph_embed = torch.unsqueeze(graph_embed, 1)
     #    graph_embed = self.cnn(graph_embed)
         x_tgconv = x_gconv #x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
-        x_twconv = x_gconv #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
+        x_twconv = x_wconv #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
 
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
