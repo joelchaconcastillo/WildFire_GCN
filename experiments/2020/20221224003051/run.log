@@ -53,49 +53,6 @@
 2022-12-24 00:30: Argument val_ratio: 0.2
 2022-12-24 00:30: Argument weight_decay: 0.0
 2022-12-24 00:30: Argument window_len: 10
-++++++++++++++
-2020_fire_GCN.conf
-++++++++++++++
-*****************Model Parameter*****************
-node_embeddings torch.Size([625, 32]) True
-ln1.weight torch.Size([25]) True
-ln1.bias torch.Size([25]) True
-encoder.cell_list.0.gate.weights_pool torch.Size([32, 2, 41, 16]) True
-encoder.cell_list.0.gate.weights_window torch.Size([32, 1, 16]) True
-encoder.cell_list.0.gate.bias_pool torch.Size([32, 32]) True
-encoder.cell_list.0.gate.T torch.Size([10]) True
-encoder.cell_list.0.gate.ln1.weight torch.Size([16]) True
-encoder.cell_list.0.gate.ln1.bias torch.Size([16]) True
-encoder.cell_list.0.gate.ln2.weight torch.Size([16]) True
-encoder.cell_list.0.gate.ln2.bias torch.Size([16]) True
-encoder.cell_list.0.update.weights_pool torch.Size([32, 2, 41, 8]) True
-encoder.cell_list.0.update.weights_window torch.Size([32, 1, 8]) True
-encoder.cell_list.0.update.bias_pool torch.Size([32, 16]) True
-encoder.cell_list.0.update.T torch.Size([10]) True
-encoder.cell_list.0.update.ln1.weight torch.Size([8]) True
-encoder.cell_list.0.update.ln1.bias torch.Size([8]) True
-encoder.cell_list.0.update.ln2.weight torch.Size([8]) True
-encoder.cell_list.0.update.ln2.bias torch.Size([8]) True
-ln2.weight torch.Size([16]) True
-ln2.bias torch.Size([16]) True
-conv1.weight torch.Size([16, 16, 3, 3]) True
-conv1.bias torch.Size([16]) True
-fc1.weight torch.Size([32, 2304]) True
-fc1.bias torch.Size([32]) True
-fc2.weight torch.Size([16, 32]) True
-fc2.bias torch.Size([16]) True
-fc3.weight torch.Size([2, 16]) True
-fc3.bias torch.Size([2]) True
-Total params num: 162120
-*****************Finish Parameter****************
-Positives: 13518 / Negatives: 27036
-Dataset length 40554
-Positives: 1300 / Negatives: 2600
-Dataset length 3900
-Positives: 1228 / Negatives: 2456
-Dataset length 3684
-Applying learning rate decay.
-Creat Log File in:  /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/20221224003051/run.log
 2022-12-24 00:31: Train Epoch 1: 0/159 Loss: 1.823603
 2022-12-24 00:31: Train Epoch 1: 1/159 Loss: 1.003913
 2022-12-24 00:31: Train Epoch 1: 2/159 Loss: 1.113642
