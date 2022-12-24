@@ -11,6 +11,7 @@ from fire_modules_GCN import GCN as GCNWildFire
 from Trainer import Trainer
 from TrainInits import init_seed, print_model_parameters
 from dataloader import get_dataloaders
+torch.multiprocessing.set_sharing_strategy('file_system')
 
 #-----------------------------------------------------------------------------#
 # dataset and
