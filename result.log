@@ -1,0 +1,9 @@
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=11 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_11.txt 2>&1 in core with id 1
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=1001 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_1001.txt 2>&1 in core with id 2
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=10001 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_10001.txt 2>&1 in core with id 3
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=100001 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_100001.txt 2>&1 in core with id 4
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=1000001 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_1000001.txt 2>&1 in core with id 5
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=10000001 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_10000001.txt 2>&1 in core with id 6
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=110 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_110.txt 2>&1 in core with id 7
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=1100 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_1100.txt 2>&1 in core with id 8
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=11000 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_11000.txt 2>&1 in core with id 9
