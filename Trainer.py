@@ -87,8 +87,8 @@ class Trainer(object):
             loss = self.loss(output, label)
             loss.backward()
 #            # add max grad clipping
-#            if self.args.grad_norm:
-#                torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.max_grad_norm)
+            if self.args.grad_norm:
+                torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.max_grad_norm)
             self.optimizer.step()
             total_loss += loss.item()
 
@@ -147,7 +147,7 @@ class Trainer(object):
 
             # apply the best model to test dataset
             # test
-#            self.model.load_state_dict(best_model)
+            self.model.load_state_dict(best_model)
             # self.val_epoch(self.args.epochs, self.test_loader)
             self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
 
