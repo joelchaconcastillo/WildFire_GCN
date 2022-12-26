@@ -122,3 +122,5 @@ Creat Log File in:  /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/20221225
 2022-12-25 23:28: Train Epoch 1: 40/159 Loss: 0.756328
 2022-12-25 23:28: Train Epoch 1: 41/159 Loss: 0.770730
 2022-12-25 23:28: Train Epoch 1: 42/159 Loss: 0.772951
+2022-12-25 23:29: Train Epoch 1: 43/159 Loss: 0.767403
+2022-12-25 23:29: Train Epoch 1: 44/159 Loss: 0.746026
