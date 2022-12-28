@@ -7,3 +7,4 @@ Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=10000001
 Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=110 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_110.txt 2>&1 in core with id 7
 Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=1100 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_1100.txt 2>&1 in core with id 8
 Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=11000 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_11000.txt 2>&1 in core with id 9
+Executes python3 /home/joel.chacon/tmp/WildFire_GCN/Run_Model.py --seed=110000 --rnn_units=32 > /home/joel.chacon/tmp/WildFire_GCN/ConvLSTM_2021_seed_110000.txt 2>&1 in core with id 3
