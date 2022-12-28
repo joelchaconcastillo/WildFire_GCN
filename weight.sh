@@ -1,0 +1,1 @@
+python3 /home/joel.chacon/tmp/tmp/WildFire_GCN/Run_Model.py --seed=1992 --rnn_units=32 --embed_dim=32 --num_layers=1 --weight_decay=0.01 > /home/joel.chacon/tmp/tmp/WildFire_GCN/gcn_rnn_units_32_embed_dim_32_num_layers_weight_decay_0_01.txt 2>&1
