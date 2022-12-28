@@ -90,7 +90,7 @@ class Trainer(object):
 
             loss = self.loss(output, label)
 
-            loss = loss/self.batch_size.
+            loss = loss/self.batch_size
 
             loss.backward()
 
