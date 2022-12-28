@@ -53,7 +53,7 @@ class FireDSDataModuleGCN:
     def train_dataloader(self):
         return DataLoader(
             dataset=self.data_train,
-            batch_size=self.args.batch_size,
+            batch_size=self.args.minbacth_size,
             num_workers=self.args.num_workers,
             pin_memory=self.args.pin_memory,
             shuffle=True,
@@ -64,7 +64,7 @@ class FireDSDataModuleGCN:
     def val_dataloader(self):
         return DataLoader(
             dataset=self.data_val,
-            batch_size=self.args.batch_size,
+            batch_size=self.args.minbacth_size,
             num_workers=self.args.num_workers,
             pin_memory=self.args.pin_memory,
             shuffle=False,
@@ -75,7 +75,7 @@ class FireDSDataModuleGCN:
     def test_dataloader(self):
         return DataLoader(
             dataset=self.data_test,
-            batch_size=self.args.batch_size,
+            batch_size=self.args.minbatch_size,
             num_workers=self.args.num_workers,
             pin_memory=self.args.pin_memory,
             shuffle=False,

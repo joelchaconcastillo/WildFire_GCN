@@ -67,6 +67,7 @@ args.add_argument('--weight_decay', default=config['model']['weight_decay'], typ
 args.add_argument('--loss_func', default=config['train']['loss_func'], type=str)
 args.add_argument('--seed', default=config['train']['seed'], type=int)
 args.add_argument('--batch_size', default=config['train']['batch_size'], type=int)
+args.add_argument('--minbatch_size', default=config['train']['minbatch_size'], type=int)
 args.add_argument('--epochs', default=config['train']['epochs'], type=int)
 args.add_argument('--lr_init', default=config['train']['lr_init'], type=float)
 args.add_argument('--lr_decay', default=config['train']['lr_decay'], type=eval)

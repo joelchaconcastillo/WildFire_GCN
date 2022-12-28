@@ -24,6 +24,7 @@ class Trainer(object):
         self.scaler = scaler
         self.args = args
         self.lr_scheduler = lr_scheduler
+        self.batch_size = args.batch_size
         self.train_per_epoch = len(train_loader)
         if val_loader != None:
             self.val_per_epoch = len(val_loader)
@@ -55,12 +56,13 @@ class Trainer(object):
                 targets= np.concatenate((targets, label.cpu().numpy()))
                 probs = np.concatenate((probs, (torch.exp(output)[:, 1]).cpu().numpy()))
 
-#                if self.args.real_value:
-#                    label = self.scaler.inverse_transform(label)
                 loss = self.loss(output, label)
-                #a whole batch of Metr_LA is filtered
-                if not torch.isnan(loss):
-                    total_val_loss += loss.item()
+
+                loss = loss/self.batch_size
+
+                if ( (batch_idx+1)%self.batch_size==0 ) or (batch_idx+1 == len(self.val_dataloader)):
+                   if not torch.isnan(loss):
+                      total_val_loss += loss.item()
 
         tn, fp, fn, tp = metrics.confusion_matrix(targets, preds).ravel()
         auc = roc_auc_score(targets, probs)
@@ -81,28 +83,34 @@ class Trainer(object):
     def train_epoch(self, epoch):
         self.model.train()
         total_loss = 0
+        self.optimizer.zero_grad()
         for batch_idx, (data, label) in enumerate(self.train_loader):
-            self.optimizer.zero_grad()
+
             output = self.model(data)
+
             loss = self.loss(output, label)
+
+            loss = loss/self.batch_size.
+
             loss.backward()
 
-            # add max grad clipping
-            if self.args.grad_norm:
-                torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.max_grad_norm)
-            self.optimizer.step()
-            total_loss += loss.item()
+            if ( (batch_idx+1)%self.batch_size == 0 ) or (batch_idx+1 == self.train_per_epoch):
+               # add max grad clipping
+               if self.args.grad_norm:
+                  torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.max_grad_norm)
+               self.optimizer.step()
+               total_loss += loss.item()
 
-            #log information
-            if batch_idx % self.args.log_step == 0:
-                self.logger.info('Train Epoch {}: {}/{} Loss: {:.6f}'.format(
-                    epoch, batch_idx, self.train_per_epoch, loss.item()))
-        train_epoch_loss = total_loss/self.train_per_epoch
-        self.logger.info('**********Train Epoch {}: averaged Loss: {:.6f} '.format(epoch, train_epoch_loss))
+               #log information
+               if (batch_idx/self.batch_size) % self.args.log_step == 0:
+                   self.logger.info('Train Epoch {}: {}/{} Loss: {:.6f}'.format(epoch, batch_idx/self.batch_size, self.train_per_epoch, loss.item()))
+               train_epoch_loss = total_loss/self.train_per_epoch
+               self.logger.info('**********Train Epoch {}: averaged Loss: {:.6f} '.format(epoch, train_epoch_loss))
 
-        #learning rate decay
-        if self.args.lr_decay:
-            self.lr_scheduler.step()
+               #learning rate decay
+               if self.args.lr_decay:
+                  self.lr_scheduler.step()
+               self.optimizer.zero_grad()
         return train_epoch_loss
 
     def train(self):
