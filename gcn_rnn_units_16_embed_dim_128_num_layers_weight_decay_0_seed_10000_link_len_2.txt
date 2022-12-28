@@ -1290,3 +1290,40 @@ Epoch time elapsed: 1058.2448172569275
 2022-12-28 14:56: Train Epoch 8: 14/159 Loss: 0.255984
 2022-12-28 14:56: Train Epoch 8: 15/159 Loss: 0.246085
 2022-12-28 14:56: Train Epoch 8: 16/159 Loss: 0.286273
+2022-12-28 14:56: Train Epoch 8: 17/159 Loss: 0.318391
+2022-12-28 14:56: Train Epoch 8: 18/159 Loss: 0.321147
+2022-12-28 14:56: Train Epoch 8: 19/159 Loss: 0.268726
+2022-12-28 14:57: Train Epoch 8: 20/159 Loss: 0.341532
+2022-12-28 14:57: Train Epoch 8: 21/159 Loss: 0.276033
+2022-12-28 14:57: Train Epoch 8: 22/159 Loss: 0.279396
+2022-12-28 14:57: Train Epoch 8: 23/159 Loss: 0.244370
+2022-12-28 14:57: Train Epoch 8: 24/159 Loss: 0.264972
+2022-12-28 14:57: Train Epoch 8: 25/159 Loss: 0.293992
+2022-12-28 14:57: Train Epoch 8: 26/159 Loss: 0.259393
+2022-12-28 14:57: Train Epoch 8: 27/159 Loss: 0.361784
+2022-12-28 14:57: Train Epoch 8: 28/159 Loss: 0.287561
+2022-12-28 14:58: Train Epoch 8: 29/159 Loss: 0.234899
+2022-12-28 14:58: Train Epoch 8: 30/159 Loss: 0.218679
+2022-12-28 14:58: Train Epoch 8: 31/159 Loss: 0.319537
+2022-12-28 14:58: Train Epoch 8: 32/159 Loss: 0.332389
+2022-12-28 14:58: Train Epoch 8: 33/159 Loss: 0.283193
+2022-12-28 14:58: Train Epoch 8: 34/159 Loss: 0.242932
+2022-12-28 14:58: Train Epoch 8: 35/159 Loss: 0.394307
+2022-12-28 14:58: Train Epoch 8: 36/159 Loss: 0.272811
+2022-12-28 14:58: Train Epoch 8: 37/159 Loss: 0.262287
+2022-12-28 14:59: Train Epoch 8: 38/159 Loss: 0.328356
+2022-12-28 14:59: Train Epoch 8: 39/159 Loss: 0.319896
+2022-12-28 14:59: Train Epoch 8: 40/159 Loss: 0.271837
+2022-12-28 14:59: Train Epoch 8: 41/159 Loss: 0.318287
+Traceback (most recent call last):
+  File "/home/joel.chacon/tmp/WildFire_GCN/Run_Model.py", line 201, in <module>
+    trainer.train()
+  File "/home/joel.chacon/tmp/WildFire_GCN/Trainer.py", line 117, in train
+    train_epoch_loss = self.train_epoch(epoch)
+  File "/home/joel.chacon/tmp/WildFire_GCN/Trainer.py", line 88, in train_epoch
+    loss.backward()
+  File "/home/joel.chacon/.local/lib/python3.6/site-packages/torch/_tensor.py", line 307, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/home/joel.chacon/.local/lib/python3.6/site-packages/torch/autograd/__init__.py", line 156, in backward
+    allow_unreachable=True, accumulate_grad=True)  # allow_unreachable flag
+KeyboardInterrupt
