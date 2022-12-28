@@ -53,49 +53,6 @@
 2022-12-26 10:51: Argument val_ratio: 0.2
 2022-12-26 10:51: Argument weight_decay: 0.0
 2022-12-26 10:51: Argument window_len: 10
-++++++++++++++
-2020_fire_GCN.conf
-++++++++++++++
-*****************Model Parameter*****************
-node_embeddings torch.Size([625, 64]) True
-ln1.weight torch.Size([25]) True
-ln1.bias torch.Size([25]) True
-encoder.cell_list.0.gate.weights_pool torch.Size([64, 2, 57, 32]) True
-encoder.cell_list.0.gate.weights_window torch.Size([64, 1, 32]) True
-encoder.cell_list.0.gate.bias_pool torch.Size([64, 64]) True
-encoder.cell_list.0.gate.T torch.Size([10]) True
-encoder.cell_list.0.gate.ln1.weight torch.Size([32]) True
-encoder.cell_list.0.gate.ln1.bias torch.Size([32]) True
-encoder.cell_list.0.gate.ln2.weight torch.Size([32]) True
-encoder.cell_list.0.gate.ln2.bias torch.Size([32]) True
-encoder.cell_list.0.update.weights_pool torch.Size([64, 2, 57, 16]) True
-encoder.cell_list.0.update.weights_window torch.Size([64, 1, 16]) True
-encoder.cell_list.0.update.bias_pool torch.Size([64, 32]) True
-encoder.cell_list.0.update.T torch.Size([10]) True
-encoder.cell_list.0.update.ln1.weight torch.Size([16]) True
-encoder.cell_list.0.update.ln1.bias torch.Size([16]) True
-encoder.cell_list.0.update.ln2.weight torch.Size([16]) True
-encoder.cell_list.0.update.ln2.bias torch.Size([16]) True
-ln2.weight torch.Size([32]) True
-ln2.bias torch.Size([32]) True
-conv1.weight torch.Size([32, 32, 3, 3]) True
-conv1.bias torch.Size([32]) True
-fc1.weight torch.Size([64, 4608]) True
-fc1.bias torch.Size([64]) True
-fc2.weight torch.Size([32, 64]) True
-fc2.bias torch.Size([32]) True
-fc3.weight torch.Size([2, 32]) True
-fc3.bias torch.Size([2]) True
-Total params num: 706120
-*****************Finish Parameter****************
-Positives: 13518 / Negatives: 27036
-Dataset length 40554
-Positives: 1300 / Negatives: 2600
-Dataset length 3900
-Positives: 1228 / Negatives: 2456
-Dataset length 3684
-Applying learning rate decay.
-Creat Log File in:  /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/20221226105126/run.log
 2022-12-26 10:51: Train Epoch 1: 0/159 Loss: 5.257768
 2022-12-26 10:51: Train Epoch 1: 1/159 Loss: 2.074403
 2022-12-26 10:52: Train Epoch 1: 2/159 Loss: 2.412062
