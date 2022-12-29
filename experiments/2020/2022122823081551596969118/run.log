@@ -49,37 +49,6 @@
 2022-12-28 23:08: Argument teacher_forcing: False
 2022-12-28 23:08: Argument weight_decay: 0.0
 2022-12-28 23:08: Argument window_len: 10
-++++++++++++++
-2020_fire_GCN.conf
-++++++++++++++
-*****************Model Parameter*****************
-node_embeddings torch.Size([625, 128]) True
-encoder.cell_list.0.gate.weights_pool torch.Size([128, 2, 41, 16]) True
-encoder.cell_list.0.gate.weights_window torch.Size([128, 1, 16]) True
-encoder.cell_list.0.gate.bias_pool torch.Size([128, 32]) True
-encoder.cell_list.0.gate.T torch.Size([10]) True
-encoder.cell_list.0.update.weights_pool torch.Size([128, 2, 41, 8]) True
-encoder.cell_list.0.update.weights_window torch.Size([128, 1, 8]) True
-encoder.cell_list.0.update.bias_pool torch.Size([128, 16]) True
-encoder.cell_list.0.update.T torch.Size([10]) True
-conv1.weight torch.Size([16, 16, 3, 3]) True
-conv1.bias torch.Size([16]) True
-fc1.weight torch.Size([32, 2304]) True
-fc1.bias torch.Size([32]) True
-fc2.weight torch.Size([16, 32]) True
-fc2.bias torch.Size([16]) True
-fc3.weight torch.Size([2, 16]) True
-fc3.bias torch.Size([2]) True
-Total params num: 417782
-*****************Finish Parameter****************
-Positives: 5201 / Negatives: 10402
-Dataset length 15603
-Positives: 1300 / Negatives: 2600
-Dataset length 3900
-Positives: 1228 / Negatives: 2456
-Dataset length 3684
-Applying learning rate decay.
-Creat Log File in:  /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/2022122823081551596969118/run.log
 2022-12-28 23:08: Train Epoch 1: 0/61 Loss: 2.431704
 2022-12-28 23:08: Train Epoch 1: 1/61 Loss: 1.424968
 2022-12-28 23:08: Train Epoch 1: 2/61 Loss: 1.055997
@@ -145,23 +114,11 @@ Creat Log File in:  /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/20221228
 2022-12-28 23:13: 
 Epoch time elapsed: 344.20232105255127
 
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
 2022-12-28 23:14: 
  metrics validation: {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1300, 'AUC': 0.7440171597633136, 'AUCPR': 0.5764855143345011, 'TP': 0, 'FP': 0, 'TN': 2600, 'FN': 1300} 
 
 2022-12-28 23:14: **********Val Epoch 1: average Loss: 0.628759
 2022-12-28 23:14: *********************************Current best model saved!
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
 2022-12-28 23:14: 
  Testing metrics {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1228, 'AUC': 0.8350983830067162, 'AUCPR': 0.7093018664403516, 'TP': 0, 'FP': 0, 'TN': 2456, 'FN': 1228} 
 
@@ -230,23 +187,11 @@ Epoch time elapsed: 344.20232105255127
 2022-12-28 23:21: 
 Epoch time elapsed: 367.0934145450592
 
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
 2022-12-28 23:21: 
  metrics validation: {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1300, 'AUC': 0.7182757396449705, 'AUCPR': 0.5585272090130612, 'TP': 0, 'FP': 0, 'TN': 2600, 'FN': 1300} 
 
 2022-12-28 23:21: **********Val Epoch 2: average Loss: 0.617004
 2022-12-28 23:21: *********************************Current best model saved!
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
-/home/joel.chacon/.local/lib/python3.6/site-packages/sklearn/metrics/_classification.py:1248: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
 2022-12-28 23:21: 
  Testing metrics {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1228, 'AUC': 0.8463203190484778, 'AUCPR': 0.7416688866048855, 'TP': 0, 'FP': 0, 'TN': 2456, 'FN': 1228} 
 

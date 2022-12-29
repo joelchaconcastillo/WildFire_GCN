@@ -36,8 +36,8 @@ class SpatioTemporalGCN(nn.Module):
            self.weights_window = nn.Parameter(torch.FloatTensor(embed_dim, int(dim_in/2), int(hidden_dim / 2)))
         self.bias_pool = nn.Parameter(torch.FloatTensor(embed_dim, hidden_dim))
         self.T = nn.Parameter(torch.FloatTensor(window_len))
-        self.ln1 = torch.nn.LayerNorm(int(hidden_dim/2))
-        self.ln2 = torch.nn.LayerNorm(int(hidden_dim/2))
+        self.ln1 = torch.nn.LayerNorm(int(hidden_dim/2), elementwise_affine=False)
+        self.ln2 = torch.nn.LayerNorm(int(hidden_dim/2), elementwise_affine=False)
 #        self.cnn = CNN(int(hidden_dim/ 2))
 
 
@@ -76,8 +76,10 @@ class SpatioTemporalGCN(nn.Module):
     #    graph_embed = 1.0 - (graph_embed/torch.max(graph_embed)) #B, E, E
     #    graph_embed = torch.unsqueeze(graph_embed, 1)
     #    graph_embed = self.cnn(graph_embed)
-        x_tgconv = self.ln1(x_gconv) #x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
-        x_twconv = self.ln2(x_wconv) #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
+#        x_tgconv = x_gconv # self.ln1(x_gconv) #x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
+        x_tgconv =  self.ln1(x_gconv) #x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
+#        x_twconv = x_wconv # self.ln2(x_wconv) #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
+        x_twconv =  self.ln2(x_wconv) #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
 
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
