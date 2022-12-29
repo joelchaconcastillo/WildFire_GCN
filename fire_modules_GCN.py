@@ -171,9 +171,9 @@ class GCN(nn.Module):
       self.window_len = args.window_len
       self.link_len = args.link_len
       self.horizon = args.horizon
-      dropout=0.0
+      dropout=0.5
 
-#      self.ln1 = torch.nn.LayerNorm(self.input_dim)
+      self.ln1 = torch.nn.LayerNorm(self.input_dim)
       self.node_embeddings = nn.Parameter(torch.randn(self.num_nodes, self.embed_dim), requires_grad=True)
       self.encoder = GCN_GRU(self.num_nodes, self.input_dim, self.hidden_dim, self.link_len, self.embed_dim, self.num_layers, self.window_len)
         #predictor
@@ -184,10 +184,10 @@ class GCN(nn.Module):
 #      self.ln2 = torch.nn.LayerNorm(self.hidden_dim)
       self.conv1 = nn.Conv2d(self.hidden_dim, self.hidden_dim, kernel_size=(kernel_size, kernel_size), stride=(1, 1), padding=(1, 1))
       self.fc1 = nn.Linear(int(self.patch_width//2)*int(self.patch_height//2)*self.hidden_dim, 2 * self.hidden_dim)
-#      self.drop1 = nn.Dropout(dropout)
+      self.drop1 = nn.Dropout(dropout)
 ###
       self.fc2 = nn.Linear(2 * self.hidden_dim, self.hidden_dim)
-#      self.drop2 = nn.Dropout(dropout)
+      self.drop2 = nn.Dropout(dropout)
 ###
       self.fc3 = nn.Linear(self.hidden_dim, 2)
 
@@ -199,7 +199,7 @@ class GCN(nn.Module):
       '''
       x = x.permute(0, 1, 3, 2).float() ## B, T, N, D
       (B,T,N,D) = x.shape
-#      x = self.ln1(x)
+      x = self.ln1(x)
       x, _ = self.encoder(x, self.node_embeddings) #B, T, N, hidden_dim
       x = x[0][:, -1:, :, :] #B, 1, N, hidden_dim
 #      #CNN based predictor
@@ -215,10 +215,10 @@ class GCN(nn.Module):
 
       # fully-connected
       x = torch.flatten(x, 1) ##B, hidden*12*12 (4608)
-      #x = F.relu(self.drop1(self.fc1(x)))  ##B, 64
-      x = F.relu(self.fc1(x))  ##B, 64
+      x = F.relu(self.drop1(self.fc1(x)))  ##B, 64
+      #x = F.relu(self.fc1(x))  ##B, 64
 
-      #x = F.relu(self.drop2(self.fc2(x)))  ##B, 32
-      x = F.relu(self.fc2(x))  ##B, 32
+      x = F.relu(self.drop2(self.fc2(x)))  ##B, 32
+      #x = F.relu(self.fc2(x))  ##B, 32
       x = self.fc3(x) ##B, 2
       return torch.nn.functional.log_softmax(x, dim=1)

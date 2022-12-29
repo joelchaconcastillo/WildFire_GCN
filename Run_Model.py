@@ -169,7 +169,7 @@ if args.loss_func == 'mae':
 elif args.loss_func == 'mse':
    loss = torch.nn.MSELoss().to(args.device)
 elif args.loss_func == 'nllloss':
-   loss = torch.nn.NLLLoss(weight=torch.tensor([1. - args.positive_weight, args.positive_weight])).to(args.device)
+   loss = torch.nn.NLLLoss(weight=torch.tensor([1. - args.positive_weight, args.positive_weight]), reduction='sum').to(args.device)
 else:
     raise ValueError
 

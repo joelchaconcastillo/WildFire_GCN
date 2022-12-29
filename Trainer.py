@@ -61,7 +61,7 @@ class Trainer(object):
 
                 loss = self.loss(output, label)
 
-                loss = loss/self.number_minibatches
+                loss = loss/self.batch_size
                 
                 if ( (batch_idx+1)%self.number_minibatches == 0 ) or ((batch_idx+1) == len(val_dataloader)):
                     countBatches +=1.
@@ -95,8 +95,8 @@ class Trainer(object):
             output = self.model(data)
 
             loss = self.loss(output, label)
-            loss = loss/self.number_minibatches
-            total_loss_batch += loss.item() 
+            loss = loss/self.batch_size
+            total_loss_batch += loss.item()
            # self.logger.info('{}...'.format(loss.item()))
             loss.backward()
             if ( (batch_idx+1)%self.number_minibatches == 0 ) or ((batch_idx+1) == len(self.train_loader)):

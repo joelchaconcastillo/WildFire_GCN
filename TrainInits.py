@@ -12,6 +12,7 @@ def init_seed(seed):
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)           
 
 def init_device(opt):
     if torch.cuda.is_available():
