@@ -46,10 +46,11 @@ class Trainer(object):
     def val_epoch(self, epoch, val_dataloader):
         self.model.eval()
         total_val_loss = 0
+        countBatches = 0.
         preds = np.array([])
         targets = np.array([])
         probs = np.array([])
-
+        
         with torch.no_grad():
             for batch_idx, (data, label) in enumerate(val_dataloader):
                 output = self.model(data)
@@ -62,10 +63,10 @@ class Trainer(object):
 
                 loss = loss/self.number_minibatches
                 
+                if ( (batch_idx+1)%self.number_minibatches == 0 ) or ((batch_idx+1) == len(val_dataloader)):
+                    countBatches +=1.
                 if not torch.isnan(loss):
                    total_val_loss += loss.item()
-#                if ( (batch_idx+1)%self.number_minibatches==0 ) or (batch_idx+1 == len(val_dataloader)):
-#                   if not torch.isnan(loss):
 
         tn, fp, fn, tp = metrics.confusion_matrix(targets, preds).ravel()
         auc = roc_auc_score(targets, probs)
@@ -79,7 +80,7 @@ class Trainer(object):
         summary['FN']=fn
         self.logger.info("\n metrics validation: {} \n".format(summary))
 
-        val_loss = total_val_loss / len(val_dataloader)
+        val_loss = total_val_loss / countBatches
         self.logger.info('**********Val Epoch {}: average Loss: {:.6f}'.format(epoch, val_loss))
         return val_loss
 
@@ -87,6 +88,7 @@ class Trainer(object):
         self.model.train()
         total_loss = 0
         total_loss_batch = 0
+        countBatches = 0
         self.optimizer.zero_grad()
         for batch_idx, (data, label) in enumerate(self.train_loader):
 
@@ -94,13 +96,13 @@ class Trainer(object):
 
             loss = self.loss(output, label)
             loss = loss/self.number_minibatches
-            total_loss_batch += loss.item() #*len(data)
+            total_loss_batch += loss.item() 
            # self.logger.info('{}...'.format(loss.item()))
             loss.backward()
             if ( (batch_idx+1)%self.number_minibatches == 0 ) or ((batch_idx+1) == len(self.train_loader)):
                # add max grad clipping
-               if self.args.grad_norm:
-                  torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.max_grad_norm)
+      #         if self.args.grad_norm:
+      #            torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.max_grad_norm)
                self.optimizer.step()
                self.optimizer.zero_grad()
                total_loss += total_loss_batch
@@ -109,7 +111,8 @@ class Trainer(object):
 #               if (int((batch_idx+1)/self.number_minibatches)) % self.args.log_step == 0:
                self.logger.info('Train Epoch {}: {}/{} Loss: {:.6f}'.format(epoch, batch_idx, self.train_per_epoch, total_loss_batch))
                total_loss_batch = 0
-        train_epoch_loss = total_loss/self.train_per_epoch
+               countBatches +=1.
+        train_epoch_loss = total_loss/countBatches
         self.logger.info('**********Train Epoch {}: averaged Loss: {:.6f} '.format(epoch, train_epoch_loss))
 
         #learning rate decay

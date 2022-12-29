@@ -171,7 +171,7 @@ class GCN(nn.Module):
       self.window_len = args.window_len
       self.link_len = args.link_len
       self.horizon = args.horizon
-      dropout=0.5
+      dropout=0.0
 
       self.ln1 = torch.nn.LayerNorm(self.input_dim)
       self.node_embeddings = nn.Parameter(torch.randn(self.num_nodes, self.embed_dim), requires_grad=True)
