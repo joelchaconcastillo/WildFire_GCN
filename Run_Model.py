@@ -6,12 +6,12 @@ import torch
 import torch.nn as nn
 import argparse
 import configparser
+import random
 from datetime import datetime
 from fire_modules_GCN import GCN as GCNWildFire
 from Trainer import Trainer
 from TrainInits import init_seed, print_model_parameters
 from dataloader import get_dataloaders
-torch.multiprocessing.set_sharing_strategy('file_system')
 
 #-----------------------------------------------------------------------------#
 # dataset and
@@ -41,8 +41,6 @@ args.add_argument('--model', default=MODEL, type=str)
 args.add_argument('--cuda', default=True, type=bool)
 # from data, these below information could be found in .conf file
 #data
-args.add_argument('--val_ratio', default=config['data']['val_ratio'], type=float)
-args.add_argument('--test_ratio', default=config['data']['test_ratio'], type=float)
 args.add_argument('--lag', default=config['data']['lag'], type=int)
 args.add_argument('--horizon', default=config['data']['horizon'], type=int)
 args.add_argument('--num_nodes', default=config['data']['num_nodes'], type=int)
@@ -63,13 +61,13 @@ args.add_argument('--embed_dim', default=config['model']['embed_dim'], type=int)
 args.add_argument('--rnn_units', default=config['model']['rnn_units'], type=int)
 args.add_argument('--num_layers', default=config['model']['num_layers'], type=int)
 args.add_argument('--link_len', default=config['model']['link_len'], type=int)
-args.add_argument('--gamma', default=config['model']['gamma'], type=float)
 args.add_argument('--window_len', default=config['model']['window_len'], type=int)
 args.add_argument('--weight_decay', default=config['model']['weight_decay'], type=float)
 #train
 args.add_argument('--loss_func', default=config['train']['loss_func'], type=str)
 args.add_argument('--seed', default=config['train']['seed'], type=int)
 args.add_argument('--batch_size', default=config['train']['batch_size'], type=int)
+args.add_argument('--minbatch_size', default=config['train']['minbatch_size'], type=int)
 args.add_argument('--epochs', default=config['train']['epochs'], type=int)
 args.add_argument('--lr_init', default=config['train']['lr_init'], type=float)
 args.add_argument('--lr_decay', default=config['train']['lr_decay'], type=eval)
@@ -82,9 +80,6 @@ args.add_argument('--max_grad_norm', default=config['train']['max_grad_norm'], t
 args.add_argument('--teacher_forcing', default=False, type=bool)
 args.add_argument('--real_value', default=config['train']['real_value'], type=eval, help = 'use real value for loss calculation')
 args.add_argument('--positive_weight', default=config['train']['positive_weight'], type=float)
-#test
-args.add_argument('--mae_thresh', default=config['test']['mae_thresh'], type=eval)
-args.add_argument('--mape_thresh', default=config['test']['mape_thresh'], type=float)
 #log
 args.add_argument('--log_dir', default='logs/', type=str)
 args.add_argument('--log_step', default=config['log']['log_step'], type=int)
@@ -190,7 +185,7 @@ if args.lr_decay:
                                                         gamma=args.lr_decay_rate)
 
 #config log path
-current_time = datetime.now().strftime('%Y%m%d%H%M%S')
+current_time = datetime.now().strftime('%Y%m%d%H%M%S%f')+str(random.randint(0, 100000))
 current_dir = os.path.dirname(os.path.realpath(__file__))
 log_dir = os.path.join(current_dir,'experiments', args.dataset, current_time)
 args.log_dir = log_dir
