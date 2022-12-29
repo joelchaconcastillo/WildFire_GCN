@@ -1,0 +1,86 @@
+2022-12-28 22:06: log dir: /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/2022122822062142177769118
+2022-12-28 22:06: Experiment log path in: /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/2022122822062142177769118
+2022-12-28 22:06: Argument: Namespace(batch_size=256, clc='vec', cuda=True, dataset='2020', dataset_root='/home/joel.chacon/tmp/datasets_grl/', debug=False, default_graph=True, device='cpu', dynamic_features=['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh'], early_stop=True, early_stop_patience=8, embed_dim=128, epochs=30, grad_norm=False, horizon=1, input_dim=25, lag=10, link_len=2, log_dir='/home/joel.chacon/tmp/WildFire_GCN/experiments/2020/2022122822062142177769118', log_step=1, loss_func='nllloss', lr_decay=True, lr_decay_rate=0.1, lr_decay_step='15, 20', lr_init=0.0005, max_grad_norm=5, minbatch_size=64, mode='train', model='fire_GCN', nan_fill=0.5, num_layers=1, num_nodes=625, num_workers=20, output_dim=2, patch_height=25, patch_width=25, persistent_workers=True, pin_memory=True, plot=False, positive_weight=0.5, prefetch_factor=2, real_value=True, rnn_units=16, seed=10000, static_features=['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density'], teacher_forcing=False, weight_decay=0.0, window_len=10)
+2022-12-28 22:06: Argument batch_size: 256
+2022-12-28 22:06: Argument clc: 'vec'
+2022-12-28 22:06: Argument cuda: True
+2022-12-28 22:06: Argument dataset: '2020'
+2022-12-28 22:06: Argument dataset_root: '/home/joel.chacon/tmp/datasets_grl/'
+2022-12-28 22:06: Argument debug: False
+2022-12-28 22:06: Argument default_graph: True
+2022-12-28 22:06: Argument device: 'cpu'
+2022-12-28 22:06: Argument dynamic_features: ['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh']
+2022-12-28 22:06: Argument early_stop: True
+2022-12-28 22:06: Argument early_stop_patience: 8
+2022-12-28 22:06: Argument embed_dim: 128
+2022-12-28 22:06: Argument epochs: 30
+2022-12-28 22:06: Argument grad_norm: False
+2022-12-28 22:06: Argument horizon: 1
+2022-12-28 22:06: Argument input_dim: 25
+2022-12-28 22:06: Argument lag: 10
+2022-12-28 22:06: Argument link_len: 2
+2022-12-28 22:06: Argument log_dir: '/home/joel.chacon/tmp/WildFire_GCN/experiments/2020/2022122822062142177769118'
+2022-12-28 22:06: Argument log_step: 1
+2022-12-28 22:06: Argument loss_func: 'nllloss'
+2022-12-28 22:06: Argument lr_decay: True
+2022-12-28 22:06: Argument lr_decay_rate: 0.1
+2022-12-28 22:06: Argument lr_decay_step: '15, 20'
+2022-12-28 22:06: Argument lr_init: 0.0005
+2022-12-28 22:06: Argument max_grad_norm: 5
+2022-12-28 22:06: Argument minbatch_size: 64
+2022-12-28 22:06: Argument mode: 'train'
+2022-12-28 22:06: Argument model: 'fire_GCN'
+2022-12-28 22:06: Argument nan_fill: 0.5
+2022-12-28 22:06: Argument num_layers: 1
+2022-12-28 22:06: Argument num_nodes: 625
+2022-12-28 22:06: Argument num_workers: 20
+2022-12-28 22:06: Argument output_dim: 2
+2022-12-28 22:06: Argument patch_height: 25
+2022-12-28 22:06: Argument patch_width: 25
+2022-12-28 22:06: Argument persistent_workers: True
+2022-12-28 22:06: Argument pin_memory: True
+2022-12-28 22:06: Argument plot: False
+2022-12-28 22:06: Argument positive_weight: 0.5
+2022-12-28 22:06: Argument prefetch_factor: 2
+2022-12-28 22:06: Argument real_value: True
+2022-12-28 22:06: Argument rnn_units: 16
+2022-12-28 22:06: Argument seed: 10000
+2022-12-28 22:06: Argument static_features: ['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density']
+2022-12-28 22:06: Argument teacher_forcing: False
+2022-12-28 22:06: Argument weight_decay: 0.0
+2022-12-28 22:06: Argument window_len: 10
+2022-12-28 22:06: Train Epoch 1: 3/244 Loss: 0.666698
+2022-12-28 22:06: Train Epoch 1: 7/244 Loss: 1.027993
+2022-12-28 22:06: Train Epoch 1: 11/244 Loss: 0.619488
+2022-12-28 22:07: Train Epoch 1: 15/244 Loss: 0.634940
+2022-12-28 22:07: Train Epoch 1: 19/244 Loss: 0.650614
+2022-12-28 22:07: Train Epoch 1: 23/244 Loss: 0.626079
+2022-12-28 22:07: Train Epoch 1: 27/244 Loss: 0.573652
+2022-12-28 22:07: Train Epoch 1: 31/244 Loss: 0.615672
+2022-12-28 22:07: Train Epoch 1: 35/244 Loss: 0.569335
+2022-12-28 22:08: Train Epoch 1: 39/244 Loss: 0.627183
+2022-12-28 22:08: Train Epoch 1: 43/244 Loss: 0.584811
+2022-12-28 22:08: Train Epoch 1: 47/244 Loss: 0.584458
+2022-12-28 22:08: Train Epoch 1: 51/244 Loss: 0.581992
+2022-12-28 22:08: Train Epoch 1: 55/244 Loss: 0.551640
+2022-12-28 22:09: Train Epoch 1: 59/244 Loss: 0.526673
+2022-12-28 22:09: Train Epoch 1: 63/244 Loss: 0.537392
+2022-12-28 22:09: Train Epoch 1: 67/244 Loss: 0.537982
+2022-12-28 22:09: Train Epoch 1: 71/244 Loss: 0.552788
+2022-12-28 22:09: Train Epoch 1: 75/244 Loss: 0.505001
+2022-12-28 22:09: Train Epoch 1: 79/244 Loss: 0.473121
+2022-12-28 22:10: Train Epoch 1: 83/244 Loss: 0.496170
+2022-12-28 22:10: Train Epoch 1: 87/244 Loss: 0.470541
+2022-12-28 22:10: Train Epoch 1: 91/244 Loss: 0.444936
+2022-12-28 22:10: Train Epoch 1: 95/244 Loss: 0.469392
+2022-12-28 22:10: Train Epoch 1: 99/244 Loss: 0.439738
+2022-12-28 22:10: Train Epoch 1: 103/244 Loss: 0.416314
+2022-12-28 22:11: Train Epoch 1: 107/244 Loss: 0.419502
+2022-12-28 22:11: Train Epoch 1: 111/244 Loss: 0.382537
+2022-12-28 22:11: Train Epoch 1: 115/244 Loss: 0.396406
+2022-12-28 22:11: Train Epoch 1: 119/244 Loss: 0.393372
+2022-12-28 22:11: Train Epoch 1: 123/244 Loss: 0.353936
+2022-12-28 22:11: Train Epoch 1: 127/244 Loss: 0.318094
+2022-12-28 22:12: Train Epoch 1: 131/244 Loss: 0.317403
+2022-12-28 22:12: Train Epoch 1: 135/244 Loss: 0.347121
+2022-12-28 22:12: Train Epoch 1: 139/244 Loss: 0.307177
