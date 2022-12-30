@@ -989,3 +989,30 @@ Epoch time elapsed: 2391.426709651947
 2022-12-30 14:23: Train Epoch 6: 119/634 Loss: 0.174451
 2022-12-30 14:24: Train Epoch 6: 123/634 Loss: 0.176537
 2022-12-30 14:24: Train Epoch 6: 127/634 Loss: 0.155249
+2022-12-30 14:24: Train Epoch 6: 131/634 Loss: 0.130293
+Traceback (most recent call last):
+  File "/home/joel.chacon/tmp/WildFire_GCN/Run_Model.py", line 197, in <module>
+    trainer.train()
+  File "/home/joel.chacon/tmp/WildFire_GCN/Trainer.py", line 133, in train
+    train_epoch_loss = self.train_epoch(epoch)
+  File "/home/joel.chacon/tmp/WildFire_GCN/Trainer.py", line 96, in train_epoch
+    output = self.model(data)
+  File "/home/joel.chacon/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/joel.chacon/tmp/WildFire_GCN/fire_modules_GCN.py", line 205, in forward
+    x, _ = self.encoder(x, self.node_embeddings) #B, T, N, hidden_dim
+  File "/home/joel.chacon/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/joel.chacon/tmp/WildFire_GCN/fire_modules_GCN.py", line 138, in forward
+    state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings)
+  File "/home/joel.chacon/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/joel.chacon/tmp/WildFire_GCN/fire_modules_GCN.py", line 102, in forward
+    z_r = torch.sigmoid(self.gate(input_and_state, x_full, node_embeddings))
+  File "/home/joel.chacon/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/joel.chacon/tmp/WildFire_GCN/fire_modules_GCN.py", line 64, in forward
+    x_g = torch.einsum("knm,bmc->bknc", supports, x) #B, link_len, N, dim_in : on N
+  File "/home/joel.chacon/.local/lib/python3.8/site-packages/torch/functional.py", line 408, in einsum
+    return _VF.einsum(equation, operands)  # type: ignore
+KeyboardInterrupt
