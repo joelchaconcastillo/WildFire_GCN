@@ -84,7 +84,7 @@ class SpatioTemporalGCN(nn.Module):
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
 #        x_gwconv = torch.cat([torch.randn(x_twconv.shape), x_twconv], dim=-1)
-        return x_gwconv
+        return F.relu(x_gwconv)
 
 class GCN_GRU_Cell(nn.Module):
     def __init__(self, node_num, dim_in, hidden_dim, window_len, link_len, embed_dim):
@@ -203,7 +203,7 @@ class GCN(nn.Module):
       (B,T,N,D) = x.shape
       x = self.ln1(x)
       x, _ = self.encoder(x, self.node_embeddings) #B, T, N, hidden_dim
-      x = F.relu(x[0][:, -1:, :, :]) #B, 1, N, hidden_dim
+      x = x[0][:, -1:, :, :] #B, 1, N, hidden_dim
 #      #CNN based predictor
 #      x = self.end_conv((x)) #B, T*C, N, 1
 #      x = x.squeeze(-1).reshape(-1, self.output_dim)
