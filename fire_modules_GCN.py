@@ -182,14 +182,16 @@ class GCN(nn.Module):
         # fully-connected part
       kernel_size=3
 #      self.ln2 = torch.nn.LayerNorm(self.hidden_dim)
-      self.conv1 = nn.Conv2d(self.hidden_dim, self.hidden_dim, kernel_size=(kernel_size, kernel_size), stride=(1, 1), padding=(1, 1))
-      self.fc1 = nn.Linear(int(self.patch_width//2)*int(self.patch_height//2)*self.hidden_dim, 2 * self.hidden_dim)
+#      self.conv1 = nn.Conv2d(self.hidden_dim, self.hidden_dim, kernel_size=(kernel_size, kernel_size), stride=(1, 1), padding=(1, 1))
+      self.fc1 = nn.Linear(self.num_nodes*self.hidden_dim, 2)
+      #self.fc1 = nn.Linear(int(self.patch_width//2)*int(self.patch_height//2)*self.hidden_dim, 2 * self.hidden_dim)
       self.drop1 = nn.Dropout(dropout)
 ###
-      self.fc2 = nn.Linear(2 * self.hidden_dim, self.hidden_dim)
-      self.drop2 = nn.Dropout(dropout)
+#      self.fc2 = nn.Linear(2 * self.hidden_dim, self.hidden_dim)
+#      self.drop2 = nn.Dropout(dropout)
 ###
-      self.fc3 = nn.Linear(self.hidden_dim, 2)
+#      self.fc3 = nn.Linear(self.hidden_dim, 2)
+#      self.fc3 = nn.Linear(int(self.hidden_dim/2), 2)
 
    def forward(self, x: torch.Tensor):
       '''
@@ -209,16 +211,17 @@ class GCN(nn.Module):
 #      print(x[0,...],"<===")
 #      x = self.ln2(x)
       x = x.squeeze(1).permute(0,2,1) # B, hidden_dim, N
-      x = x.reshape(B, self.hidden_dim, self.patch_width, self.patch_height)
+      x = x.reshape(B, self.hidden_dim, self.patch_width, self.patch_height) # B, N,  H
 
-      x = F.max_pool2d(F.relu(self.conv1(x)), 2) #B, hidden, 12, 12
+      #x = F.max_pool2d(F.relu(self.conv1(x)), 2) #B, hidden, 12, 12
 
       # fully-connected
       x = torch.flatten(x, 1) ##B, hidden*12*12 (4608)
-      x = F.relu(self.drop1(self.fc1(x)))  ##B, 64
+      x = (self.drop1(self.fc1(x)))  ##B, 64
+#      x = F.relu(self.drop1(self.fc1(x)))  ##B, 64
       #x = F.relu(self.fc1(x))  ##B, 64
 
-      x = F.relu(self.drop2(self.fc2(x)))  ##B, 32
+#      x = F.relu(self.drop2(self.fc2(x)))  ##B, 32
       #x = F.relu(self.fc2(x))  ##B, 32
-      x = self.fc3(x) ##B, 2
+#      x = self.fc3(x) ##B, 2
       return torch.nn.functional.log_softmax(x, dim=1)

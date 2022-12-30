@@ -12,7 +12,7 @@ from sklearn import metrics
 #from metrics import All_Metrics
 
 class Trainer(object):
-    def __init__(self, model, loss, optimizer, train_loader, val_loader, test_loader,
+    def __init__(self, model, loss, optimizer, train_loader, val_loader, test_loader1, test_loader2,
                  scaler, args, lr_scheduler=None):
         super(Trainer, self).__init__()
         self.model = model
@@ -20,7 +20,8 @@ class Trainer(object):
         self.optimizer = optimizer
         self.train_loader = train_loader
         self.val_loader = val_loader
-        self.test_loader = test_loader
+        self.test_loader1 = test_loader1
+        self.test_loader2 = test_loader2
         self.scaler = scaler
         self.args = args
         self.lr_scheduler = lr_scheduler
@@ -165,7 +166,8 @@ class Trainer(object):
             # test
             self.model.load_state_dict(best_model)
             # self.val_epoch(self.args.epochs, self.test_loader)
-            self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
+            self.test(self.model, self.args, self.test_loader1, self.scaler, self.logger)
+            self.test(self.model, self.args, self.test_loader2, self.scaler, self.logger)
 
 
         training_time = time.time() - start_time
@@ -179,7 +181,8 @@ class Trainer(object):
         #test
         self.model.load_state_dict(best_model)
         #self.val_epoch(self.args.epochs, self.test_loader)
-        self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
+        self.test(self.model, self.args, self.test_loader1, self.scaler, self.logger)
+        self.test(self.model, self.args, self.test_loader2, self.scaler, self.logger)
 
     def save_checkpoint(self):
         state = {

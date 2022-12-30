@@ -161,7 +161,7 @@ for p in model.parameters():
 print_model_parameters(model, only_num=False)
 
 #loa dataset
-train_loader, val_loader, test_loader = get_dataloaders(args)
+train_loader, val_loader, test_loader1, test_loader2 = get_dataloaders(args)
 scaler = None
 
 if args.loss_func == 'mae':
@@ -191,7 +191,7 @@ log_dir = os.path.join(current_dir,'experiments', args.dataset, current_time)
 args.log_dir = log_dir
 
 #start training
-trainer = Trainer(model, loss, optimizer, train_loader, val_loader, test_loader, scaler,
+trainer = Trainer(model, loss, optimizer, train_loader, val_loader, test_loader1, test_loader2, scaler,
                   args, lr_scheduler=lr_scheduler)
 if args.mode == 'train':
     trainer.train()
