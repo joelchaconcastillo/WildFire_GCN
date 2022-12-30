@@ -1,0 +1,1 @@
+python3 Run_Model.py --seed=10000 --rnn_units=16 --embed_dim=32 --link_len=2 --minbatch_size=64 --num_layers=1 --weight_decay=0.0 > gcn_rnn_units_16_embed_dim_32_link_len_2_minbatch_size_64_num_layers_1_weight_decay_0.0_lr_init_0p0001.txt 2>&1
