@@ -146,8 +146,8 @@ class FireDataset_Graph_npy(Dataset):
         test_year1 = 2020 #min(val_year + 1, 2021)
         test_year2 = 2021 #min(val_year + 1, 2021)
 
-        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < 2012]
-#        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < val_year]
+#        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < 2012]
+        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < val_year]
         self.val_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == val_year]
         self.test1_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1]
         self.test2_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year2]

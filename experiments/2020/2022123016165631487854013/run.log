@@ -49,43 +49,6 @@
 2022-12-30 16:16: Argument teacher_forcing: False
 2022-12-30 16:16: Argument weight_decay: 0.0
 2022-12-30 16:16: Argument window_len: 10
-++++++++++++++
-2020_fire_GCN.conf
-++++++++++++++
-*****************Model Parameter*****************
-node_embeddings torch.Size([625, 16]) True
-ln1.weight torch.Size([25]) True
-ln1.bias torch.Size([25]) True
-encoder.cell_list.0.gate.weights_pool torch.Size([16, 2, 41, 16]) True
-encoder.cell_list.0.gate.weights_window torch.Size([16, 1, 16]) True
-encoder.cell_list.0.gate.bias_pool torch.Size([16, 32]) True
-encoder.cell_list.0.gate.T torch.Size([10]) True
-encoder.cell_list.0.update.weights_pool torch.Size([16, 2, 41, 8]) True
-encoder.cell_list.0.update.weights_window torch.Size([16, 1, 8]) True
-encoder.cell_list.0.update.bias_pool torch.Size([16, 16]) True
-encoder.cell_list.0.update.T torch.Size([10]) True
-encoder.cell_list.1.gate.weights_pool torch.Size([16, 2, 32, 16]) True
-encoder.cell_list.1.gate.weights_window torch.Size([16, 16, 16]) True
-encoder.cell_list.1.gate.bias_pool torch.Size([16, 32]) True
-encoder.cell_list.1.gate.T torch.Size([10]) True
-encoder.cell_list.1.update.weights_pool torch.Size([16, 2, 32, 8]) True
-encoder.cell_list.1.update.weights_window torch.Size([16, 16, 8]) True
-encoder.cell_list.1.update.bias_pool torch.Size([16, 16]) True
-encoder.cell_list.1.update.T torch.Size([10]) True
-fc1.weight torch.Size([2, 10000]) True
-fc1.bias torch.Size([2]) True
-Total params num: 94220
-*****************Finish Parameter****************
-Positives: 13518 / Negatives: 27036
-Dataset length 40554
-Positives: 1300 / Negatives: 2600
-Dataset length 3900
-Positives: 1228 / Negatives: 2456
-Dataset length 3684
-Positives: 4407 / Negatives: 8814
-Dataset length 13221
-Applying learning rate decay.
-Creat Log File in:  /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/2022123016165631487854013/run.log
 2022-12-30 16:17: Train Epoch 1: 3/634 Loss: 0.376318
 2022-12-30 16:17: Train Epoch 1: 7/634 Loss: 0.430912
 2022-12-30 16:17: Train Epoch 1: 11/634 Loss: 0.310894

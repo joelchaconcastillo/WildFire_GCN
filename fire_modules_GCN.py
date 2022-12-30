@@ -203,7 +203,7 @@ class GCN(nn.Module):
       (B,T,N,D) = x.shape
       x = self.ln1(x)
       x, _ = self.encoder(x, self.node_embeddings) #B, T, N, hidden_dim
-      x = x[0][:, -1:, :, :] #B, 1, N, hidden_dim
+      x = F.relu(x[0][:, -1:, :, :]) #B, 1, N, hidden_dim
 #      #CNN based predictor
 #      x = self.end_conv((x)) #B, T*C, N, 1
 #      x = x.squeeze(-1).reshape(-1, self.output_dim)
