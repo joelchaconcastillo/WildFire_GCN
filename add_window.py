@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import pandas as pd
-import networkx as nx
+#import networkx as nx
 import zigzag.zigzagtools as zzt
 from scipy.spatial.distance import squareform
 import scipy.sparse as sp
@@ -16,7 +16,7 @@ path = os.getcwd()
 def zigzag_persistence_diagrams(x, alpha, NVertices, scaleParameter, maxDimHoles, sizeWindow):
     GraphsNetX = []
     for t in range(sizeWindow): 
-      graphL2 = np.sum((X[t,:, np.newaxis, :]-X[t,:,:,np.newaxis])**2, axis=0) #compute matrix distance
+      graphL2 = np.sum((x[t,np.newaxis, :, :]-x[t,:,np.newaxis,:])**2, axis=-1) #compute matrix distance
       graphL2[graphL2==0] = 1e-5  ##weakly connected
       tmp_max = np.max(graphL2)
       graphL2 /= tmp_max  ##normalize  matrix
@@ -30,8 +30,8 @@ def zigzag_persistence_diagrams(x, alpha, NVertices, scaleParameter, maxDimHoles
         # --- To concatenate graphs
         unionAux = []
         MDisAux = np.zeros((2 * NVertices, 2 * NVertices))
-        A = nx.adjacency_matrix(GraphsNetX[i]).todense()
-        B = nx.adjacency_matrix(GraphsNetX[i + 1]).todense()
+        A = GraphsNetX[i] #nx.adjacency_matrix(GraphsNetX[i]).todense()
+        B = GraphsNetX[i+1] #nx.adjacency_matrix(GraphsNetX[i + 1]).todense()
         # ----- Version Original (2)
         C = (A + B) / 2
         A[A == 0] = 1.1
@@ -147,9 +147,9 @@ window = 10
 alpha = 0.3
 scaleParameter =  0.4
 NVertices = 625
-data = np.random((window, NVertices, 25))
+data = np.random.rand(window, NVertices, 25)
 ### for each sample....
-zigzag_PD = zigzag_persistence_diagrams(dataset = data_type, alpha=alpha, NVertices=NVertices, scaleParameter=scaleParameter, maxDimHoles=maxDimHoles, sizeWindow=window)
+zigzag_PD = zigzag_persistence_diagrams(x = data, alpha=alpha, NVertices=NVertices, scaleParameter=scaleParameter, maxDimHoles=maxDimHoles, sizeWindow=window)
 zigzag_PI_H0 = zigzag_persistence_images(zigzag_PD, dimensional = 0)
 zigzag_PI_H1 = zigzag_persistence_images(zigzag_PD, dimensional = 1)
 X_H0.append(zigzag_PI_H0)
