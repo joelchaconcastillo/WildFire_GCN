@@ -182,7 +182,7 @@ class GCN(nn.Module):
         # fully-connected part
 #      self.ln2 = torch.nn.LayerNorm(self.hidden_dim)
 #      self.conv1 = nn.Conv2d(self.hidden_dim, self.hidden_dim, kernel_size=(kernel_size, kernel_size), stride=(1, 1), padding=(1, 1))
-      self.conv1 = nn.Conv2d(1, self.num_nodes, kernel_size=(1, self.hidden_dim))
+      self.conv1 = nn.Conv2d(1, 1, kernel_size=(1, self.hidden_dim), bias=True)
       self.fc1 = nn.Linear(self.num_nodes, 2)
       #self.fc1 = nn.Linear(int(self.patch_width//2)*int(self.patch_height//2)*self.hidden_dim, 2 * self.hidden_dim)
       self.drop1 = nn.Dropout(dropout)
@@ -203,8 +203,8 @@ class GCN(nn.Module):
       (B,T,N,D) = x.shape
       x = self.ln1(x)
       x, _ = self.encoder(x, self.node_embeddings) #B, T, N, hidden_dim
-      x = x[0][:, -1:, :, :].squeeze(1) #B, N, hidden_dim
-      x = self.conv1(x)
+      x = x[0][:, -1:, :, :] #B, N, N, 1
+      x = self.conv1(x) # B, N, 1, H
       # fully-connected
       x = torch.flatten(x, 1) ##B, NxN (625)
       x = (self.drop1(self.fc1(x)))  ##B, 2
