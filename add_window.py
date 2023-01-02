@@ -23,7 +23,8 @@ def zigzag_persistence_diagrams(x, alpha, NVertices, scaleParameter, maxDimHoles
       graphL2[graphL2>alpha]=0 ##cut off 
       GraphsNetX.append(graphL2)
 
-    # Building unions and computing distance matrices
+    start_time = time.time()
+   # Building unions and computing distance matrices
     print("Building unions and computing distance matrices...")  # Beginning
     MDisGUnions = []
     for i in range(0, sizeWindow - 1):
@@ -102,8 +103,7 @@ def zigzag_persistence_diagrams(x, alpha, NVertices, scaleParameter, maxDimHoles
             window_ZPD.append(matBarcode)
 
     # Timing
-    print("TIME: " + str((time.time() - start_time)) + " Seg ---  " + str(
-        (time.time() - start_time) / 60) + " Min ---  " + str((time.time() - start_time) / (60 * 60)) + " Hr ")
+    print("TIME: " + str((time.time() - start_time)) + " Seg ---  " + str((time.time() - start_time) / 60) + " Min ---  " + str((time.time() - start_time) / (60 * 60)) + " Hr ")
 
     return window_ZPD
 
@@ -144,14 +144,15 @@ def zigzag_persistence_images(dgms, resolution = [50,50], return_raw = False, no
 
 maxDimHoles = 2
 window = 10
-alpha = 0.3
+alpha = 0.2
 scaleParameter =  0.4
 NVertices = 625
 data = np.random.rand(window, NVertices, 25)
 ### for each sample....
 zigzag_PD = zigzag_persistence_diagrams(x = data, alpha=alpha, NVertices=NVertices, scaleParameter=scaleParameter, maxDimHoles=maxDimHoles, sizeWindow=window)
+print(len(zigzag_PD))
 zigzag_PI_H0 = zigzag_persistence_images(zigzag_PD, dimensional = 0)
 zigzag_PI_H1 = zigzag_persistence_images(zigzag_PD, dimensional = 1)
-X_H0.append(zigzag_PI_H0)
-X_H1.append(zigzag_PI_H1)
+print(zigzag_PI_H0)
+print(zigzag_PI_H1)
 
