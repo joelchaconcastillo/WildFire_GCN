@@ -1,3 +1,9 @@
+from torch.utils.data import Dataset, DataLoader, TensorDataset
+import numpy as np
+import warnings
+import json
+import scipy.sparse
+from pathlib import Path
 import os
 import numpy as np
 import pandas as pd
@@ -279,7 +285,7 @@ class zigzagTDA:
        ax2.set_xlim(xm, xM)
        ax2.set_ylim(ym, yM)
        ax2.contourf(X, Y, norm_output)
-       plt.savefig('my_plot.png')
+       plt.savefig('my_plot'+str(dimensional)+'.pdf')
        plt.show()
        return norm_output
 #####################################################################
@@ -334,12 +340,15 @@ static_features = [
 clc = 'vec'
 access_mode = 'spatiotemporal'
 nan_fill = -1.0 
+dataset_root = '/home/joel.chacon/tmp/datasets_grl'
 #####TDA parameters
 maxDimHoles = 1
 window = 10
 alpha = 1.
 scaleParameter =  0.3
-NVertices = 625
+sizeBorder = 5
+NVertices = (2*sizeBorder+1)**2
+
 #data = np.random.rand(window, NVertices, 25)
 
 ###We can ge more plots from here...
@@ -352,14 +361,16 @@ print("Number of samples", len(data))
 print("Dynamic shape..", data[0][0].shape)
 print("Static shape..", data[0][1].shape)
 print("clc shape..", data[0][2].shape)
-for (dynamic, static, clc, prefix_path) in self.data:
+for (dynamic, static, clc, prefix_path) in data:
    (sizeWindow, _ , patchWidth, patchHeight) = dynamic.shape
    numberFeatures = len(dynamic_features)+len(static_features)+len(clc)
    sample = np.zeros((sizeWindow, NVertices, numberFeatures))
-   for time in range(sizeWindow):
-      X = np.concatenate((dynamic[time], static, clc), axis=0)
+   for t in range(sizeWindow):
+      X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
+      X = X[:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
       X = X.reshape(numberFeatures, -1) # F, N
-      sample[time] = X.transpose(1,0) #N, F
+      sample[t] = X.transpose(1,0) #N, F
+   print(prefix_path)
    zigzag_PD = ZZ.zigzag_persistence_diagrams(x = sample)
    print(len(zigzag_PD))
    zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
