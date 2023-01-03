@@ -288,9 +288,9 @@ class zigzagTDA:
        plt.savefig('my_plot'+str(dimensional)+'.pdf')
        plt.show()
 
-       from PIL import Image
-       img = Image.fromarray(norm_output, 'L')
-       img.save('sample.png')
+#       from PIL import Image
+#       img = Image.fromarray(norm_output, 'L')
+#       img.save('sample.png')
 
        return norm_output
 #####################################################################
@@ -349,9 +349,9 @@ dataset_root = '/home/joel.chacon/tmp/datasets_grl'
 #####TDA parameters
 maxDimHoles = 1
 window = 10
-alpha = 1.0
-scaleParameter =  0.3
-sizeBorder = 2
+alpha = 0.4
+scaleParameter =  0.005
+sizeBorder = 4
 NVertices = (2*sizeBorder+1)**2
 
 #data = np.random.rand(window, NVertices, 25)
@@ -369,7 +369,7 @@ print("clc shape..", data[0][2].shape)
 cont = 0
 for (dynamic, static, clc, prefix_path) in data:
    cont +=1
-   if cont < 200:
+   if cont < 20:
        continue
 
    (sizeWindow, _ , patchWidth, patchHeight) = dynamic.shape
