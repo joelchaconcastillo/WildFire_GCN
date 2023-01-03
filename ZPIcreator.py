@@ -8,7 +8,7 @@ import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-#import networkx as nx
+import networkx as nx
 import zigzag.zigzagtools as zzt
 import zigzag.ZZgraph as zzgraph
 from scipy.spatial.distance import squareform
@@ -149,11 +149,31 @@ class zigzagTDA:
    def zigzag_persistence_diagrams(self, x):
        GraphsNetX = []
        for t in range(self.sizeWindow): 
-         graphL2 = np.sum((x[t,np.newaxis, :, :]-x[t,:,np.newaxis,:])**2, axis=-1) #compute matrix distance
-         graphL2[graphL2==0] = 1e-5  ##weakly connected
+         graphL2 = np.sqrt(np.sum((x[t,np.newaxis, :, :]-x[t,:,np.newaxis,:])**2, axis=-1)) #compute matrix distance
+         graphL2[graphL2==0] = 1e-5  ##weakly connected, we want similar or equally edges :)
          tmp_max = np.max(graphL2)
          graphL2 /= tmp_max  ##normalize  matrix
-         graphL2[graphL2>self.alpha]=0 ##cut off note: probably this is not required
+#         edgeList = np.array([])
+#         for ii in range(self.NVertices):
+#             for jj in range(self.NVertices):
+#                 edgeList = np.append(edgeList, np.array([graphL2[ii][jj], ii, jj]))
+
+#         graphL2[graphL2>self.alpha]=0 ##cut off note: probably this is not required
+         G = nx.from_numpy_matrix(graphL2)
+         edges = sorted(G.edges(data=True), key=lambda t: t[2].get('weight', 1)) ##sort edges increasinly by weights 
+         nConnections = 1000 ##just take the top connections
+         graphL2[:,:] = 0 ##reset
+         cont = 0
+         for u,v, w in edges:
+             graphL2[u,v]=float(w['weight'])
+             graphL2[v,u]=float(w['weight'])
+             cont +=1
+             if cont == nConnections:
+                 break
+#         for i, j in edgelist:
+#             print(i,j,w)
+#         for a, b, data in sorted(edgelist, key=lambda x: x[2]['weight']):
+#            print('{a} {b} {w}'.format(a=a, b=b, w=data['weight']))
          GraphsNetX.append(graphL2)
    
        start_time = time.time()
@@ -162,18 +182,17 @@ class zigzagTDA:
        MDisGUnions = []
        for i in range(0, self.sizeWindow - 1):
            # --- To concatenate graphs
-           unionAux = []
            MDisAux = np.zeros((2 * self.NVertices, 2 * self.NVertices))
            A = GraphsNetX[i] #nx.adjacency_matrix(GraphsNetX[i]).todense()
            B = GraphsNetX[i+1] #nx.adjacency_matrix(GraphsNetX[i + 1]).todense()
            # ----- Version Original (2)
            C = (A + B) / 2
-           A[A == 0] = 1.1
+           A[A == 0] = 10.1
            A[range(self.NVertices), range(self.NVertices)] = 0
-           B[B == 0] = 1.1
+           B[B == 0] = 10.1
            B[range(self.NVertices), range(self.NVertices)] = 0
            MDisAux[0:self.NVertices, 0:self.NVertices] = A
-           C[C == 0] = 1.1
+           C[C == 0] = 10.1
            C[range(self.NVertices), range(self.NVertices)] = 0
            MDisAux[self.NVertices:(2 * self.NVertices), self.NVertices:(2 * self.NVertices)] = B
            MDisAux[0:self.NVertices, self.NVertices:(2 * self.NVertices)] = C
@@ -271,8 +290,8 @@ class zigzagTDA:
            norm_output = output
    #    plt.plot(PXs, PYs, 'ro')
        
-       print(norm_output.shape)
-   
+#       print(norm_output.shape)
+#   
        fig, (ax1, ax2) = plt.subplots(1,2)
        fig.suptitle('TDA rules! '+str(dimensional)+'-dimensional ZPD')
        ax1.set_xlim(0, window-1)
@@ -288,9 +307,9 @@ class zigzagTDA:
        plt.savefig('my_plot'+str(dimensional)+'.pdf')
        plt.show()
 
-#       from PIL import Image
-#       img = Image.fromarray(norm_output, 'L')
-#       img.save('sample.png')
+       from PIL import Image
+       img = Image.fromarray(norm_output, 'L')
+       img.save('sample.png')
 
        return norm_output
 #####################################################################
@@ -349,9 +368,9 @@ dataset_root = '/home/joel.chacon/tmp/datasets_grl'
 #####TDA parameters
 maxDimHoles = 1
 window = 10
-alpha = 1.0
-scaleParameter =  0.01
-sizeBorder = 4
+alpha = 1
+scaleParameter =  1.0 #0.001
+sizeBorder = 12
 NVertices = (2*sizeBorder+1)**2
 
 #data = np.random.rand(window, NVertices, 25)
@@ -360,24 +379,20 @@ NVertices = (2*sizeBorder+1)**2
 ###zzgraph.plotting(data, NVertices, alpha, scaleParameter, maxDimHoles, window)
 ### for each sample....
 
-data =  loadData(dataset_root = dataset_root,access_mode = access_mode, dynamic_features = dynamic_features, static_features = static_features, clc=clc)
+data = loadData(dataset_root = dataset_root,access_mode = access_mode, dynamic_features = dynamic_features, static_features = static_features, clc=clc)
 ZZ = zigzagTDA(alpha=alpha, NVertices=NVertices, scaleParameter=scaleParameter, maxDimHoles=maxDimHoles, sizeWindow=window)
 print("Number of samples", len(data))
 print("Dynamic shape..", data[0][0].shape)
 print("Static shape..", data[0][1].shape)
 print("clc shape..", data[0][2].shape)
-cont = 0
-for (dynamic, static, clc, prefix_path) in data:
-   cont +=1
-   if cont < 20:
-       continue
 
+for (dynamic, static, clc, prefix_path) in data:
    (sizeWindow, _ , patchWidth, patchHeight) = dynamic.shape
-   numberFeatures = len(dynamic_features)+len(static_features) #+len(clc)
+   numberFeatures = len(dynamic_features)+len(static_features)+len(clc)
    sample = np.zeros((sizeWindow, NVertices, numberFeatures))
    for t in range(sizeWindow):
-      #X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
-      X = np.concatenate((dynamic[t], static), axis=0) ##F, W, H
+      X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
+      #X = np.concatenate((dynamic[t], static), axis=0) ##F, W, H
       X = X[:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
       X = X.reshape(numberFeatures, -1) # F, N
       sample[t] = X.transpose(1,0) #N, F
