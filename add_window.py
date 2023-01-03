@@ -150,7 +150,7 @@ class zigzagTDA:
        GraphsNetX = []
        for t in range(self.sizeWindow): 
          graphL2 = np.sum((x[t,np.newaxis, :, :]-x[t,:,np.newaxis,:])**2, axis=-1) #compute matrix distance
-        # graphL2[graphL2==0] = 1e-5  ##weakly connected
+         graphL2[graphL2==0] = 1e-5  ##weakly connected
          tmp_max = np.max(graphL2)
          graphL2 /= tmp_max  ##normalize  matrix
          graphL2[graphL2>self.alpha]=0 ##cut off note: probably this is not required
@@ -287,6 +287,11 @@ class zigzagTDA:
        ax2.contourf(X, Y, norm_output)
        plt.savefig('my_plot'+str(dimensional)+'.pdf')
        plt.show()
+
+       from PIL import Image
+       img = Image.fromarray(norm_output, 'L')
+       img.save('sample.png')
+
        return norm_output
 #####################################################################
 dynamic_features = [
@@ -344,9 +349,9 @@ dataset_root = '/home/joel.chacon/tmp/datasets_grl'
 #####TDA parameters
 maxDimHoles = 1
 window = 10
-alpha = 1.
+alpha = 1.0
 scaleParameter =  0.3
-sizeBorder = 5
+sizeBorder = 2
 NVertices = (2*sizeBorder+1)**2
 
 #data = np.random.rand(window, NVertices, 25)
@@ -361,12 +366,20 @@ print("Number of samples", len(data))
 print("Dynamic shape..", data[0][0].shape)
 print("Static shape..", data[0][1].shape)
 print("clc shape..", data[0][2].shape)
+cont = 0
 for (dynamic, static, clc, prefix_path) in data:
+   cont +=1
+   if cont < 200:
+       continue
+
    (sizeWindow, _ , patchWidth, patchHeight) = dynamic.shape
-   numberFeatures = len(dynamic_features)+len(static_features)+len(clc)
+   #numberFeatures = len(dynamic_features)+len(static_features)+len(clc)
+   numberFeatures = len(dynamic_features)
    sample = np.zeros((sizeWindow, NVertices, numberFeatures))
    for t in range(sizeWindow):
-      X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
+      #X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
+#      X = np.concatenate((dynamic[t]), axis=0) ##F, W, H
+      X = dynamic[t]
       X = X[:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
       X = X.reshape(numberFeatures, -1) # F, N
       sample[t] = X.transpose(1,0) #N, F
@@ -377,4 +390,5 @@ for (dynamic, static, clc, prefix_path) in data:
    zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
    print(zigzag_PI_H0)
    print(zigzag_PI_H1)
+   exit(0)
 #
