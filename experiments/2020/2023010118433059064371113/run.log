@@ -4356,3 +4356,32 @@ Epoch time elapsed: 4309.879507064819
 2023-01-03 05:32: Train Epoch 25: 579/634 Loss: 0.165302
 2023-01-03 05:32: Train Epoch 25: 583/634 Loss: 0.151865
 2023-01-03 05:33: Train Epoch 25: 587/634 Loss: 0.161854
+2023-01-03 05:33: Train Epoch 25: 591/634 Loss: 0.155530
+2023-01-03 05:34: Train Epoch 25: 595/634 Loss: 0.160828
+2023-01-03 05:34: Train Epoch 25: 599/634 Loss: 0.146595
+2023-01-03 05:35: Train Epoch 25: 603/634 Loss: 0.166085
+2023-01-03 05:35: Train Epoch 25: 607/634 Loss: 0.182613
+2023-01-03 05:36: Train Epoch 25: 611/634 Loss: 0.156403
+2023-01-03 05:36: Train Epoch 25: 615/634 Loss: 0.185667
+2023-01-03 05:36: Train Epoch 25: 619/634 Loss: 0.167344
+2023-01-03 05:37: Train Epoch 25: 623/634 Loss: 0.152279
+2023-01-03 05:37: Train Epoch 25: 627/634 Loss: 0.166514
+2023-01-03 05:38: Train Epoch 25: 631/634 Loss: 0.167290
+2023-01-03 05:38: Train Epoch 25: 633/634 Loss: 0.079884
+2023-01-03 05:38: **********Train Epoch 25: averaged Loss: 0.162428 
+2023-01-03 05:38: 
+Epoch time elapsed: 4462.248411893845
+
+2023-01-03 05:40: 
+ metrics validation: {'precision': 0.771050141911069, 'recall': 0.6269230769230769, 'f1-score': 0.6915570640644888, 'support': 1300, 'AUC': 0.9000085798816567, 'AUCPR': 0.7912682888335704, 'TP': 815, 'FP': 242, 'TN': 2358, 'FN': 485} 
+
+2023-01-03 05:40: **********Val Epoch 25: average Loss: 0.182534
+2023-01-03 05:40: Validation performance didn't improve for 8 epochs. Training stops.
+2023-01-03 05:40: Total training time: 2097.0961min, best loss: 0.173677
+2023-01-03 05:40: Saving current best model to /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/2023010118433059064371113/best_model.pth
+2023-01-03 05:42: 
+ Testing metrics {'precision': 0.8290685772773797, 'recall': 0.6596091205211726, 'f1-score': 0.7346938775510203, 'support': 1228, 'AUC': 0.90099563390593, 'AUCPR': 0.8333103327211722, 'TP': 810, 'FP': 167, 'TN': 2289, 'FN': 418} 
+
+2023-01-03 05:48: 
+ Testing metrics {'precision': 0.9006529850746269, 'recall': 0.876333106421602, 'f1-score': 0.8883266244968373, 'support': 4407, 'AUC': 0.9743804967333103, 'AUCPR': 0.9497595149190998, 'TP': 3862, 'FP': 426, 'TN': 8388, 'FN': 545} 
+

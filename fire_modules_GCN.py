@@ -36,8 +36,8 @@ class SpatioTemporalGCN(nn.Module):
            self.weights_window = nn.Parameter(torch.FloatTensor(embed_dim, int(dim_in/2), int(hidden_dim / 2)))
         self.bias_pool = nn.Parameter(torch.FloatTensor(embed_dim, hidden_dim))
         self.T = nn.Parameter(torch.FloatTensor(window_len))
-        self.ln1 = torch.nn.LayerNorm(int(hidden_dim/2), elementwise_affine=False)
-        self.ln2 = torch.nn.LayerNorm(int(hidden_dim/2), elementwise_affine=False)
+        self.ln1 = torch.nn.LayerNorm(int(hidden_dim/2))
+        self.ln2 = torch.nn.LayerNorm(int(hidden_dim/2))
 #        self.cnn = CNN(int(hidden_dim/ 2))
 
 
