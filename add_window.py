@@ -350,7 +350,7 @@ dataset_root = '/home/joel.chacon/tmp/datasets_grl'
 maxDimHoles = 1
 window = 10
 alpha = 0.4
-scaleParameter =  0.005
+scaleParameter =  0.0005
 sizeBorder = 4
 NVertices = (2*sizeBorder+1)**2
 
