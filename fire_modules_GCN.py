@@ -2,6 +2,21 @@ import torch.nn.functional as F
 import torch
 import torch.nn as nn
 import numpy as np
+def ZPIcreation(self, data = data, sizeBorder = sizeBorder, alpha = alpha, scaleParameter = scaleParameter, maxDimHoles = maxDimHoles):
+       '''
+          data: T,F,N
+       '''
+   T, F, N = data.shape
+   sample = data.reshape(T, F, W, H)
+   sample = sample[:,:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
+   sample = sample.reshape(T, F, -1) # T, F, N
+   sample = sample.transpose(0,2,1) #T, N, F
+   ZZ = zigzagTDA(alpha=alpha, scaleParameter=scaleParameter, maxDimHoles=maxDimHoles, sizeWindow=lag, sizeBorder = sizeBorder)
+
+   zigzag_PD = ZZ.zigzag_persistence_diagrams(x = sample)
+   zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
+   zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
+   return np.array([zigzag_PI_H0, zigzag_PI_H1])
 
 class CNN(nn.Module):
    def __init__(self, dim_out):
@@ -49,8 +64,8 @@ class SpatioTemporalGCN(nn.Module):
         '''
         (batch_size, lag, node_num, dim) = x_window.shape
         #S1: Graph construction, a suggestion is to pre-process graph, however since wildfire requires ~1TB for pre-processing graph we create it from fly
-         
         #S2: Laplacian construction
+
         supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
         support_set = [torch.eye(node_num).to(supports.device), supports]
 
@@ -114,6 +129,7 @@ class GCN_GRU(nn.Module):
         self.num_layers = num_layers
         self.window_len = window_len
         self.cell_list = nn.ModuleList()
+        self.alpha = nn.Parameter(torch.FloatTensor(1))
         for i in range(0, num_layers):
             cur_input_dim = dim_in if i == 0 else hidden_dim
             self.cell_list.append(GCN_GRU_Cell(node_num, cur_input_dim, hidden_dim, window_len, link_len, embed_dim))
@@ -125,6 +141,16 @@ class GCN_GRU(nn.Module):
         layer_output_list = []
         last_state_list = []
         cur_layer_input = x
+        distG =  torch.cdist(x, x, p=2.0)
+        distG[distG==0] = 1e-5  ##weakly connected, we want similar or equally edges :)
+        tmp_max = torch.amax(distG, dim=())
+#         tmp_max = np.max(graphL2)
+#         graphL2 /= tmp_max  ##normalize  matrix
+#        graphL2[graphL2>self.alpha]=0 ##cut off note: probably this is not required
+        
+#def ZPIcreation(self, data = data, sizeBorder = sizeBorder, alpha = alpha, scaleParameter = scaleParameter, maxDimHoles = maxDimHoles):
+        ZPI = ZPIcreation(data=distG, sizeBorder=2, alpha=self.alpha, scaleParameter=1.0, maxDimHoles=1)
+
         for layer_idx in range(self.num_layers):
             state = hidden_state[layer_idx]
             output_inner = []

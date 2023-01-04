@@ -279,7 +279,7 @@ class FireDataset_Graph_npy(Dataset):
             clc = 0
         _, W, H = clc.shape
         data = self.combine_dynamic_static_inputs(dynamic, static, clc)
-        return data, labels, self.ZPIcreation(data, W, H)
+        return data, labels
 
     def ZPIcreation(self, data, W, H):
        '''

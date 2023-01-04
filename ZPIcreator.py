@@ -33,25 +33,24 @@ class zigzagTDA:
       self.NVertices = (2*sizeBorder+1)**2
       self.sizeBorder=sizeBorder
    #X: T, N, F
-   def zigzag_persistence_diagrams(self, x ):
+   def zigzag_persistence_diagrams(self, x, graphL2):
        GraphsNetX = []
        for t in range(self.sizeWindow): 
-         graphL2 = np.sqrt(np.sum((x[t,np.newaxis, :, :]-x[t,:,np.newaxis,:])**2, axis=-1)) #compute matrix distance
-         graphL2[graphL2==0] = 1e-5  ##weakly connected, we want similar or equally edges :)
-         tmp_max = np.max(graphL2)
-         graphL2 /= tmp_max  ##normalize  matrix
-#        graphL2[graphL2>self.alpha]=0 ##cut off note: probably this is not required
-         G = nx.from_numpy_matrix(graphL2)
-         edges = sorted(G.edges(data=True), key=lambda t: t[2].get('weight', 1)) ##sort edges increasinly by weights 
-         nConnections = 500 ##just take the top connections
-         graphL2[:,:] = 0 ##reset
-         cont = 0
-         for u,v, w in edges:
-             graphL2[u,v]=float(w['weight'])
-             graphL2[v,u]=float(w['weight'])
-             cont +=1
-             if cont == nConnections:
-                 break
+#         graphL2[graphL2==0] = 1e-5  ##weakly connected, we want similar or equally edges :)
+##         tmp_max = np.max(graphL2)
+##         graphL2 /= tmp_max  ##normalize  matrix
+##        graphL2[graphL2>self.alpha]=0 ##cut off note: probably this is not required
+#         G = nx.from_numpy_matrix(graphL2)
+#         edges = sorted(G.edges(data=True), key=lambda t: t[2].get('weight', 1)) ##sort edges increasinly by weights 
+#         nConnections = 500 ##just take the top connections
+#         graphL2[:,:] = 0 ##reset
+#         cont = 0
+#         for u,v, w in edges:
+#             graphL2[u,v]=float(w['weight'])
+#             graphL2[v,u]=float(w['weight'])
+#             cont +=1
+#             if cont == nConnections:
+#                 break
 
          GraphsNetX.append(graphL2)
 #       scipy.sparse.save_npz(prefix_path+"_graph", scipy.sparse.csc_matrix(np.concatenate(GraphsNetX, axis=1)))
