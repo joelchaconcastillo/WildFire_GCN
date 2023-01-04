@@ -36,8 +36,8 @@ class SpatioTemporalGCN(nn.Module):
            self.weights_window = nn.Parameter(torch.FloatTensor(embed_dim, int(dim_in/2), int(hidden_dim / 2)))
         self.bias_pool = nn.Parameter(torch.FloatTensor(embed_dim, hidden_dim))
         self.T = nn.Parameter(torch.FloatTensor(window_len))
-        self.ln1 = torch.nn.LayerNorm(int(hidden_dim/2), elementwise_affine=False)
-        self.ln2 = torch.nn.LayerNorm(int(hidden_dim/2), elementwise_affine=False)
+        self.ln1 = torch.nn.LayerNorm(int(hidden_dim/2))
+        self.ln2 = torch.nn.LayerNorm(int(hidden_dim/2))
 #        self.cnn = CNN(int(hidden_dim/ 2))
 
 
@@ -185,7 +185,7 @@ class GCN(nn.Module):
 #      self.conv1 = nn.Conv2d(self.hidden_dim, self.hidden_dim, kernel_size=(kernel_size, kernel_size), stride=(1, 1), padding=(1, 1))
       self.fc1 = nn.Linear(self.num_nodes*self.hidden_dim, 2)
       #self.fc1 = nn.Linear(int(self.patch_width//2)*int(self.patch_height//2)*self.hidden_dim, 2 * self.hidden_dim)
-      self.drop1 = nn.Dropout(dropout)
+      #self.drop1 = nn.Dropout(dropout)
 ###
 #      self.fc2 = nn.Linear(2 * self.hidden_dim, self.hidden_dim)
 #      self.drop2 = nn.Dropout(dropout)
@@ -217,7 +217,8 @@ class GCN(nn.Module):
 
       # fully-connected
       x = torch.flatten(x, 1) ##B, hidden*12*12 (4608)
-      x = (self.drop1(self.fc1(x)))  ##B, 64
+#      x = (self.drop1(self.fc1(x)))  ##B, 64
+      x = self.fc1(x)  ##B, 64
 #      x = F.relu(self.drop1(self.fc1(x)))  ##B, 64
       #x = F.relu(self.fc1(x))  ##B, 64
 
