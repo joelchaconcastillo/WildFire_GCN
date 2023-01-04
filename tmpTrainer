@@ -12,7 +12,7 @@ from sklearn import metrics
 #from metrics import All_Metrics
 
 class Trainer(object):
-    def __init__(self, model, loss, optimizer, train_loader, val_loader, test_loader1, test_loader2,
+    def __init__(self, model, loss, optimizer, train_loader, val_loader, test_loader,
                  scaler, args, lr_scheduler=None):
         super(Trainer, self).__init__()
         self.model = model
@@ -20,14 +20,10 @@ class Trainer(object):
         self.optimizer = optimizer
         self.train_loader = train_loader
         self.val_loader = val_loader
-        self.test_loader1 = test_loader1
-        self.test_loader2 = test_loader2
+        self.test_loader = test_loader
         self.scaler = scaler
         self.args = args
         self.lr_scheduler = lr_scheduler
-        self.number_minibatches = int(args.batch_size/args.minbatch_size)
-        self.minbatch_size = args.minbatch_size
-        self.batch_size = args.batch_size
         self.train_per_epoch = len(train_loader)
         if val_loader != None:
             self.val_per_epoch = len(val_loader)
@@ -47,11 +43,10 @@ class Trainer(object):
     def val_epoch(self, epoch, val_dataloader):
         self.model.eval()
         total_val_loss = 0
-        countBatches = 0.
         preds = np.array([])
         targets = np.array([])
         probs = np.array([])
-        
+
         with torch.no_grad():
             for batch_idx, (data, label) in enumerate(val_dataloader):
                 output = self.model(data)
@@ -60,14 +55,12 @@ class Trainer(object):
                 targets= np.concatenate((targets, label.cpu().numpy()))
                 probs = np.concatenate((probs, (torch.exp(output)[:, 1]).cpu().numpy()))
 
+#                if self.args.real_value:
+#                    label = self.scaler.inverse_transform(label)
                 loss = self.loss(output, label)
-
-                loss = loss/self.batch_size
-                
-                if ( (batch_idx+1)%self.number_minibatches == 0 ) or ((batch_idx+1) == len(val_dataloader)):
-                    countBatches +=1.
+                #a whole batch of Metr_LA is filtered
                 if not torch.isnan(loss):
-                   total_val_loss += loss.item()
+                    total_val_loss += loss.item()
 
         tn, fp, fn, tp = metrics.confusion_matrix(targets, preds).ravel()
         auc = roc_auc_score(targets, probs)
@@ -81,39 +74,30 @@ class Trainer(object):
         summary['FN']=fn
         self.logger.info("\n metrics validation: {} \n".format(summary))
 
-        val_loss = total_val_loss / countBatches
+        val_loss = total_val_loss / len(val_dataloader)
         self.logger.info('**********Val Epoch {}: average Loss: {:.6f}'.format(epoch, val_loss))
         return val_loss
 
     def train_epoch(self, epoch):
         self.model.train()
         total_loss = 0
-        total_loss_batch = 0
-        countBatches = 0
-        self.optimizer.zero_grad()
         for batch_idx, (data, label) in enumerate(self.train_loader):
-
+            self.optimizer.zero_grad()
             output = self.model(data)
-
             loss = self.loss(output, label)
-            loss = loss/self.batch_size
-            total_loss_batch += loss.item()
-           # self.logger.info('{}...'.format(loss.item()))
             loss.backward()
-            if ( (batch_idx+1)%self.number_minibatches == 0 ) or ((batch_idx+1) == len(self.train_loader)):
-               # add max grad clipping
-      #         if self.args.grad_norm:
-      #            torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.max_grad_norm)
-               self.optimizer.step()
-               self.optimizer.zero_grad()
-               total_loss += total_loss_batch
 
-               #log information
-#               if (int((batch_idx+1)/self.number_minibatches)) % self.args.log_step == 0:
-               self.logger.info('Train Epoch {}: {}/{} Loss: {:.6f}'.format(epoch, batch_idx, self.train_per_epoch, total_loss_batch))
-               total_loss_batch = 0
-               countBatches +=1.
-        train_epoch_loss = total_loss/countBatches
+            # add max grad clipping
+#            if self.args.grad_norm:
+#                torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.max_grad_norm)
+            self.optimizer.step()
+            total_loss += loss.item()
+
+            #log information
+            if batch_idx % self.args.log_step == 0:
+                self.logger.info('Train Epoch {}: {}/{} Loss: {:.6f}'.format(
+                    epoch, batch_idx, self.train_per_epoch, loss.item()))
+        train_epoch_loss = total_loss/self.train_per_epoch
         self.logger.info('**********Train Epoch {}: averaged Loss: {:.6f} '.format(epoch, train_epoch_loss))
 
         #learning rate decay
@@ -166,8 +150,7 @@ class Trainer(object):
             # test
             self.model.load_state_dict(best_model)
             # self.val_epoch(self.args.epochs, self.test_loader)
-            self.test(self.model, self.args, self.test_loader1, self.scaler, self.logger)
-            self.test(self.model, self.args, self.test_loader2, self.scaler, self.logger)
+            self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
 
 
         training_time = time.time() - start_time
@@ -181,8 +164,7 @@ class Trainer(object):
         #test
         self.model.load_state_dict(best_model)
         #self.val_epoch(self.args.epochs, self.test_loader)
-        self.test(self.model, self.args, self.test_loader1, self.scaler, self.logger)
-        self.test(self.model, self.args, self.test_loader2, self.scaler, self.logger)
+        self.test(self.model, self.args, self.test_loader, self.scaler, self.logger)
 
     def save_checkpoint(self):
         state = {
@@ -226,4 +208,3 @@ class Trainer(object):
         summary['TN']=tn
         summary['FN']=fn
         logger.info("\n Testing metrics {} \n".format(summary))
-

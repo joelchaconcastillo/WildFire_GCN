@@ -45,15 +45,21 @@ class FireDSDataModuleGCN:
                                         dynamic_features=args.dynamic_features,
                                         static_features=args.static_features,
                                         nan_fill=args.nan_fill, clc=args.clc)
-        self.data_test = FireDataset_Graph_npy(dataset_root=args.dataset_root,
-                                         train_val_test='test',
+        self.data_test1 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
+                                         train_val_test='test1',
                                          dynamic_features=args.dynamic_features,
                                          static_features=args.static_features,
                                          nan_fill=args.nan_fill, clc=args.clc)
+        self.data_test2 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
+                                         train_val_test='test2',
+                                         dynamic_features=args.dynamic_features,
+                                         static_features=args.static_features,
+                                         nan_fill=args.nan_fill, clc=args.clc)
+
     def train_dataloader(self):
         return DataLoader(
             dataset=self.data_train,
-            batch_size=self.args.batch_size,
+            batch_size=self.args.minbatch_size,
             num_workers=self.args.num_workers,
             pin_memory=self.args.pin_memory,
             shuffle=True,
@@ -64,7 +70,7 @@ class FireDSDataModuleGCN:
     def val_dataloader(self):
         return DataLoader(
             dataset=self.data_val,
-            batch_size=self.args.batch_size,
+            batch_size=self.args.minbatch_size,
             num_workers=self.args.num_workers,
             pin_memory=self.args.pin_memory,
             shuffle=False,
@@ -72,10 +78,20 @@ class FireDSDataModuleGCN:
             persistent_workers=self.args.persistent_workers
         )
 
-    def test_dataloader(self):
+    def test_dataloader1(self):
         return DataLoader(
-            dataset=self.data_test,
-            batch_size=self.args.batch_size,
+            dataset=self.data_test1,
+            batch_size=self.args.minbatch_size,
+            num_workers=self.args.num_workers,
+            pin_memory=self.args.pin_memory,
+            shuffle=False,
+            prefetch_factor=self.args.prefetch_factor,
+            persistent_workers=self.args.persistent_workers
+        )
+    def test_dataloader2(self):
+        return DataLoader(
+            dataset=self.data_test2,
+            batch_size=self.args.minbatch_size,
             num_workers=self.args.num_workers,
             pin_memory=self.args.pin_memory,
             shuffle=False,
@@ -127,12 +143,14 @@ class FireDataset_Graph_npy(Dataset):
         self.positives_list = list((dataset_path / 'positives').glob('*dynamic.npy'))
         self.positives_list = list(zip(self.positives_list, [1] * (len(self.positives_list))))
         val_year = 2019
-        test_year = 2021 #min(val_year + 1, 2021)
+        test_year1 = 2020 #min(val_year + 1, 2021)
+        test_year2 = 2021 #min(val_year + 1, 2021)
 
 #        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < 2012]
         self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < val_year]
         self.val_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == val_year]
-        self.test_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year]
+        self.test1_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1]
+        self.test2_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year2]
 
         self.negatives_list = list((dataset_path / 'negatives_clc').glob('*dynamic.npy'))
         self.negatives_list = list(zip(self.negatives_list, [0] * (len(self.negatives_list))))
@@ -143,9 +161,13 @@ class FireDataset_Graph_npy(Dataset):
         self.val_negative_list = random.sample(
             [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == val_year],
             len(self.val_positive_list) * neg_pos_ratio)
-        self.test_negative_list = random.sample(
-            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year],
-            len(self.test_positive_list) * neg_pos_ratio)
+        self.test1_negative_list = random.sample(
+            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year1],
+            len(self.test1_positive_list) * neg_pos_ratio)
+        self.test2_negative_list = random.sample(
+            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year2],
+            len(self.test2_positive_list) * neg_pos_ratio)
+
 
         self.dynamic_idxfeat = [(i, feat) for i, feat in enumerate(self.variable_dict['dynamic']) if
                                 feat in self.dynamic_features]
@@ -160,9 +182,13 @@ class FireDataset_Graph_npy(Dataset):
         elif train_val_test == 'val':
             print(f'Positives: {len(self.val_positive_list)} / Negatives: {len(self.val_negative_list)}')
             self.path_list = self.val_positive_list + self.val_negative_list
-        elif train_val_test == 'test':
-            print(f'Positives: {len(self.test_positive_list)} / Negatives: {len(self.test_negative_list)}')
-            self.path_list = self.test_positive_list + self.test_negative_list
+        elif train_val_test == 'test1':
+            print(f'Positives: {len(self.test1_positive_list)} / Negatives: {len(self.test1_negative_list)}')
+            self.path_list = self.test1_positive_list + self.test1_negative_list
+        elif train_val_test == 'test2':
+            print(f'Positives: {len(self.test2_positive_list)} / Negatives: {len(self.test2_negative_list)}')
+            self.path_list = self.test2_positive_list + self.test2_negative_list
+
         print("Dataset length", len(self.path_list))
         random.shuffle(self.path_list)
         self.mm_dict = self._min_max_vec()
@@ -277,11 +303,13 @@ def get_dataloaders(args):
 
   val_dataloader = dataFireModule.val_dataloader()
 
-  test_dataloader = dataFireModule.test_dataloader()
+  test_dataloader1 = dataFireModule.test_dataloader1()
+  test_dataloader2 = dataFireModule.test_dataloader2()
 
 #  print('Train: x y ->', x_tra.shape, topo_tra.shape, y_tra.shape)
 #  print('Val: x, y ->', x_val.shape, topo_val.shape, y_val.shape)
 #  print('Test: x, ZPI, y ->', x_test.shape, topo_test.shape, y_test.shape)
    ######################get triple dataloader######################
 
-  return train_dataloader, val_dataloader, test_dataloader
+  return train_dataloader, val_dataloader, test_dataloader1, test_dataloader2
+
