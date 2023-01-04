@@ -9,7 +9,6 @@ import json
 import random
 import shutil
 from pathlib import Path
-from ZPIcreator import zigzagTDA
 
 
 class FireDSDataModuleGCN:
@@ -35,28 +34,27 @@ class FireDSDataModuleGCN:
 
         if not args.dataset_root:
             raise ValueError('dataset_root variable must be set. Check README')
-        self.ZZ = zigzagTDA(alpha=args.alpha, scaleParameter=args.scaleParameter, maxDimHoles=args.maxDimHoles, sizeWindow=args.lag, sizeBorder = args.sizeBorder)
-
+       
         self.data_train = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                           train_val_test='train',
                                           dynamic_features=args.dynamic_features,
                                           static_features=args.static_features,
-                                          nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
+                                          nan_fill=args.nan_fill, clc=args.clc, ZPIPath=args.ZPIPath)
         self.data_val = FireDataset_Graph_npy(dataset_root=args.dataset_root, 
                                         train_val_test='val',
                                         dynamic_features=args.dynamic_features,
                                         static_features=args.static_features,
-                                        nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
+                                        nan_fill=args.nan_fill, clc=args.clc, ZPIPath=args.ZPIPath)
         self.data_test1 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                          train_val_test='test1',
                                          dynamic_features=args.dynamic_features,
                                          static_features=args.static_features,
-                                         nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
+                                         nan_fill=args.nan_fill, clc=args.clc, ZPIPath=args.ZPIPath)
         self.data_test2 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                          train_val_test='test2',
                                          dynamic_features=args.dynamic_features,
                                          static_features=args.static_features,
-                                         nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
+                                         nan_fill=args.nan_fill, clc=args.clc, ZPIPath=args.ZPIPath)
 
     def train_dataloader(self):
         return DataLoader(
@@ -107,7 +105,7 @@ class FireDataset_Graph_npy(Dataset):
     def __init__(self, dataset_root: str = None, access_mode: str = 'spatiotemporal',   
                  problem_class: str = 'classification',
                  train_val_test: str = 'train', dynamic_features: list = None, static_features: list = None,
-                 categorical_features: list = None, nan_fill: float = -1., neg_pos_ratio: int = 2, clc: str = None, ZZ = None):
+                 categorical_features: list = None, nan_fill: float = -1., neg_pos_ratio: int = 2, clc: str = None, ZPIPath = None):
         """
         @param dataset_root: str where the dataset resides. It must contain also the minmax_clc.json
                 and the variable_dict.json
@@ -140,7 +138,7 @@ class FireDataset_Graph_npy(Dataset):
         self.nan_fill = nan_fill
         self.clc = clc
         self.access_mode = 'spatiotemporal'
-        self.ZZ = ZZ
+        self.ZPIPath = ZPIPath
         dataset_path = dataset_root / 'npy' / self.access_mode
         self.positives_list = list((dataset_path / 'positives').glob('*dynamic.npy'))
         self.positives_list = list(zip(self.positives_list, [1] * (len(self.positives_list))))
@@ -190,6 +188,9 @@ class FireDataset_Graph_npy(Dataset):
         elif train_val_test == 'test2':
             print(f'Positives: {len(self.test2_positive_list)} / Negatives: {len(self.test2_negative_list)}')
             self.path_list = self.test2_positive_list + self.test2_negative_list
+
+        for i in range(len(self.path_list)):
+            self.path_list[i] = (str(self.path_list[i][0]), self.path_list[i][1])
 
         print("Dataset length", len(self.path_list))
         random.shuffle(self.path_list)
@@ -279,22 +280,15 @@ class FireDataset_Graph_npy(Dataset):
             clc = 0
         _, W, H = clc.shape
         data = self.combine_dynamic_static_inputs(dynamic, static, clc)
-        return data, labels
+        
 
-    def ZPIcreation(self, data, W, H):
-       '''
-          data: T,F,N
-       '''
-       T, F, N = data.shape
-       sample = data.reshape(T, F, W, H)
-       sample = sample[:,:,12-self.ZZ.sizeBorder:13+self.ZZ.sizeBorder,12-self.ZZ.sizeBorder:13+self.ZZ.sizeBorder]
-       sample = sample.reshape(T, F, -1) # T, F, N
-       sample = sample.transpose(0,2,1) #T, N, F
-       zigzag_PD = self.ZZ.zigzag_persistence_diagrams(x = sample)
-       zigzag_PI_H0 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
-       zigzag_PI_H1 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
-       return np.array([zigzag_PI_H0, zigzag_PI_H1])
-   
+      #  prefix_path = self.ZPIPath+'/'+('/'.join(path.split('/')[-4:]))
+      #  prefix_path = '.'.join(prefix_path.split('.')[:-1]).replace('dynamic', 'zpi')
+      #  ZPI = load(prefix_path+"_zpi")
+      #  ZPI = np.concatenate(ZPI['zpi'], axis=0)
+        ZPI = np.zeros((2,50,50))
+        return data, labels, ZPI
+
 def get_dataloaders(args):
 
   dataFireModule = FireDSDataModuleGCN(args)

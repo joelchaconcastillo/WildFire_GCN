@@ -143,7 +143,7 @@ args.alpha = 1
 args.scaleParameter =  1.0
 args.sizeBorder = 1#12
 args.maxDimHoles = 1
-
+args.ZPIPath = '/home/joel.chacon/tmp/ZIZAG/WildFire_GCN/data/datasets_grl'
 
 
 init_seed(args.seed)
