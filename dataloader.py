@@ -279,7 +279,7 @@ class FireDataset_Graph_npy(Dataset):
             clc = 0
         _, W, H = clc.shape
         data = self.combine_dynamic_static_inputs(dynamic, static, clc)
-        return data, labels, self.ZPIcreation(data, W, H)
+        return data, labels
 
     def ZPIcreation(self, data, W, H):
        '''
@@ -293,7 +293,7 @@ class FireDataset_Graph_npy(Dataset):
        zigzag_PD = self.ZZ.zigzag_persistence_diagrams(x = sample)
        zigzag_PI_H0 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
        zigzag_PI_H1 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
-       return [zigzag_PI_H0, zigzag_PI_H1]
+       return np.array([zigzag_PI_H0, zigzag_PI_H1])
    
 def get_dataloaders(args):
 
