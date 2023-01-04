@@ -53,7 +53,7 @@ class Trainer(object):
         probs = np.array([])
         
         with torch.no_grad():
-            for batch_idx, (data, label) in enumerate(val_dataloader):
+            for batch_idx, (data, label, ZPI) in enumerate(val_dataloader):
                 output = self.model(data)
 
                 preds = np.concatenate((preds, torch.argmax(output, dim=1).cpu().numpy()))
@@ -91,7 +91,7 @@ class Trainer(object):
         total_loss_batch = 0
         countBatches = 0
         self.optimizer.zero_grad()
-        for batch_idx, (data, label) in enumerate(self.train_loader):
+        for batch_idx, (data, label, ZPI) in enumerate(self.train_loader):
 
             output = self.model(data)
 
@@ -207,7 +207,7 @@ class Trainer(object):
         probs = np.array([])
 
         with torch.no_grad():
-            for batch_idx, (data, label) in enumerate(data_loader):
+            for batch_idx, (data, label, ZPI) in enumerate(data_loader):
                 output = model(data)
                 preds = np.concatenate((preds, torch.argmax(output, dim=1).cpu().numpy()))
                 targets= np.concatenate((targets, label.cpu().numpy()))

@@ -139,8 +139,10 @@ args.static_features = [
 ]
 
 args.clc = 'vec'
-
-
+args.alpha = 1
+args.scaleParameter =  1.0
+args.sizeBorder = 3#12
+args.maxDimHoles = 1
 
 
 

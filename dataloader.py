@@ -9,6 +9,7 @@ import json
 import random
 import shutil
 from pathlib import Path
+from ZPIcreator import zigzagTDA
 
 
 class FireDSDataModuleGCN:
@@ -34,27 +35,28 @@ class FireDSDataModuleGCN:
 
         if not args.dataset_root:
             raise ValueError('dataset_root variable must be set. Check README')
+        self.ZZ = zigzagTDA(alpha=args.alpha, scaleParameter=args.scaleParameter, maxDimHoles=args.maxDimHoles, sizeWindow=args.lag, sizeBorder = args.sizeBorder)
 
         self.data_train = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                           train_val_test='train',
                                           dynamic_features=args.dynamic_features,
                                           static_features=args.static_features,
-                                          nan_fill=args.nan_fill, clc=args.clc)
+                                          nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
         self.data_val = FireDataset_Graph_npy(dataset_root=args.dataset_root, 
                                         train_val_test='val',
                                         dynamic_features=args.dynamic_features,
                                         static_features=args.static_features,
-                                        nan_fill=args.nan_fill, clc=args.clc)
+                                        nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
         self.data_test1 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                          train_val_test='test1',
                                          dynamic_features=args.dynamic_features,
                                          static_features=args.static_features,
-                                         nan_fill=args.nan_fill, clc=args.clc)
+                                         nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
         self.data_test2 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                          train_val_test='test2',
                                          dynamic_features=args.dynamic_features,
                                          static_features=args.static_features,
-                                         nan_fill=args.nan_fill, clc=args.clc)
+                                         nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
 
     def train_dataloader(self):
         return DataLoader(
@@ -105,7 +107,7 @@ class FireDataset_Graph_npy(Dataset):
     def __init__(self, dataset_root: str = None, access_mode: str = 'spatiotemporal',   
                  problem_class: str = 'classification',
                  train_val_test: str = 'train', dynamic_features: list = None, static_features: list = None,
-                 categorical_features: list = None, nan_fill: float = -1., neg_pos_ratio: int = 2, clc: str = None):
+                 categorical_features: list = None, nan_fill: float = -1., neg_pos_ratio: int = 2, clc: str = None, ZZ = None):
         """
         @param dataset_root: str where the dataset resides. It must contain also the minmax_clc.json
                 and the variable_dict.json
@@ -138,7 +140,7 @@ class FireDataset_Graph_npy(Dataset):
         self.nan_fill = nan_fill
         self.clc = clc
         self.access_mode = 'spatiotemporal'
-
+        self.ZZ = ZZ
         dataset_path = dataset_root / 'npy' / self.access_mode
         self.positives_list = list((dataset_path / 'positives').glob('*dynamic.npy'))
         self.positives_list = list(zip(self.positives_list, [1] * (len(self.positives_list))))
@@ -193,27 +195,11 @@ class FireDataset_Graph_npy(Dataset):
         random.shuffle(self.path_list)
         self.mm_dict = self._min_max_vec()
 
-    def loadGraph(self, data):
-        '''
-           data: T, F, N
-        '''
-        (windowSize, numberFeatures, numberNodes) = data.shape
-        graphWindow = np.zeros((windowSize, numberNodes, numberNodes)) ##sparse matrix if it doesn't fit...
-        for time in range(windowSize):
-            X = np.copy(data[time])
-            L2 = np.sum((X[:, np.newaxis, :]-X[:,:,np.newaxis])**2, axis=0) #compute matrix distance
-            tmpMax = np.max(L2) #normalization?...
-##            L2 /=tmpMax ##data is already normalized
-
-#            L2[L2<1e-5] = 1e-5 ##handle numeric errors
-#            L2[L2 > alpha] = 0.0 ##is this necessary?
-            graphWindow[time] = tmpMax-L2
-        return graphWindow
     def combine_dynamic_static_inputs(self, dynamic, static, clc):
         '''
            dynamic: T, F, W, H
         '''
-        timesteps, _, _, _ = dynamic.shape
+        timesteps, F, W, H = dynamic.shape
 #        static = static.unsqueeze(dim=0)
         static = np.expand_dims(static, axis=0)
         #repeat_list = [1 for _ in range(static.dim())]
@@ -291,14 +277,27 @@ class FireDataset_Graph_npy(Dataset):
             clc = np.nan_to_num(clc, nan=0)
         else:
             clc = 0
-
+        _, W, H = clc.shape
         data = self.combine_dynamic_static_inputs(dynamic, static, clc)
-        return data, labels #, self.loadGraph(data)
+        return data, labels, self.ZPIcreation(data, W, H)
 
+    def ZPIcreation(self, data, W, H):
+       '''
+          data: T,F,N
+       '''
+       T, F, N = data.shape
+       sample = data.reshape(T, F, W, H)
+       sample = sample[:,:,12-self.ZZ.sizeBorder:13+self.ZZ.sizeBorder,12-self.ZZ.sizeBorder:13+self.ZZ.sizeBorder]
+       sample = sample.reshape(T, F, -1) # T, F, N
+       sample = sample.transpose(0,2,1) #T, N, F
+       zigzag_PD = self.ZZ.zigzag_persistence_diagrams(x = sample)
+       zigzag_PI_H0 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
+       zigzag_PI_H1 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
+       return [zigzag_PI_H0, zigzag_PI_H1]
+   
 def get_dataloaders(args):
 
   dataFireModule = FireDSDataModuleGCN(args)
- # dataset_root = args.dataset_root, batch_size = args.batch_size, num_workers = args.num_nodes, pin_memory = args.pin_memory, nan_fill = args.nan_fill, sel_dynamic_features = args.sel_dynamic_features, sel_static_features = args.sel_static_features, prefetch_factor = args.prefetch_factor, persistent_workers = args.persistent_workers, clc = args.clc)
   train_dataloader = dataFireModule.train_dataloader()
 
   val_dataloader = dataFireModule.val_dataloader()
