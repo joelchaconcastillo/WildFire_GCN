@@ -17,9 +17,12 @@ import dionysus as d
 import matplotlib.pyplot as plt
 import time
 from ripser import ripser
+import scipy.sparse
+import sys
 from persim import plot_diagrams, PersImage
 path = os.getcwd()
 
+#np.set_printoptions(threshold=sys.maxsize, formatter={'float': lambda x: "{0:0.1f}".format(x)})
 class loadData(Dataset):
    def __init__(self, dataset_root: str = None, access_mode: str = 'spatiotemporal', dynamic_features: list = None, static_features : list = None, nan_fill: float= -1., clc: str=None):
 
@@ -146,7 +149,7 @@ class zigzagTDA:
       self.sizeWindow = sizeWindow
 
    #X: T, N, F
-   def zigzag_persistence_diagrams(self, x):
+   def zigzag_persistence_diagrams(self, x, prefix_path):
        GraphsNetX = []
        for t in range(self.sizeWindow): 
          graphL2 = np.sqrt(np.sum((x[t,np.newaxis, :, :]-x[t,:,np.newaxis,:])**2, axis=-1)) #compute matrix distance
@@ -170,12 +173,9 @@ class zigzagTDA:
              cont +=1
              if cont == nConnections:
                  break
-#         for i, j in edgelist:
-#             print(i,j,w)
-#         for a, b, data in sorted(edgelist, key=lambda x: x[2]['weight']):
-#            print('{a} {b} {w}'.format(a=a, b=b, w=data['weight']))
+
          GraphsNetX.append(graphL2)
-   
+       scipy.sparse.save_npz(prefix_path+"_graph", scipy.sparse.csc_matrix(np.concatenate(GraphsNetX, axis=1)))
        start_time = time.time()
       # Building unions and computing distance matrices
        print("Building unions and computing distance matrices...")  # Beginning
@@ -202,7 +202,7 @@ class zigzagTDA:
            # --- To save unions and distances
            MDisGUnions.append(pDisAux)  # To save distance matrix
        print("  --- End unions...")  # Ending
-   
+       
        # To perform Ripser computations
        print("Computing Vietoris-Rips complexes...")  # Beginning
    
@@ -261,15 +261,18 @@ class zigzagTDA:
    
    # Zigzag persistence image
    def zigzag_persistence_images(self, dgms, resolution = [50,50], return_raw = False, normalization = True, bandwidth = 1., power = 1., dimensional = 0):
+       if len(dgms) < dimensional: #validation
+           return np.zeros(resolution)
+       print("dimension....", dimensional)
        PXs, PYs = np.vstack([dgm[:, 0:1] for dgm in dgms]), np.vstack([dgm[:, 1:2] for dgm in dgms])
        print("number selectors..", PXs.shape)
+       print(len(dgms))
        xm, xM, ym, yM = PXs.min(), PXs.max(), PYs.min(), PYs.max()
        x = np.linspace(xm, xM, resolution[0])
        y = np.linspace(ym, yM, resolution[1])
        X, Y = np.meshgrid(x, y)
        Zfinal = np.zeros(X.shape)
        X, Y = X[:, :, np.newaxis], Y[:, :, np.newaxis]
-   
        # Compute zigzag persistence image
        P0, P1 = np.reshape(dgms[int(dimensional)][:, 0], [1, 1, -1]), np.reshape(dgms[int(dimensional)][:, 1], [1, 1, -1])
        weight = np.abs(P1 - P0)
@@ -283,33 +286,32 @@ class zigzagTDA:
            Zfinal = (np.multiply(weight, np.exp(-distpts ** 2 / bandwidth))).sum(axis=2)
    
        output = [lw, lsum] if return_raw else Zfinal
-   
        if normalization:
+           if np.max(output)-np.min(output) == 0:
+               return output
            norm_output = (output - np.min(output))/(np.max(output) - np.min(output))
        else:
            norm_output = output
-   #    plt.plot(PXs, PYs, 'ro')
-       
-#       print(norm_output.shape)
-#   
-       fig, (ax1, ax2) = plt.subplots(1,2)
-       fig.suptitle('TDA rules! '+str(dimensional)+'-dimensional ZPD')
-       ax1.set_xlim(0, window-1)
-       ax1.set_ylim(0, window-1)
-       ax1.set_xlabel('birth')
-       ax1.set_ylabel('death')
-       ax1.plot(PXs, PYs, 'ro')
-   
-       X, Y = np.meshgrid(x, y)
-       ax2.set_xlim(xm, xM)
-       ax2.set_ylim(ym, yM)
-       ax2.contourf(X, Y, norm_output)
-       plt.savefig('my_plot'+str(dimensional)+'.pdf')
-       plt.show()
+#       print(norm_output) 
 
-       from PIL import Image
-       img = Image.fromarray(norm_output, 'L')
-       img.save('sample.png')
+#       fig, (ax1, ax2) = plt.subplots(1,2)
+#       fig.suptitle('TDA rules! '+str(dimensional)+'-dimensional ZPD')
+#       ax1.set_xlim(0, window-1)
+#       ax1.set_ylim(0, window-1)
+#       ax1.set_xlabel('birth')
+#       ax1.set_ylabel('death')
+#       ax1.plot(PXs, PYs, 'ro')
+#   
+#       X, Y = np.meshgrid(x, y)
+#       ax2.set_xlim(xm, xM)
+#       ax2.set_ylim(ym, yM)
+#       ax2.contourf(X, Y, norm_output)
+#       plt.savefig('my_plot'+str(dimensional)+'.pdf')
+#       plt.show()
+#
+#       from PIL import Image
+#       img = Image.fromarray(norm_output, 'L')
+#       img.save('sample.png')
 
        return norm_output
 #####################################################################
@@ -369,8 +371,8 @@ dataset_root = '/home/joel.chacon/tmp/datasets_grl'
 maxDimHoles = 1
 window = 10
 alpha = 1
-scaleParameter =  1.0 #0.001
-sizeBorder = 12
+scaleParameter =  1.0
+sizeBorder = 5#12
 NVertices = (2*sizeBorder+1)**2
 
 #data = np.random.rand(window, NVertices, 25)
@@ -385,11 +387,13 @@ print("Number of samples", len(data))
 print("Dynamic shape..", data[0][0].shape)
 print("Static shape..", data[0][1].shape)
 print("clc shape..", data[0][2].shape)
-
+cont = 0
 for (dynamic, static, clc, prefix_path) in data:
    (sizeWindow, _ , patchWidth, patchHeight) = dynamic.shape
    numberFeatures = len(dynamic_features)+len(static_features)+len(clc)
    sample = np.zeros((sizeWindow, NVertices, numberFeatures))
+   prefix_path = '/'.join(prefix_path.split('/')[4:])
+   prefix_path = 'data/'+prefix_path
    for t in range(sizeWindow):
       X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
       #X = np.concatenate((dynamic[t], static), axis=0) ##F, W, H
@@ -397,12 +401,14 @@ for (dynamic, static, clc, prefix_path) in data:
       X = X.reshape(numberFeatures, -1) # F, N
       sample[t] = X.transpose(1,0) #N, F
    print(prefix_path)
-   zigzag_PD = ZZ.zigzag_persistence_diagrams(x = sample)
-   print(len(zigzag_PD))
+   zigzag_PD = ZZ.zigzag_persistence_diagrams(x = sample, prefix_path=prefix_path)
    zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
    zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
-#   np.savez([zigzag_PI_H0, zigzag_PI_H1])
+   ZPI = [zigzag_PI_H0, zigzag_PI_H1]
+   np.savez(prefix_path+"_zpi", zpi=ZPI)
+   print("processed...", cont)
+   cont +=1
 #   print(zigzag_PI_H0)
 #   print(zigzag_PI_H1)
-   exit(0)
+#   exit(0)
 #
