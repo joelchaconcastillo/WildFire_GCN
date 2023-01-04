@@ -54,8 +54,7 @@ class Trainer(object):
         
         with torch.no_grad():
             for batch_idx, (data, label, ZPI) in enumerate(val_dataloader):
-                output = self.model(data)
-
+                output = self.model(data, ZPI)
                 preds = np.concatenate((preds, torch.argmax(output, dim=1).cpu().numpy()))
                 targets= np.concatenate((targets, label.cpu().numpy()))
                 probs = np.concatenate((probs, (torch.exp(output)[:, 1]).cpu().numpy()))
@@ -92,9 +91,7 @@ class Trainer(object):
         countBatches = 0
         self.optimizer.zero_grad()
         for batch_idx, (data, label, ZPI) in enumerate(self.train_loader):
-
-            output = self.model(data)
-
+            output = self.model(data, ZPI)
             loss = self.loss(output, label)
             loss = loss/self.batch_size
             total_loss_batch += loss.item()
@@ -208,7 +205,7 @@ class Trainer(object):
 
         with torch.no_grad():
             for batch_idx, (data, label, ZPI) in enumerate(data_loader):
-                output = model(data)
+                output = model(data, ZPI)
                 preds = np.concatenate((preds, torch.argmax(output, dim=1).cpu().numpy()))
                 targets= np.concatenate((targets, label.cpu().numpy()))
                 probs = np.concatenate((probs, (torch.exp(output)[:, 1]).cpu().numpy()))

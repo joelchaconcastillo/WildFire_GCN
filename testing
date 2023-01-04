@@ -1,0 +1,45 @@
+++++++++++++++
+2020_fire_GCN.conf
+++++++++++++++
+*****************Model Parameter*****************
+node_embeddings torch.Size([625, 64]) True
+ln1.weight torch.Size([25]) True
+ln1.bias torch.Size([25]) True
+encoder.cell_list.0.gate.weights_pool torch.Size([64, 2, 89, 64]) True
+encoder.cell_list.0.gate.weights_window torch.Size([64, 1, 64]) True
+encoder.cell_list.0.gate.bias_pool torch.Size([64, 128]) True
+encoder.cell_list.0.gate.T torch.Size([10]) True
+encoder.cell_list.0.gate.ln1.weight torch.Size([64]) True
+encoder.cell_list.0.gate.ln1.bias torch.Size([64]) True
+encoder.cell_list.0.gate.ln2.weight torch.Size([64]) True
+encoder.cell_list.0.gate.ln2.bias torch.Size([64]) True
+encoder.cell_list.0.gate.cnn.features.0.weight torch.Size([32, 2, 3, 3]) True
+encoder.cell_list.0.gate.cnn.features.0.bias torch.Size([32]) True
+encoder.cell_list.0.gate.cnn.features.3.weight torch.Size([64, 32, 3, 3]) True
+encoder.cell_list.0.gate.cnn.features.3.bias torch.Size([64]) True
+encoder.cell_list.0.update.weights_pool torch.Size([64, 2, 89, 32]) True
+encoder.cell_list.0.update.weights_window torch.Size([64, 1, 32]) True
+encoder.cell_list.0.update.bias_pool torch.Size([64, 64]) True
+encoder.cell_list.0.update.T torch.Size([10]) True
+encoder.cell_list.0.update.ln1.weight torch.Size([32]) True
+encoder.cell_list.0.update.ln1.bias torch.Size([32]) True
+encoder.cell_list.0.update.ln2.weight torch.Size([32]) True
+encoder.cell_list.0.update.ln2.bias torch.Size([32]) True
+encoder.cell_list.0.update.cnn.features.0.weight torch.Size([16, 2, 3, 3]) True
+encoder.cell_list.0.update.cnn.features.0.bias torch.Size([16]) True
+encoder.cell_list.0.update.cnn.features.3.weight torch.Size([32, 16, 3, 3]) True
+encoder.cell_list.0.update.cnn.features.3.bias torch.Size([32]) True
+fc1.weight torch.Size([2, 40000]) True
+fc1.bias torch.Size([2]) True
+Total params num: 1256568
+*****************Finish Parameter****************
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 1228 / Negatives: 2456
+Dataset length 3684
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+Applying learning rate decay.
+Creat Log File in:  /home/joel.chacon/tmp/WildFire_GCN/experiments/2020/2023010323500919624454013/run.log
