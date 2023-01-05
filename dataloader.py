@@ -35,28 +35,28 @@ class FireDSDataModuleGCN:
 
         if not args.dataset_root:
             raise ValueError('dataset_root variable must be set. Check README')
-        self.ZZ = zigzagTDA(alpha=args.alpha, scaleParameter=args.scaleParameter, maxDimHoles=args.maxDimHoles, sizeWindow=args.lag, sizeBorder = args.sizeBorder)
+        #self.ZZ = zigzagTDA(alpha=args.alpha, scaleParameter=args.scaleParameter, maxDimHoles=args.maxDimHoles, sizeWindow=args.lag, sizeBorder = args.sizeBorder)
 
         self.data_train = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                           train_val_test='train',
                                           dynamic_features=args.dynamic_features,
                                           static_features=args.static_features,
-                                          nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
+                                          nan_fill=args.nan_fill, clc=args.clc)
         self.data_val = FireDataset_Graph_npy(dataset_root=args.dataset_root, 
                                         train_val_test='val',
                                         dynamic_features=args.dynamic_features,
                                         static_features=args.static_features,
-                                        nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
+                                        nan_fill=args.nan_fill, clc=args.clc)
         self.data_test1 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                          train_val_test='test1',
                                          dynamic_features=args.dynamic_features,
                                          static_features=args.static_features,
-                                         nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
+                                         nan_fill=args.nan_fill, clc=args.clc)
         self.data_test2 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                          train_val_test='test2',
                                          dynamic_features=args.dynamic_features,
                                          static_features=args.static_features,
-                                         nan_fill=args.nan_fill, clc=args.clc, ZZ=self.ZZ)
+                                         nan_fill=args.nan_fill, clc=args.clc)
 
     def train_dataloader(self):
         return DataLoader(
@@ -107,7 +107,7 @@ class FireDataset_Graph_npy(Dataset):
     def __init__(self, dataset_root: str = None, access_mode: str = 'spatiotemporal',   
                  problem_class: str = 'classification',
                  train_val_test: str = 'train', dynamic_features: list = None, static_features: list = None,
-                 categorical_features: list = None, nan_fill: float = -1., neg_pos_ratio: int = 2, clc: str = None, ZZ = None):
+                 categorical_features: list = None, nan_fill: float = -1., neg_pos_ratio: int = 2, clc: str = None):
         """
         @param dataset_root: str where the dataset resides. It must contain also the minmax_clc.json
                 and the variable_dict.json
@@ -140,7 +140,6 @@ class FireDataset_Graph_npy(Dataset):
         self.nan_fill = nan_fill
         self.clc = clc
         self.access_mode = 'spatiotemporal'
-        self.ZZ = ZZ
         dataset_path = dataset_root / 'npy' / self.access_mode
         self.positives_list = list((dataset_path / 'positives').glob('*dynamic.npy'))
         self.positives_list = list(zip(self.positives_list, [1] * (len(self.positives_list))))
@@ -200,22 +199,18 @@ class FireDataset_Graph_npy(Dataset):
            dynamic: T, F, W, H
         '''
         timesteps, F, W, H = dynamic.shape
-#        static = static.unsqueeze(dim=0)
+
         static = np.expand_dims(static, axis=0)
-        #repeat_list = [1 for _ in range(static.dim())]
         repeat_list = [1 for _ in range(static.ndim)]
         repeat_list[0] = timesteps
         static = np.tile(static, repeat_list)
-#        static = static.repeat(repeat_list)
         input_list = [dynamic, static]
         if clc is not None:
-           #clc = clc.unsqueeze(dim=0).repeat(repeat_list)
            clc = np.expand_dims(clc, axis=0)
            clc = np.tile(clc, repeat_list)
            input_list.append(clc)
-#        inputs = torch.cat(input_list, dim=1).float()
-        inputs = np.concatenate(input_list, axis=1)
-        return inputs.reshape(*inputs.shape[:-2], -1)  # flatten patche
+        inputs = np.concatenate(input_list, axis=1) ##features concatenation
+        return inputs.reshape(*inputs.shape[:-2], -1)  # flatten patche  T, F, N
 
     def _min_max_vec(self):
         mm_dict = {'min': {}, 'max': {}}
@@ -278,22 +273,22 @@ class FireDataset_Graph_npy(Dataset):
         else:
             clc = 0
         _, W, H = clc.shape
-        data = self.combine_dynamic_static_inputs(dynamic, static, clc)
+        data = self.combine_dynamic_static_inputs(dynamic, static, clc) # T, F, N
         return data, labels
 
-    def ZPIcreation(self, data, W, H):
-       '''
-          data: T,F,N
-       '''
-       T, F, N = data.shape
-       sample = data.reshape(T, F, W, H)
-       sample = sample[:,:,12-self.ZZ.sizeBorder:13+self.ZZ.sizeBorder,12-self.ZZ.sizeBorder:13+self.ZZ.sizeBorder]
-       sample = sample.reshape(T, F, -1) # T, F, N
-       sample = sample.transpose(0,2,1) #T, N, F
-       zigzag_PD = self.ZZ.zigzag_persistence_diagrams(x = sample)
-       zigzag_PI_H0 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
-       zigzag_PI_H1 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
-       return np.array([zigzag_PI_H0, zigzag_PI_H1])
+#    def ZPIcreation(self, data, W, H):
+#       '''
+#          data: T,F,N
+#       '''
+#       T, F, N = data.shape
+#       sample = data.reshape(T, F, W, H)
+#       sample = sample[:,:,12-self.ZZ.sizeBorder:13+self.ZZ.sizeBorder,12-self.ZZ.sizeBorder:13+self.ZZ.sizeBorder]
+#       sample = sample.reshape(T, F, -1) # T, F, N
+#       sample = sample.transpose(0,2,1) #T, N, F
+#       zigzag_PD = self.ZZ.zigzag_persistence_diagrams(x = sample)
+#       zigzag_PI_H0 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
+#       zigzag_PI_H1 = self.ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
+#       return np.array([zigzag_PI_H0, zigzag_PI_H1])
    
 def get_dataloaders(args):
 

@@ -24,45 +24,23 @@ path = os.getcwd()
 
 class zigzagTDA:
 
-   def __init__(self, alpha, scaleParameter, maxDimHoles, sizeWindow, sizeBorder):
-      self.alpha = alpha
-      self.NVertices = NVertices
+   def __init__(self, scaleParameter, maxDimHoles, sizeWindow, NVertices):
       self.scaleParameter = scaleParameter
       self.maxDimHoles = maxDimHoles
       self.sizeWindow = sizeWindow
-      self.NVertices = (2*sizeBorder+1)**2
-      self.sizeBorder=sizeBorder
+      self.NVertices = NVertices
    #X: T, N, F
-   def zigzag_persistence_diagrams(self, x, graphL2):
-       GraphsNetX = []
-       for t in range(self.sizeWindow): 
-#         graphL2[graphL2==0] = 1e-5  ##weakly connected, we want similar or equally edges :)
-##         tmp_max = np.max(graphL2)
-##         graphL2 /= tmp_max  ##normalize  matrix
-##        graphL2[graphL2>self.alpha]=0 ##cut off note: probably this is not required
-#         G = nx.from_numpy_matrix(graphL2)
-#         edges = sorted(G.edges(data=True), key=lambda t: t[2].get('weight', 1)) ##sort edges increasinly by weights 
-#         nConnections = 500 ##just take the top connections
-#         graphL2[:,:] = 0 ##reset
-#         cont = 0
-#         for u,v, w in edges:
-#             graphL2[u,v]=float(w['weight'])
-#             graphL2[v,u]=float(w['weight'])
-#             cont +=1
-#             if cont == nConnections:
-#                 break
-
-         GraphsNetX.append(graphL2)
-#       scipy.sparse.save_npz(prefix_path+"_graph", scipy.sparse.csc_matrix(np.concatenate(GraphsNetX, axis=1)))
+   def zigzag_persistence_diagrams(self, GraphsNetX):
+#       GraphsNetX = []
+#       for t in range(self.sizeWindow): 
+#         GraphsNetX.append(graphL2)
        start_time = time.time()
-      # Building unions and computing distance matrices
-#       print("Building unions and computing distance matrices...")  # Beginning
        MDisGUnions = []
        for i in range(0, self.sizeWindow - 1):
            # --- To concatenate graphs
            MDisAux = np.zeros((2 * self.NVertices, 2 * self.NVertices))
-           A = GraphsNetX[i] #nx.adjacency_matrix(GraphsNetX[i]).todense()
-           B = GraphsNetX[i+1] #nx.adjacency_matrix(GraphsNetX[i + 1]).todense()
+           A = GraphsNetX[i, ...] #nx.adjacency_matrix(GraphsNetX[i]).todense()
+           B = GraphsNetX[i+1, ...] #nx.adjacency_matrix(GraphsNetX[i + 1]).todense()
            # ----- Version Original (2)
            C = (A + B) / 2
            A[A == 0] = 10.1
@@ -138,7 +116,7 @@ class zigzagTDA:
    
    # Zigzag persistence image
    def zigzag_persistence_images(self, dgms, resolution = [50,50], return_raw = False, normalization = True, bandwidth = 1., power = 1., dimensional = 0):
-       if len(dgms) < dimensional: #validation
+       if len(dgms) == 0 or len(dgms) <= dimensional: #validation
            return np.zeros(resolution)
        PXs, PYs = np.vstack([dgm[:, 0:1] for dgm in dgms]), np.vstack([dgm[:, 1:2] for dgm in dgms])
        xm, xM, ym, yM = PXs.min(), PXs.max(), PYs.min(), PYs.max()

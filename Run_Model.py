@@ -7,6 +7,7 @@ import torch.nn as nn
 import argparse
 import configparser
 import random
+import numpy as np
 from datetime import datetime
 from fire_modules_GCN import GCN as GCNWildFire
 from Trainer import Trainer
@@ -139,10 +140,12 @@ args.static_features = [
 ]
 
 args.clc = 'vec'
-args.alpha = 1
-args.scaleParameter =  1.0
+args.scaleParameters = np.array([0.1,0.2,0.3,0.4])
+args.scaleParameters_num= len(args.scaleParameters)
 args.sizeBorder = 1#12
+args.subVertices = (2*args.sizeBorder+1)**2
 args.maxDimHoles = 1
+args.resolution =[50, 50]
 
 
 

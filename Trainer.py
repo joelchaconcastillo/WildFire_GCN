@@ -104,7 +104,7 @@ class Trainer(object):
                self.optimizer.step()
                self.optimizer.zero_grad()
                total_loss += total_loss_batch
-
+               self.logger.info('values... {}', self.model.parameters()['operator_scaleParameters'])
                #log information
 #               if (int((batch_idx+1)/self.number_minibatches)) % self.args.log_step == 0:
                self.logger.info('Train Epoch {}: {}/{} Loss: {:.6f}'.format(epoch, batch_idx, self.train_per_epoch, total_loss_batch))
