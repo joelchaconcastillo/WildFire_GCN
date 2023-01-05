@@ -167,6 +167,7 @@ class GCN_GRU(nn.Module):
         self.operator_scaleParameters -= torch.min(self.operator_scaleParameters)
         self.operator_scaleParameters /= torch.max(self.operator_scaleParameters)
         scaleParameters_trial = torch.matmul(self.scaleParameters, self.operator_scaleParameters)
+        print(scaleParameters_trial)
         for b in range(batch_size):
             self.ZPI[b,:,:,:] = torch.from_numpy(self.ZPIcreation(data = distG[b, ...].cpu().detach().numpy(), scaleParameters = scaleParameters_trial.cpu().detach().numpy(), maxDimHoles = self.maxDimHoles, sizeWindow = seq_len, NVertices = self.subVertices))
 #        ZPI = torch.rand(batch_size, 2, 50, 50)
