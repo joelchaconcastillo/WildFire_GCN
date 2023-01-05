@@ -2,37 +2,21 @@ import torch.nn.functional as F
 import torch
 import torch.nn as nn
 import numpy as np
-from ZPIcreator import zigzagTDA
-
-#def ZPIcreation(self, data = data, sizeBorder = sizeBorder, alpha = alpha, scaleParameter = scaleParameter, maxDimHoles = maxDimHoles):
-#       '''
-#          data: T,F,N
-#       '''
-#   T, F, N = data.shape
-#   sample = data.reshape(T, F, W, H)
-#   sample = sample[:,:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
-#   sample = sample.reshape(T, F, -1) # T, F, N
-#   sample = sample.transpose(0,2,1) #T, N, F
-#   ZZ = zigzagTDA(alpha=alpha, scaleParameter=scaleParameter, maxDimHoles=maxDimHoles, sizeWindow=lag, sizeBorder = sizeBorder)
-#
-#   zigzag_PD = ZZ.zigzag_persistence_diagrams(x = sample)
-#   zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
-#   zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
-#   return np.array([zigzag_PI_H0, zigzag_PI_H1])
 
 class CNN(nn.Module):
-   def __init__(self, dim_out, persistance_images_num):
+   def __init__(self, dim_out):
       super(CNN, self).__init__()
       self.dim_out = dim_out
 
       self.features = nn.Sequential(
-          nn.Conv2d(persistance_images_num, int(dim_out/2), kernel_size=3, stride=2),
+          nn.Conv2d(2, int(dim_out/2), kernel_size=3, stride=2),
           nn.ReLU(inplace=True),
           nn.MaxPool2d(kernel_size=3, stride=2),
           nn.Conv2d(int(dim_out/2), dim_out, kernel_size=3, stride=2),
           nn.ReLU(inplace=True),
           nn.MaxPool2d(kernel_size=3, stride=2),
       )
+      #self.maxpool = nn.MaxPool2d(2,2)
       self.maxpool = nn.AdaptiveMaxPool2d((1,1))
 
    def forward(self, graph):
@@ -42,7 +26,7 @@ class CNN(nn.Module):
       return feature
 
 class SpatioTemporalGCN(nn.Module):
-    def __init__(self, dim_in, hidden_dim, window_len, link_len, embed_dim, persistance_images_num):
+    def __init__(self, dim_in, hidden_dim, window_len, link_len, embed_dim):
         super(SpatioTemporalGCN, self).__init__()
         self.link_len = link_len
         self.hidden_dim = hidden_dim
@@ -55,7 +39,7 @@ class SpatioTemporalGCN(nn.Module):
         self.T = nn.Parameter(torch.FloatTensor(window_len))
         self.ln1 = torch.nn.LayerNorm(int(hidden_dim/2))
         self.ln2 = torch.nn.LayerNorm(int(hidden_dim/2))
-        self.cnn = CNN(int(hidden_dim/ 2), persistance_images_num)
+        self.cnn = CNN(int(hidden_dim/ 2))
 
 
     def forward(self, x, x_window, node_embeddings, ZPI):
@@ -64,9 +48,9 @@ class SpatioTemporalGCN(nn.Module):
            node_num :  N, E
         '''
         (batch_size, lag, node_num, dim) = x_window.shape
-
+        #S1: Graph construction, a suggestion is to pre-process graph, however since wildfire requires ~1TB for pre-processing graph we create it from fly
+         
         #S2: Laplacian construction
-
         supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
         support_set = [torch.eye(node_num).to(supports.device), supports]
 
@@ -97,12 +81,12 @@ class SpatioTemporalGCN(nn.Module):
         return F.relu(x_gwconv)
 
 class GCN_GRU_Cell(nn.Module):
-    def __init__(self, node_num, dim_in, hidden_dim, window_len, link_len, embed_dim, persistance_images_num):
+    def __init__(self, node_num, dim_in, hidden_dim, window_len, link_len, embed_dim):
         super(GCN_GRU_Cell, self).__init__()
         self.node_num = node_num
         self.hidden_dim = hidden_dim
-        self.gate = SpatioTemporalGCN(dim_in+self.hidden_dim, 2*hidden_dim, window_len, link_len, embed_dim, persistance_images_num)
-        self.update = SpatioTemporalGCN(dim_in+self.hidden_dim, hidden_dim, window_len, link_len, embed_dim, persistance_images_num)
+        self.gate = SpatioTemporalGCN(dim_in+self.hidden_dim, 2*hidden_dim, window_len, link_len, embed_dim)
+        self.update = SpatioTemporalGCN(dim_in+self.hidden_dim, hidden_dim, window_len, link_len, embed_dim)
 
     def forward(self, x, state, x_full, node_embeddings, ZPI):
         #x: B, num_nodes, input_dim
@@ -120,7 +104,7 @@ class GCN_GRU_Cell(nn.Module):
         return torch.zeros(batch_size, self.node_num, self.hidden_dim)
 
 class GCN_GRU(nn.Module):
-    def __init__(self, args, node_num, dim_in, hidden_dim, link_len, embed_dim, num_layers=1, window_len = 10, return_all_layers=False):
+    def __init__(self, node_num, dim_in, hidden_dim, link_len, embed_dim, num_layers=1, window_len = 10, return_all_layers=False):
         super(GCN_GRU, self).__init__()
         assert num_layers >= 1, 'At least one DCRNN layer in the Encoder.'
         self.return_all_layers = return_all_layers 
@@ -130,52 +114,22 @@ class GCN_GRU(nn.Module):
         self.num_layers = num_layers
         self.window_len = window_len
         self.cell_list = nn.ModuleList()
-        self.operator_scaleParameters = nn.Parameter(torch.FloatTensor(args.scaleParameters_num, args.scaleParameters_num), requires_grad=True)
-        self.ZPI = torch.FloatTensor(args.minbatch_size, args.scaleParameters_num*(1+args.maxDimHoles), args.resolution[0], args.resolution[1])
-        self.scaleParameters = torch.from_numpy(args.scaleParameters).float()
-        self.scaleParameters_num = args.scaleParameters_num
-        self.patch_width = args.patch_width
-        self.patch_height = args.patch_height
-        self.sizeBorder = args.sizeBorder
-        self.subVertices = args.subVertices
-        self.maxDimHoles = args.maxDimHoles
-        self.persistance_images_num = (args.maxDimHoles+1)*self.scaleParameters_num # k-0 and k-1 max holes for diagrams
-
         for i in range(0, num_layers):
             cur_input_dim = dim_in if i == 0 else hidden_dim
-            self.cell_list.append(GCN_GRU_Cell(node_num, cur_input_dim, hidden_dim, window_len, link_len, embed_dim, self.persistance_images_num))
+            self.cell_list.append(GCN_GRU_Cell(node_num, cur_input_dim, hidden_dim, window_len, link_len, embed_dim))
 
-    def forward(self, x, node_embeddings, hidden_state = None):
-        '''
-          x : B, T, N, F
-        '''
+    def forward(self, x, ZPI, node_embeddings, hidden_state = None):
         assert x.shape[2] == self.node_num and x.shape[3] == self.input_dim
-        (batch_size, seq_len, _, input_dim) = x.shape
+        (batch_size, seq_len, input_dim, n) = x.shape
         hidden_state = self.init_hidden(batch_size)
         layer_output_list = []
         last_state_list = []
         cur_layer_input = x
-        x_mini = x.view(batch_size, seq_len, self.patch_width, self.patch_height, input_dim)
-        x_mini = x_mini.permute(0, 1, 3, 4, 2)[:, :, 12-self.sizeBorder:13+self.sizeBorder, 12-self.sizeBorder:13+self.sizeBorder,:]
-        x_mini = x_mini.reshape(batch_size, seq_len, self.subVertices, input_dim)
-        distG =  torch.cdist(x_mini, x_mini, p=2.0)
-        distG[distG==0] = 1e-5  ##weakly connected, we want similar or equally edges :)
-        distG = distG.view(batch_size, seq_len, -1)
-        distG /= distG.max(2, keepdim=True)[0]
-        distG = distG.reshape(batch_size, seq_len, self.subVertices, self.subVertices)
-        #####botleneck#####
-        self.operator_scaleParameters -= torch.min(self.operator_scaleParameters)
-        self.operator_scaleParameters /= torch.max(self.operator_scaleParameters)
-        scaleParameters_trial = torch.matmul(self.scaleParameters, self.operator_scaleParameters)
-        print(scaleParameters_trial)
-        for b in range(batch_size):
-            self.ZPI[b,:,:,:] = torch.from_numpy(self.ZPIcreation(data = distG[b, ...].cpu().detach().numpy(), scaleParameters = scaleParameters_trial.cpu().detach().numpy(), maxDimHoles = self.maxDimHoles, sizeWindow = seq_len, NVertices = self.subVertices))
-#        ZPI = torch.rand(batch_size, 2, 50, 50)
         for layer_idx in range(self.num_layers):
             state = hidden_state[layer_idx]
             output_inner = []
             for t in range(seq_len):
-                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings, self.ZPI)
+                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings, ZPI)
                 output_inner.append(state)
             layer_output = torch.stack(output_inner, dim=1)
             cur_layer_input = layer_output
@@ -191,22 +145,6 @@ class GCN_GRU(nn.Module):
         for i in range(self.num_layers):
             init_states.append(self.cell_list[i].init_hidden_state(batch_size))
         return init_states
-#    ZPI[b,...] = ZPIcreation(data = distG[b, ...].cpu().detach().numpy(), sizeBorder = self.sizeBorder, scaleParameters = self.scaleParameters_trial, maxDimHoles = self.maxDimHoles)
-    def ZPIcreation(self, data, scaleParameters, maxDimHoles, sizeWindow, NVertices):
-#   sample = sample.transpose(0,2,1) #T, N, F
-       groupZPI = []
-       for scaleParameter in scaleParameters:
-          ZZ = zigzagTDA(scaleParameter=scaleParameter, maxDimHoles=maxDimHoles, sizeWindow=sizeWindow, NVertices=NVertices)
-          zigzag_PD = ZZ.zigzag_persistence_diagrams(GraphsNetX = data)
-          zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
-          zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
-          #groupZPI.append(zigzag_PI_H0[None,:,:])
-          groupZPI.append(zigzag_PI_H0)
-          groupZPI.append(zigzag_PI_H1)
-       groupZPI = np.stack(groupZPI, axis=0)
-#       groupZPI = np.concatenate(groupZPI, axis=0) 
-       return groupZPI
-#       return np.concatenate(groupZPI, axis=0)
 
 
 
@@ -227,12 +165,11 @@ class GCN(nn.Module):
       self.window_len = args.window_len
       self.link_len = args.link_len
       self.horizon = args.horizon
-      self.args = args
       dropout=0.5
 
       self.ln1 = torch.nn.LayerNorm(self.input_dim)
       self.node_embeddings = nn.Parameter(torch.randn(self.num_nodes, self.embed_dim), requires_grad=True)
-      self.encoder = GCN_GRU(self.args, self.num_nodes, self.input_dim, self.hidden_dim, self.link_len, self.embed_dim, self.num_layers, self.window_len)
+      self.encoder = GCN_GRU(self.num_nodes, self.input_dim, self.hidden_dim, self.link_len, self.embed_dim, self.num_layers, self.window_len)
         #predictor
 #      self.end_conv = nn.Conv2d(1, self.horizon * self.output_dim, kernel_size=(self.num_nodes, self.hidden_dim), bias=True)
 
@@ -249,7 +186,7 @@ class GCN(nn.Module):
 #      self.fc3 = nn.Linear(self.hidden_dim, 2)
 #      self.fc3 = nn.Linear(int(self.hidden_dim/2), 2)
 
-   def forward(self, x: torch.Tensor):
+   def forward(self, x: torch.Tensor, ZPI: torch.Tensor):
       '''
          x :     batch, time, features, nodes (width x height pixels)
          graph:  batch, time, nodes, nodes
@@ -258,7 +195,7 @@ class GCN(nn.Module):
       x = x.permute(0, 1, 3, 2).float() ## B, T, N, D
       (B,T,N,D) = x.shape
       x = self.ln1(x)
-      x, _ = self.encoder(x, self.node_embeddings) #B, T, N, hidden_dim
+      x, _ = self.encoder(x, ZPI.float(), self.node_embeddings) #B, T, N, hidden_dim
       x = x[0][:, -1:, :, :] #B, 1, N, hidden_dim
 #      #CNN based predictor
 #      x = self.end_conv((x)) #B, T*C, N, 1
@@ -267,7 +204,7 @@ class GCN(nn.Module):
 #      print(x[0,...],"<===")
 #      x = self.ln2(x)
       x = x.squeeze(1).permute(0,2,1) # B, hidden_dim, N
-#      x = x.reshape(B, self.hidden_dim, self.patch_width, self.patch_height) # B, N,  H
+      x = x.reshape(B, self.hidden_dim, self.patch_width, self.patch_height) # B, N,  H
 
       #x = F.max_pool2d(F.relu(self.conv1(x)), 2) #B, hidden, 12, 12
 
