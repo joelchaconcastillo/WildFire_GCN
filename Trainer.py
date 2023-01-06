@@ -94,6 +94,7 @@ class Trainer(object):
         for batch_idx, (data, label) in enumerate(self.train_loader):
 
             output = self.model(data)
+#            self.logger.info('{}....'.format(torch.exp(output)))
 
             loss = self.loss(output, label)
             loss = loss/self.batch_size
