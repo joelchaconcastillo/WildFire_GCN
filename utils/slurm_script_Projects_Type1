@@ -13,13 +13,13 @@
 
 #Numero máximo de tareas asignadas por nodo. 
 #Valor recomendado: 12 para C1, 24 para C2, 24 para GPU.
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks-per-node=12
 
 #Numero de procesos a ejecutar de forma simultanea (en total
 #teniendo en cuenta a todos los nodos). En este ejemplo
 #se usarían 2 nodos tipo C2, y en cada uno de los nodos se usarían
 #24 procesos, para el total de 48.
-#SBATCH --ntasks=10
+#SBATCH --ntasks=120
 
 # archivo de log donde quedará lo que imprima su software por pantalla. 
 #Lo recomendable es que el programa no imprima nada a pantalla, sino a fichero directamente

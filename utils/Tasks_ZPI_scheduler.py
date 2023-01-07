@@ -4,7 +4,7 @@ sys.path.append('/home/joel.chacon/.local/lib/python3.8/site-packages')
 #sys.path.append('/home/joel.chacon/.local/lib/python3.8/site-packages/matplotlib/')
 sys.path.append('/home/joel.chacon/.local/bin')
 #os.environ['MATPLOTLIBRC'] = '/home/joel.chacon/.local/lib/python3.8/site-packages/matplotlib/matplotlibrc'
-print(sys.path)
+#print(sys.path)
 from torch.utils.data import Dataset, DataLoader, TensorDataset
 import numpy as np
 import warnings
@@ -38,6 +38,13 @@ import scipy.sparse
 ##print(args.dest)
 ##print(args.scaleParameter)
 ##exit(0)
+#####TDA parameters
+maxDimHoles = 1
+window = 10
+alpha = 1
+scaleParameter =  0.1
+sizeBorder = 6
+NVertices = (2*sizeBorder+1)**2
 
 class loadData(Dataset):
    def __init__(self, dataset_root: str = None, access_mode: str = 'spatiotemporal', dynamic_features: list = None, static_features : list = None, nan_fill: float= -1., clc: str=None):
@@ -264,13 +271,6 @@ clc = 'vec'
 access_mode = 'spatiotemporal'
 nan_fill = -1.0 
 dataset_root = '/home/joel.chacon/tmp/datasets_grl'
-#####TDA parameters
-maxDimHoles = 1
-window = 10
-alpha = 1
-scaleParameter =  0.5
-sizeBorder = 2#12
-NVertices = (2*sizeBorder+1)**2
 
 #data = np.random.rand(window, NVertices, 25)
 
@@ -280,11 +280,13 @@ NVertices = (2*sizeBorder+1)**2
 
 data = loadData(dataset_root = dataset_root,access_mode = access_mode, dynamic_features = dynamic_features, static_features = static_features, clc=clc)
 
-print("Number of samples", len(data))
-print("Dynamic shape..", data[0][0].shape)
-print("Static shape..", data[0][1].shape)
-print("clc shape..", data[0][2].shape)
+#print("Number of samples", len(data))
+#print("Dynamic shape..", data[0][0].shape)
+#print("Static shape..", data[0][1].shape)
+#print("clc shape..", data[0][2].shape)
 cont = 0
+pwd='/home/joel.chacon/tmp/ZIGZAG_from_files/'
+
 for (dynamic, static, clc, prefix_path) in data:
    (sizeWindow, _ , patchWidth, patchHeight) = dynamic.shape
    numberFeatures = len(dynamic_features)+len(static_features)+len(clc)
@@ -292,19 +294,4 @@ for (dynamic, static, clc, prefix_path) in data:
    sourcePath = prefix_path
    prefix_path = '/'.join(prefix_path.split('/')[4:])
    prefix_path = 'data/'+prefix_path
-   print("python3 /home/joel.chacon/tmp/ZIGZAG_from_files/utils/singleFile_ZPI_PD.py --source="+sourcePath + " --dest="+prefix_path+" --scaleParameter="+str(scaleParameter))
-#   for t in range(sizeWindow):
-#      X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
-#      #X = np.concatenate((dynamic[t], static), axis=0) ##F, W, H
-#      X = X[:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
-#      X = X.reshape(numberFeatures, -1) # F, N
-#      sample[t] = X.transpose(1,0) #N, F
-#   print(prefix_path)
-#   zigzag_PD = ZZ.zigzag_persistence_diagrams(x = sample, prefix_path=prefix_path)
-#   zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
-#   zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
-#   ZPI = [zigzag_PI_H0, zigzag_PI_H1]
-##   np.savez(prefix_path+"_zpi", zpi=ZPI)
-#   print("processed...", cont)
-#   cont +=1
-
+   print("python3 "+pwd+"/utils/singleFile_ZPI_PD.py --source="+sourcePath + " --dest="+pwd+"/"+prefix_path+" --scaleParameter="+str(scaleParameter)+" --maxDimHoles="+str(maxDimHoles)+" --sizeBorder="+str(sizeBorder))
