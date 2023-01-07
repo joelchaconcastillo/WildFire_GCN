@@ -2,6 +2,30 @@ import torch.nn.functional as F
 import torch
 import torch.nn as nn
 import numpy as np
+from scipy.sparse.linalg import eigs
+
+
+def Laplacian_link(supports, link_len):
+        node_num, _ = supports.shape
+        support_set = [torch.eye(node_num).to(supports.device), supports]
+        for k in range(2, link_len):
+            support_set.append(torch.mm(supports, support_set[k-1]))
+        return torch.stack(support_set, dim=0)
+
+def cheb_polynomial(L_tilde, K):
+    N = L_tilde.shape[0]
+    cheb_polynomials = [np.identity(N), L_tilde.copy()]
+    for i in range(2, K):
+        cheb_polynomials.append(2 * L_tilde * cheb_polynomials[i - 1] - cheb_polynomials[i - 2])
+    return np.stack(cheb_polynomials, axis = 0)
+
+def scaled_Laplacian(W):
+    assert W.shape[0] == W.shape[1]
+    D = np.diag(np.sum(W, axis=1))
+    L = D - W
+    lambda_max = eigs(L, k=1, which='LR')[0].real
+    return (2 * L) / lambda_max - np.identity(W.shape[0])
+
 
 class CNN(nn.Module):
    def __init__(self, dim_out):
@@ -52,12 +76,8 @@ class SpatioTemporalGCN(nn.Module):
          
         #S2: Laplacian construction
         supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
-        support_set = [torch.eye(node_num).to(supports.device), supports]
-
         #S3: Laplacianlink
-        for k in range(2, self.link_len):
-            support_set.append(torch.mm(supports, support_set[k-1]))
-        supports = torch.stack(support_set, dim=0)
+        supports = Laplacian_link(supports, self.link_len)
 
         #S4: spatial graph convolution with self-adaptive adjacency matrix
         weights = torch.einsum('nd,dkio->nkio', node_embeddings, self.weights_pool) #N, link_len, dim_in, hidden_dim/2 : on E
@@ -74,7 +94,7 @@ class SpatioTemporalGCN(nn.Module):
         x_a = x_a.permute(0, 2, 1, 3) #B, N, link_len, dim_in  : on 
         x_aconv = torch.einsum('bnki,nkio->bno', x_a, weights_adj) #B, N, hidden_dim/2
         x_aconv = F.normalize(x_aconv, dim=-1)
-
+#
         #S6: temporal feature transformation
         weights_window = torch.einsum('nd,dio->nio', node_embeddings, self.weights_window)  #N, dim_in, hidden_dim/2 : on E
         x_w = torch.einsum('btni,nio->btno', x_window, weights_window)  #B, T, N, hidden_dim/2: on D
@@ -89,6 +109,8 @@ class SpatioTemporalGCN(nn.Module):
         x_taconv = (x_aconv)
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv, x_taconv], dim = -1) + bias + bias_adj #B, N, hidden_dim
+#        x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
+#        x_gwconv = torch.cat([x_twconv, x_taconv], dim = -1) + bias_adj #B, N, hidden_dim
         return x_gwconv
 
 class GCN_GRU_Cell(nn.Module):
@@ -197,13 +219,19 @@ class GCN(nn.Module):
 ###
 #      self.fc3 = nn.Linear(self.hidden_dim, 2)
 #      self.fc3 = nn.Linear(int(self.hidden_dim/2), 2)
-      self.adj = torch.zeros(self.num_nodes, self.num_nodes) 
-      nextR = [0, 1, 1, 1, 0, -1, -1, -1, 0]  #displacement by rows
-      nextC = [-1, -1, 0, 1, 1, 1, 0, -1, 0]  #displacement by cols 
+      self.adj = np.identity((self.num_nodes))
+      nextR = [0, 1, 1, 1, 0, -1, -1, -1]  #displacement by rows
+      nextC = [-1, -1, 0, 1, 1, 1, 0, -1]  #displacement by cols 
       ##note that we are considering self-loops!!
       ##create graph with 8 neightbours..
+      middlePixelR = self.patch_height/2
+      middlePixelC = self.patch_width/2
       for i in range(self.patch_height):
+#          if i < middlePixelR-1 or i > middlePixelR+1:
+#              continue
           for j in range(self.patch_width):
+#              if j < middlePixelC-1 or j > middlePixelC+1:
+#                 continue
               id_node = i*self.patch_width + j 
               for k in range(len(nextR)):
                   nr, nc = i+nextR[k], j+nextC[k]
@@ -212,13 +240,12 @@ class GCN(nn.Module):
                   id_node_next = nr*self.patch_width + nc
               self.adj[id_node, id_node_next] +=1
               self.adj[id_node_next, id_node] +=1
-      print(self.adj)
-      self.supports_adj = [torch.eye(self.num_nodes, self.num_nodes), self.adj]
+#      self.supports_adj = torch.from_numpy(cheb_polynomial(scaled_Laplacian(self.adj), self.link_len)).float()
+      support = torch.from_numpy(self.adj).float()
+      support /= torch.sum(support, dim=1) #normalize by rows..
+      self.supports_adj = Laplacian_link(support, self.link_len)
 
-      for k in range(2, self.link_len):
-            supports_adj.append(torch.mm(self.adj, supports_adj[k-1]))
-      self.supports_adj = torch.stack(self.supports_adj, dim=0)
-
+  
    def forward(self, x: torch.Tensor):
       '''
          x :     batch, time, features, nodes (width x height pixels)

@@ -167,8 +167,9 @@ class Trainer(object):
             # test
             self.model.load_state_dict(best_model)
             # self.val_epoch(self.args.epochs, self.test_loader)
-            self.test(self.model, self.args, self.test_loader1, self.scaler, self.logger)
-            self.test(self.model, self.args, self.test_loader2, self.scaler, self.logger)
+            if best_state == True:  ####evaluate tests only on improvements
+               self.test(self.model, self.args, self.test_loader1, self.scaler, self.logger)
+               self.test(self.model, self.args, self.test_loader2, self.scaler, self.logger)
 
 
         training_time = time.time() - start_time

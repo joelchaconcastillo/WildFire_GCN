@@ -142,18 +142,19 @@ class FireDataset_Graph_npy(Dataset):
         dataset_path = dataset_root / 'npy' / self.access_mode
         self.positives_list = list((dataset_path / 'positives').glob('*dynamic.npy'))
         self.positives_list = list(zip(self.positives_list, [1] * (len(self.positives_list))))
+
         val_year = 2019
         test_year1 = 2020 #min(val_year + 1, 2021)
         test_year2 = 2021 #min(val_year + 1, 2021)
-
+#        ss = 500
 #        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < 2012]
-        #self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < val_year]
-        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1]
-        #self.val_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == val_year]
-        self.val_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1]
-        self.test1_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1]
-        self.test2_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1]
-        #self.test2_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year2]
+        self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) < val_year] #[:ss]
+        #self.train_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1]
+        self.val_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == val_year] #[:ss]
+        #self.val_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1]
+        self.test1_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1] #[:ss]
+        #self.test2_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year1]
+        self.test2_positive_list = [(x, y) for (x, y) in self.positives_list if int(x.stem[:4]) == test_year2] #[:ss]
 
         self.negatives_list = list((dataset_path / 'negatives_clc').glob('*dynamic.npy'))
         self.negatives_list = list(zip(self.negatives_list, [0] * (len(self.negatives_list))))
@@ -171,9 +172,20 @@ class FireDataset_Graph_npy(Dataset):
             [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year2],
             len(self.test2_positive_list) * neg_pos_ratio)
 
-        self.train_negative_list = self.test1_negative_list
-        self.val_negative_list = self.test1_negative_list
-        self.test2_negative_list= self.test1_negative_list
+#        self.train_negative_list = [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) < val_year]
+#        self.train_negative_list = self.train_negative_list[0:(len(self.train_positive_list) * neg_pos_ratio)]
+#        self.val_negative_list = [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == val_year]
+#        self.val_negative_list = self.val_negative_list[0:(len(self.val_positive_list) * neg_pos_ratio)]
+#        self.test1_negative_list = [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year1]
+#        self.test1_negative_list = self.test1_negative_list[0:(len(self.test1_positive_list) * neg_pos_ratio)]
+#        self.test2_negative_list = [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year2]
+#        self.test2_negative_list = self.test2_negative_list[0:(len(self.test2_positive_list) * neg_pos_ratio)]
+
+
+
+       # self.train_negative_list = self.test1_negative_list
+       # self.val_negative_list = self.test1_negative_list
+       # self.test2_negative_list= self.test1_negative_list
 
 
         self.dynamic_idxfeat = [(i, feat) for i, feat in enumerate(self.variable_dict['dynamic']) if

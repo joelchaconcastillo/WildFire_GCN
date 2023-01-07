@@ -1,0 +1,110 @@
+2023-01-06 23:39: log dir: /home/joel.chacon/tmp/WildFire_GCNv2/experiments/2020/2023010623394540733154013
+2023-01-06 23:39: Experiment log path in: /home/joel.chacon/tmp/WildFire_GCNv2/experiments/2020/2023010623394540733154013
+2023-01-06 23:39: Argument: Namespace(batch_size=256, clc='vec', cuda=True, dataset='2020', dataset_root='/home/joel.chacon/tmp/datasets_grl/', debug=False, default_graph=True, device='cpu', dynamic_features=['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh'], early_stop=True, early_stop_patience=8, embed_dim=64, epochs=30, grad_norm=False, horizon=1, input_dim=25, lag=10, link_len=2, log_dir='/home/joel.chacon/tmp/WildFire_GCNv2/experiments/2020/2023010623394540733154013', log_step=1, loss_func='nllloss', lr_decay=True, lr_decay_rate=0.1, lr_decay_step='20', lr_init=0.0001, max_grad_norm=5, minbatch_size=64, mode='train', model='fire_GCN', nan_fill=-1.0, num_layers=1, num_nodes=625, num_workers=12, output_dim=2, patch_height=25, patch_width=25, persistent_workers=True, pin_memory=True, plot=False, positive_weight=0.5, prefetch_factor=2, real_value=True, rnn_units=45, seed=10000, static_features=['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density'], teacher_forcing=False, weight_decay=0.0, window_len=10)
+2023-01-06 23:39: Argument batch_size: 256
+2023-01-06 23:39: Argument clc: 'vec'
+2023-01-06 23:39: Argument cuda: True
+2023-01-06 23:39: Argument dataset: '2020'
+2023-01-06 23:39: Argument dataset_root: '/home/joel.chacon/tmp/datasets_grl/'
+2023-01-06 23:39: Argument debug: False
+2023-01-06 23:39: Argument default_graph: True
+2023-01-06 23:39: Argument device: 'cpu'
+2023-01-06 23:39: Argument dynamic_features: ['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh']
+2023-01-06 23:39: Argument early_stop: True
+2023-01-06 23:39: Argument early_stop_patience: 8
+2023-01-06 23:39: Argument embed_dim: 64
+2023-01-06 23:39: Argument epochs: 30
+2023-01-06 23:39: Argument grad_norm: False
+2023-01-06 23:39: Argument horizon: 1
+2023-01-06 23:39: Argument input_dim: 25
+2023-01-06 23:39: Argument lag: 10
+2023-01-06 23:39: Argument link_len: 2
+2023-01-06 23:39: Argument log_dir: '/home/joel.chacon/tmp/WildFire_GCNv2/experiments/2020/2023010623394540733154013'
+2023-01-06 23:39: Argument log_step: 1
+2023-01-06 23:39: Argument loss_func: 'nllloss'
+2023-01-06 23:39: Argument lr_decay: True
+2023-01-06 23:39: Argument lr_decay_rate: 0.1
+2023-01-06 23:39: Argument lr_decay_step: '20'
+2023-01-06 23:39: Argument lr_init: 0.0001
+2023-01-06 23:39: Argument max_grad_norm: 5
+2023-01-06 23:39: Argument minbatch_size: 64
+2023-01-06 23:39: Argument mode: 'train'
+2023-01-06 23:39: Argument model: 'fire_GCN'
+2023-01-06 23:39: Argument nan_fill: -1.0
+2023-01-06 23:39: Argument num_layers: 1
+2023-01-06 23:39: Argument num_nodes: 625
+2023-01-06 23:39: Argument num_workers: 12
+2023-01-06 23:39: Argument output_dim: 2
+2023-01-06 23:39: Argument patch_height: 25
+2023-01-06 23:39: Argument patch_width: 25
+2023-01-06 23:39: Argument persistent_workers: True
+2023-01-06 23:39: Argument pin_memory: True
+2023-01-06 23:39: Argument plot: False
+2023-01-06 23:39: Argument positive_weight: 0.5
+2023-01-06 23:39: Argument prefetch_factor: 2
+2023-01-06 23:39: Argument real_value: True
+2023-01-06 23:39: Argument rnn_units: 45
+2023-01-06 23:39: Argument seed: 10000
+2023-01-06 23:39: Argument static_features: ['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density']
+2023-01-06 23:39: Argument teacher_forcing: False
+2023-01-06 23:39: Argument weight_decay: 0.0
+2023-01-06 23:39: Argument window_len: 10
+++++++++++++++
+2020_fire_GCN.conf
+++++++++++++++
+*****************Model Parameter*****************
+node_embeddings torch.Size([625, 64]) True
+ln1.weight torch.Size([25]) True
+ln1.bias torch.Size([25]) True
+encoder.cell_list.0.gate.weights_pool torch.Size([64, 2, 70, 30]) True
+encoder.cell_list.0.gate.weights_pool_adj torch.Size([64, 2, 70, 30]) True
+encoder.cell_list.0.gate.weights_window torch.Size([64, 23, 30]) True
+encoder.cell_list.0.gate.bias_pool torch.Size([64, 90]) True
+encoder.cell_list.0.gate.bias_pool_adj torch.Size([64, 90]) True
+encoder.cell_list.0.gate.T torch.Size([10]) True
+encoder.cell_list.0.update.weights_pool torch.Size([64, 2, 70, 15]) True
+encoder.cell_list.0.update.weights_pool_adj torch.Size([64, 2, 70, 15]) True
+encoder.cell_list.0.update.weights_window torch.Size([64, 23, 15]) True
+encoder.cell_list.0.update.bias_pool torch.Size([64, 45]) True
+encoder.cell_list.0.update.bias_pool_adj torch.Size([64, 45]) True
+encoder.cell_list.0.update.T torch.Size([10]) True
+fc1.weight torch.Size([2, 28125]) True
+fc1.bias torch.Size([2]) True
+Total params num: 986242
+*****************Finish Parameter****************
+Positives: 13518 / Negatives: 27036
+Dataset length 40554
+Positives: 1300 / Negatives: 2600
+Dataset length 3900
+Positives: 1228 / Negatives: 2456
+Dataset length 3684
+Positives: 4407 / Negatives: 8814
+Dataset length 13221
+Applying learning rate decay.
+Creat Log File in:  /home/joel.chacon/tmp/WildFire_GCNv2/experiments/2020/2023010623394540733154013/run.log
+Traceback (most recent call last):
+  File "Run_Model.py", line 197, in <module>
+    trainer.train()
+  File "/home/joel.chacon/tmp/WildFire_GCNv2/Trainer.py", line 134, in train
+    train_epoch_loss = self.train_epoch(epoch)
+  File "/home/joel.chacon/tmp/WildFire_GCNv2/Trainer.py", line 96, in train_epoch
+    output = self.model(data)
+  File "/home/joel.chacon/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/joel.chacon/tmp/WildFire_GCNv2/fire_modules_GCN.py", line 258, in forward
+    x, _ = self.encoder(x, self.node_embeddings, self.supports_adj) #B, T, N, hidden_dim
+  File "/home/joel.chacon/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/joel.chacon/tmp/WildFire_GCNv2/fire_modules_GCN.py", line 165, in forward
+    state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings, supports_adj)
+  File "/home/joel.chacon/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/joel.chacon/tmp/WildFire_GCNv2/fire_modules_GCN.py", line 129, in forward
+    z_r = torch.sigmoid(self.gate(input_and_state, x_full, node_embeddings, supports_adj))
+  File "/home/joel.chacon/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/joel.chacon/tmp/WildFire_GCNv2/fire_modules_GCN.py", line 100, in forward
+    x_w = torch.einsum('btni,nio->btno', x_window, weights_window)  #B, T, N, hidden_dim/2: on D
+  File "/home/joel.chacon/.local/lib/python3.6/site-packages/torch/functional.py", line 327, in einsum
+    return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+RuntimeError: einsum(): operands do not broadcast with remapped shapes [original->remapped]: [64, 10, 625, 25]->[64, 10, 625, 1, 25] [625, 23, 30]->[1, 1, 625, 30, 23]

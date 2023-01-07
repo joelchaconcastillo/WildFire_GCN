@@ -1,0 +1,51 @@
+2023-01-06 18:41: log dir: /home/joel.chacon/tmp/WildFire_GCNv2/experiments/2020/2023010618415866366169386
+2023-01-06 18:41: Experiment log path in: /home/joel.chacon/tmp/WildFire_GCNv2/experiments/2020/2023010618415866366169386
+2023-01-06 18:41: Argument: Namespace(batch_size=256, clc='vec', cuda=True, dataset='2020', dataset_root='/home/joel.chacon/tmp/datasets_grl/', debug=False, default_graph=True, device='cpu', dynamic_features=['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh'], early_stop=True, early_stop_patience=8, embed_dim=64, epochs=30, grad_norm=False, horizon=1, input_dim=25, lag=10, link_len=4, log_dir='/home/joel.chacon/tmp/WildFire_GCNv2/experiments/2020/2023010618415866366169386', log_step=1, loss_func='nllloss', lr_decay=True, lr_decay_rate=0.1, lr_decay_step='20', lr_init=0.0001, max_grad_norm=5, minbatch_size=64, mode='train', model='fire_GCN', nan_fill=-1.0, num_layers=1, num_nodes=625, num_workers=12, output_dim=2, patch_height=25, patch_width=25, persistent_workers=True, pin_memory=True, plot=False, positive_weight=0.5, prefetch_factor=2, real_value=True, rnn_units=48, seed=10000, static_features=['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density'], teacher_forcing=False, weight_decay=0.0, window_len=10)
+2023-01-06 18:41: Argument batch_size: 256
+2023-01-06 18:41: Argument clc: 'vec'
+2023-01-06 18:41: Argument cuda: True
+2023-01-06 18:41: Argument dataset: '2020'
+2023-01-06 18:41: Argument dataset_root: '/home/joel.chacon/tmp/datasets_grl/'
+2023-01-06 18:41: Argument debug: False
+2023-01-06 18:41: Argument default_graph: True
+2023-01-06 18:41: Argument device: 'cpu'
+2023-01-06 18:41: Argument dynamic_features: ['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh']
+2023-01-06 18:41: Argument early_stop: True
+2023-01-06 18:41: Argument early_stop_patience: 8
+2023-01-06 18:41: Argument embed_dim: 64
+2023-01-06 18:41: Argument epochs: 30
+2023-01-06 18:41: Argument grad_norm: False
+2023-01-06 18:41: Argument horizon: 1
+2023-01-06 18:41: Argument input_dim: 25
+2023-01-06 18:41: Argument lag: 10
+2023-01-06 18:41: Argument link_len: 4
+2023-01-06 18:41: Argument log_dir: '/home/joel.chacon/tmp/WildFire_GCNv2/experiments/2020/2023010618415866366169386'
+2023-01-06 18:41: Argument log_step: 1
+2023-01-06 18:41: Argument loss_func: 'nllloss'
+2023-01-06 18:41: Argument lr_decay: True
+2023-01-06 18:41: Argument lr_decay_rate: 0.1
+2023-01-06 18:41: Argument lr_decay_step: '20'
+2023-01-06 18:41: Argument lr_init: 0.0001
+2023-01-06 18:41: Argument max_grad_norm: 5
+2023-01-06 18:41: Argument minbatch_size: 64
+2023-01-06 18:41: Argument mode: 'train'
+2023-01-06 18:41: Argument model: 'fire_GCN'
+2023-01-06 18:41: Argument nan_fill: -1.0
+2023-01-06 18:41: Argument num_layers: 1
+2023-01-06 18:41: Argument num_nodes: 625
+2023-01-06 18:41: Argument num_workers: 12
+2023-01-06 18:41: Argument output_dim: 2
+2023-01-06 18:41: Argument patch_height: 25
+2023-01-06 18:41: Argument patch_width: 25
+2023-01-06 18:41: Argument persistent_workers: True
+2023-01-06 18:41: Argument pin_memory: True
+2023-01-06 18:41: Argument plot: False
+2023-01-06 18:41: Argument positive_weight: 0.5
+2023-01-06 18:41: Argument prefetch_factor: 2
+2023-01-06 18:41: Argument real_value: True
+2023-01-06 18:41: Argument rnn_units: 48
+2023-01-06 18:41: Argument seed: 10000
+2023-01-06 18:41: Argument static_features: ['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density']
+2023-01-06 18:41: Argument teacher_forcing: False
+2023-01-06 18:41: Argument weight_decay: 0.0
+2023-01-06 18:41: Argument window_len: 10
