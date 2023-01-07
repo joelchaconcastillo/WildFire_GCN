@@ -1,0 +1,4729 @@
+Executes python3.8 /home/joel.chacon/tmp/ZIGZAG_from_files/utils/ZPIcreator.py in core with id 1
+['/home/joel.chacon/tmp/ZIGZAG_from_files/utils', '/usr/lib/python38.zip', '/usr/lib/python3.8', '/usr/lib/python3.8/lib-dynload', '/home/joel.chacon/.local/lib/python3.8/site-packages', '/usr/local/lib/python3.8/dist-packages', '/usr/lib/python3/dist-packages', '/home/joel.chacon/.local/lib/python3.8/site-packages', '/home/joel.chacon/.local/bin']
+Dataset length 120721
+Number of samples 120721
+Dynamic shape.. (10, 10, 25, 25)
+Static shape.. (5, 25, 25)
+clc shape.. (10, 25, 25)
+data/datasets_grl/npy/spatiotemporal/positives/20110820_321_154
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2871851921081543 Seg ---  0.004786654313405355 Min ---  7.977863152821859e-05 Hr 
+dimension.... 0
+number selectors.. (795, 1)
+2
+dimension.... 1
+number selectors.. (795, 1)
+2
+processed... 0
+data/datasets_grl/npy/spatiotemporal/positives/20120728_172_66
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5446300506591797 Seg ---  0.009077505270640055 Min ---  0.00015129301283094617 Hr 
+dimension.... 0
+number selectors.. (1847, 1)
+2
+dimension.... 1
+number selectors.. (1847, 1)
+2
+processed... 1
+data/datasets_grl/npy/spatiotemporal/positives/20120824_92_253
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2972846031188965 Seg ---  0.004954973856608073 Min ---  8.258395724826388e-05 Hr 
+dimension.... 0
+number selectors.. (1341, 1)
+2
+dimension.... 1
+number selectors.. (1341, 1)
+2
+processed... 2
+data/datasets_grl/npy/spatiotemporal/positives/20120807_656_246
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.17211508750915527 Seg ---  0.0028688232103983562 Min ---  4.781471358405219e-05 Hr 
+dimension.... 0
+number selectors.. (842, 1)
+2
+dimension.... 1
+number selectors.. (842, 1)
+2
+processed... 3
+data/datasets_grl/npy/spatiotemporal/positives/20110802_143_274
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.27859020233154297 Seg ---  0.004643448193868001 Min ---  7.739192909664577e-05 Hr 
+dimension.... 0
+number selectors.. (1120, 1)
+2
+dimension.... 1
+number selectors.. (1120, 1)
+2
+processed... 4
+data/datasets_grl/npy/spatiotemporal/positives/20191107_1074_576
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.27445197105407715 Seg ---  0.004574465751647949 Min ---  7.624195681677924e-05 Hr 
+dimension.... 0
+number selectors.. (1245, 1)
+2
+dimension.... 1
+number selectors.. (1245, 1)
+2
+processed... 5
+data/datasets_grl/npy/spatiotemporal/positives/20100816_238_435
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3898937702178955 Seg ---  0.006498471895853678 Min ---  0.0001083087921142578 Hr 
+dimension.... 0
+number selectors.. (1463, 1)
+2
+dimension.... 1
+number selectors.. (1463, 1)
+2
+processed... 6
+data/datasets_grl/npy/spatiotemporal/positives/20090621_526_662
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.7030253410339355 Seg ---  0.011717418829600016 Min ---  0.00019529196951124404 Hr 
+dimension.... 0
+number selectors.. (2062, 1)
+2
+dimension.... 1
+number selectors.. (2062, 1)
+2
+processed... 7
+data/datasets_grl/npy/spatiotemporal/positives/20131026_263_208
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.38834285736083984 Seg ---  0.006472643216451009 Min ---  0.00010787824789683025 Hr 
+dimension.... 0
+number selectors.. (1511, 1)
+2
+dimension.... 1
+number selectors.. (1511, 1)
+2
+processed... 8
+data/datasets_grl/npy/spatiotemporal/positives/20120823_671_477
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5642333030700684 Seg ---  0.009404158592224121 Min ---  0.00015673696994781495 Hr 
+dimension.... 0
+number selectors.. (1888, 1)
+2
+dimension.... 1
+number selectors.. (1888, 1)
+2
+processed... 9
+data/datasets_grl/npy/spatiotemporal/positives/20180722_545_530
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6463136672973633 Seg ---  0.010772120952606202 Min ---  0.0001795363426208496 Hr 
+dimension.... 0
+number selectors.. (2030, 1)
+2
+dimension.... 1
+number selectors.. (2030, 1)
+2
+processed... 10
+data/datasets_grl/npy/spatiotemporal/positives/20140703_489_357
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5239200592041016 Seg ---  0.008732251326243083 Min ---  0.00014553858174218073 Hr 
+dimension.... 0
+number selectors.. (1733, 1)
+2
+dimension.... 1
+number selectors.. (1733, 1)
+2
+processed... 11
+data/datasets_grl/npy/spatiotemporal/positives/20191027_296_73
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5109829902648926 Seg ---  0.00851660172144572 Min ---  0.00014194442166222466 Hr 
+dimension.... 0
+number selectors.. (1626, 1)
+2
+dimension.... 1
+number selectors.. (1626, 1)
+2
+processed... 12
+data/datasets_grl/npy/spatiotemporal/positives/20190630_410_85
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.8499462604522705 Seg ---  0.014166029294331868 Min ---  0.00023610148164961072 Hr 
+dimension.... 0
+number selectors.. (2312, 1)
+2
+dimension.... 1
+number selectors.. (2312, 1)
+2
+processed... 13
+data/datasets_grl/npy/spatiotemporal/positives/20110710_375_522
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3267388343811035 Seg ---  0.0054459810256958004 Min ---  9.076800611284044e-05 Hr 
+dimension.... 0
+number selectors.. (1273, 1)
+2
+dimension.... 1
+number selectors.. (1273, 1)
+2
+processed... 14
+data/datasets_grl/npy/spatiotemporal/positives/20191025_325_93
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3164486885070801 Seg ---  0.005274375279744466 Min ---  8.790711561838785e-05 Hr 
+dimension.... 0
+number selectors.. (1258, 1)
+2
+dimension.... 1
+number selectors.. (1258, 1)
+2
+processed... 15
+data/datasets_grl/npy/spatiotemporal/positives/20120811_182_67
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5535764694213867 Seg ---  0.009226520856221518 Min ---  0.00015377627478705512 Hr 
+dimension.... 0
+number selectors.. (1851, 1)
+2
+dimension.... 1
+number selectors.. (1851, 1)
+2
+processed... 16
+data/datasets_grl/npy/spatiotemporal/positives/20180722_549_529
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.336043119430542 Seg ---  0.005600984891255697 Min ---  9.33507415983412e-05 Hr 
+dimension.... 0
+number selectors.. (1323, 1)
+2
+dimension.... 1
+number selectors.. (1323, 1)
+2
+processed... 17
+data/datasets_grl/npy/spatiotemporal/positives/20200730_1000_509
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.38399410247802734 Seg ---  0.0064001321792602536 Min ---  0.00010666979683770074 Hr 
+dimension.... 0
+number selectors.. (1472, 1)
+2
+dimension.... 1
+number selectors.. (1472, 1)
+2
+processed... 18
+data/datasets_grl/npy/spatiotemporal/positives/20090821_708_524
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6947808265686035 Seg ---  0.011579942703247071 Min ---  0.0001930000384648641 Hr 
+dimension.... 0
+number selectors.. (2111, 1)
+2
+dimension.... 1
+number selectors.. (2111, 1)
+2
+processed... 19
+data/datasets_grl/npy/spatiotemporal/positives/20090819_644_512
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6115007400512695 Seg ---  0.01019192139307658 Min ---  0.00016986634996202257 Hr 
+dimension.... 0
+number selectors.. (1941, 1)
+2
+dimension.... 1
+number selectors.. (1941, 1)
+2
+processed... 20
+data/datasets_grl/npy/spatiotemporal/positives/20120819_514_546
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3615574836730957 Seg ---  0.006026212374369303 Min ---  0.0001004379325442844 Hr 
+dimension.... 0
+number selectors.. (1390, 1)
+2
+dimension.... 1
+number selectors.. (1390, 1)
+2
+processed... 21
+data/datasets_grl/npy/spatiotemporal/positives/20160803_483_138
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.21510100364685059 Seg ---  0.0035852471987406413 Min ---  5.975511338975695e-05 Hr 
+dimension.... 0
+number selectors.. (956, 1)
+2
+dimension.... 1
+number selectors.. (956, 1)
+2
+processed... 22
+data/datasets_grl/npy/spatiotemporal/positives/20210803_380_573
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3708817958831787 Seg ---  0.006181597709655762 Min ---  0.00010302748945024279 Hr 
+dimension.... 0
+number selectors.. (1465, 1)
+2
+dimension.... 1
+number selectors.. (1465, 1)
+2
+processed... 23
+data/datasets_grl/npy/spatiotemporal/positives/20110831_295_91
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5742733478546143 Seg ---  0.00957162380218506 Min ---  0.0001595285865995619 Hr 
+dimension.... 0
+number selectors.. (1931, 1)
+2
+dimension.... 1
+number selectors.. (1931, 1)
+2
+processed... 24
+data/datasets_grl/npy/spatiotemporal/positives/20090822_192_315
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.22183442115783691 Seg ---  0.0036974946657816568 Min ---  6.162597073449029e-05 Hr 
+dimension.... 0
+number selectors.. (938, 1)
+2
+dimension.... 1
+number selectors.. (938, 1)
+2
+processed... 25
+data/datasets_grl/npy/spatiotemporal/positives/20160724_887_495
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.43025708198547363 Seg ---  0.0071711897850036625 Min ---  0.00011952082316080729 Hr 
+dimension.... 0
+number selectors.. (1531, 1)
+2
+dimension.... 1
+number selectors.. (1531, 1)
+2
+processed... 26
+data/datasets_grl/npy/spatiotemporal/positives/20200831_92_253
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.31499266624450684 Seg ---  0.005250124136606852 Min ---  8.750312858157688e-05 Hr 
+dimension.... 0
+number selectors.. (1341, 1)
+2
+dimension.... 1
+number selectors.. (1341, 1)
+2
+processed... 27
+data/datasets_grl/npy/spatiotemporal/positives/20210518_544_521
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3863070011138916 Seg ---  0.006438712279001872 Min ---  0.0001073129309548272 Hr 
+dimension.... 0
+number selectors.. (1430, 1)
+2
+dimension.... 1
+number selectors.. (1430, 1)
+2
+processed... 28
+data/datasets_grl/npy/spatiotemporal/positives/20110825_431_472
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.25853681564331055 Seg ---  0.004309209187825521 Min ---  7.18211465411716e-05 Hr 
+dimension.... 0
+number selectors.. (1049, 1)
+2
+dimension.... 1
+number selectors.. (1049, 1)
+2
+processed... 29
+data/datasets_grl/npy/spatiotemporal/positives/20160820_160_279
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.44110631942749023 Seg ---  0.007352034250895183 Min ---  0.0001225349638197157 Hr 
+dimension.... 0
+number selectors.. (1581, 1)
+2
+dimension.... 1
+number selectors.. (1581, 1)
+2
+processed... 30
+data/datasets_grl/npy/spatiotemporal/positives/20210729_111_220
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.4350411891937256 Seg ---  0.00725094477335612 Min ---  0.00012085007296668159 Hr 
+dimension.... 0
+number selectors.. (1569, 1)
+2
+dimension.... 1
+number selectors.. (1569, 1)
+2
+processed... 31
+data/datasets_grl/npy/spatiotemporal/positives/20170702_1232_540
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3937568664550781 Seg ---  0.006562848885854085 Min ---  0.00010938187440236409 Hr 
+dimension.... 0
+number selectors.. (1508, 1)
+2
+dimension.... 1
+number selectors.. (1508, 1)
+2
+processed... 32
+data/datasets_grl/npy/spatiotemporal/positives/20210802_573_423
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.338900089263916 Seg ---  0.005648589134216309 Min ---  9.414414564768473e-05 Hr 
+dimension.... 0
+number selectors.. (1348, 1)
+2
+dimension.... 1
+number selectors.. (1348, 1)
+2
+processed... 33
+data/datasets_grl/npy/spatiotemporal/positives/20160729_731_881
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2259838581085205 Seg ---  0.003766655921936035 Min ---  6.277845965491401e-05 Hr 
+dimension.... 0
+number selectors.. (981, 1)
+2
+dimension.... 1
+number selectors.. (981, 1)
+2
+processed... 34
+data/datasets_grl/npy/spatiotemporal/positives/20190326_519_105
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.8412125110626221 Seg ---  0.014020458857218424 Min ---  0.00023367530769772 Hr 
+dimension.... 0
+number selectors.. (2211, 1)
+2
+dimension.... 1
+number selectors.. (2211, 1)
+2
+processed... 35
+data/datasets_grl/npy/spatiotemporal/positives/20160617_1116_761
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6311957836151123 Seg ---  0.01052018404006958 Min ---  0.00017533746030595567 Hr 
+dimension.... 0
+number selectors.. (1915, 1)
+2
+dimension.... 1
+number selectors.. (1915, 1)
+2
+processed... 36
+data/datasets_grl/npy/spatiotemporal/positives/20110731_174_295
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3943512439727783 Seg ---  0.00657278299331665 Min ---  0.00010954737663269044 Hr 
+dimension.... 0
+number selectors.. (1391, 1)
+2
+dimension.... 1
+number selectors.. (1391, 1)
+2
+processed... 37
+data/datasets_grl/npy/spatiotemporal/positives/20170807_183_283
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.638481855392456 Seg ---  0.010641602675120036 Min ---  0.00017736110422346326 Hr 
+dimension.... 0
+number selectors.. (1922, 1)
+2
+dimension.... 1
+number selectors.. (1922, 1)
+2
+processed... 38
+data/datasets_grl/npy/spatiotemporal/positives/20170920_169_320
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.19678521156311035 Seg ---  0.0032799959182739256 Min ---  5.466772450341119e-05 Hr 
+dimension.... 0
+number selectors.. (831, 1)
+2
+dimension.... 1
+number selectors.. (831, 1)
+2
+processed... 39
+data/datasets_grl/npy/spatiotemporal/positives/20170923_696_130
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.36013126373291016 Seg ---  0.0060024182001749676 Min ---  0.00010004129674699571 Hr 
+dimension.... 0
+number selectors.. (1442, 1)
+2
+dimension.... 1
+number selectors.. (1442, 1)
+2
+processed... 40
+data/datasets_grl/npy/spatiotemporal/positives/20210801_1195_611
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2826228141784668 Seg ---  0.004710642496744791 Min ---  7.851163546244304e-05 Hr 
+dimension.... 0
+number selectors.. (1266, 1)
+2
+dimension.... 1
+number selectors.. (1266, 1)
+2
+processed... 41
+data/datasets_grl/npy/spatiotemporal/positives/20200813_838_634
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3610227108001709 Seg ---  0.006017303466796875 Min ---  0.00010028931829664443 Hr 
+dimension.... 0
+number selectors.. (1421, 1)
+2
+dimension.... 1
+number selectors.. (1421, 1)
+2
+processed... 42
+data/datasets_grl/npy/spatiotemporal/positives/20170812_635_497
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.18866252899169922 Seg ---  0.0031446059544881183 Min ---  5.24110926522149e-05 Hr 
+dimension.... 0
+number selectors.. (811, 1)
+2
+dimension.... 1
+number selectors.. (811, 1)
+2
+processed... 43
+data/datasets_grl/npy/spatiotemporal/positives/20140625_555_452
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2419266700744629 Seg ---  0.004032341639200846 Min ---  6.720668739742703e-05 Hr 
+dimension.... 0
+number selectors.. (1111, 1)
+2
+dimension.... 1
+number selectors.. (1111, 1)
+2
+processed... 44
+data/datasets_grl/npy/spatiotemporal/positives/20170919_495_547
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5888698101043701 Seg ---  0.009814739227294922 Min ---  0.0001635799143049452 Hr 
+dimension.... 0
+number selectors.. (1907, 1)
+2
+dimension.... 1
+number selectors.. (1907, 1)
+2
+processed... 45
+data/datasets_grl/npy/spatiotemporal/positives/20130624_468_306
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.25876688957214355 Seg ---  0.004313039779663086 Min ---  7.188505596584744e-05 Hr 
+dimension.... 0
+number selectors.. (1000, 1)
+2
+dimension.... 1
+number selectors.. (1000, 1)
+2
+processed... 46
+data/datasets_grl/npy/spatiotemporal/positives/20190329_289_72
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.8112630844116211 Seg ---  0.013521345456441243 Min ---  0.00022535694970024956 Hr 
+dimension.... 0
+number selectors.. (2001, 1)
+2
+dimension.... 1
+number selectors.. (2001, 1)
+2
+processed... 47
+data/datasets_grl/npy/spatiotemporal/positives/20130827_511_469
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.36188745498657227 Seg ---  0.006031711896260579 Min ---  0.00010052965746985541 Hr 
+dimension.... 0
+number selectors.. (1312, 1)
+2
+dimension.... 1
+number selectors.. (1312, 1)
+2
+processed... 48
+data/datasets_grl/npy/spatiotemporal/positives/20170802_152_274
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.758676290512085 Seg ---  0.01264485518137614 Min ---  0.00021074851353963217 Hr 
+dimension.... 0
+number selectors.. (2246, 1)
+2
+dimension.... 1
+number selectors.. (2246, 1)
+2
+processed... 49
+data/datasets_grl/npy/spatiotemporal/positives/20110809_435_347
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5958495140075684 Seg ---  0.009931083520253499 Min ---  0.00016551911830902099 Hr 
+dimension.... 0
+number selectors.. (1941, 1)
+2
+dimension.... 1
+number selectors.. (1941, 1)
+2
+processed... 50
+data/datasets_grl/npy/spatiotemporal/positives/20210701_473_354
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5626475811004639 Seg ---  0.009377690156300862 Min ---  0.00015629576312171088 Hr 
+dimension.... 0
+number selectors.. (1881, 1)
+2
+dimension.... 1
+number selectors.. (1881, 1)
+2
+processed... 51
+data/datasets_grl/npy/spatiotemporal/positives/20210730_1117_647
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3643782138824463 Seg ---  0.006073220570882162 Min ---  0.00010122133625878228 Hr 
+dimension.... 0
+number selectors.. (1411, 1)
+2
+dimension.... 1
+number selectors.. (1411, 1)
+2
+processed... 52
+data/datasets_grl/npy/spatiotemporal/positives/20130726_752_897
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.23206377029418945 Seg ---  0.0038679798444112143 Min ---  6.446739037831624e-05 Hr 
+dimension.... 0
+number selectors.. (1071, 1)
+2
+dimension.... 1
+number selectors.. (1071, 1)
+2
+processed... 53
+data/datasets_grl/npy/spatiotemporal/positives/20170820_530_550
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.25863003730773926 Seg ---  0.004310739040374756 Min ---  7.184677653842502e-05 Hr 
+dimension.... 0
+number selectors.. (1101, 1)
+2
+dimension.... 1
+number selectors.. (1101, 1)
+2
+processed... 54
+data/datasets_grl/npy/spatiotemporal/positives/20090729_170_308
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2644932270050049 Seg ---  0.0044084747632344564 Min ---  7.347563902537028e-05 Hr 
+dimension.... 0
+number selectors.. (1094, 1)
+2
+dimension.... 1
+number selectors.. (1094, 1)
+2
+processed... 55
+data/datasets_grl/npy/spatiotemporal/positives/20210802_576_429
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.37498950958251953 Seg ---  0.006250059604644776 Min ---  0.0001041685872607761 Hr 
+dimension.... 0
+number selectors.. (1411, 1)
+2
+dimension.... 1
+number selectors.. (1411, 1)
+2
+processed... 56
+data/datasets_grl/npy/spatiotemporal/positives/20190829_374_83
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.1813349723815918 Seg ---  0.003022503852844238 Min ---  5.037612385219998e-05 Hr 
+dimension.... 0
+number selectors.. (761, 1)
+2
+dimension.... 1
+number selectors.. (761, 1)
+2
+processed... 57
+data/datasets_grl/npy/spatiotemporal/positives/20150807_267_430
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.14740967750549316 Seg ---  0.0024570504824320476 Min ---  4.095196723937988e-05 Hr 
+dimension.... 0
+number selectors.. (710, 1)
+2
+dimension.... 1
+number selectors.. (710, 1)
+2
+processed... 58
+data/datasets_grl/npy/spatiotemporal/positives/20110919_603_845
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5460522174835205 Seg ---  0.00910111665725708 Min ---  0.0001516862048043145 Hr 
+dimension.... 0
+number selectors.. (1827, 1)
+2
+dimension.... 1
+number selectors.. (1827, 1)
+2
+processed... 59
+data/datasets_grl/npy/spatiotemporal/positives/20110825_360_78
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.24592113494873047 Seg ---  0.004098951816558838 Min ---  6.831672456529405e-05 Hr 
+dimension.... 0
+number selectors.. (1011, 1)
+2
+dimension.... 1
+number selectors.. (1011, 1)
+2
+processed... 60
+data/datasets_grl/npy/spatiotemporal/positives/20180113_327_515
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.27256345748901367 Seg ---  0.004542982578277588 Min ---  7.571730348798964e-05 Hr 
+dimension.... 0
+number selectors.. (1221, 1)
+2
+dimension.... 1
+number selectors.. (1221, 1)
+2
+processed... 61
+data/datasets_grl/npy/spatiotemporal/positives/20120811_181_66
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6610395908355713 Seg ---  0.011017576853434245 Min ---  0.000183627274301317 Hr 
+dimension.... 0
+number selectors.. (2039, 1)
+2
+dimension.... 1
+number selectors.. (2039, 1)
+2
+processed... 62
+data/datasets_grl/npy/spatiotemporal/positives/20210726_88_246
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.19461870193481445 Seg ---  0.0032438794771830243 Min ---  5.406565136379666e-05 Hr 
+dimension.... 0
+number selectors.. (891, 1)
+2
+dimension.... 1
+number selectors.. (891, 1)
+2
+processed... 63
+data/datasets_grl/npy/spatiotemporal/positives/20140823_382_313
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5325906276702881 Seg ---  0.00887676477432251 Min ---  0.00014794707298278808 Hr 
+dimension.... 0
+number selectors.. (1831, 1)
+2
+dimension.... 1
+number selectors.. (1831, 1)
+2
+processed... 64
+data/datasets_grl/npy/spatiotemporal/positives/20110901_100_237
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.7118802070617676 Seg ---  0.011864912509918214 Min ---  0.00019774960147009955 Hr 
+dimension.... 0
+number selectors.. (2079, 1)
+2
+dimension.... 1
+number selectors.. (2079, 1)
+2
+processed... 65
+data/datasets_grl/npy/spatiotemporal/positives/20170910_350_518
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2815113067626953 Seg ---  0.004692081610361735 Min ---  7.820228735605876e-05 Hr 
+dimension.... 0
+number selectors.. (1201, 1)
+2
+dimension.... 1
+number selectors.. (1201, 1)
+2
+processed... 66
+data/datasets_grl/npy/spatiotemporal/positives/20210802_551_406
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.18996930122375488 Seg ---  0.003166389465332031 Min ---  5.27742173936632e-05 Hr 
+dimension.... 0
+number selectors.. (816, 1)
+2
+dimension.... 1
+number selectors.. (816, 1)
+2
+processed... 67
+data/datasets_grl/npy/spatiotemporal/positives/20110821_409_616
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2964460849761963 Seg ---  0.004941006501515706 Min ---  8.235116799672444e-05 Hr 
+dimension.... 0
+number selectors.. (1231, 1)
+2
+dimension.... 1
+number selectors.. (1231, 1)
+2
+processed... 68
+data/datasets_grl/npy/spatiotemporal/positives/20210801_1187_615
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3952178955078125 Seg ---  0.00658719539642334 Min ---  0.00010978758335113526 Hr 
+dimension.... 0
+number selectors.. (1492, 1)
+2
+dimension.... 1
+number selectors.. (1492, 1)
+2
+processed... 69
+data/datasets_grl/npy/spatiotemporal/positives/20110822_358_479
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.15135526657104492 Seg ---  0.002522854010264079 Min ---  4.2048626475863984e-05 Hr 
+dimension.... 0
+number selectors.. (671, 1)
+2
+dimension.... 1
+number selectors.. (671, 1)
+2
+processed... 70
+data/datasets_grl/npy/spatiotemporal/positives/20100502_521_545
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.27397990226745605 Seg ---  0.004566593964894613 Min ---  7.611089282565647e-05 Hr 
+dimension.... 0
+number selectors.. (1130, 1)
+2
+dimension.... 1
+number selectors.. (1130, 1)
+2
+processed... 71
+data/datasets_grl/npy/spatiotemporal/positives/20110727_722_875
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.23964691162109375 Seg ---  0.003994373480478922 Min ---  6.657381852467855e-05 Hr 
+dimension.... 0
+number selectors.. (1061, 1)
+2
+dimension.... 1
+number selectors.. (1061, 1)
+2
+processed... 72
+data/datasets_grl/npy/spatiotemporal/positives/20170911_1201_328
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3062019348144531 Seg ---  0.005103588104248047 Min ---  8.506066269344754e-05 Hr 
+dimension.... 0
+number selectors.. (1292, 1)
+2
+dimension.... 1
+number selectors.. (1292, 1)
+2
+processed... 73
+data/datasets_grl/npy/spatiotemporal/positives/20120908_719_530
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.27051782608032227 Seg ---  0.004508856932322184 Min ---  7.514854272206624e-05 Hr 
+dimension.... 0
+number selectors.. (1284, 1)
+2
+dimension.... 1
+number selectors.. (1284, 1)
+2
+processed... 74
+data/datasets_grl/npy/spatiotemporal/positives/20170803_382_117
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6735014915466309 Seg ---  0.011225275198618571 Min ---  0.00018708891338772244 Hr 
+dimension.... 0
+number selectors.. (2041, 1)
+2
+dimension.... 1
+number selectors.. (2041, 1)
+2
+processed... 75
+data/datasets_grl/npy/spatiotemporal/positives/20100826_1113_637
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2574458122253418 Seg ---  0.0042909979820251465 Min ---  7.151769267188178e-05 Hr 
+dimension.... 0
+number selectors.. (1152, 1)
+2
+dimension.... 1
+number selectors.. (1152, 1)
+2
+processed... 76
+data/datasets_grl/npy/spatiotemporal/positives/20110727_156_247
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3331296443939209 Seg ---  0.005552423000335693 Min ---  9.254137674967447e-05 Hr 
+dimension.... 0
+number selectors.. (1270, 1)
+2
+dimension.... 1
+number selectors.. (1270, 1)
+2
+processed... 77
+data/datasets_grl/npy/spatiotemporal/positives/20170923_696_132
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.30348920822143555 Seg ---  0.005058395862579346 Min ---  8.430752489301893e-05 Hr 
+dimension.... 0
+number selectors.. (1293, 1)
+2
+dimension.... 1
+number selectors.. (1293, 1)
+2
+processed... 78
+data/datasets_grl/npy/spatiotemporal/positives/20120819_581_598
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.47885560989379883 Seg ---  0.007981181144714355 Min ---  0.00013302067915598552 Hr 
+dimension.... 0
+number selectors.. (1732, 1)
+2
+dimension.... 1
+number selectors.. (1732, 1)
+2
+processed... 79
+data/datasets_grl/npy/spatiotemporal/positives/20090724_373_638
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.16706347465515137 Seg ---  0.0027846336364746095 Min ---  4.64116202460395e-05 Hr 
+dimension.... 0
+number selectors.. (821, 1)
+2
+dimension.... 1
+number selectors.. (821, 1)
+2
+processed... 80
+data/datasets_grl/npy/spatiotemporal/positives/20210802_630_507
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.27814269065856934 Seg ---  0.004635989665985107 Min ---  7.726748784383138e-05 Hr 
+dimension.... 0
+number selectors.. (1171, 1)
+2
+dimension.... 1
+number selectors.. (1171, 1)
+2
+processed... 81
+data/datasets_grl/npy/spatiotemporal/positives/20160828_481_133
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.35585665702819824 Seg ---  0.005931190649668376 Min ---  9.88541046778361e-05 Hr 
+dimension.... 0
+number selectors.. (1361, 1)
+2
+dimension.... 1
+number selectors.. (1361, 1)
+2
+processed... 82
+data/datasets_grl/npy/spatiotemporal/positives/20140625_561_455
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.4022531509399414 Seg ---  0.006704465548197428 Min ---  0.0001117420858807034 Hr 
+dimension.... 0
+number selectors.. (1501, 1)
+2
+dimension.... 1
+number selectors.. (1501, 1)
+2
+processed... 83
+data/datasets_grl/npy/spatiotemporal/positives/20100816_174_297
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5409619808197021 Seg ---  0.009016267458597819 Min ---  0.000150272183948093 Hr 
+dimension.... 0
+number selectors.. (1798, 1)
+2
+dimension.... 1
+number selectors.. (1798, 1)
+2
+processed... 84
+data/datasets_grl/npy/spatiotemporal/positives/20120817_897_488
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.22778582572937012 Seg ---  0.003796672821044922 Min ---  6.327893998887803e-05 Hr 
+dimension.... 0
+number selectors.. (912, 1)
+2
+dimension.... 1
+number selectors.. (912, 1)
+2
+processed... 85
+data/datasets_grl/npy/spatiotemporal/positives/20190821_483_82
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.7618329524993896 Seg ---  0.012697474161783854 Min ---  0.0002116254965464274 Hr 
+dimension.... 0
+number selectors.. (2211, 1)
+2
+dimension.... 1
+number selectors.. (2211, 1)
+2
+processed... 86
+data/datasets_grl/npy/spatiotemporal/positives/20110825_267_135
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.36348843574523926 Seg ---  0.006058398882548014 Min ---  0.00010097430811987983 Hr 
+dimension.... 0
+number selectors.. (1431, 1)
+2
+dimension.... 1
+number selectors.. (1431, 1)
+2
+processed... 87
+data/datasets_grl/npy/spatiotemporal/positives/20120806_169_286
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3610095977783203 Seg ---  0.006017080942789714 Min ---  0.00010028560956319173 Hr 
+dimension.... 0
+number selectors.. (1432, 1)
+2
+dimension.... 1
+number selectors.. (1432, 1)
+2
+processed... 88
+data/datasets_grl/npy/spatiotemporal/positives/20090821_711_525
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.4740004539489746 Seg ---  0.00790024995803833 Min ---  0.00013167182604471842 Hr 
+dimension.... 0
+number selectors.. (1694, 1)
+2
+dimension.... 1
+number selectors.. (1694, 1)
+2
+processed... 89
+data/datasets_grl/npy/spatiotemporal/positives/20210802_562_412
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3914015293121338 Seg ---  0.006523700555165609 Min ---  0.0001087298658159044 Hr 
+dimension.... 0
+number selectors.. (1493, 1)
+2
+dimension.... 1
+number selectors.. (1493, 1)
+2
+processed... 90
+data/datasets_grl/npy/spatiotemporal/positives/20170812_633_492
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.11776256561279297 Seg ---  0.0019629637400309244 Min ---  3.2717055744595e-05 Hr 
+dimension.... 0
+number selectors.. (501, 1)
+2
+dimension.... 1
+number selectors.. (501, 1)
+2
+processed... 91
+data/datasets_grl/npy/spatiotemporal/positives/20210803_415_607
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.16557526588439941 Seg ---  0.002759838104248047 Min ---  4.5998162693447536e-05 Hr 
+dimension.... 0
+number selectors.. (783, 1)
+2
+dimension.... 1
+number selectors.. (783, 1)
+2
+processed... 92
+data/datasets_grl/npy/spatiotemporal/positives/20170630_1027_510
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.40342211723327637 Seg ---  0.006723948319753011 Min ---  0.00011206673251258002 Hr 
+dimension.... 0
+number selectors.. (1576, 1)
+2
+dimension.... 1
+number selectors.. (1576, 1)
+2
+processed... 93
+data/datasets_grl/npy/spatiotemporal/positives/20190914_261_564
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2768993377685547 Seg ---  0.0046152472496032715 Min ---  7.692171467675102e-05 Hr 
+dimension.... 0
+number selectors.. (1210, 1)
+2
+dimension.... 1
+number selectors.. (1210, 1)
+2
+processed... 94
+data/datasets_grl/npy/spatiotemporal/positives/20130726_1122_762
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6952321529388428 Seg ---  0.011587448914845784 Min ---  0.00019312507576412625 Hr 
+dimension.... 0
+number selectors.. (2111, 1)
+2
+dimension.... 1
+number selectors.. (2111, 1)
+2
+processed... 95
+data/datasets_grl/npy/spatiotemporal/positives/20210806_262_311
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3275315761566162 Seg ---  0.0054590861002604164 Min ---  9.098589420318604e-05 Hr 
+dimension.... 0
+number selectors.. (1321, 1)
+2
+dimension.... 1
+number selectors.. (1321, 1)
+2
+processed... 96
+data/datasets_grl/npy/spatiotemporal/positives/20210803_369_564
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.47663331031799316 Seg ---  0.007944122950236002 Min ---  0.0001324030425813463 Hr 
+dimension.... 0
+number selectors.. (1691, 1)
+2
+dimension.... 1
+number selectors.. (1691, 1)
+2
+processed... 97
+data/datasets_grl/npy/spatiotemporal/positives/20110903_84_242
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.4985785484313965 Seg ---  0.008309880892435709 Min ---  0.00013849894205729166 Hr 
+dimension.... 0
+number selectors.. (1831, 1)
+2
+dimension.... 1
+number selectors.. (1831, 1)
+2
+processed... 98
+data/datasets_grl/npy/spatiotemporal/positives/20110912_324_93
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2816288471221924 Seg ---  0.004694060484568278 Min ---  7.82352023654514e-05 Hr 
+dimension.... 0
+number selectors.. (1222, 1)
+2
+dimension.... 1
+number selectors.. (1222, 1)
+2
+processed... 99
+data/datasets_grl/npy/spatiotemporal/positives/20170731_201_104
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6938564777374268 Seg ---  0.011564524968465169 Min ---  0.00019274320867326524 Hr 
+dimension.... 0
+number selectors.. (2103, 1)
+2
+dimension.... 1
+number selectors.. (2103, 1)
+2
+processed... 100
+data/datasets_grl/npy/spatiotemporal/positives/20120824_93_252
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6092064380645752 Seg ---  0.010153698921203613 Min ---  0.0001692293749915229 Hr 
+dimension.... 0
+number selectors.. (1970, 1)
+2
+dimension.... 1
+number selectors.. (1970, 1)
+2
+processed... 101
+data/datasets_grl/npy/spatiotemporal/positives/20150727_376_94
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.4586806297302246 Seg ---  0.007644915580749511 Min ---  0.0001274161206351386 Hr 
+dimension.... 0
+number selectors.. (1544, 1)
+2
+dimension.... 1
+number selectors.. (1544, 1)
+2
+processed... 102
+data/datasets_grl/npy/spatiotemporal/positives/20170802_200_89
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3433818817138672 Seg ---  0.005723289648691813 Min ---  9.538922044965956e-05 Hr 
+dimension.... 0
+number selectors.. (1271, 1)
+2
+dimension.... 1
+number selectors.. (1271, 1)
+2
+processed... 103
+data/datasets_grl/npy/spatiotemporal/positives/20170807_191_289
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.1990189552307129 Seg ---  0.0033172210057576495 Min ---  5.528801017337375e-05 Hr 
+dimension.... 0
+number selectors.. (941, 1)
+2
+dimension.... 1
+number selectors.. (941, 1)
+2
+processed... 104
+data/datasets_grl/npy/spatiotemporal/positives/20130815_719_198
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5296237468719482 Seg ---  0.008827356497446696 Min ---  0.0001471236679289076 Hr 
+dimension.... 0
+number selectors.. (1554, 1)
+2
+dimension.... 1
+number selectors.. (1554, 1)
+2
+processed... 105
+data/datasets_grl/npy/spatiotemporal/positives/20210802_467_677
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.37610793113708496 Seg ---  0.006268719832102458 Min ---  0.00010447965727912055 Hr 
+dimension.... 0
+number selectors.. (1369, 1)
+2
+dimension.... 1
+number selectors.. (1369, 1)
+2
+processed... 106
+data/datasets_grl/npy/spatiotemporal/positives/20090901_381_91
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.45897912979125977 Seg ---  0.0076498905817667644 Min ---  0.00012749910354614257 Hr 
+dimension.... 0
+number selectors.. (1588, 1)
+2
+dimension.... 1
+number selectors.. (1588, 1)
+2
+processed... 107
+data/datasets_grl/npy/spatiotemporal/positives/20090718_295_417
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.21274542808532715 Seg ---  0.003545995553334554 Min ---  5.910091929965549e-05 Hr 
+dimension.... 0
+number selectors.. (1011, 1)
+2
+dimension.... 1
+number selectors.. (1011, 1)
+2
+processed... 108
+data/datasets_grl/npy/spatiotemporal/positives/20210802_582_423
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.20906352996826172 Seg ---  0.003484630584716797 Min ---  5.807823605007595e-05 Hr 
+dimension.... 0
+number selectors.. (902, 1)
+2
+dimension.... 1
+number selectors.. (902, 1)
+2
+processed... 109
+data/datasets_grl/npy/spatiotemporal/positives/20120901_185_106
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6394762992858887 Seg ---  0.010658176740010579 Min ---  0.00017763733863830568 Hr 
+dimension.... 0
+number selectors.. (1975, 1)
+2
+dimension.... 1
+number selectors.. (1975, 1)
+2
+processed... 110
+data/datasets_grl/npy/spatiotemporal/positives/20210802_567_430
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3258833885192871 Seg ---  0.005431620279947916 Min ---  9.052793184916178e-05 Hr 
+dimension.... 0
+number selectors.. (1308, 1)
+2
+dimension.... 1
+number selectors.. (1308, 1)
+2
+processed... 111
+data/datasets_grl/npy/spatiotemporal/positives/20110821_410_615
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3422086238861084 Seg ---  0.0057037035624186196 Min ---  9.506285190582276e-05 Hr 
+dimension.... 0
+number selectors.. (1381, 1)
+2
+dimension.... 1
+number selectors.. (1381, 1)
+2
+processed... 112
+data/datasets_grl/npy/spatiotemporal/positives/20190826_178_285
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.40755701065063477 Seg ---  0.006792863210042317 Min ---  0.00011321538024478488 Hr 
+dimension.... 0
+number selectors.. (1449, 1)
+2
+dimension.... 1
+number selectors.. (1449, 1)
+2
+processed... 113
+data/datasets_grl/npy/spatiotemporal/positives/20110729_159_288
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.32667064666748047 Seg ---  0.005444765090942383 Min ---  9.074694580501981e-05 Hr 
+dimension.... 0
+number selectors.. (1331, 1)
+2
+dimension.... 1
+number selectors.. (1331, 1)
+2
+processed... 114
+data/datasets_grl/npy/spatiotemporal/positives/20170909_204_506
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.17144536972045898 Seg ---  0.0028576731681823732 Min ---  4.762887954711914e-05 Hr 
+dimension.... 0
+number selectors.. (821, 1)
+2
+dimension.... 1
+number selectors.. (821, 1)
+2
+processed... 115
+data/datasets_grl/npy/spatiotemporal/positives/20170812_637_492
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.10821962356567383 Seg ---  0.001803906758626302 Min ---  3.0066238509284127e-05 Hr 
+dimension.... 0
+number selectors.. (461, 1)
+2
+dimension.... 1
+number selectors.. (461, 1)
+2
+processed... 116
+data/datasets_grl/npy/spatiotemporal/positives/20200523_1222_656
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.29938650131225586 Seg ---  0.004990013440450033 Min ---  8.31677516301473e-05 Hr 
+dimension.... 0
+number selectors.. (1291, 1)
+2
+dimension.... 1
+number selectors.. (1291, 1)
+2
+processed... 117
+data/datasets_grl/npy/spatiotemporal/positives/20110814_442_353
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.43744444847106934 Seg ---  0.007290967305501302 Min ---  0.00012151711516910129 Hr 
+dimension.... 0
+number selectors.. (1574, 1)
+2
+dimension.... 1
+number selectors.. (1574, 1)
+2
+processed... 118
+data/datasets_grl/npy/spatiotemporal/positives/20110823_306_447
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.24216318130493164 Seg ---  0.004036315282185872 Min ---  6.727298100789389e-05 Hr 
+dimension.... 0
+number selectors.. (989, 1)
+2
+dimension.... 1
+number selectors.. (989, 1)
+2
+processed... 119
+data/datasets_grl/npy/spatiotemporal/positives/20120823_353_166
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.20784616470336914 Seg ---  0.003464337189992269 Min ---  5.773994657728407e-05 Hr 
+dimension.... 0
+number selectors.. (1011, 1)
+2
+dimension.... 1
+number selectors.. (1011, 1)
+2
+processed... 120
+data/datasets_grl/npy/spatiotemporal/positives/20210802_579_411
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.23319578170776367 Seg ---  0.003886846701304118 Min ---  6.478190422058105e-05 Hr 
+dimension.... 0
+number selectors.. (1065, 1)
+2
+dimension.... 1
+number selectors.. (1065, 1)
+2
+processed... 121
+data/datasets_grl/npy/spatiotemporal/positives/20170804_197_310
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5266952514648438 Seg ---  0.0087785005569458 Min ---  0.00014630946848127576 Hr 
+dimension.... 0
+number selectors.. (1757, 1)
+2
+dimension.... 1
+number selectors.. (1757, 1)
+2
+processed... 122
+data/datasets_grl/npy/spatiotemporal/positives/20210726_140_267
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5771522521972656 Seg ---  0.009619462490081786 Min ---  0.00016032536824544272 Hr 
+dimension.... 0
+number selectors.. (1837, 1)
+2
+dimension.... 1
+number selectors.. (1837, 1)
+2
+processed... 123
+data/datasets_grl/npy/spatiotemporal/positives/20150905_512_464
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2601635456085205 Seg ---  0.004336305459340413 Min ---  7.227288352118598e-05 Hr 
+dimension.... 0
+number selectors.. (1150, 1)
+2
+dimension.... 1
+number selectors.. (1150, 1)
+2
+processed... 124
+data/datasets_grl/npy/spatiotemporal/positives/20210802_452_670
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6170682907104492 Seg ---  0.010284717877705891 Min ---  0.0001714129580391778 Hr 
+dimension.... 0
+number selectors.. (1839, 1)
+2
+dimension.... 1
+number selectors.. (1839, 1)
+2
+processed... 125
+data/datasets_grl/npy/spatiotemporal/positives/20171107_911_386
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.38028383255004883 Seg ---  0.0063383181889851885 Min ---  0.00010563956366644965 Hr 
+dimension.... 0
+number selectors.. (1401, 1)
+2
+dimension.... 1
+number selectors.. (1401, 1)
+2
+processed... 126
+data/datasets_grl/npy/spatiotemporal/positives/20210518_551_527
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3653743267059326 Seg ---  0.00608980655670166 Min ---  0.00010149763690100776 Hr 
+dimension.... 0
+number selectors.. (1464, 1)
+2
+dimension.... 1
+number selectors.. (1464, 1)
+2
+processed... 127
+data/datasets_grl/npy/spatiotemporal/positives/20120830_159_288
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.30278658866882324 Seg ---  0.0050466974576314294 Min ---  8.41126177046034e-05 Hr 
+dimension.... 0
+number selectors.. (1224, 1)
+2
+dimension.... 1
+number selectors.. (1224, 1)
+2
+processed... 128
+data/datasets_grl/npy/spatiotemporal/positives/20210702_250_511
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.485018253326416 Seg ---  0.008083868026733398 Min ---  0.00013473212718963622 Hr 
+dimension.... 0
+number selectors.. (1659, 1)
+2
+dimension.... 1
+number selectors.. (1659, 1)
+2
+processed... 129
+data/datasets_grl/npy/spatiotemporal/positives/20190821_477_85
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.46417784690856934 Seg ---  0.0077365477879842125 Min ---  0.00012894345654381647 Hr 
+dimension.... 0
+number selectors.. (1651, 1)
+2
+dimension.... 1
+number selectors.. (1651, 1)
+2
+processed... 130
+data/datasets_grl/npy/spatiotemporal/positives/20201116_892_381
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3513755798339844 Seg ---  0.005856482187906901 Min ---  9.760896364847818e-05 Hr 
+dimension.... 0
+number selectors.. (1316, 1)
+2
+dimension.... 1
+number selectors.. (1316, 1)
+2
+processed... 131
+data/datasets_grl/npy/spatiotemporal/positives/20130726_1117_766
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.309786319732666 Seg ---  0.005163331826527913 Min ---  8.605659008026123e-05 Hr 
+dimension.... 0
+number selectors.. (1233, 1)
+2
+dimension.... 1
+number selectors.. (1233, 1)
+2
+processed... 132
+data/datasets_grl/npy/spatiotemporal/positives/20120815_188_90
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6018524169921875 Seg ---  0.0100311279296875 Min ---  0.00016718645890553791 Hr 
+dimension.... 0
+number selectors.. (1957, 1)
+2
+dimension.... 1
+number selectors.. (1957, 1)
+2
+processed... 133
+data/datasets_grl/npy/spatiotemporal/positives/20191027_293_74
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6505551338195801 Seg ---  0.01084290345509847 Min ---  0.00018071611722310385 Hr 
+dimension.... 0
+number selectors.. (2101, 1)
+2
+dimension.... 1
+number selectors.. (2101, 1)
+2
+processed... 134
+data/datasets_grl/npy/spatiotemporal/positives/20210802_571_427
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3932187557220459 Seg ---  0.0065538883209228516 Min ---  0.00010923259788089329 Hr 
+dimension.... 0
+number selectors.. (1453, 1)
+2
+dimension.... 1
+number selectors.. (1453, 1)
+2
+processed... 135
+data/datasets_grl/npy/spatiotemporal/positives/20210802_628_505
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.36766743659973145 Seg ---  0.00612804094950358 Min ---  0.00010213507546318903 Hr 
+dimension.... 0
+number selectors.. (1421, 1)
+2
+dimension.... 1
+number selectors.. (1421, 1)
+2
+processed... 136
+data/datasets_grl/npy/spatiotemporal/positives/20110824_201_183
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.40070462226867676 Seg ---  0.00667868455251058 Min ---  0.00011131253507402208 Hr 
+dimension.... 0
+number selectors.. (1491, 1)
+2
+dimension.... 1
+number selectors.. (1491, 1)
+2
+processed... 137
+data/datasets_grl/npy/spatiotemporal/positives/20090822_351_520
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5930240154266357 Seg ---  0.009883968035380046 Min ---  0.00016473379400041367 Hr 
+dimension.... 0
+number selectors.. (1911, 1)
+2
+dimension.... 1
+number selectors.. (1911, 1)
+2
+processed... 138
+data/datasets_grl/npy/spatiotemporal/positives/20210802_628_499
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.2623729705810547 Seg ---  0.004373097419738769 Min ---  7.288595040639241e-05 Hr 
+dimension.... 0
+number selectors.. (1131, 1)
+2
+dimension.... 1
+number selectors.. (1131, 1)
+2
+processed... 139
+data/datasets_grl/npy/spatiotemporal/positives/20110828_101_232
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.45822954177856445 Seg ---  0.007637405395507812 Min ---  0.00012729121579064262 Hr 
+dimension.... 0
+number selectors.. (1593, 1)
+2
+dimension.... 1
+number selectors.. (1593, 1)
+2
+processed... 140
+data/datasets_grl/npy/spatiotemporal/positives/20200821_466_685
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.3138604164123535 Seg ---  0.005231233437856039 Min ---  8.718828360239665e-05 Hr 
+dimension.... 0
+number selectors.. (1202, 1)
+2
+dimension.... 1
+number selectors.. (1202, 1)
+2
+processed... 141
+data/datasets_grl/npy/spatiotemporal/positives/20120820_173_114
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6144101619720459 Seg ---  0.010240395863850912 Min ---  0.00017067419158087836 Hr 
+dimension.... 0
+number selectors.. (1974, 1)
+2
+dimension.... 1
+number selectors.. (1974, 1)
+2
+processed... 142
+data/datasets_grl/npy/spatiotemporal/positives/20090729_169_309
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.6179153919219971 Seg ---  0.010298856099446614 Min ---  0.00017164866129557293 Hr 
+dimension.... 0
+number selectors.. (1906, 1)
+2
+dimension.... 1
+number selectors.. (1906, 1)
+2
+processed... 143
+data/datasets_grl/npy/spatiotemporal/positives/20100828_344_129
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.32887840270996094 Seg ---  0.005481553077697754 Min ---  9.136027759975858e-05 Hr 
+dimension.... 0
+number selectors.. (1301, 1)
+2
+dimension.... 1
+number selectors.. (1301, 1)
+2
+processed... 144
+data/datasets_grl/npy/spatiotemporal/positives/20110824_433_170
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.7711739540100098 Seg ---  0.01285314957300822 Min ---  0.00021422021918826632 Hr 
+dimension.... 0
+number selectors.. (2180, 1)
+2
+dimension.... 1
+number selectors.. (2180, 1)
+2
+processed... 145
+data/datasets_grl/npy/spatiotemporal/positives/20210802_460_676
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+  --- End combining
+Determining time intervals...
+  --- End time
+Computing Zigzag homology...
+  --- End Zigzag
+Dimension: 0
+Dimension: 1
+TIME: 0.5047276020050049 Seg ---  0.008412357171376545 Min ---  0.00014020694626702202 Hr 
+dimension.... 0
+number selectors.. (1771, 1)
+2
+dimension.... 1
+number selectors.. (1771, 1)
+2
+processed... 146
+data/datasets_grl/npy/spatiotemporal/positives/20130829_391_675
+Building unions and computing distance matrices...
+  --- End unions...
+Computing Vietoris-Rips complexes...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+  --- End Vietoris-Rips computation
+Shifting filtrations...
+  --- End shifting...
+Combining complexes...
+slurmstepd: error: *** JOB 27351 ON c-1-1 CANCELLED AT 2023-01-07T07:17:41 ***

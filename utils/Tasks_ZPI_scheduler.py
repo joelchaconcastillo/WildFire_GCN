@@ -24,9 +24,21 @@ import dionysus as d
 import time
 from ripser import ripser
 import scipy.sparse
-#from persim import plot_diagrams, PersImage
-path = os.getcwd()
-#np.set_printoptions(threshold=sys.maxsize, formatter={'float': lambda x: "{0:0.1f}".format(x)})
+##import argparse
+##
+###from persim import plot_diagrams, PersImage
+##path = os.getcwd()
+##args = argparse.ArgumentParser(description='arguments')
+##args.add_argument('--source', default='.', type=str)
+##args.add_argument('--dest', default='.', type=str)
+##args.add_argument('--scaleParameter', default='.', type=float)
+##
+##args = args.parse_args()
+##print(args.source)
+##print(args.dest)
+##print(args.scaleParameter)
+##exit(0)
+
 class loadData(Dataset):
    def __init__(self, dataset_root: str = None, access_mode: str = 'spatiotemporal', dynamic_features: list = None, static_features : list = None, nan_fill: float= -1., clc: str=None):
 
@@ -144,125 +156,6 @@ class loadData(Dataset):
    def __len__(self):
       return len(self.path_list)
 
-class zigzagTDA:
-   def __init__(self, alpha, NVertices, scaleParameter, maxDimHoles, sizeWindow):
-      self.alpha = alpha
-      self.NVertices = NVertices
-      self.scaleParameter = scaleParameter
-      self.maxDimHoles = maxDimHoles
-      self.sizeWindow = sizeWindow
-
-   #X: T, N, F
-   def zigzag_persistence_diagrams(self, x, prefix_path):
-       GraphsNetX = []
-       for t in range(self.sizeWindow): 
-         graphL2 = np.sqrt(np.sum((x[t,np.newaxis, :, :]-x[t,:,np.newaxis,:])**2, axis=-1)) #compute matrix distance
-         graphL2[graphL2==0] = 1e-5  ##weakly connected, we want similar or equally edges :)
-         tmp_max = np.max(graphL2)
-         graphL2 /= tmp_max  ##normalize  matrix
-#         edgeList = np.array([])
-#         for ii in range(self.NVertices):
-#             for jj in range(self.NVertices):
-#                 edgeList = np.append(edgeList, np.array([graphL2[ii][jj], ii, jj]))
-
-#         graphL2[graphL2>self.alpha]=0 ##cut off note: probably this is not required
-#         G = nx.from_numpy_matrix(graphL2)
-#         edges = sorted(G.edges(data=True), key=lambda t: t[2].get('weight', 1)) ##sort edges increasinly by weights 
-#         nConnections = 1000 ##just take the top connections
-#         graphL2[:,:] = 0 ##reset
-#         cont = 0
-#         for u,v, w in edges:
-#             graphL2[u,v]=float(w['weight'])
-#             graphL2[v,u]=float(w['weight'])
-#             cont +=1
-#             if cont == nConnections:
-#                 break
-#
-         GraphsNetX.append(graphL2)
-#       scipy.sparse.save_npz(prefix_path+"_graph", scipy.sparse.csc_matrix(np.concatenate(GraphsNetX, axis=1)))
-       start_time = time.time()
-      # Building unions and computing distance matrices
-       print("Building unions and computing distance matrices...")  # Beginning
-       MDisGUnions = []
-       for i in range(0, self.sizeWindow - 1):
-           # --- To concatenate graphs
-           MDisAux = np.zeros((2 * self.NVertices, 2 * self.NVertices))
-           A = GraphsNetX[i] #nx.adjacency_matrix(GraphsNetX[i]).todense()
-           B = GraphsNetX[i+1] #nx.adjacency_matrix(GraphsNetX[i + 1]).todense()
-           # ----- Version Original (2)
-           C = (A + B) / 2
-           A[A == 0] = 10.1
-           A[range(self.NVertices), range(self.NVertices)] = 0
-           B[B == 0] = 10.1
-           B[range(self.NVertices), range(self.NVertices)] = 0
-           MDisAux[0:self.NVertices, 0:self.NVertices] = A
-           C[C == 0] = 10.1
-           C[range(self.NVertices), range(self.NVertices)] = 0
-           MDisAux[self.NVertices:(2 * self.NVertices), self.NVertices:(2 * self.NVertices)] = B
-           MDisAux[0:self.NVertices, self.NVertices:(2 * self.NVertices)] = C
-           MDisAux[self.NVertices:(2 * self.NVertices), 0:self.NVertices] = C.transpose()
-           # Distance in condensed form
-           pDisAux = squareform(MDisAux)
-           # --- To save unions and distances
-           MDisGUnions.append(pDisAux)  # To save distance matrix
-       print("  --- End unions...")  # Ending
-       
-       # To perform Ripser computations
-       print("Computing Vietoris-Rips complexes...")  # Beginning
-   
-       GVRips = []
-       for jj in range(self.sizeWindow - 1):
-           print(jj)
-           ripsAux = d.fill_rips(MDisGUnions[jj], self.maxDimHoles, self.scaleParameter)
-           GVRips.append(ripsAux)
-       print("  --- End Vietoris-Rips computation")  # Ending
-   
-       # Shifting filtrations...
-       print("Shifting filtrations...")  # Beginning
-       GVRips_shift = []
-       GVRips_shift.append(GVRips[0])  # Shift 0... original rips01
-       for kk in range(1, self.sizeWindow - 1):
-           shiftAux = zzt.shift_filtration(GVRips[kk], self.NVertices * kk)
-           GVRips_shift.append(shiftAux)
-       print("  --- End shifting...")  # Ending
-   
-       # To Combine complexes
-       print("Combining complexes...")  # Beginning
-       completeGVRips = zzt.complex_union(GVRips[0], GVRips_shift[1])
-       for uu in range(2, self.sizeWindow - 1):
-           completeGVRips = zzt.complex_union(completeGVRips, GVRips_shift[uu])
-       print("  --- End combining")  # Ending
-   
-       # To compute the time intervals of simplices
-       print("Determining time intervals...")  # Beginning
-       time_intervals = zzt.build_zigzag_times(completeGVRips, self.NVertices, self.sizeWindow)
-       print("  --- End time")  # Beginning
-   
-       # To compute Zigzag persistence
-       print("Computing Zigzag homology...")  # Beginning
-       G_zz, G_dgms, G_cells = d.zigzag_homology_persistence(completeGVRips, time_intervals)
-       print("  --- End Zigzag")  # Beginning
-   
-       # To show persistence intervals
-       window_ZPD = []
-       # Personalized plot
-       for vv, dgm in enumerate(G_dgms):
-           print("Dimension:", vv)
-           if (vv < 2):
-               matBarcode = np.zeros((len(dgm), 2))
-               k = 0
-               for p in dgm:
-                   matBarcode[k, 0] = p.birth
-                   matBarcode[k, 1] = p.death
-                   k = k + 1
-               matBarcode = matBarcode / 2
-               window_ZPD.append(matBarcode)
-   
-       # Timing
-       print("TIME: " + str((time.time() - start_time)) + " Seg ---  " + str((time.time() - start_time) / 60) + " Min ---  " + str((time.time() - start_time) / (60 * 60)) + " Hr ")
-   
-       return window_ZPD
-   
    # Zigzag persistence image
    def zigzag_persistence_images(self, dgms, resolution = [50,50], return_raw = False, normalization = True, bandwidth = 1., power = 1., dimensional = 0):
        if len(dgms) < dimensional: #validation
@@ -386,7 +279,7 @@ NVertices = (2*sizeBorder+1)**2
 ### for each sample....
 
 data = loadData(dataset_root = dataset_root,access_mode = access_mode, dynamic_features = dynamic_features, static_features = static_features, clc=clc)
-ZZ = zigzagTDA(alpha=alpha, NVertices=NVertices, scaleParameter=scaleParameter, maxDimHoles=maxDimHoles, sizeWindow=window)
+
 print("Number of samples", len(data))
 print("Dynamic shape..", data[0][0].shape)
 print("Static shape..", data[0][1].shape)
@@ -396,20 +289,22 @@ for (dynamic, static, clc, prefix_path) in data:
    (sizeWindow, _ , patchWidth, patchHeight) = dynamic.shape
    numberFeatures = len(dynamic_features)+len(static_features)+len(clc)
    sample = np.zeros((sizeWindow, NVertices, numberFeatures))
+   sourcePath = prefix_path
    prefix_path = '/'.join(prefix_path.split('/')[4:])
    prefix_path = 'data/'+prefix_path
-   for t in range(sizeWindow):
-      X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
-      #X = np.concatenate((dynamic[t], static), axis=0) ##F, W, H
-      X = X[:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
-      X = X.reshape(numberFeatures, -1) # F, N
-      sample[t] = X.transpose(1,0) #N, F
-   print(prefix_path)
-   zigzag_PD = ZZ.zigzag_persistence_diagrams(x = sample, prefix_path=prefix_path)
-   zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
-   zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
-   ZPI = [zigzag_PI_H0, zigzag_PI_H1]
-#   np.savez(prefix_path+"_zpi", zpi=ZPI)
-   print("processed...", cont)
-   cont +=1
+   print("python3 /home/joel.chacon/tmp/ZIGZAG_from_files/utils/singleFile_ZPI_PD.py --source="+sourcePath + " --dest="+prefix_path+" --scaleParameter="+str(scaleParameter))
+#   for t in range(sizeWindow):
+#      X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
+#      #X = np.concatenate((dynamic[t], static), axis=0) ##F, W, H
+#      X = X[:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
+#      X = X.reshape(numberFeatures, -1) # F, N
+#      sample[t] = X.transpose(1,0) #N, F
+#   print(prefix_path)
+#   zigzag_PD = ZZ.zigzag_persistence_diagrams(x = sample, prefix_path=prefix_path)
+#   zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
+#   zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
+#   ZPI = [zigzag_PI_H0, zigzag_PI_H1]
+##   np.savez(prefix_path+"_zpi", zpi=ZPI)
+#   print("processed...", cont)
+#   cont +=1
 
