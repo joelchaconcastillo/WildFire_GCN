@@ -42,7 +42,7 @@ import scipy.sparse
 maxDimHoles = 1
 window = 10
 alpha = 1
-scaleParameter =  0.1
+scaleParameter =  0.2
 sizeBorder = 6
 NVertices = (2*sizeBorder+1)**2
 
