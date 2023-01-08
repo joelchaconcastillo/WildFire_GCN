@@ -154,18 +154,24 @@ class FireDataset_Graph_npy(Dataset):
         self.negatives_list = list((dataset_path / 'negatives_clc').glob('*dynamic.npy'))
         self.negatives_list = list(zip(self.negatives_list, [0] * (len(self.negatives_list))))
 
-        self.train_negative_list = random.sample(
-            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) < val_year],
-            len(self.train_positive_list) * neg_pos_ratio)
-        self.val_negative_list = random.sample(
-            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == val_year],
-            len(self.val_positive_list) * neg_pos_ratio)
-        self.test1_negative_list = random.sample(
-            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year1],
-            len(self.test1_positive_list) * neg_pos_ratio)
-        self.test2_negative_list = random.sample(
-            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year2],
-            len(self.test2_positive_list) * neg_pos_ratio)
+
+        self.train_negative_list = [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) < val_year]
+        self.val_negative_list = [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == val_year]
+        self.test1_negative_list = [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year1]
+        self.test2_negative_list = [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year2]
+
+#self.train_negative_list = random.sample(
+#            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) < val_year],
+#            len(self.train_positive_list) * neg_pos_ratio)
+#        self.val_negative_list = random.sample(
+#            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == val_year],
+#            len(self.val_positive_list) * neg_pos_ratio)
+#        self.test1_negative_list = random.sample(
+#            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year1],
+#            len(self.test1_positive_list) * neg_pos_ratio)
+#        self.test2_negative_list = random.sample(
+#            [(x, y) for (x, y) in self.negatives_list if int(x.stem[:4]) == test_year2],
+#            len(self.test2_positive_list) * neg_pos_ratio)
 
 
         self.dynamic_idxfeat = [(i, feat) for i, feat in enumerate(self.variable_dict['dynamic']) if

@@ -4,12 +4,12 @@ import torch.nn as nn
 import numpy as np
 
 class CNN(nn.Module):
-   def __init__(self, dim_out):
+   def __init__(self, dim_input, dim_out):
       super(CNN, self).__init__()
       self.dim_out = dim_out
 
       self.features = nn.Sequential(
-          nn.Conv2d(2, int(dim_out/2), kernel_size=3, stride=2),
+          nn.Conv2d(dim_input, int(dim_out/2), kernel_size=3, stride=2),
           nn.ReLU(inplace=True),
           nn.MaxPool2d(kernel_size=3, stride=2),
           nn.Conv2d(int(dim_out/2), dim_out, kernel_size=3, stride=2),
@@ -26,7 +26,7 @@ class CNN(nn.Module):
       return feature
 
 class SpatioTemporalGCN(nn.Module):
-    def __init__(self, dim_in, hidden_dim, window_len, link_len, embed_dim):
+    def __init__(self, dim_in, hidden_dim, window_len, link_len, embed_dim, num_persis_diagrams):
         super(SpatioTemporalGCN, self).__init__()
         self.link_len = link_len
         self.hidden_dim = hidden_dim
@@ -39,7 +39,7 @@ class SpatioTemporalGCN(nn.Module):
         self.T = nn.Parameter(torch.FloatTensor(window_len))
         self.ln1 = torch.nn.LayerNorm(int(hidden_dim/2))
         self.ln2 = torch.nn.LayerNorm(int(hidden_dim/2))
-        self.cnn = CNN(int(hidden_dim/ 2))
+        self.cnn = CNN(num_persis_diagrams, int(hidden_dim/ 2))
 
 
     def forward(self, x, x_window, node_embeddings, ZPI):
@@ -65,28 +65,32 @@ class SpatioTemporalGCN(nn.Module):
         x_g = torch.einsum("knm,bmc->bknc", supports, x) #B, link_len, N, dim_in : on N
         x_g = x_g.permute(0, 2, 1, 3) #B, N, link_len, dim_in  : on 
         x_gconv = torch.einsum('bnki,nkio->bno', x_g, weights) #B, N, hidden_dim/2
+       # x_gconv = F.normalize(x_gconv, dim=-1)
+        x_gconv = self.ln1(x_gconv)
 
         #S5: temporal feature transformation
         weights_window = torch.einsum('nd,dio->nio', node_embeddings, self.weights_window)  #N, dim_in, hidden_dim/2 : on E
         x_w = torch.einsum('btni,nio->btno', x_window, weights_window)  #B, T, N, hidden_dim/2: on D
         x_w = x_w.permute(0, 2, 3, 1)  #B, N, hidden_dim/2, T 
         x_wconv = torch.matmul(x_w, self.T)  #B, N, hidden_dim/2: on T
+#        x_wconv = F.normalize(x_wconv, dim=-1)
+        x_wconv = self.ln2(x_wconv)
 #        #S6: Transform graph information to [hidden_dim/2, hidden_dim/2] 
         convZPI = self.cnn(ZPI)
-        x_tgconv = torch.einsum('bno,bo->bno',self.ln1(x_gconv), convZPI) #B, N, H/2
-        x_twconv =  torch.einsum('bno,bo->bno',self.ln2(x_wconv), convZPI) #B, N, H/2
+        x_tgconv = torch.einsum('bno,bo->bno',x_gconv, convZPI) #B, N, H/2
+        x_twconv =  torch.einsum('bno,bo->bno', x_wconv, convZPI) #B, N, H/2
 
 #        #S7: combination operation
         x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
         return F.relu(x_gwconv)
 
 class GCN_GRU_Cell(nn.Module):
-    def __init__(self, node_num, dim_in, hidden_dim, window_len, link_len, embed_dim):
+    def __init__(self, node_num, dim_in, hidden_dim, window_len, link_len, embed_dim, num_persis_diagrams):
         super(GCN_GRU_Cell, self).__init__()
         self.node_num = node_num
         self.hidden_dim = hidden_dim
-        self.gate = SpatioTemporalGCN(dim_in+self.hidden_dim, 2*hidden_dim, window_len, link_len, embed_dim)
-        self.update = SpatioTemporalGCN(dim_in+self.hidden_dim, hidden_dim, window_len, link_len, embed_dim)
+        self.gate = SpatioTemporalGCN(dim_in+self.hidden_dim, 2*hidden_dim, window_len, link_len, embed_dim, num_persis_diagrams)
+        self.update = SpatioTemporalGCN(dim_in+self.hidden_dim, hidden_dim, window_len, link_len, embed_dim, num_persis_diagrams)
 
     def forward(self, x, state, x_full, node_embeddings, ZPI):
         #x: B, num_nodes, input_dim
@@ -104,7 +108,7 @@ class GCN_GRU_Cell(nn.Module):
         return torch.zeros(batch_size, self.node_num, self.hidden_dim)
 
 class GCN_GRU(nn.Module):
-    def __init__(self, node_num, dim_in, hidden_dim, link_len, embed_dim, num_layers=1, window_len = 10, return_all_layers=False):
+    def __init__(self, node_num, dim_in, hidden_dim, link_len, embed_dim, num_layers=1, window_len = 10, num_persis_diagrams=2, return_all_layers=False):
         super(GCN_GRU, self).__init__()
         assert num_layers >= 1, 'At least one DCRNN layer in the Encoder.'
         self.return_all_layers = return_all_layers 
@@ -114,10 +118,9 @@ class GCN_GRU(nn.Module):
         self.num_layers = num_layers
         self.window_len = window_len
         self.cell_list = nn.ModuleList()
-        self.alpha = nn.Parameter(torch.FloatTensor(1))
         for i in range(0, num_layers):
             cur_input_dim = dim_in if i == 0 else hidden_dim
-            self.cell_list.append(GCN_GRU_Cell(node_num, cur_input_dim, hidden_dim, window_len, link_len, embed_dim))
+            self.cell_list.append(GCN_GRU_Cell(node_num, cur_input_dim, hidden_dim, window_len, link_len, embed_dim, num_persis_diagrams))
 
     def forward(self, x, ZPI, node_embeddings, hidden_state = None):
         assert x.shape[2] == self.node_num and x.shape[3] == self.input_dim
@@ -167,11 +170,12 @@ class GCN(nn.Module):
       self.window_len = args.window_len
       self.link_len = args.link_len
       self.horizon = args.horizon
+      num_persis_diagrams = 2*len(args.scaleParameter)
       dropout=0.5
 
       self.ln1 = torch.nn.LayerNorm(self.input_dim)
       self.node_embeddings = nn.Parameter(torch.randn(self.num_nodes, self.embed_dim), requires_grad=True)
-      self.encoder = GCN_GRU(self.num_nodes, self.input_dim, self.hidden_dim, self.link_len, self.embed_dim, self.num_layers, self.window_len)
+      self.encoder = GCN_GRU(self.num_nodes, self.input_dim, self.hidden_dim, self.link_len, self.embed_dim, self.num_layers, self.window_len, num_persis_diagrams)
         #predictor
 #      self.end_conv = nn.Conv2d(1, self.horizon * self.output_dim, kernel_size=(self.num_nodes, self.hidden_dim), bias=True)
 

@@ -139,9 +139,9 @@ args.static_features = [
 ]
 
 args.clc = 'vec'
-args.scaleParameter =  [0.1, 0.1]
-args.sizeBorder = [6, 6]
-args.maxDimHoles = [1, 1]
+args.scaleParameter =  [0.1]
+args.sizeBorder = [6]
+args.maxDimHoles = [1]
 args.ZPI_dir = '/home/joel.chacon/tmp/ZIGZAG_from_files/data/datasets_grl'
 
 
