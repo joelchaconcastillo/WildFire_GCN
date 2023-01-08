@@ -139,11 +139,10 @@ args.static_features = [
 ]
 
 args.clc = 'vec'
-args.alpha = 1
-args.scaleParameter =  1.0
-args.sizeBorder = 1#12
-args.maxDimHoles = 1
-args.ZPIPath = '/home/joel.chacon/tmp/ZIZAG/WildFire_GCN/data/datasets_grl'
+args.scaleParameter =  [0.1, 0.1]
+args.sizeBorder = [6, 6]
+args.maxDimHoles = [1, 1]
+args.ZPI_dir = '/home/joel.chacon/tmp/ZIGZAG_from_files/data/datasets_grl'
 
 
 init_seed(args.seed)

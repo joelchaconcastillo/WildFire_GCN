@@ -39,22 +39,22 @@ class FireDSDataModuleGCN:
                                           train_val_test='train',
                                           dynamic_features=args.dynamic_features,
                                           static_features=args.static_features,
-                                          nan_fill=args.nan_fill, clc=args.clc, ZPIPath=args.ZPIPath)
+                                          nan_fill=args.nan_fill, clc=args.clc, args=args)
         self.data_val = FireDataset_Graph_npy(dataset_root=args.dataset_root, 
                                         train_val_test='val',
                                         dynamic_features=args.dynamic_features,
                                         static_features=args.static_features,
-                                        nan_fill=args.nan_fill, clc=args.clc, ZPIPath=args.ZPIPath)
+                                        nan_fill=args.nan_fill, clc=args.clc, args=args)
         self.data_test1 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                          train_val_test='test1',
                                          dynamic_features=args.dynamic_features,
                                          static_features=args.static_features,
-                                         nan_fill=args.nan_fill, clc=args.clc, ZPIPath=args.ZPIPath)
+                                         nan_fill=args.nan_fill, clc=args.clc, args=args)
         self.data_test2 = FireDataset_Graph_npy(dataset_root=args.dataset_root,
                                          train_val_test='test2',
                                          dynamic_features=args.dynamic_features,
                                          static_features=args.static_features,
-                                         nan_fill=args.nan_fill, clc=args.clc, ZPIPath=args.ZPIPath)
+                                         nan_fill=args.nan_fill, clc=args.clc, args=args)
 
     def train_dataloader(self):
         return DataLoader(
@@ -105,7 +105,7 @@ class FireDataset_Graph_npy(Dataset):
     def __init__(self, dataset_root: str = None, access_mode: str = 'spatiotemporal',   
                  problem_class: str = 'classification',
                  train_val_test: str = 'train', dynamic_features: list = None, static_features: list = None,
-                 categorical_features: list = None, nan_fill: float = -1., neg_pos_ratio: int = 2, clc: str = None, ZPIPath = None):
+                 categorical_features: list = None, nan_fill: float = -1., neg_pos_ratio: int = 2, clc: str = None, args = None):
         """
         @param dataset_root: str where the dataset resides. It must contain also the minmax_clc.json
                 and the variable_dict.json
@@ -132,13 +132,12 @@ class FireDataset_Graph_npy(Dataset):
 
         with open(variable_file) as f:
             self.variable_dict = json.load(f)
-
+        self.args = args
         self.static_features = static_features
         self.dynamic_features = dynamic_features
         self.nan_fill = nan_fill
         self.clc = clc
         self.access_mode = 'spatiotemporal'
-        self.ZPIPath = ZPIPath
         dataset_path = dataset_root / 'npy' / self.access_mode
         self.positives_list = list((dataset_path / 'positives').glob('*dynamic.npy'))
         self.positives_list = list(zip(self.positives_list, [1] * (len(self.positives_list))))
@@ -280,13 +279,17 @@ class FireDataset_Graph_npy(Dataset):
             clc = 0
         _, W, H = clc.shape
         data = self.combine_dynamic_static_inputs(dynamic, static, clc)
-        
 
-      #  prefix_path = self.ZPIPath+'/'+('/'.join(path.split('/')[-4:]))
-      #  prefix_path = '.'.join(prefix_path.split('.')[:-1]).replace('dynamic', 'zpi')
-      #  ZPI = load(prefix_path+"_zpi")
-      #  ZPI = np.concatenate(ZPI['zpi'], axis=0)
-        ZPI = np.zeros((2,50,50))
+        ZPI = []
+        path='/'.join(str(path).split('/')[-4:])
+        path = self.args.ZPI_dir + "/" + path
+        for i in range(len(self.args.scaleParameter)):
+           postfix = "zpi_"+"scaleParameter_"+str(self.args.scaleParameter[i])+"_maxDimHoles_"+str(self.args.maxDimHoles[i])+"_sizeBorder_"+str(self.args.sizeBorder[i])+".npz"
+           ZPIH0H1 = np.load(path.replace('dynamic.npy', postfix))
+           ZPI.append(ZPIH0H1['zpi'])
+        ZPI = np.concatenate(ZPI, axis=0)
+
+#        ZPI = np.zeros((2,50,50))
         return data, labels, ZPI
 
 def get_dataloaders(args):
