@@ -51,16 +51,16 @@ class CNN(nn.Module):
 class SpatioTemporalGCN(nn.Module):
     def __init__(self, dim_in, hidden_dim, window_len, link_len, embed_dim):
         super(SpatioTemporalGCN, self).__init__()
-        subhidden_num = 3  #number of sub-hidden layers (adaptive adj matrix, time matrix, spatial matrix)
+        subhidden_num = 2  #number of sub-hidden layers (adaptive adj matrix, time matrix, spatial matrix)
         self.link_len = link_len
         self.hidden_dim = hidden_dim
-        self.weights_pool = nn.Parameter(torch.FloatTensor(embed_dim, link_len, dim_in, int(hidden_dim/subhidden_num)))
+ #       self.weights_pool = nn.Parameter(torch.FloatTensor(embed_dim, link_len, dim_in, int(hidden_dim/subhidden_num)))
         self.weights_pool_adj = nn.Parameter(torch.FloatTensor(embed_dim, link_len, dim_in, int(hidden_dim/subhidden_num)))
         if (dim_in-25)%16 ==0: ##differentiate initial to inner cells
            self.weights_window = nn.Parameter(torch.FloatTensor(embed_dim, 1, int(hidden_dim / subhidden_num)))
         else:
            self.weights_window = nn.Parameter(torch.FloatTensor(embed_dim, int(dim_in/subhidden_num), int(hidden_dim / subhidden_num)))
-        self.bias_pool = nn.Parameter(torch.FloatTensor(embed_dim, hidden_dim))
+#        self.bias_pool = nn.Parameter(torch.FloatTensor(embed_dim, hidden_dim))
         self.bias_pool_adj = nn.Parameter(torch.FloatTensor(embed_dim, hidden_dim))
         self.T = nn.Parameter(torch.FloatTensor(window_len))
 #        self.cnn = CNN(int(hidden_dim/ 2))
@@ -75,17 +75,17 @@ class SpatioTemporalGCN(nn.Module):
         #S1: Graph construction, a suggestion is to pre-process graph, however since wildfire requires ~1TB for pre-processing graph we create it from fly
          
         #S2: Laplacian construction
-        supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
-        #S3: Laplacianlink
-        supports = Laplacian_link(supports, self.link_len)
+#        supports = F.softmax(F.relu(torch.mm(node_embeddings, node_embeddings.transpose(0, 1))), dim=1)
+#        #S3: Laplacianlink
+#        supports = Laplacian_link(supports, self.link_len)
 
         #S4: spatial graph convolution with self-adaptive adjacency matrix
-        weights = torch.einsum('nd,dkio->nkio', node_embeddings, self.weights_pool) #N, link_len, dim_in, hidden_dim/2 : on E
-        bias = torch.matmul(node_embeddings, self.bias_pool) #N, hidden_dim : on E
-        x_g = torch.einsum("knm,bmc->bknc", supports, x) #B, link_len, N, dim_in : on N
-        x_g = x_g.permute(0, 2, 1, 3) #B, N, link_len, dim_in  : on 
-        x_gconv = torch.einsum('bnki,nkio->bno', x_g, weights) #B, N, hidden_dim/2
-        x_gconv = F.normalize(x_gconv, dim=-1)
+#        weights = torch.einsum('nd,dkio->nkio', node_embeddings, self.weights_pool) #N, link_len, dim_in, hidden_dim/2 : on E
+#        bias = torch.matmul(node_embeddings, self.bias_pool) #N, hidden_dim : on E
+#        x_g = torch.einsum("knm,bmc->bknc", supports, x) #B, link_len, N, dim_in : on N
+#        x_g = x_g.permute(0, 2, 1, 3) #B, N, link_len, dim_in  : on 
+#        x_gconv = torch.einsum('bnki,nkio->bno', x_g, weights) #B, N, hidden_dim/2
+#        x_gconv = F.normalize(x_gconv, dim=-1)
 
         #S5: spatial graph convolution with input adjacency matrix
         weights_adj = torch.einsum('nd,dkio->nkio', node_embeddings, self.weights_pool_adj) #N, link_len, dim_in, hidden_dim/2 : on E
@@ -103,14 +103,14 @@ class SpatioTemporalGCN(nn.Module):
         x_wconv = F.normalize(x_wconv, dim=-1)
 
 #        x_tgconv =  self.ln1(x_gconv) #x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
-        x_tgconv =  (x_gconv) #x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
+#        x_tgconv =  (x_gconv) #x_gconv # torch.einsum('bno,bo->bno',x_gconv, graph_embed) #B, N, H/2
 #        x_twconv = self.ln2(x_wconv) #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
         x_twconv =  (x_wconv) #torch.einsum('bno,bo->bno',x_wconv, graph_embed) #B, N, H/2
         x_taconv = (x_aconv)
 #        #S7: combination operation
-        x_gwconv = torch.cat([x_tgconv, x_twconv, x_taconv], dim = -1) + bias + bias_adj #B, N, hidden_dim
+#        x_gwconv = torch.cat([x_tgconv, x_twconv, x_taconv], dim = -1) + bias + bias_adj #B, N, hidden_dim
 #        x_gwconv = torch.cat([x_tgconv, x_twconv], dim = -1) + bias #B, N, hidden_dim
-#        x_gwconv = torch.cat([x_twconv, x_taconv], dim = -1) + bias_adj #B, N, hidden_dim
+        x_gwconv = torch.cat([x_twconv, x_taconv], dim = -1) + bias_adj #B, N, hidden_dim
         return x_gwconv
 
 class GCN_GRU_Cell(nn.Module):
@@ -238,8 +238,8 @@ class GCN(nn.Module):
                   if nr<0 or nr>=self.patch_height or nc <0 or nc>=self.patch_width:
                       continue
                   id_node_next = nr*self.patch_width + nc
-              self.adj[id_node, id_node_next] +=1
-              self.adj[id_node_next, id_node] +=1
+                  self.adj[id_node, id_node_next] +=1
+                  self.adj[id_node_next, id_node] +=1
 #      self.supports_adj = torch.from_numpy(cheb_polynomial(scaled_Laplacian(self.adj), self.link_len)).float()
       support = torch.from_numpy(self.adj).float()
       support /= torch.sum(support, dim=1) #normalize by rows..
