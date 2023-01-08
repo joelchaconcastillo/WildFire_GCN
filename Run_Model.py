@@ -175,6 +175,10 @@ else:
 
 optimizer = torch.optim.Adam(params=model.parameters(), lr=args.lr_init, eps=1.0e-8,
                              weight_decay=args.weight_decay, amsgrad=False)
+
+for var_name in optimizer.state_dict():
+    print(var_name, "\t", optimizer.state_dict()[var_name])
+
 #learning rate decay
 lr_scheduler = None
 if args.lr_decay:

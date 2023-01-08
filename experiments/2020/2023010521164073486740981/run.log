@@ -1,0 +1,955 @@
+2023-01-05 21:16: log dir: /home/joel.chacon/tmp/convLSTM/WildFire_GCN/experiments/2020/2023010521164073486740981
+2023-01-05 21:16: Experiment log path in: /home/joel.chacon/tmp/convLSTM/WildFire_GCN/experiments/2020/2023010521164073486740981
+2023-01-05 21:16: Argument: Namespace(batch_size=256, clc='vec', cuda=True, dataset='2020', dataset_root='/home/joel.chacon/tmp/datasets_grl/', debug=False, default_graph=True, device='cpu', dynamic_features=['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh'], early_stop=True, early_stop_patience=5, embed_dim=32, epochs=30, grad_norm=False, horizon=1, input_dim=25, lag=10, link_len=2, log_dir='/home/joel.chacon/tmp/convLSTM/WildFire_GCN/experiments/2020/2023010521164073486740981', log_step=1, loss_func='nllloss', lr_decay=True, lr_decay_rate=0.1, lr_decay_step='15', lr_init=0.0001, max_grad_norm=5, minbatch_size=64, mode='train', model='fire_GCN', nan_fill=-1.0, num_layers=1, num_nodes=625, num_workers=12, output_dim=2, patch_height=25, patch_width=25, persistent_workers=True, pin_memory=True, plot=False, positive_weight=0.5, prefetch_factor=2, real_value=True, rnn_units=32, seed=10000, static_features=['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density'], teacher_forcing=False, weight_decay=0.01, window_len=10)
+2023-01-05 21:16: Argument batch_size: 256
+2023-01-05 21:16: Argument clc: 'vec'
+2023-01-05 21:16: Argument cuda: True
+2023-01-05 21:16: Argument dataset: '2020'
+2023-01-05 21:16: Argument dataset_root: '/home/joel.chacon/tmp/datasets_grl/'
+2023-01-05 21:16: Argument debug: False
+2023-01-05 21:16: Argument default_graph: True
+2023-01-05 21:16: Argument device: 'cpu'
+2023-01-05 21:16: Argument dynamic_features: ['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh']
+2023-01-05 21:16: Argument early_stop: True
+2023-01-05 21:16: Argument early_stop_patience: 5
+2023-01-05 21:16: Argument embed_dim: 32
+2023-01-05 21:16: Argument epochs: 30
+2023-01-05 21:16: Argument grad_norm: False
+2023-01-05 21:16: Argument horizon: 1
+2023-01-05 21:16: Argument input_dim: 25
+2023-01-05 21:16: Argument lag: 10
+2023-01-05 21:16: Argument link_len: 2
+2023-01-05 21:16: Argument log_dir: '/home/joel.chacon/tmp/convLSTM/WildFire_GCN/experiments/2020/2023010521164073486740981'
+2023-01-05 21:16: Argument log_step: 1
+2023-01-05 21:16: Argument loss_func: 'nllloss'
+2023-01-05 21:16: Argument lr_decay: True
+2023-01-05 21:16: Argument lr_decay_rate: 0.1
+2023-01-05 21:16: Argument lr_decay_step: '15'
+2023-01-05 21:16: Argument lr_init: 0.0001
+2023-01-05 21:16: Argument max_grad_norm: 5
+2023-01-05 21:16: Argument minbatch_size: 64
+2023-01-05 21:16: Argument mode: 'train'
+2023-01-05 21:16: Argument model: 'fire_GCN'
+2023-01-05 21:16: Argument nan_fill: -1.0
+2023-01-05 21:16: Argument num_layers: 1
+2023-01-05 21:16: Argument num_nodes: 625
+2023-01-05 21:16: Argument num_workers: 12
+2023-01-05 21:16: Argument output_dim: 2
+2023-01-05 21:16: Argument patch_height: 25
+2023-01-05 21:16: Argument patch_width: 25
+2023-01-05 21:16: Argument persistent_workers: True
+2023-01-05 21:16: Argument pin_memory: True
+2023-01-05 21:16: Argument plot: False
+2023-01-05 21:16: Argument positive_weight: 0.5
+2023-01-05 21:16: Argument prefetch_factor: 2
+2023-01-05 21:16: Argument real_value: True
+2023-01-05 21:16: Argument rnn_units: 32
+2023-01-05 21:16: Argument seed: 10000
+2023-01-05 21:16: Argument static_features: ['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density']
+2023-01-05 21:16: Argument teacher_forcing: False
+2023-01-05 21:16: Argument weight_decay: 0.01
+2023-01-05 21:16: Argument window_len: 10
+2023-01-05 21:16: Train Epoch 1: 3/58 Loss: 0.721994
+2023-01-05 21:16: Train Epoch 1: 7/58 Loss: 0.527394
+2023-01-05 21:16: Train Epoch 1: 11/58 Loss: 0.477658
+2023-01-05 21:16: Train Epoch 1: 15/58 Loss: 0.434816
+2023-01-05 21:16: Train Epoch 1: 19/58 Loss: 0.436385
+2023-01-05 21:17: Train Epoch 1: 23/58 Loss: 0.396889
+2023-01-05 21:17: Train Epoch 1: 27/58 Loss: 0.370141
+2023-01-05 21:17: Train Epoch 1: 31/58 Loss: 0.370691
+2023-01-05 21:17: Train Epoch 1: 35/58 Loss: 0.318008
+2023-01-05 21:17: Train Epoch 1: 39/58 Loss: 0.380604
+2023-01-05 21:17: Train Epoch 1: 43/58 Loss: 0.337965
+2023-01-05 21:17: Train Epoch 1: 47/58 Loss: 0.379843
+2023-01-05 21:17: Train Epoch 1: 51/58 Loss: 0.362071
+2023-01-05 21:17: Train Epoch 1: 55/58 Loss: 0.330695
+2023-01-05 21:17: Train Epoch 1: 57/58 Loss: 0.126461
+2023-01-05 21:17: **********Train Epoch 1: averaged Loss: 0.398108 
+2023-01-05 21:17: 
+Epoch time elapsed: 46.6373291015625
+
+2023-01-05 21:17: 
+ metrics validation: {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1228, 'AUC': 0.8228794204713047, 'AUCPR': 0.6923622305742317, 'TP': 0, 'FP': 0, 'TN': 2456, 'FN': 1228} 
+
+2023-01-05 21:17: **********Val Epoch 1: average Loss: 0.287728
+2023-01-05 21:17: *********************************Current best model saved!
+2023-01-05 21:18: 
+ Testing metrics {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1228, 'AUC': 0.8276177001878005, 'AUCPR': 0.7077764201645871, 'TP': 0, 'FP': 0, 'TN': 2456, 'FN': 1228} 
+
+2023-01-05 21:18: 
+ Testing metrics {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1228, 'AUC': 0.8284631998747998, 'AUCPR': 0.7098826143201639, 'TP': 0, 'FP': 0, 'TN': 2456, 'FN': 1228} 
+
+2023-01-05 21:18: Train Epoch 2: 3/58 Loss: 0.333614
+2023-01-05 21:18: Train Epoch 2: 7/58 Loss: 0.324158
+2023-01-05 21:18: Train Epoch 2: 11/58 Loss: 0.331398
+2023-01-05 21:18: Train Epoch 2: 15/58 Loss: 0.351679
+2023-01-05 21:18: Train Epoch 2: 19/58 Loss: 0.304382
+2023-01-05 21:18: Train Epoch 2: 23/58 Loss: 0.338382
+2023-01-05 21:19: Train Epoch 2: 27/58 Loss: 0.315454
+2023-01-05 21:19: Train Epoch 2: 31/58 Loss: 0.320298
+2023-01-05 21:19: Train Epoch 2: 35/58 Loss: 0.317913
+2023-01-05 21:19: Train Epoch 2: 39/58 Loss: 0.310387
+2023-01-05 21:19: Train Epoch 2: 43/58 Loss: 0.305570
+2023-01-05 21:19: Train Epoch 2: 47/58 Loss: 0.303775
+2023-01-05 21:19: Train Epoch 2: 51/58 Loss: 0.334034
+2023-01-05 21:19: Train Epoch 2: 55/58 Loss: 0.329474
+2023-01-05 21:19: Train Epoch 2: 57/58 Loss: 0.112516
+2023-01-05 21:19: **********Train Epoch 2: averaged Loss: 0.308869 
+2023-01-05 21:19: 
+Epoch time elapsed: 44.529122829437256
+
+2023-01-05 21:19: 
+ metrics validation: {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1228, 'AUC': 0.8430987994567581, 'AUCPR': 0.7349233292849058, 'TP': 0, 'FP': 0, 'TN': 2456, 'FN': 1228} 
+
+2023-01-05 21:19: **********Val Epoch 2: average Loss: 0.254623
+2023-01-05 21:19: *********************************Current best model saved!
+2023-01-05 21:20: 
+ Testing metrics {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1228, 'AUC': 0.8471250358093986, 'AUCPR': 0.7438523390017306, 'TP': 0, 'FP': 0, 'TN': 2456, 'FN': 1228} 
+
+2023-01-05 21:20: 
+ Testing metrics {'precision': 0.0, 'recall': 0.0, 'f1-score': 0.0, 'support': 1228, 'AUC': 0.8472599841908137, 'AUCPR': 0.7452323161587586, 'TP': 0, 'FP': 0, 'TN': 2456, 'FN': 1228} 
+
+2023-01-05 21:20: Train Epoch 3: 3/58 Loss: 0.274502
+2023-01-05 21:20: Train Epoch 3: 7/58 Loss: 0.325561
+2023-01-05 21:20: Train Epoch 3: 11/58 Loss: 0.293992
+2023-01-05 21:20: Train Epoch 3: 15/58 Loss: 0.324666
+2023-01-05 21:20: Train Epoch 3: 19/58 Loss: 0.305155
+2023-01-05 21:20: Train Epoch 3: 23/58 Loss: 0.279219
+2023-01-05 21:21: Train Epoch 3: 27/58 Loss: 0.300768
+2023-01-05 21:21: Train Epoch 3: 31/58 Loss: 0.256639
+2023-01-05 21:21: Train Epoch 3: 35/58 Loss: 0.279217
+2023-01-05 21:21: Train Epoch 3: 39/58 Loss: 0.283881
+2023-01-05 21:21: Train Epoch 3: 43/58 Loss: 0.282071
+2023-01-05 21:21: Train Epoch 3: 47/58 Loss: 0.286743
+2023-01-05 21:21: Train Epoch 3: 51/58 Loss: 0.290127
+2023-01-05 21:21: Train Epoch 3: 55/58 Loss: 0.285826
+2023-01-05 21:21: Train Epoch 3: 57/58 Loss: 0.103352
+2023-01-05 21:21: **********Train Epoch 3: averaged Loss: 0.278115 
+2023-01-05 21:21: 
+Epoch time elapsed: 43.90287494659424
+
+2023-01-05 21:21: 
+ metrics validation: {'precision': 0.7518796992481203, 'recall': 0.6514657980456026, 'f1-score': 0.6980802792321116, 'support': 1228, 'AUC': 0.8489821510042547, 'AUCPR': 0.7422597677513176, 'TP': 800, 'FP': 264, 'TN': 2192, 'FN': 428} 
+
+2023-01-05 21:21: **********Val Epoch 3: average Loss: 0.225486
+2023-01-05 21:21: *********************************Current best model saved!
+2023-01-05 21:22: 
+ Testing metrics {'precision': 0.7561436672967864, 'recall': 0.6514657980456026, 'f1-score': 0.6999125109361329, 'support': 1228, 'AUC': 0.8520809902492336, 'AUCPR': 0.7489277250133599, 'TP': 800, 'FP': 258, 'TN': 2198, 'FN': 428} 
+
+2023-01-05 21:22: 
+ Testing metrics {'precision': 0.7540056550424128, 'recall': 0.6514657980456026, 'f1-score': 0.6989951944080384, 'support': 1228, 'AUC': 0.8523245273159397, 'AUCPR': 0.751694867691929, 'TP': 800, 'FP': 261, 'TN': 2195, 'FN': 428} 
+
+2023-01-05 21:22: Train Epoch 4: 3/58 Loss: 0.255579
+2023-01-05 21:22: Train Epoch 4: 7/58 Loss: 0.304865
+2023-01-05 21:22: Train Epoch 4: 11/58 Loss: 0.247285
+2023-01-05 21:22: Train Epoch 4: 15/58 Loss: 0.296174
+2023-01-05 21:22: Train Epoch 4: 19/58 Loss: 0.303268
+2023-01-05 21:23: Train Epoch 4: 23/58 Loss: 0.276457
+2023-01-05 21:23: Train Epoch 4: 27/58 Loss: 0.274588
+2023-01-05 21:23: Train Epoch 4: 31/58 Loss: 0.281950
+2023-01-05 21:23: Train Epoch 4: 35/58 Loss: 0.314648
+2023-01-05 21:23: Train Epoch 4: 39/58 Loss: 0.265195
+2023-01-05 21:23: Train Epoch 4: 43/58 Loss: 0.275051
+2023-01-05 21:23: Train Epoch 4: 47/58 Loss: 0.286061
+2023-01-05 21:23: Train Epoch 4: 51/58 Loss: 0.240719
+2023-01-05 21:23: Train Epoch 4: 55/58 Loss: 0.276827
+2023-01-05 21:23: Train Epoch 4: 57/58 Loss: 0.099198
+2023-01-05 21:23: **********Train Epoch 4: averaged Loss: 0.266524 
+2023-01-05 21:23: 
+Epoch time elapsed: 45.54730224609375
+
+2023-01-05 21:23: 
+ metrics validation: {'precision': 0.7495378927911276, 'recall': 0.6604234527687296, 'f1-score': 0.7021645021645021, 'support': 1228, 'AUC': 0.8534765620855393, 'AUCPR': 0.7477049774567249, 'TP': 811, 'FP': 271, 'TN': 2185, 'FN': 417} 
+
+2023-01-05 21:23: **********Val Epoch 4: average Loss: 0.212584
+2023-01-05 21:23: *********************************Current best model saved!
+2023-01-05 21:24: 
+ Testing metrics {'precision': 0.7530176415970288, 'recall': 0.6604234527687296, 'f1-score': 0.7036876355748372, 'support': 1228, 'AUC': 0.8563310353425501, 'AUCPR': 0.75304883528264, 'TP': 811, 'FP': 266, 'TN': 2190, 'FN': 417} 
+
+2023-01-05 21:24: 
+ Testing metrics {'precision': 0.7467771639042358, 'recall': 0.6604234527687296, 'f1-score': 0.7009507346585998, 'support': 1228, 'AUC': 0.8561191630680434, 'AUCPR': 0.7551040136085488, 'TP': 811, 'FP': 275, 'TN': 2181, 'FN': 417} 
+
+2023-01-05 21:24: Train Epoch 5: 3/58 Loss: 0.239620
+2023-01-05 21:24: Train Epoch 5: 7/58 Loss: 0.269706
+2023-01-05 21:24: Train Epoch 5: 11/58 Loss: 0.253152
+2023-01-05 21:24: Train Epoch 5: 15/58 Loss: 0.257621
+2023-01-05 21:24: Train Epoch 5: 19/58 Loss: 0.264328
+2023-01-05 21:25: Train Epoch 5: 23/58 Loss: 0.239749
+2023-01-05 21:25: Train Epoch 5: 27/58 Loss: 0.250017
+2023-01-05 21:25: Train Epoch 5: 31/58 Loss: 0.255682
+2023-01-05 21:25: Train Epoch 5: 35/58 Loss: 0.275997
+2023-01-05 21:25: Train Epoch 5: 39/58 Loss: 0.271626
+2023-01-05 21:25: Train Epoch 5: 43/58 Loss: 0.268901
+2023-01-05 21:25: Train Epoch 5: 47/58 Loss: 0.259530
+2023-01-05 21:25: Train Epoch 5: 51/58 Loss: 0.266702
+2023-01-05 21:25: Train Epoch 5: 55/58 Loss: 0.236575
+2023-01-05 21:25: Train Epoch 5: 57/58 Loss: 0.093904
+2023-01-05 21:25: **********Train Epoch 5: averaged Loss: 0.246874 
+2023-01-05 21:25: 
+Epoch time elapsed: 43.32235074043274
+
+2023-01-05 21:25: 
+ metrics validation: {'precision': 0.75809199318569, 'recall': 0.7247557003257329, 'f1-score': 0.7410491257285594, 'support': 1228, 'AUC': 0.8629789838618976, 'AUCPR': 0.7587764641430425, 'TP': 890, 'FP': 284, 'TN': 2172, 'FN': 338} 
+
+2023-01-05 21:25: **********Val Epoch 5: average Loss: 0.202052
+2023-01-05 21:25: *********************************Current best model saved!
+2023-01-05 21:26: 
+ Testing metrics {'precision': 0.7632933104631218, 'recall': 0.7247557003257329, 'f1-score': 0.7435254803675856, 'support': 1228, 'AUC': 0.8652681328183854, 'AUCPR': 0.7615239036564163, 'TP': 890, 'FP': 276, 'TN': 2180, 'FN': 338} 
+
+2023-01-05 21:26: 
+ Testing metrics {'precision': 0.7548770144189991, 'recall': 0.7247557003257329, 'f1-score': 0.7395097631906938, 'support': 1228, 'AUC': 0.8647359653683329, 'AUCPR': 0.7626617963073089, 'TP': 890, 'FP': 289, 'TN': 2167, 'FN': 338} 
+
+2023-01-05 21:26: Train Epoch 6: 3/58 Loss: 0.250337
+2023-01-05 21:26: Train Epoch 6: 7/58 Loss: 0.243476
+2023-01-05 21:26: Train Epoch 6: 11/58 Loss: 0.306070
+2023-01-05 21:26: Train Epoch 6: 15/58 Loss: 0.275267
+2023-01-05 21:26: Train Epoch 6: 19/58 Loss: 0.270612
+2023-01-05 21:26: Train Epoch 6: 23/58 Loss: 0.249121
+2023-01-05 21:26: Train Epoch 6: 27/58 Loss: 0.240749
+2023-01-05 21:27: Train Epoch 6: 31/58 Loss: 0.229273
+2023-01-05 21:27: Train Epoch 6: 35/58 Loss: 0.271736
+2023-01-05 21:27: Train Epoch 6: 39/58 Loss: 0.257314
+2023-01-05 21:27: Train Epoch 6: 43/58 Loss: 0.246368
+2023-01-05 21:27: Train Epoch 6: 47/58 Loss: 0.234732
+2023-01-05 21:27: Train Epoch 6: 51/58 Loss: 0.232005
+2023-01-05 21:27: Train Epoch 6: 55/58 Loss: 0.260300
+2023-01-05 21:27: Train Epoch 6: 57/58 Loss: 0.084961
+2023-01-05 21:27: **********Train Epoch 6: averaged Loss: 0.243488 
+2023-01-05 21:27: 
+Epoch time elapsed: 41.59213900566101
+
+2023-01-05 21:27: 
+ metrics validation: {'precision': 0.7541633624107851, 'recall': 0.7744299674267101, 'f1-score': 0.7641623141824025, 'support': 1228, 'AUC': 0.8660493082154717, 'AUCPR': 0.7644713256415717, 'TP': 951, 'FP': 310, 'TN': 2146, 'FN': 277} 
+
+2023-01-05 21:27: **********Val Epoch 6: average Loss: 0.197406
+2023-01-05 21:27: *********************************Current best model saved!
+2023-01-05 21:28: 
+ Testing metrics {'precision': 0.7614091273018415, 'recall': 0.7744299674267101, 'f1-score': 0.7678643520387566, 'support': 1228, 'AUC': 0.8685367351377733, 'AUCPR': 0.7670061247051019, 'TP': 951, 'FP': 298, 'TN': 2158, 'FN': 277} 
+
+2023-01-05 21:28: 
+ Testing metrics {'precision': 0.7565632458233891, 'recall': 0.7744299674267101, 'f1-score': 0.7653923541247486, 'support': 1228, 'AUC': 0.8673646404736388, 'AUCPR': 0.7663544641651177, 'TP': 951, 'FP': 306, 'TN': 2150, 'FN': 277} 
+
+2023-01-05 21:28: Train Epoch 7: 3/58 Loss: 0.249187
+2023-01-05 21:28: Train Epoch 7: 7/58 Loss: 0.260895
+2023-01-05 21:28: Train Epoch 7: 11/58 Loss: 0.237406
+2023-01-05 21:28: Train Epoch 7: 15/58 Loss: 0.201390
+2023-01-05 21:28: Train Epoch 7: 19/58 Loss: 0.251749
+2023-01-05 21:28: Train Epoch 7: 23/58 Loss: 0.248169
+2023-01-05 21:28: Train Epoch 7: 27/58 Loss: 0.230402
+2023-01-05 21:28: Train Epoch 7: 31/58 Loss: 0.232909
+2023-01-05 21:28: Train Epoch 7: 35/58 Loss: 0.220916
+2023-01-05 21:29: Train Epoch 7: 39/58 Loss: 0.240949
+2023-01-05 21:29: Train Epoch 7: 43/58 Loss: 0.262116
+2023-01-05 21:29: Train Epoch 7: 47/58 Loss: 0.245671
+2023-01-05 21:29: Train Epoch 7: 51/58 Loss: 0.249572
+2023-01-05 21:29: Train Epoch 7: 55/58 Loss: 0.239105
+2023-01-05 21:29: Train Epoch 7: 57/58 Loss: 0.114401
+2023-01-05 21:29: **********Train Epoch 7: averaged Loss: 0.232322 
+2023-01-05 21:29: 
+Epoch time elapsed: 47.42255115509033
+
+2023-01-05 21:29: 
+ metrics validation: {'precision': 0.734375, 'recall': 0.8037459283387622, 'f1-score': 0.7674961119751167, 'support': 1228, 'AUC': 0.869518177911702, 'AUCPR': 0.7686353980300494, 'TP': 987, 'FP': 357, 'TN': 2099, 'FN': 241} 
+
+2023-01-05 21:29: **********Val Epoch 7: average Loss: 0.196108
+2023-01-05 21:29: *********************************Current best model saved!
+2023-01-05 21:30: 
+ Testing metrics {'precision': 0.7432228915662651, 'recall': 0.8037459283387622, 'f1-score': 0.7723004694835681, 'support': 1228, 'AUC': 0.8722277557321562, 'AUCPR': 0.7721448506156209, 'TP': 987, 'FP': 341, 'TN': 2115, 'FN': 241} 
+
+2023-01-05 21:30: 
+ Testing metrics {'precision': 0.7360178970917226, 'recall': 0.8037459283387622, 'f1-score': 0.7683923705722072, 'support': 1228, 'AUC': 0.870917562785812, 'AUCPR': 0.770520276386304, 'TP': 987, 'FP': 354, 'TN': 2102, 'FN': 241} 
+
+2023-01-05 21:30: Train Epoch 8: 3/58 Loss: 0.242273
+2023-01-05 21:30: Train Epoch 8: 7/58 Loss: 0.232356
+2023-01-05 21:30: Train Epoch 8: 11/58 Loss: 0.231199
+2023-01-05 21:30: Train Epoch 8: 15/58 Loss: 0.259493
+2023-01-05 21:30: Train Epoch 8: 19/58 Loss: 0.216353
+2023-01-05 21:30: Train Epoch 8: 23/58 Loss: 0.235227
+2023-01-05 21:30: Train Epoch 8: 27/58 Loss: 0.259833
+2023-01-05 21:30: Train Epoch 8: 31/58 Loss: 0.247467
+2023-01-05 21:31: Train Epoch 8: 35/58 Loss: 0.247486
+2023-01-05 21:31: Train Epoch 8: 39/58 Loss: 0.242681
+2023-01-05 21:31: Train Epoch 8: 43/58 Loss: 0.250146
+2023-01-05 21:31: Train Epoch 8: 47/58 Loss: 0.226966
+2023-01-05 21:31: Train Epoch 8: 51/58 Loss: 0.229330
+2023-01-05 21:31: Train Epoch 8: 55/58 Loss: 0.245863
+2023-01-05 21:31: Train Epoch 8: 57/58 Loss: 0.083917
+2023-01-05 21:31: **********Train Epoch 8: averaged Loss: 0.230039 
+2023-01-05 21:31: 
+Epoch time elapsed: 45.78126120567322
+
+2023-01-05 21:31: 
+ metrics validation: {'precision': 0.7818853974121996, 'recall': 0.6889250814332247, 'f1-score': 0.7324675324675325, 'support': 1228, 'AUC': 0.875375003978822, 'AUCPR': 0.7744999947234867, 'TP': 846, 'FP': 236, 'TN': 2220, 'FN': 382} 
+
+2023-01-05 21:31: **********Val Epoch 8: average Loss: 0.194598
+2023-01-05 21:31: *********************************Current best model saved!
+2023-01-05 21:32: 
+ Testing metrics {'precision': 0.7884436160298229, 'recall': 0.6889250814332247, 'f1-score': 0.7353324641460236, 'support': 1228, 'AUC': 0.8777722442678437, 'AUCPR': 0.7758574116318719, 'TP': 846, 'FP': 227, 'TN': 2229, 'FN': 382} 
+
+2023-01-05 21:32: 
+ Testing metrics {'precision': 0.7804428044280443, 'recall': 0.6889250814332247, 'f1-score': 0.7318339100346021, 'support': 1228, 'AUC': 0.8765986575454383, 'AUCPR': 0.7738931059933077, 'TP': 846, 'FP': 238, 'TN': 2218, 'FN': 382} 
+
+2023-01-05 21:32: Train Epoch 9: 3/58 Loss: 0.238993
+2023-01-05 21:32: Train Epoch 9: 7/58 Loss: 0.208509
+2023-01-05 21:32: Train Epoch 9: 11/58 Loss: 0.227692
+2023-01-05 21:32: Train Epoch 9: 15/58 Loss: 0.280227
+2023-01-05 21:32: Train Epoch 9: 19/58 Loss: 0.256049
+2023-01-05 21:32: Train Epoch 9: 23/58 Loss: 0.244563
+2023-01-05 21:32: Train Epoch 9: 27/58 Loss: 0.240391
+2023-01-05 21:32: Train Epoch 9: 31/58 Loss: 0.227056
+2023-01-05 21:32: Train Epoch 9: 35/58 Loss: 0.285132
+2023-01-05 21:33: Train Epoch 9: 39/58 Loss: 0.233486
+2023-01-05 21:33: Train Epoch 9: 43/58 Loss: 0.212154
+2023-01-05 21:33: Train Epoch 9: 47/58 Loss: 0.251566
+2023-01-05 21:33: Train Epoch 9: 51/58 Loss: 0.183301
+2023-01-05 21:33: Train Epoch 9: 55/58 Loss: 0.254299
+2023-01-05 21:33: Train Epoch 9: 57/58 Loss: 0.076432
+2023-01-05 21:33: **********Train Epoch 9: averaged Loss: 0.227990 
+2023-01-05 21:33: 
+Epoch time elapsed: 42.09745764732361
+
+2023-01-05 21:33: 
+ metrics validation: {'precision': 0.7697841726618705, 'recall': 0.7842019543973942, 'f1-score': 0.7769261799112546, 'support': 1228, 'AUC': 0.8772367611327441, 'AUCPR': 0.7822912242005261, 'TP': 963, 'FP': 288, 'TN': 2168, 'FN': 265} 
+
+2023-01-05 21:33: **********Val Epoch 9: average Loss: 0.190144
+2023-01-05 21:33: *********************************Current best model saved!
+2023-01-05 21:33: 
+ Testing metrics {'precision': 0.7797570850202429, 'recall': 0.7842019543973942, 'f1-score': 0.7819732034104749, 'support': 1228, 'AUC': 0.8792208670649025, 'AUCPR': 0.7833072134923493, 'TP': 963, 'FP': 272, 'TN': 2184, 'FN': 265} 
+
+2023-01-05 21:34: 
+ Testing metrics {'precision': 0.7747385358004827, 'recall': 0.7842019543973942, 'f1-score': 0.7794415216511534, 'support': 1228, 'AUC': 0.8779834534053411, 'AUCPR': 0.7797838286319898, 'TP': 963, 'FP': 280, 'TN': 2176, 'FN': 265} 
+
+2023-01-05 21:34: Train Epoch 10: 3/58 Loss: 0.232225
+2023-01-05 21:34: Train Epoch 10: 7/58 Loss: 0.229728
+2023-01-05 21:34: Train Epoch 10: 11/58 Loss: 0.224360
+2023-01-05 21:34: Train Epoch 10: 15/58 Loss: 0.263976
+2023-01-05 21:34: Train Epoch 10: 19/58 Loss: 0.243602
+2023-01-05 21:34: Train Epoch 10: 23/58 Loss: 0.272967
+2023-01-05 21:34: Train Epoch 10: 27/58 Loss: 0.226702
+2023-01-05 21:34: Train Epoch 10: 31/58 Loss: 0.224387
+2023-01-05 21:34: Train Epoch 10: 35/58 Loss: 0.209843
+2023-01-05 21:34: Train Epoch 10: 39/58 Loss: 0.222161
+2023-01-05 21:34: Train Epoch 10: 43/58 Loss: 0.218447
+2023-01-05 21:34: Train Epoch 10: 47/58 Loss: 0.192245
+2023-01-05 21:34: Train Epoch 10: 51/58 Loss: 0.241102
+2023-01-05 21:35: Train Epoch 10: 55/58 Loss: 0.272457
+2023-01-05 21:35: Train Epoch 10: 57/58 Loss: 0.100230
+2023-01-05 21:35: **********Train Epoch 10: averaged Loss: 0.224962 
+2023-01-05 21:35: 
+Epoch time elapsed: 41.92494463920593
+
+2023-01-05 21:35: 
+ metrics validation: {'precision': 0.7212643678160919, 'recall': 0.8175895765472313, 'f1-score': 0.766412213740458, 'support': 1228, 'AUC': 0.8802918333351017, 'AUCPR': 0.7875093886248522, 'TP': 1004, 'FP': 388, 'TN': 2068, 'FN': 224} 
+
+2023-01-05 21:35: **********Val Epoch 10: average Loss: 0.192934
+2023-01-05 21:35: 
+ Testing metrics {'precision': 0.7797570850202429, 'recall': 0.7842019543973942, 'f1-score': 0.7819732034104749, 'support': 1228, 'AUC': 0.8792208670649025, 'AUCPR': 0.7833072134923493, 'TP': 963, 'FP': 272, 'TN': 2184, 'FN': 265} 
+
+2023-01-05 21:36: 
+ Testing metrics {'precision': 0.7747385358004827, 'recall': 0.7842019543973942, 'f1-score': 0.7794415216511534, 'support': 1228, 'AUC': 0.8779834534053411, 'AUCPR': 0.7797838286319898, 'TP': 963, 'FP': 280, 'TN': 2176, 'FN': 265} 
+
+2023-01-05 21:36: Train Epoch 11: 3/58 Loss: 0.200862
+2023-01-05 21:36: Train Epoch 11: 7/58 Loss: 0.212085
+2023-01-05 21:36: Train Epoch 11: 11/58 Loss: 0.223111
+2023-01-05 21:36: Train Epoch 11: 15/58 Loss: 0.244430
+2023-01-05 21:36: Train Epoch 11: 19/58 Loss: 0.241898
+2023-01-05 21:36: Train Epoch 11: 23/58 Loss: 0.257953
+2023-01-05 21:36: Train Epoch 11: 27/58 Loss: 0.227144
+2023-01-05 21:36: Train Epoch 11: 31/58 Loss: 0.212540
+2023-01-05 21:36: Train Epoch 11: 35/58 Loss: 0.248237
+2023-01-05 21:36: Train Epoch 11: 39/58 Loss: 0.243264
+2023-01-05 21:36: Train Epoch 11: 43/58 Loss: 0.217603
+2023-01-05 21:36: Train Epoch 11: 47/58 Loss: 0.255110
+2023-01-05 21:36: Train Epoch 11: 51/58 Loss: 0.253122
+2023-01-05 21:36: Train Epoch 11: 55/58 Loss: 0.216132
+2023-01-05 21:36: Train Epoch 11: 57/58 Loss: 0.083972
+2023-01-05 21:36: **********Train Epoch 11: averaged Loss: 0.222498 
+2023-01-05 21:36: 
+Epoch time elapsed: 46.396249532699585
+
+2023-01-05 21:37: 
+ metrics validation: {'precision': 0.7918436703483432, 'recall': 0.758957654723127, 'f1-score': 0.775051975051975, 'support': 1228, 'AUC': 0.882986822141349, 'AUCPR': 0.7876631007344138, 'TP': 932, 'FP': 245, 'TN': 2211, 'FN': 296} 
+
+2023-01-05 21:37: **********Val Epoch 11: average Loss: 0.186558
+2023-01-05 21:37: *********************************Current best model saved!
+2023-01-05 21:37: 
+ Testing metrics {'precision': 0.797945205479452, 'recall': 0.758957654723127, 'f1-score': 0.7779632721202004, 'support': 1228, 'AUC': 0.8850926137147345, 'AUCPR': 0.7886886994896066, 'TP': 932, 'FP': 236, 'TN': 2220, 'FN': 296} 
+
+2023-01-05 21:38: 
+ Testing metrics {'precision': 0.7911714770797963, 'recall': 0.758957654723127, 'f1-score': 0.7747298420615129, 'support': 1228, 'AUC': 0.883857521034706, 'AUCPR': 0.7851806854411373, 'TP': 932, 'FP': 246, 'TN': 2210, 'FN': 296} 
+
+2023-01-05 21:38: Train Epoch 12: 3/58 Loss: 0.222154
+2023-01-05 21:38: Train Epoch 12: 7/58 Loss: 0.208469
+2023-01-05 21:38: Train Epoch 12: 11/58 Loss: 0.242919
+2023-01-05 21:38: Train Epoch 12: 15/58 Loss: 0.257734
+2023-01-05 21:38: Train Epoch 12: 19/58 Loss: 0.211924
+2023-01-05 21:38: Train Epoch 12: 23/58 Loss: 0.218430
+2023-01-05 21:38: Train Epoch 12: 27/58 Loss: 0.231844
+2023-01-05 21:38: Train Epoch 12: 31/58 Loss: 0.200012
+2023-01-05 21:38: Train Epoch 12: 35/58 Loss: 0.212297
+2023-01-05 21:38: Train Epoch 12: 39/58 Loss: 0.210156
+2023-01-05 21:38: Train Epoch 12: 43/58 Loss: 0.256059
+2023-01-05 21:38: Train Epoch 12: 47/58 Loss: 0.199949
+2023-01-05 21:38: Train Epoch 12: 51/58 Loss: 0.204800
+2023-01-05 21:38: Train Epoch 12: 55/58 Loss: 0.233888
+2023-01-05 21:38: Train Epoch 12: 57/58 Loss: 0.092954
+2023-01-05 21:38: **********Train Epoch 12: averaged Loss: 0.213573 
+2023-01-05 21:38: 
+Epoch time elapsed: 46.512221574783325
+
+2023-01-05 21:39: 
+ metrics validation: {'precision': 0.7409594095940959, 'recall': 0.8175895765472313, 'f1-score': 0.7773906310491676, 'support': 1228, 'AUC': 0.8861576117518487, 'AUCPR': 0.7959823382424178, 'TP': 1004, 'FP': 351, 'TN': 2105, 'FN': 224} 
+
+2023-01-05 21:39: **********Val Epoch 12: average Loss: 0.186840
+2023-01-05 21:39: 
+ Testing metrics {'precision': 0.797945205479452, 'recall': 0.758957654723127, 'f1-score': 0.7779632721202004, 'support': 1228, 'AUC': 0.8850926137147345, 'AUCPR': 0.7886886994896066, 'TP': 932, 'FP': 236, 'TN': 2220, 'FN': 296} 
+
+2023-01-05 21:40: 
+ Testing metrics {'precision': 0.7911714770797963, 'recall': 0.758957654723127, 'f1-score': 0.7747298420615129, 'support': 1228, 'AUC': 0.883857521034706, 'AUCPR': 0.7851806854411373, 'TP': 932, 'FP': 246, 'TN': 2210, 'FN': 296} 
+
+2023-01-05 21:40: Train Epoch 13: 3/58 Loss: 0.237546
+2023-01-05 21:40: Train Epoch 13: 7/58 Loss: 0.266683
+2023-01-05 21:40: Train Epoch 13: 11/58 Loss: 0.198728
+2023-01-05 21:40: Train Epoch 13: 15/58 Loss: 0.250107
+2023-01-05 21:40: Train Epoch 13: 19/58 Loss: 0.235142
+2023-01-05 21:40: Train Epoch 13: 23/58 Loss: 0.232867
+2023-01-05 21:40: Train Epoch 13: 27/58 Loss: 0.217449
+2023-01-05 21:40: Train Epoch 13: 31/58 Loss: 0.185316
+2023-01-05 21:40: Train Epoch 13: 35/58 Loss: 0.254792
+2023-01-05 21:40: Train Epoch 13: 39/58 Loss: 0.207882
+2023-01-05 21:40: Train Epoch 13: 43/58 Loss: 0.215283
+2023-01-05 21:40: Train Epoch 13: 47/58 Loss: 0.220635
+2023-01-05 21:40: Train Epoch 13: 51/58 Loss: 0.241677
+2023-01-05 21:40: Train Epoch 13: 55/58 Loss: 0.179084
+2023-01-05 21:40: Train Epoch 13: 57/58 Loss: 0.083457
+2023-01-05 21:40: **********Train Epoch 13: averaged Loss: 0.215110 
+2023-01-05 21:40: 
+Epoch time elapsed: 46.034255027770996
+
+2023-01-05 21:41: 
+ metrics validation: {'precision': 0.811534500514933, 'recall': 0.6416938110749185, 'f1-score': 0.7166894042746703, 'support': 1228, 'AUC': 0.8866533066663839, 'AUCPR': 0.7900789150439793, 'TP': 788, 'FP': 183, 'TN': 2273, 'FN': 440} 
+
+2023-01-05 21:41: **********Val Epoch 13: average Loss: 0.194335
+2023-01-05 21:41: 
+ Testing metrics {'precision': 0.797945205479452, 'recall': 0.758957654723127, 'f1-score': 0.7779632721202004, 'support': 1228, 'AUC': 0.8850926137147345, 'AUCPR': 0.7886886994896066, 'TP': 932, 'FP': 236, 'TN': 2220, 'FN': 296} 
+
+2023-01-05 21:42: 
+ Testing metrics {'precision': 0.7911714770797963, 'recall': 0.758957654723127, 'f1-score': 0.7747298420615129, 'support': 1228, 'AUC': 0.883857521034706, 'AUCPR': 0.7851806854411373, 'TP': 932, 'FP': 246, 'TN': 2210, 'FN': 296} 
+
+2023-01-05 21:42: Train Epoch 14: 3/58 Loss: 0.213447
+2023-01-05 21:42: Train Epoch 14: 7/58 Loss: 0.210236
+2023-01-05 21:42: Train Epoch 14: 11/58 Loss: 0.245387
+2023-01-05 21:42: Train Epoch 14: 15/58 Loss: 0.208667
+2023-01-05 21:42: Train Epoch 14: 19/58 Loss: 0.249866
+2023-01-05 21:42: Train Epoch 14: 23/58 Loss: 0.273003
+2023-01-05 21:42: Train Epoch 14: 27/58 Loss: 0.213081
+2023-01-05 21:42: Train Epoch 14: 31/58 Loss: 0.228151
+2023-01-05 21:42: Train Epoch 14: 35/58 Loss: 0.200754
+2023-01-05 21:42: Train Epoch 14: 39/58 Loss: 0.267383
+2023-01-05 21:42: Train Epoch 14: 43/58 Loss: 0.231797
+2023-01-05 21:42: Train Epoch 14: 47/58 Loss: 0.218825
+2023-01-05 21:42: Train Epoch 14: 51/58 Loss: 0.197249
+2023-01-05 21:42: Train Epoch 14: 55/58 Loss: 0.251352
+2023-01-05 21:42: Train Epoch 14: 57/58 Loss: 0.088737
+2023-01-05 21:42: **********Train Epoch 14: averaged Loss: 0.219862 
+2023-01-05 21:42: 
+Epoch time elapsed: 41.20818305015564
+
+2023-01-05 21:43: 
+ metrics validation: {'precision': 0.7226173541963016, 'recall': 0.8273615635179153, 'f1-score': 0.771450265755505, 'support': 1228, 'AUC': 0.886141696463623, 'AUCPR': 0.7959194689661422, 'TP': 1016, 'FP': 390, 'TN': 2066, 'FN': 212} 
+
+2023-01-05 21:43: **********Val Epoch 14: average Loss: 0.190223
+2023-01-05 21:43: 
+ Testing metrics {'precision': 0.797945205479452, 'recall': 0.758957654723127, 'f1-score': 0.7779632721202004, 'support': 1228, 'AUC': 0.8850926137147345, 'AUCPR': 0.7886886994896066, 'TP': 932, 'FP': 236, 'TN': 2220, 'FN': 296} 
+
+2023-01-05 21:43: 
+ Testing metrics {'precision': 0.7911714770797963, 'recall': 0.758957654723127, 'f1-score': 0.7747298420615129, 'support': 1228, 'AUC': 0.883857521034706, 'AUCPR': 0.7851806854411373, 'TP': 932, 'FP': 246, 'TN': 2210, 'FN': 296} 
+
+2023-01-05 21:44: Train Epoch 15: 3/58 Loss: 0.235180
+2023-01-05 21:44: Train Epoch 15: 7/58 Loss: 0.222269
+2023-01-05 21:44: Train Epoch 15: 11/58 Loss: 0.239671
+2023-01-05 21:44: Train Epoch 15: 15/58 Loss: 0.191284
+2023-01-05 21:44: Train Epoch 15: 19/58 Loss: 0.226590
+2023-01-05 21:44: Train Epoch 15: 23/58 Loss: 0.236249
+2023-01-05 21:44: Train Epoch 15: 27/58 Loss: 0.248835
+2023-01-05 21:44: Train Epoch 15: 31/58 Loss: 0.263939
+2023-01-05 21:44: Train Epoch 15: 35/58 Loss: 0.221887
+2023-01-05 21:44: Train Epoch 15: 39/58 Loss: 0.256572
+2023-01-05 21:44: Train Epoch 15: 43/58 Loss: 0.210043
+2023-01-05 21:44: Train Epoch 15: 47/58 Loss: 0.215828
+2023-01-05 21:44: Train Epoch 15: 51/58 Loss: 0.243644
+2023-01-05 21:44: Train Epoch 15: 55/58 Loss: 0.227996
+2023-01-05 21:44: Train Epoch 15: 57/58 Loss: 0.089673
+2023-01-05 21:44: **********Train Epoch 15: averaged Loss: 0.221977 
+2023-01-05 21:44: 
+Epoch time elapsed: 45.13095426559448
+
+2023-01-05 21:45: 
+ metrics validation: {'precision': 0.7473919523099851, 'recall': 0.8167752442996743, 'f1-score': 0.7805447470817121, 'support': 1228, 'AUC': 0.8847157861091364, 'AUCPR': 0.7938116471790211, 'TP': 1003, 'FP': 339, 'TN': 2117, 'FN': 225} 
+
+2023-01-05 21:45: **********Val Epoch 15: average Loss: 0.186463
+2023-01-05 21:45: *********************************Current best model saved!
+2023-01-05 21:45: 
+ Testing metrics {'precision': 0.7569811320754717, 'recall': 0.8167752442996743, 'f1-score': 0.7857422640031335, 'support': 1228, 'AUC': 0.8871717140234909, 'AUCPR': 0.7955568913050322, 'TP': 1003, 'FP': 322, 'TN': 2134, 'FN': 225} 
+
+2023-01-05 21:45: 
+ Testing metrics {'precision': 0.751310861423221, 'recall': 0.8167752442996743, 'f1-score': 0.7826765509168943, 'support': 1228, 'AUC': 0.8855445415866481, 'AUCPR': 0.7898552823489745, 'TP': 1003, 'FP': 332, 'TN': 2124, 'FN': 225} 
+
+2023-01-05 21:45: Train Epoch 16: 3/58 Loss: 0.218804
+2023-01-05 21:46: Train Epoch 16: 7/58 Loss: 0.237451
+2023-01-05 21:46: Train Epoch 16: 11/58 Loss: 0.196239
+2023-01-05 21:46: Train Epoch 16: 15/58 Loss: 0.237052
+2023-01-05 21:46: Train Epoch 16: 19/58 Loss: 0.208239
+2023-01-05 21:46: Train Epoch 16: 23/58 Loss: 0.244780
+2023-01-05 21:46: Train Epoch 16: 27/58 Loss: 0.235274
+2023-01-05 21:46: Train Epoch 16: 31/58 Loss: 0.228178
+2023-01-05 21:46: Train Epoch 16: 35/58 Loss: 0.229125
+2023-01-05 21:46: Train Epoch 16: 39/58 Loss: 0.229070
+2023-01-05 21:46: Train Epoch 16: 43/58 Loss: 0.240919
+2023-01-05 21:46: Train Epoch 16: 47/58 Loss: 0.194201
+2023-01-05 21:46: Train Epoch 16: 51/58 Loss: 0.208196
+2023-01-05 21:46: Train Epoch 16: 55/58 Loss: 0.244117
+2023-01-05 21:46: Train Epoch 16: 57/58 Loss: 0.081287
+2023-01-05 21:46: **********Train Epoch 16: averaged Loss: 0.215529 
+2023-01-05 21:46: 
+Epoch time elapsed: 48.42508912086487
+
+2023-01-05 21:47: 
+ metrics validation: {'precision': 0.7853618421052632, 'recall': 0.7776872964169381, 'f1-score': 0.781505728314239, 'support': 1228, 'AUC': 0.8863582106971957, 'AUCPR': 0.7939635041016655, 'TP': 955, 'FP': 261, 'TN': 2195, 'FN': 273} 
+
+2023-01-05 21:47: **********Val Epoch 16: average Loss: 0.183358
+2023-01-05 21:47: *********************************Current best model saved!
+2023-01-05 21:47: 
+ Testing metrics {'precision': 0.7905629139072847, 'recall': 0.7776872964169381, 'f1-score': 0.7840722495894908, 'support': 1228, 'AUC': 0.8888353589958513, 'AUCPR': 0.7956389327769526, 'TP': 955, 'FP': 253, 'TN': 2203, 'FN': 273} 
+
+2023-01-05 21:47: 
+ Testing metrics {'precision': 0.784072249589491, 'recall': 0.7776872964169381, 'f1-score': 0.7808667211774325, 'support': 1228, 'AUC': 0.887289255058409, 'AUCPR': 0.7904106668120128, 'TP': 955, 'FP': 263, 'TN': 2193, 'FN': 273} 
+
+2023-01-05 21:47: Train Epoch 17: 3/58 Loss: 0.211081
+2023-01-05 21:48: Train Epoch 17: 7/58 Loss: 0.232866
+2023-01-05 21:48: Train Epoch 17: 11/58 Loss: 0.246193
+2023-01-05 21:48: Train Epoch 17: 15/58 Loss: 0.251506
+2023-01-05 21:48: Train Epoch 17: 19/58 Loss: 0.198933
+2023-01-05 21:48: Train Epoch 17: 23/58 Loss: 0.179164
+2023-01-05 21:48: Train Epoch 17: 27/58 Loss: 0.210392
+2023-01-05 21:48: Train Epoch 17: 31/58 Loss: 0.251256
+2023-01-05 21:48: Train Epoch 17: 35/58 Loss: 0.222294
+2023-01-05 21:48: Train Epoch 17: 39/58 Loss: 0.223949
+2023-01-05 21:48: Train Epoch 17: 43/58 Loss: 0.247615
+2023-01-05 21:48: Train Epoch 17: 47/58 Loss: 0.225054
+2023-01-05 21:48: Train Epoch 17: 51/58 Loss: 0.214209
+2023-01-05 21:48: Train Epoch 17: 55/58 Loss: 0.221346
+2023-01-05 21:48: Train Epoch 17: 57/58 Loss: 0.080598
+2023-01-05 21:48: **********Train Epoch 17: averaged Loss: 0.214430 
+2023-01-05 21:48: 
+Epoch time elapsed: 43.117663860321045
+
+2023-01-05 21:49: 
+ metrics validation: {'precision': 0.7754611066559743, 'recall': 0.7874592833876222, 'f1-score': 0.7814141414141413, 'support': 1228, 'AUC': 0.8877448301838745, 'AUCPR': 0.7955791648328383, 'TP': 967, 'FP': 280, 'TN': 2176, 'FN': 261} 
+
+2023-01-05 21:49: **********Val Epoch 17: average Loss: 0.182083
+2023-01-05 21:49: *********************************Current best model saved!
+2023-01-05 21:49: 
+ Testing metrics {'precision': 0.7842660178426601, 'recall': 0.7874592833876222, 'f1-score': 0.7858594067452255, 'support': 1228, 'AUC': 0.890303544334688, 'AUCPR': 0.797796677461047, 'TP': 967, 'FP': 266, 'TN': 2190, 'FN': 261} 
+
+2023-01-05 21:49: 
+ Testing metrics {'precision': 0.7767068273092369, 'recall': 0.7874592833876222, 'f1-score': 0.7820460978568541, 'support': 1228, 'AUC': 0.8886513384757397, 'AUCPR': 0.7922486145337668, 'TP': 967, 'FP': 278, 'TN': 2178, 'FN': 261} 
+
+2023-01-05 21:49: Train Epoch 18: 3/58 Loss: 0.253053
+2023-01-05 21:49: Train Epoch 18: 7/58 Loss: 0.189729
+2023-01-05 21:49: Train Epoch 18: 11/58 Loss: 0.213730
+2023-01-05 21:50: Train Epoch 18: 15/58 Loss: 0.215096
+2023-01-05 21:50: Train Epoch 18: 19/58 Loss: 0.215304
+2023-01-05 21:50: Train Epoch 18: 23/58 Loss: 0.233295
+2023-01-05 21:50: Train Epoch 18: 27/58 Loss: 0.222156
+2023-01-05 21:50: Train Epoch 18: 31/58 Loss: 0.233536
+2023-01-05 21:50: Train Epoch 18: 35/58 Loss: 0.236051
+2023-01-05 21:50: Train Epoch 18: 39/58 Loss: 0.236610
+2023-01-05 21:50: Train Epoch 18: 43/58 Loss: 0.217456
+2023-01-05 21:50: Train Epoch 18: 47/58 Loss: 0.192360
+2023-01-05 21:50: Train Epoch 18: 51/58 Loss: 0.224288
+2023-01-05 21:50: Train Epoch 18: 55/58 Loss: 0.231781
+2023-01-05 21:50: Train Epoch 18: 57/58 Loss: 0.102707
+2023-01-05 21:50: **********Train Epoch 18: averaged Loss: 0.214477 
+2023-01-05 21:50: 
+Epoch time elapsed: 45.93631172180176
+
+2023-01-05 21:50: 
+ metrics validation: {'precision': 0.7826797385620915, 'recall': 0.7801302931596091, 'f1-score': 0.7814029363784666, 'support': 1228, 'AUC': 0.8882285886322402, 'AUCPR': 0.7959003743478975, 'TP': 958, 'FP': 266, 'TN': 2190, 'FN': 270} 
+
+2023-01-05 21:50: **********Val Epoch 18: average Loss: 0.181677
+2023-01-05 21:50: *********************************Current best model saved!
+2023-01-05 21:51: 
+ Testing metrics {'precision': 0.7897774113767518, 'recall': 0.7801302931596091, 'f1-score': 0.7849242113887751, 'support': 1228, 'AUC': 0.8908277541406273, 'AUCPR': 0.7980878557196367, 'TP': 958, 'FP': 255, 'TN': 2201, 'FN': 270} 
+
+2023-01-05 21:51: 
+ Testing metrics {'precision': 0.7839607201309329, 'recall': 0.7801302931596091, 'f1-score': 0.7820408163265307, 'support': 1228, 'AUC': 0.8891092345807383, 'AUCPR': 0.7925229244625345, 'TP': 958, 'FP': 264, 'TN': 2192, 'FN': 270} 
+
+2023-01-05 21:51: Train Epoch 19: 3/58 Loss: 0.198494
+2023-01-05 21:51: Train Epoch 19: 7/58 Loss: 0.235738
+2023-01-05 21:51: Train Epoch 19: 11/58 Loss: 0.216780
+2023-01-05 21:52: Train Epoch 19: 15/58 Loss: 0.219255
+2023-01-05 21:52: Train Epoch 19: 19/58 Loss: 0.222875
+2023-01-05 21:52: Train Epoch 19: 23/58 Loss: 0.217662
+2023-01-05 21:52: Train Epoch 19: 27/58 Loss: 0.222632
+2023-01-05 21:52: Train Epoch 19: 31/58 Loss: 0.221543
+2023-01-05 21:52: Train Epoch 19: 35/58 Loss: 0.221790
+2023-01-05 21:52: Train Epoch 19: 39/58 Loss: 0.192416
+2023-01-05 21:52: Train Epoch 19: 43/58 Loss: 0.234585
+2023-01-05 21:52: Train Epoch 19: 47/58 Loss: 0.200447
+2023-01-05 21:52: Train Epoch 19: 51/58 Loss: 0.230249
+2023-01-05 21:52: Train Epoch 19: 55/58 Loss: 0.212006
+2023-01-05 21:52: Train Epoch 19: 57/58 Loss: 0.097195
+2023-01-05 21:52: **********Train Epoch 19: averaged Loss: 0.209578 
+2023-01-05 21:52: 
+Epoch time elapsed: 43.34765934944153
+
+2023-01-05 21:52: 
+ metrics validation: {'precision': 0.7799196787148595, 'recall': 0.7907166123778502, 'f1-score': 0.7852810351799434, 'support': 1228, 'AUC': 0.8874116038366454, 'AUCPR': 0.795841556329432, 'TP': 971, 'FP': 274, 'TN': 2182, 'FN': 257} 
+
+2023-01-05 21:52: **********Val Epoch 19: average Loss: 0.181553
+2023-01-05 21:52: *********************************Current best model saved!
+2023-01-05 21:53: 
+ Testing metrics {'precision': 0.7887896019496344, 'recall': 0.7907166123778502, 'f1-score': 0.7897519316795445, 'support': 1228, 'AUC': 0.8900076194442382, 'AUCPR': 0.7979292277409781, 'TP': 971, 'FP': 260, 'TN': 2196, 'FN': 257} 
+
+2023-01-05 21:53: 
+ Testing metrics {'precision': 0.7818035426731079, 'recall': 0.7907166123778502, 'f1-score': 0.7862348178137651, 'support': 1228, 'AUC': 0.8883660237774406, 'AUCPR': 0.7923893958649946, 'TP': 971, 'FP': 271, 'TN': 2185, 'FN': 257} 
+
+2023-01-05 21:53: Train Epoch 20: 3/58 Loss: 0.243329
+2023-01-05 21:53: Train Epoch 20: 7/58 Loss: 0.225517
+2023-01-05 21:54: Train Epoch 20: 11/58 Loss: 0.218486
+2023-01-05 21:54: Train Epoch 20: 15/58 Loss: 0.224123
+2023-01-05 21:54: Train Epoch 20: 19/58 Loss: 0.231106
+2023-01-05 21:54: Train Epoch 20: 23/58 Loss: 0.225733
+2023-01-05 21:54: Train Epoch 20: 27/58 Loss: 0.244848
+2023-01-05 21:54: Train Epoch 20: 31/58 Loss: 0.220131
+2023-01-05 21:54: Train Epoch 20: 35/58 Loss: 0.214815
+2023-01-05 21:54: Train Epoch 20: 39/58 Loss: 0.201419
+2023-01-05 21:54: Train Epoch 20: 43/58 Loss: 0.220364
+2023-01-05 21:54: Train Epoch 20: 47/58 Loss: 0.220191
+2023-01-05 21:54: Train Epoch 20: 51/58 Loss: 0.268010
+2023-01-05 21:54: Train Epoch 20: 55/58 Loss: 0.213658
+2023-01-05 21:54: Train Epoch 20: 57/58 Loss: 0.080383
+2023-01-05 21:54: **********Train Epoch 20: averaged Loss: 0.216807 
+2023-01-05 21:54: 
+Epoch time elapsed: 45.992209672927856
+
+2023-01-05 21:54: 
+ metrics validation: {'precision': 0.7860655737704918, 'recall': 0.7809446254071661, 'f1-score': 0.7834967320261438, 'support': 1228, 'AUC': 0.8880545151672697, 'AUCPR': 0.7961103291963998, 'TP': 959, 'FP': 261, 'TN': 2195, 'FN': 269} 
+
+2023-01-05 21:54: **********Val Epoch 20: average Loss: 0.181524
+2023-01-05 21:54: *********************************Current best model saved!
+2023-01-05 21:55: 
+ Testing metrics {'precision': 0.791907514450867, 'recall': 0.7809446254071661, 'f1-score': 0.7863878638786388, 'support': 1228, 'AUC': 0.890533321308449, 'AUCPR': 0.7979441608106432, 'TP': 959, 'FP': 252, 'TN': 2204, 'FN': 269} 
+
+2023-01-05 21:55: 
+ Testing metrics {'precision': 0.7854217854217854, 'recall': 0.7809446254071661, 'f1-score': 0.7831768068599427, 'support': 1228, 'AUC': 0.8890218662797482, 'AUCPR': 0.7925841759633124, 'TP': 959, 'FP': 262, 'TN': 2194, 'FN': 269} 
+
+2023-01-05 21:55: Train Epoch 21: 3/58 Loss: 0.222073
+2023-01-05 21:55: Train Epoch 21: 7/58 Loss: 0.192920
+2023-01-05 21:55: Train Epoch 21: 11/58 Loss: 0.216119
+2023-01-05 21:56: Train Epoch 21: 15/58 Loss: 0.247938
+2023-01-05 21:56: Train Epoch 21: 19/58 Loss: 0.210008
+2023-01-05 21:56: Train Epoch 21: 23/58 Loss: 0.233117
+2023-01-05 21:56: Train Epoch 21: 27/58 Loss: 0.206529
+2023-01-05 21:56: Train Epoch 21: 31/58 Loss: 0.270718
+2023-01-05 21:56: Train Epoch 21: 35/58 Loss: 0.211424
+2023-01-05 21:56: Train Epoch 21: 39/58 Loss: 0.208447
+2023-01-05 21:56: Train Epoch 21: 43/58 Loss: 0.188488
+2023-01-05 21:56: Train Epoch 21: 47/58 Loss: 0.271369
+2023-01-05 21:56: Train Epoch 21: 51/58 Loss: 0.209343
+2023-01-05 21:56: Train Epoch 21: 55/58 Loss: 0.240742
+2023-01-05 21:56: Train Epoch 21: 57/58 Loss: 0.078403
+2023-01-05 21:56: **********Train Epoch 21: averaged Loss: 0.213842 
+2023-01-05 21:56: 
+Epoch time elapsed: 43.0894033908844
+
+2023-01-05 21:56: 
+ metrics validation: {'precision': 0.7700701480904131, 'recall': 0.8045602605863192, 'f1-score': 0.7869374751095181, 'support': 1228, 'AUC': 0.8893065178410381, 'AUCPR': 0.7977268078638912, 'TP': 988, 'FP': 295, 'TN': 2161, 'FN': 240} 
+
+2023-01-05 21:56: **********Val Epoch 21: average Loss: 0.181037
+2023-01-05 21:56: *********************************Current best model saved!
+2023-01-05 21:57: 
+ Testing metrics {'precision': 0.7828843106180665, 'recall': 0.8045602605863192, 'f1-score': 0.793574297188755, 'support': 1228, 'AUC': 0.8918609216012902, 'AUCPR': 0.7995557279460416, 'TP': 988, 'FP': 274, 'TN': 2182, 'FN': 240} 
+
+2023-01-05 21:57: 
+ Testing metrics {'precision': 0.771875, 'recall': 0.8045602605863192, 'f1-score': 0.7878787878787878, 'support': 1228, 'AUC': 0.8902249625990726, 'AUCPR': 0.7941349000463441, 'TP': 988, 'FP': 292, 'TN': 2164, 'FN': 240} 
+
+2023-01-05 21:57: Train Epoch 22: 3/58 Loss: 0.204019
+2023-01-05 21:57: Train Epoch 22: 7/58 Loss: 0.222373
+2023-01-05 21:57: Train Epoch 22: 11/58 Loss: 0.217093
+2023-01-05 21:57: Train Epoch 22: 15/58 Loss: 0.244056
+2023-01-05 21:57: Train Epoch 22: 19/58 Loss: 0.214428
+2023-01-05 21:57: Train Epoch 22: 23/58 Loss: 0.237473
+2023-01-05 21:58: Train Epoch 22: 27/58 Loss: 0.210774
+2023-01-05 21:58: Train Epoch 22: 31/58 Loss: 0.209825
+2023-01-05 21:58: Train Epoch 22: 35/58 Loss: 0.209255
+2023-01-05 21:58: Train Epoch 22: 39/58 Loss: 0.205520
+2023-01-05 21:58: Train Epoch 22: 43/58 Loss: 0.190365
+2023-01-05 21:58: Train Epoch 22: 47/58 Loss: 0.220628
+2023-01-05 21:58: Train Epoch 22: 51/58 Loss: 0.210710
+2023-01-05 21:58: Train Epoch 22: 55/58 Loss: 0.234451
+2023-01-05 21:58: Train Epoch 22: 57/58 Loss: 0.076564
+2023-01-05 21:58: **********Train Epoch 22: averaged Loss: 0.207169 
+2023-01-05 21:58: 
+Epoch time elapsed: 41.87632918357849
+
+2023-01-05 21:58: 
+ metrics validation: {'precision': 0.7747035573122529, 'recall': 0.7980456026058632, 'f1-score': 0.7862013638186923, 'support': 1228, 'AUC': 0.890386768029369, 'AUCPR': 0.7984886109983029, 'TP': 980, 'FP': 285, 'TN': 2171, 'FN': 248} 
+
+2023-01-05 21:58: **********Val Epoch 22: average Loss: 0.180408
+2023-01-05 21:58: *********************************Current best model saved!
+2023-01-05 21:59: 
+ Testing metrics {'precision': 0.7846277021617294, 'recall': 0.7980456026058632, 'f1-score': 0.7912797739200645, 'support': 1228, 'AUC': 0.8929610658999034, 'AUCPR': 0.8004762355341611, 'TP': 980, 'FP': 269, 'TN': 2187, 'FN': 248} 
+
+2023-01-05 21:59: 
+ Testing metrics {'precision': 0.7740916271721959, 'recall': 0.7980456026058632, 'f1-score': 0.7858861267040899, 'support': 1228, 'AUC': 0.891276697895999, 'AUCPR': 0.7949936572697457, 'TP': 980, 'FP': 286, 'TN': 2170, 'FN': 248} 
+
+2023-01-05 21:59: Train Epoch 23: 3/58 Loss: 0.203342
+2023-01-05 21:59: Train Epoch 23: 7/58 Loss: 0.203660
+2023-01-05 21:59: Train Epoch 23: 11/58 Loss: 0.224380
+2023-01-05 21:59: Train Epoch 23: 15/58 Loss: 0.213386
+2023-01-05 21:59: Train Epoch 23: 19/58 Loss: 0.209912
+2023-01-05 21:59: Train Epoch 23: 23/58 Loss: 0.228948
+2023-01-05 22:00: Train Epoch 23: 27/58 Loss: 0.208598
+2023-01-05 22:00: Train Epoch 23: 31/58 Loss: 0.209938
+2023-01-05 22:00: Train Epoch 23: 35/58 Loss: 0.240180
+2023-01-05 22:00: Train Epoch 23: 39/58 Loss: 0.207227
+2023-01-05 22:00: Train Epoch 23: 43/58 Loss: 0.260791
+2023-01-05 22:00: Train Epoch 23: 47/58 Loss: 0.231530
+2023-01-05 22:00: Train Epoch 23: 51/58 Loss: 0.213828
+2023-01-05 22:00: Train Epoch 23: 55/58 Loss: 0.248913
+2023-01-05 22:00: Train Epoch 23: 57/58 Loss: 0.070411
+2023-01-05 22:00: **********Train Epoch 23: averaged Loss: 0.211670 
+2023-01-05 22:00: 
+Epoch time elapsed: 48.30297517776489
+
+2023-01-05 22:00: 
+ metrics validation: {'precision': 0.7817014446227929, 'recall': 0.7931596091205212, 'f1-score': 0.7873888439773646, 'support': 1228, 'AUC': 0.8909152882258699, 'AUCPR': 0.7990393573287036, 'TP': 974, 'FP': 272, 'TN': 2184, 'FN': 254} 
+
+2023-01-05 22:00: **********Val Epoch 23: average Loss: 0.179943
+2023-01-05 22:00: *********************************Current best model saved!
+2023-01-05 22:01: 
+ Testing metrics {'precision': 0.7886639676113361, 'recall': 0.7931596091205212, 'f1-score': 0.7909053999187982, 'support': 1228, 'AUC': 0.8935114696177148, 'AUCPR': 0.8009540895031367, 'TP': 974, 'FP': 261, 'TN': 2195, 'FN': 254} 
+
+2023-01-05 22:01: 
+ Testing metrics {'precision': 0.7823293172690763, 'recall': 0.7931596091205212, 'f1-score': 0.7877072381722604, 'support': 1228, 'AUC': 0.8918280963193244, 'AUCPR': 0.7954310290699899, 'TP': 974, 'FP': 271, 'TN': 2185, 'FN': 254} 
+
+2023-01-05 22:01: Train Epoch 24: 3/58 Loss: 0.227600
+2023-01-05 22:01: Train Epoch 24: 7/58 Loss: 0.246616
+2023-01-05 22:01: Train Epoch 24: 11/58 Loss: 0.175998
+2023-01-05 22:01: Train Epoch 24: 15/58 Loss: 0.209198
+2023-01-05 22:02: Train Epoch 24: 19/58 Loss: 0.192727
+2023-01-05 22:02: Train Epoch 24: 23/58 Loss: 0.242059
+2023-01-05 22:02: Train Epoch 24: 27/58 Loss: 0.207915
+2023-01-05 22:02: Train Epoch 24: 31/58 Loss: 0.229722
+2023-01-05 22:02: Train Epoch 24: 35/58 Loss: 0.222707
+2023-01-05 22:02: Train Epoch 24: 39/58 Loss: 0.238080
+2023-01-05 22:02: Train Epoch 24: 43/58 Loss: 0.250471
+2023-01-05 22:02: Train Epoch 24: 47/58 Loss: 0.217844
+2023-01-05 22:02: Train Epoch 24: 51/58 Loss: 0.244905
+2023-01-05 22:02: Train Epoch 24: 55/58 Loss: 0.202762
+2023-01-05 22:02: Train Epoch 24: 57/58 Loss: 0.074496
+2023-01-05 22:02: **********Train Epoch 24: averaged Loss: 0.212207 
+2023-01-05 22:02: 
+Epoch time elapsed: 43.84205746650696
+
+2023-01-05 22:02: 
+ metrics validation: {'precision': 0.7800796812749003, 'recall': 0.7972312703583062, 'f1-score': 0.7885622231171969, 'support': 1228, 'AUC': 0.8915890354274315, 'AUCPR': 0.8002680955305458, 'TP': 979, 'FP': 276, 'TN': 2180, 'FN': 249} 
+
+2023-01-05 22:02: **********Val Epoch 24: average Loss: 0.179782
+2023-01-05 22:02: *********************************Current best model saved!
+2023-01-05 22:03: 
+ Testing metrics {'precision': 0.7876106194690266, 'recall': 0.7972312703583062, 'f1-score': 0.7923917442331041, 'support': 1228, 'AUC': 0.8941868746618001, 'AUCPR': 0.802216922718647, 'TP': 979, 'FP': 264, 'TN': 2192, 'FN': 249} 
+
+2023-01-05 22:03: 
+ Testing metrics {'precision': 0.7800796812749003, 'recall': 0.7972312703583062, 'f1-score': 0.7885622231171969, 'support': 1228, 'AUC': 0.8925471026217784, 'AUCPR': 0.7967071884898314, 'TP': 979, 'FP': 276, 'TN': 2180, 'FN': 249} 
+
+2023-01-05 22:03: Train Epoch 25: 3/58 Loss: 0.222735
+2023-01-05 22:03: Train Epoch 25: 7/58 Loss: 0.244241
+2023-01-05 22:03: Train Epoch 25: 11/58 Loss: 0.244090
+2023-01-05 22:03: Train Epoch 25: 15/58 Loss: 0.223648
+2023-01-05 22:03: Train Epoch 25: 19/58 Loss: 0.208381
+2023-01-05 22:03: Train Epoch 25: 23/58 Loss: 0.212731
+2023-01-05 22:04: Train Epoch 25: 27/58 Loss: 0.195185
+2023-01-05 22:04: Train Epoch 25: 31/58 Loss: 0.214359
+2023-01-05 22:04: Train Epoch 25: 35/58 Loss: 0.189563
+2023-01-05 22:04: Train Epoch 25: 39/58 Loss: 0.229736
+2023-01-05 22:04: Train Epoch 25: 43/58 Loss: 0.220924
+2023-01-05 22:04: Train Epoch 25: 47/58 Loss: 0.244795
+2023-01-05 22:04: Train Epoch 25: 51/58 Loss: 0.203538
+2023-01-05 22:04: Train Epoch 25: 55/58 Loss: 0.224302
+2023-01-05 22:04: Train Epoch 25: 57/58 Loss: 0.074413
+2023-01-05 22:04: **********Train Epoch 25: averaged Loss: 0.210176 
+2023-01-05 22:04: 
+Epoch time elapsed: 44.64518737792969
+
+2023-01-05 22:04: 
+ metrics validation: {'precision': 0.7822257806244995, 'recall': 0.7956026058631922, 'f1-score': 0.7888574888978602, 'support': 1228, 'AUC': 0.8921626489405723, 'AUCPR': 0.8010548301871097, 'TP': 977, 'FP': 272, 'TN': 2184, 'FN': 251} 
+
+2023-01-05 22:04: **********Val Epoch 25: average Loss: 0.179597
+2023-01-05 22:04: *********************************Current best model saved!
+2023-01-05 22:05: 
+ Testing metrics {'precision': 0.7891760904684976, 'recall': 0.7956026058631922, 'f1-score': 0.7923763179237633, 'support': 1228, 'AUC': 0.8947724246411103, 'AUCPR': 0.8029191280780991, 'TP': 977, 'FP': 261, 'TN': 2195, 'FN': 251} 
+
+2023-01-05 22:05: 
+ Testing metrics {'precision': 0.7834803528468324, 'recall': 0.7956026058631922, 'f1-score': 0.7894949494949495, 'support': 1228, 'AUC': 0.8931600070027267, 'AUCPR': 0.7974874473062047, 'TP': 977, 'FP': 270, 'TN': 2186, 'FN': 251} 
+
+2023-01-05 22:05: Train Epoch 26: 3/58 Loss: 0.232161
+2023-01-05 22:05: Train Epoch 26: 7/58 Loss: 0.243145
+2023-01-05 22:05: Train Epoch 26: 11/58 Loss: 0.209971
+2023-01-05 22:05: Train Epoch 26: 15/58 Loss: 0.197144
+2023-01-05 22:05: Train Epoch 26: 19/58 Loss: 0.220606
+2023-01-05 22:05: Train Epoch 26: 23/58 Loss: 0.203781
+2023-01-05 22:05: Train Epoch 26: 27/58 Loss: 0.220598
+2023-01-05 22:05: Train Epoch 26: 31/58 Loss: 0.246977
+2023-01-05 22:06: Train Epoch 26: 35/58 Loss: 0.213498
+2023-01-05 22:06: Train Epoch 26: 39/58 Loss: 0.172858
+2023-01-05 22:06: Train Epoch 26: 43/58 Loss: 0.202200
+2023-01-05 22:06: Train Epoch 26: 47/58 Loss: 0.220497
+2023-01-05 22:06: Train Epoch 26: 51/58 Loss: 0.237227
+2023-01-05 22:06: Train Epoch 26: 55/58 Loss: 0.217938
+2023-01-05 22:06: Train Epoch 26: 57/58 Loss: 0.084208
+2023-01-05 22:06: **********Train Epoch 26: averaged Loss: 0.208187 
+2023-01-05 22:06: 
+Epoch time elapsed: 44.290886878967285
+
+2023-01-05 22:06: 
+ metrics validation: {'precision': 0.7819488817891374, 'recall': 0.7972312703583062, 'f1-score': 0.7895161290322581, 'support': 1228, 'AUC': 0.8927261496143195, 'AUCPR': 0.801579155114882, 'TP': 979, 'FP': 273, 'TN': 2183, 'FN': 249} 
+
+2023-01-05 22:06: **********Val Epoch 26: average Loss: 0.179385
+2023-01-05 22:06: *********************************Current best model saved!
+2023-01-05 22:07: 
+ Testing metrics {'precision': 0.7888799355358582, 'recall': 0.7972312703583062, 'f1-score': 0.7930336168489267, 'support': 1228, 'AUC': 0.8953637770692527, 'AUCPR': 0.8034718453077206, 'TP': 979, 'FP': 262, 'TN': 2194, 'FN': 249} 
+
+2023-01-05 22:07: 
+ Testing metrics {'precision': 0.7819488817891374, 'recall': 0.7972312703583062, 'f1-score': 0.7895161290322581, 'support': 1228, 'AUC': 0.8937526857048881, 'AUCPR': 0.7980331549206843, 'TP': 979, 'FP': 273, 'TN': 2183, 'FN': 249} 
+
+2023-01-05 22:07: Train Epoch 27: 3/58 Loss: 0.194609
+2023-01-05 22:07: Train Epoch 27: 7/58 Loss: 0.213009
+2023-01-05 22:07: Train Epoch 27: 11/58 Loss: 0.264948
+2023-01-05 22:07: Train Epoch 27: 15/58 Loss: 0.218085
+2023-01-05 22:07: Train Epoch 27: 19/58 Loss: 0.211202
+2023-01-05 22:07: Train Epoch 27: 23/58 Loss: 0.232857
+2023-01-05 22:07: Train Epoch 27: 27/58 Loss: 0.226977
+2023-01-05 22:08: Train Epoch 27: 31/58 Loss: 0.199709
+2023-01-05 22:08: Train Epoch 27: 35/58 Loss: 0.218129
+2023-01-05 22:08: Train Epoch 27: 39/58 Loss: 0.208450
+2023-01-05 22:08: Train Epoch 27: 43/58 Loss: 0.237303
+2023-01-05 22:08: Train Epoch 27: 47/58 Loss: 0.241509
+2023-01-05 22:08: Train Epoch 27: 51/58 Loss: 0.209459
+2023-01-05 22:08: Train Epoch 27: 55/58 Loss: 0.219521
+2023-01-05 22:08: Train Epoch 27: 57/58 Loss: 0.071325
+2023-01-05 22:08: **********Train Epoch 27: averaged Loss: 0.211140 
+2023-01-05 22:08: 
+Epoch time elapsed: 45.503196239471436
+
+2023-01-05 22:08: 
+ metrics validation: {'precision': 0.7847896440129449, 'recall': 0.7899022801302932, 'f1-score': 0.7873376623376623, 'support': 1228, 'AUC': 0.8934584186569619, 'AUCPR': 0.8020615110883329, 'TP': 970, 'FP': 266, 'TN': 2190, 'FN': 258} 
+
+2023-01-05 22:08: **********Val Epoch 27: average Loss: 0.179102
+2023-01-05 22:08: *********************************Current best model saved!
+2023-01-05 22:09: 
+ Testing metrics {'precision': 0.7931316434995912, 'recall': 0.7899022801302932, 'f1-score': 0.7915136678906568, 'support': 1228, 'AUC': 0.8960847727827351, 'AUCPR': 0.8038608788616903, 'TP': 970, 'FP': 253, 'TN': 2203, 'FN': 258} 
+
+2023-01-05 22:09: 
+ Testing metrics {'precision': 0.7847896440129449, 'recall': 0.7899022801302932, 'f1-score': 0.7873376623376623, 'support': 1228, 'AUC': 0.8945310427696844, 'AUCPR': 0.7986322861812364, 'TP': 970, 'FP': 266, 'TN': 2190, 'FN': 258} 
+
+2023-01-05 22:09: Train Epoch 28: 3/58 Loss: 0.207356
+2023-01-05 22:09: Train Epoch 28: 7/58 Loss: 0.244535
+2023-01-05 22:09: Train Epoch 28: 11/58 Loss: 0.178297
+2023-01-05 22:09: Train Epoch 28: 15/58 Loss: 0.248013
+2023-01-05 22:09: Train Epoch 28: 19/58 Loss: 0.237706
+2023-01-05 22:09: Train Epoch 28: 23/58 Loss: 0.256366
+2023-01-05 22:09: Train Epoch 28: 27/58 Loss: 0.207118
+2023-01-05 22:09: Train Epoch 28: 31/58 Loss: 0.235293
+2023-01-05 22:10: Train Epoch 28: 35/58 Loss: 0.159201
+2023-01-05 22:10: Train Epoch 28: 39/58 Loss: 0.200992
+2023-01-05 22:10: Train Epoch 28: 43/58 Loss: 0.215957
+2023-01-05 22:10: Train Epoch 28: 47/58 Loss: 0.204991
+2023-01-05 22:10: Train Epoch 28: 51/58 Loss: 0.201174
+2023-01-05 22:10: Train Epoch 28: 55/58 Loss: 0.236937
+2023-01-05 22:10: Train Epoch 28: 57/58 Loss: 0.070475
+2023-01-05 22:10: **********Train Epoch 28: averaged Loss: 0.206961 
+2023-01-05 22:10: 
+Epoch time elapsed: 42.67620825767517
+
+2023-01-05 22:10: 
+ metrics validation: {'precision': 0.7795400475812847, 'recall': 0.8004885993485342, 'f1-score': 0.7898754519887504, 'support': 1228, 'AUC': 0.8938509957665333, 'AUCPR': 0.8031130825175763, 'TP': 983, 'FP': 278, 'TN': 2178, 'FN': 245} 
+
+2023-01-05 22:10: **********Val Epoch 28: average Loss: 0.178910
+2023-01-05 22:10: *********************************Current best model saved!
+2023-01-05 22:11: 
+ Testing metrics {'precision': 0.7876602564102564, 'recall': 0.8004885993485342, 'f1-score': 0.7940226171243943, 'support': 1228, 'AUC': 0.8965267535995076, 'AUCPR': 0.8051636300574121, 'TP': 983, 'FP': 265, 'TN': 2191, 'FN': 245} 
+
+2023-01-05 22:11: 
+ Testing metrics {'precision': 0.7807783955520254, 'recall': 0.8004885993485342, 'f1-score': 0.7905106554081223, 'support': 1228, 'AUC': 0.8948561456885484, 'AUCPR': 0.799540845720174, 'TP': 983, 'FP': 276, 'TN': 2180, 'FN': 245} 
+
+2023-01-05 22:11: Train Epoch 29: 3/58 Loss: 0.230698
+2023-01-05 22:11: Train Epoch 29: 7/58 Loss: 0.228635
+2023-01-05 22:11: Train Epoch 29: 11/58 Loss: 0.239391
+2023-01-05 22:11: Train Epoch 29: 15/58 Loss: 0.196271
+2023-01-05 22:11: Train Epoch 29: 19/58 Loss: 0.246894
+2023-01-05 22:11: Train Epoch 29: 23/58 Loss: 0.204829
+2023-01-05 22:11: Train Epoch 29: 27/58 Loss: 0.240165
+2023-01-05 22:11: Train Epoch 29: 31/58 Loss: 0.246349
+2023-01-05 22:11: Train Epoch 29: 35/58 Loss: 0.204246
+2023-01-05 22:11: Train Epoch 29: 39/58 Loss: 0.223884
+2023-01-05 22:12: Train Epoch 29: 43/58 Loss: 0.201614
+2023-01-05 22:12: Train Epoch 29: 47/58 Loss: 0.202331
+2023-01-05 22:12: Train Epoch 29: 51/58 Loss: 0.240039
+2023-01-05 22:12: Train Epoch 29: 55/58 Loss: 0.192951
+2023-01-05 22:12: Train Epoch 29: 57/58 Loss: 0.088942
+2023-01-05 22:12: **********Train Epoch 29: averaged Loss: 0.212483 
+2023-01-05 22:12: 
+Epoch time elapsed: 41.28549528121948
+
+2023-01-05 22:12: 
+ metrics validation: {'precision': 0.7897774113767518, 'recall': 0.7801302931596091, 'f1-score': 0.7849242113887751, 'support': 1228, 'AUC': 0.8946089613682904, 'AUCPR': 0.8028598477083592, 'TP': 958, 'FP': 255, 'TN': 2201, 'FN': 270} 
+
+2023-01-05 22:12: **********Val Epoch 29: average Loss: 0.178605
+2023-01-05 22:12: *********************************Current best model saved!
+2023-01-05 22:12: 
+ Testing metrics {'precision': 0.7943615257048093, 'recall': 0.7801302931596091, 'f1-score': 0.7871815940838126, 'support': 1228, 'AUC': 0.8971918800199472, 'AUCPR': 0.8045674013369164, 'TP': 958, 'FP': 248, 'TN': 2208, 'FN': 270} 
+
+2023-01-05 22:13: 
+ Testing metrics {'precision': 0.7884773662551441, 'recall': 0.7801302931596091, 'f1-score': 0.7842816209578388, 'support': 1228, 'AUC': 0.8956172611911003, 'AUCPR': 0.7992991341139714, 'TP': 958, 'FP': 257, 'TN': 2199, 'FN': 270} 
+
+2023-01-05 22:13: Train Epoch 30: 3/58 Loss: 0.190256
+2023-01-05 22:13: Train Epoch 30: 7/58 Loss: 0.216341
+2023-01-05 22:13: Train Epoch 30: 11/58 Loss: 0.202571
+2023-01-05 22:13: Train Epoch 30: 15/58 Loss: 0.210551
+2023-01-05 22:13: Train Epoch 30: 19/58 Loss: 0.216059
+2023-01-05 22:13: Train Epoch 30: 23/58 Loss: 0.237219
+2023-01-05 22:13: Train Epoch 30: 27/58 Loss: 0.223232
+2023-01-05 22:13: Train Epoch 30: 31/58 Loss: 0.208309
+2023-01-05 22:13: Train Epoch 30: 35/58 Loss: 0.221396
+2023-01-05 22:13: Train Epoch 30: 39/58 Loss: 0.195265
+2023-01-05 22:13: Train Epoch 30: 43/58 Loss: 0.222428
+2023-01-05 22:13: Train Epoch 30: 47/58 Loss: 0.227187
+2023-01-05 22:14: Train Epoch 30: 51/58 Loss: 0.206776
+2023-01-05 22:14: Train Epoch 30: 55/58 Loss: 0.260069
+2023-01-05 22:14: Train Epoch 30: 57/58 Loss: 0.072127
+2023-01-05 22:14: **********Train Epoch 30: averaged Loss: 0.207319 
+2023-01-05 22:14: 
+Epoch time elapsed: 45.84413003921509
+
+2023-01-05 22:14: 
+ metrics validation: {'precision': 0.7888707037643208, 'recall': 0.7850162866449512, 'f1-score': 0.7869387755102042, 'support': 1228, 'AUC': 0.8947110844677397, 'AUCPR': 0.8032330531071584, 'TP': 964, 'FP': 258, 'TN': 2198, 'FN': 264} 
+
+2023-01-05 22:14: **********Val Epoch 30: average Loss: 0.178361
+2023-01-05 22:14: *********************************Current best model saved!
+2023-01-05 22:14: 
+ Testing metrics {'precision': 0.7934156378600823, 'recall': 0.7850162866449512, 'f1-score': 0.7891936144085141, 'support': 1228, 'AUC': 0.8973221864422964, 'AUCPR': 0.804900641217706, 'TP': 964, 'FP': 251, 'TN': 2205, 'FN': 264} 
+
+2023-01-05 22:15: 
+ Testing metrics {'precision': 0.7875816993464052, 'recall': 0.7850162866449512, 'f1-score': 0.7862969004893965, 'support': 1228, 'AUC': 0.8957432572228883, 'AUCPR': 0.7996137309775908, 'TP': 964, 'FP': 260, 'TN': 2196, 'FN': 264} 
+
+2023-01-05 22:15: Total training time: 58.6330min, best loss: 0.178361
+2023-01-05 22:15: Saving current best model to /home/joel.chacon/tmp/convLSTM/WildFire_GCN/experiments/2020/2023010521164073486740981/best_model.pth
+2023-01-05 22:15: 
+ Testing metrics {'precision': 0.7934156378600823, 'recall': 0.7850162866449512, 'f1-score': 0.7891936144085141, 'support': 1228, 'AUC': 0.8973221864422964, 'AUCPR': 0.804900641217706, 'TP': 964, 'FP': 251, 'TN': 2205, 'FN': 264} 
+
+2023-01-05 22:16: 
+ Testing metrics {'precision': 0.7875816993464052, 'recall': 0.7850162866449512, 'f1-score': 0.7862969004893965, 'support': 1228, 'AUC': 0.8957432572228883, 'AUCPR': 0.7996137309775908, 'TP': 964, 'FP': 260, 'TN': 2196, 'FN': 264} 
+

@@ -96,6 +96,7 @@ class Trainer(object):
             output = self.model(data)
 
             loss = self.loss(output, label)
+#            self.logger.info('{} <-----'.format(torch.exp(output)))
             loss = loss/self.batch_size
             total_loss_batch += loss.item()
            # self.logger.info('{}...'.format(loss.item()))
@@ -164,7 +165,9 @@ class Trainer(object):
 
             # apply the best model to test dataset
             # test
+#            self.logger.info("{}".format(self.model.state_dict()['fc3.bias']))
             self.model.load_state_dict(best_model)
+#            self.logger.info("{}".format(self.model.state_dict()['fc3.bias']))
             # self.val_epoch(self.args.epochs, self.test_loader)
             self.test(self.model, self.args, self.test_loader1, self.scaler, self.logger)
             self.test(self.model, self.args, self.test_loader2, self.scaler, self.logger)
