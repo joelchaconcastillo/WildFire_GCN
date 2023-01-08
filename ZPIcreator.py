@@ -1,3 +1,10 @@
+import sys
+import os
+sys.path.append('/home/joel.chacon/.local/lib/python3.8/site-packages')
+#sys.path.append('/home/joel.chacon/.local/lib/python3.8/site-packages/matplotlib/')
+sys.path.append('/home/joel.chacon/.local/bin')
+#os.environ['MATPLOTLIBRC'] = '/home/joel.chacon/.local/lib/python3.8/site-packages/matplotlib/matplotlibrc'
+#print(sys.path)
 from torch.utils.data import Dataset, DataLoader, TensorDataset
 import numpy as np
 import warnings
@@ -7,19 +14,16 @@ from pathlib import Path
 import os
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import networkx as nx
 import zigzag.zigzagtools as zzt
-import zigzag.ZZgraph as zzgraph
 from scipy.spatial.distance import squareform
 import scipy.sparse as sp
 import dionysus as d
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import time
 from ripser import ripser
 import scipy.sparse
 import sys
-from persim import plot_diagrams, PersImage
 path = os.getcwd()
 
 class zigzagTDA:

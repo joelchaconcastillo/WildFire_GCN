@@ -4,24 +4,8 @@ import torch.nn as nn
 import numpy as np
 from ZPIcreator import zigzagTDA
 
-#def ZPIcreation(self, data = data, sizeBorder = sizeBorder, alpha = alpha, scaleParameter = scaleParameter, maxDimHoles = maxDimHoles):
-#       '''
-#          data: T,F,N
-#       '''
-#   T, F, N = data.shape
-#   sample = data.reshape(T, F, W, H)
-#   sample = sample[:,:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
-#   sample = sample.reshape(T, F, -1) # T, F, N
-#   sample = sample.transpose(0,2,1) #T, N, F
-#   ZZ = zigzagTDA(alpha=alpha, scaleParameter=scaleParameter, maxDimHoles=maxDimHoles, sizeWindow=lag, sizeBorder = sizeBorder)
-#
-#   zigzag_PD = ZZ.zigzag_persistence_diagrams(x = sample)
-#   zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
-#   zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
-#   return np.array([zigzag_PI_H0, zigzag_PI_H1])
-
 class CNN(nn.Module):
-   def __init__(self, dim_out, persistance_images_num):
+   def __init__(self, persistance_images_num,  dim_out):
       super(CNN, self).__init__()
       self.dim_out = dim_out
 
@@ -55,7 +39,7 @@ class SpatioTemporalGCN(nn.Module):
         self.T = nn.Parameter(torch.FloatTensor(window_len))
         self.ln1 = torch.nn.LayerNorm(int(hidden_dim/2))
         self.ln2 = torch.nn.LayerNorm(int(hidden_dim/2))
-        self.cnn = CNN(int(hidden_dim/ 2), persistance_images_num)
+        self.cnn = CNN(persistance_images_num, int(hidden_dim/ 2))
 
 
     def forward(self, x, x_window, node_embeddings, ZPI):
@@ -88,7 +72,10 @@ class SpatioTemporalGCN(nn.Module):
         x_w = x_w.permute(0, 2, 3, 1)  #B, N, hidden_dim/2, T 
         x_wconv = torch.matmul(x_w, self.T)  #B, N, hidden_dim/2: on T
 #        #S6: Transform graph information to [hidden_dim/2, hidden_dim/2] 
+        print(ZPI.shape)
         convZPI = self.cnn(ZPI)
+        print(convZPI.shape)
+        print(x_gconv.shape)
         x_tgconv = torch.einsum('bno,bo->bno',self.ln1(x_gconv), convZPI) #B, N, H/2
         x_twconv =  torch.einsum('bno,bo->bno',self.ln2(x_wconv), convZPI) #B, N, H/2
 
@@ -131,7 +118,6 @@ class GCN_GRU(nn.Module):
         self.window_len = window_len
         self.cell_list = nn.ModuleList()
         self.operator_scaleParameters = nn.Parameter(torch.FloatTensor(args.scaleParameters_num, args.scaleParameters_num), requires_grad=True)
-        self.ZPI = torch.FloatTensor(args.minbatch_size, args.scaleParameters_num*(1+args.maxDimHoles), args.resolution[0], args.resolution[1])
         self.scaleParameters = torch.from_numpy(args.scaleParameters).float()
         self.scaleParameters_num = args.scaleParameters_num
         self.patch_width = args.patch_width
@@ -139,8 +125,10 @@ class GCN_GRU(nn.Module):
         self.sizeBorder = args.sizeBorder
         self.subVertices = args.subVertices
         self.maxDimHoles = args.maxDimHoles
+        self.resolution = args.resolution
         self.persistance_images_num = (args.maxDimHoles+1)*self.scaleParameters_num # k-0 and k-1 max holes for diagrams
 
+        print("lll")
         for i in range(0, num_layers):
             cur_input_dim = dim_in if i == 0 else hidden_dim
             self.cell_list.append(GCN_GRU_Cell(node_num, cur_input_dim, hidden_dim, window_len, link_len, embed_dim, self.persistance_images_num))
@@ -155,6 +143,7 @@ class GCN_GRU(nn.Module):
         layer_output_list = []
         last_state_list = []
         cur_layer_input = x
+        ZPI = torch.zeros(batch_size, self.scaleParameters_num*(1+self.maxDimHoles), self.resolution[0], self.resolution[1])
         x_mini = x.view(batch_size, seq_len, self.patch_width, self.patch_height, input_dim)
         x_mini = x_mini.permute(0, 1, 3, 4, 2)[:, :, 12-self.sizeBorder:13+self.sizeBorder, 12-self.sizeBorder:13+self.sizeBorder,:]
         x_mini = x_mini.reshape(batch_size, seq_len, self.subVertices, input_dim)
@@ -164,18 +153,18 @@ class GCN_GRU(nn.Module):
         distG /= distG.max(2, keepdim=True)[0]
         distG = distG.reshape(batch_size, seq_len, self.subVertices, self.subVertices)
         #####botleneck#####
-        self.operator_scaleParameters -= torch.min(self.operator_scaleParameters)
-        self.operator_scaleParameters /= torch.max(self.operator_scaleParameters)
-        scaleParameters_trial = torch.matmul(self.scaleParameters, self.operator_scaleParameters)
+        self.operator_scaleParameters1 = self.operator_scaleParameters-torch.min(self.operator_scaleParameters)
+        self.operator_scaleParameters1 /= torch.max(self.operator_scaleParameters1)
+        scaleParameters_trial = torch.matmul(self.scaleParameters, self.operator_scaleParameters1)
         print(scaleParameters_trial)
         for b in range(batch_size):
-            self.ZPI[b,:,:,:] = torch.from_numpy(self.ZPIcreation(data = distG[b, ...].cpu().detach().numpy(), scaleParameters = scaleParameters_trial.cpu().detach().numpy(), maxDimHoles = self.maxDimHoles, sizeWindow = seq_len, NVertices = self.subVertices))
+            ZPI[b,:,:,:] = torch.from_numpy(self.ZPIcreation(data = distG[b, ...].cpu().detach().numpy(), scaleParameters = scaleParameters_trial.cpu().detach().numpy(), maxDimHoles = self.maxDimHoles, sizeWindow = seq_len, NVertices = self.subVertices))
 #        ZPI = torch.rand(batch_size, 2, 50, 50)
         for layer_idx in range(self.num_layers):
             state = hidden_state[layer_idx]
             output_inner = []
             for t in range(seq_len):
-                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings, self.ZPI)
+                state = self.cell_list[layer_idx](cur_layer_input[:, t, :, :], state, cur_layer_input, node_embeddings, ZPI)
                 output_inner.append(state)
             layer_output = torch.stack(output_inner, dim=1)
             cur_layer_input = layer_output

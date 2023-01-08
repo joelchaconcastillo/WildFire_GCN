@@ -1,0 +1,215 @@
+2023-01-05 10:09: log dir: /home/joel.chacon/tmp/ZIGZAGTrainer/experiments/2020/2023010510094008504854013
+2023-01-05 10:09: Experiment log path in: /home/joel.chacon/tmp/ZIGZAGTrainer/experiments/2020/2023010510094008504854013
+2023-01-05 10:09: Argument: Namespace(batch_size=256, clc='vec', cuda=True, dataset='2020', dataset_root='/home/joel.chacon/tmp/datasets_grl/', debug=False, default_graph=True, device='cpu', dynamic_features=['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh'], early_stop=True, early_stop_patience=8, embed_dim=64, epochs=30, grad_norm=False, horizon=1, input_dim=25, lag=10, link_len=2, log_dir='/home/joel.chacon/tmp/ZIGZAGTrainer/experiments/2020/2023010510094008504854013', log_step=1, loss_func='nllloss', lr_decay=True, lr_decay_rate=0.1, lr_decay_step='20', lr_init=0.0001, maxDimHoles=1, max_grad_norm=5, minbatch_size=64, mode='train', model='fire_GCN', nan_fill=-1.0, num_layers=1, num_nodes=625, num_workers=12, output_dim=2, patch_height=25, patch_width=25, persistent_workers=True, pin_memory=True, plot=False, positive_weight=0.5, prefetch_factor=2, real_value=True, resolution=[50, 50], rnn_units=64, scaleParameters=array([0.1, 0.2, 0.3, 0.4]), scaleParameters_num=4, seed=10000, sizeBorder=1, static_features=['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density'], subVertices=9, teacher_forcing=False, weight_decay=0.0, window_len=10)
+2023-01-05 10:09: Argument batch_size: 256
+2023-01-05 10:09: Argument clc: 'vec'
+2023-01-05 10:09: Argument cuda: True
+2023-01-05 10:09: Argument dataset: '2020'
+2023-01-05 10:09: Argument dataset_root: '/home/joel.chacon/tmp/datasets_grl/'
+2023-01-05 10:09: Argument debug: False
+2023-01-05 10:09: Argument default_graph: True
+2023-01-05 10:09: Argument device: 'cpu'
+2023-01-05 10:09: Argument dynamic_features: ['1 km 16 days NDVI', 'LST_Day_1km', 'LST_Night_1km', 'era5_max_d2m', 'era5_max_t2m', 'era5_max_sp', 'era5_max_tp', 'sminx', 'era5_max_wind_speed', 'era5_min_rh']
+2023-01-05 10:09: Argument early_stop: True
+2023-01-05 10:09: Argument early_stop_patience: 8
+2023-01-05 10:09: Argument embed_dim: 64
+2023-01-05 10:09: Argument epochs: 30
+2023-01-05 10:09: Argument grad_norm: False
+2023-01-05 10:09: Argument horizon: 1
+2023-01-05 10:09: Argument input_dim: 25
+2023-01-05 10:09: Argument lag: 10
+2023-01-05 10:09: Argument link_len: 2
+2023-01-05 10:09: Argument log_dir: '/home/joel.chacon/tmp/ZIGZAGTrainer/experiments/2020/2023010510094008504854013'
+2023-01-05 10:09: Argument log_step: 1
+2023-01-05 10:09: Argument loss_func: 'nllloss'
+2023-01-05 10:09: Argument lr_decay: True
+2023-01-05 10:09: Argument lr_decay_rate: 0.1
+2023-01-05 10:09: Argument lr_decay_step: '20'
+2023-01-05 10:09: Argument lr_init: 0.0001
+2023-01-05 10:09: Argument maxDimHoles: 1
+2023-01-05 10:09: Argument max_grad_norm: 5
+2023-01-05 10:09: Argument minbatch_size: 64
+2023-01-05 10:09: Argument mode: 'train'
+2023-01-05 10:09: Argument model: 'fire_GCN'
+2023-01-05 10:09: Argument nan_fill: -1.0
+2023-01-05 10:09: Argument num_layers: 1
+2023-01-05 10:09: Argument num_nodes: 625
+2023-01-05 10:09: Argument num_workers: 12
+2023-01-05 10:09: Argument output_dim: 2
+2023-01-05 10:09: Argument patch_height: 25
+2023-01-05 10:09: Argument patch_width: 25
+2023-01-05 10:09: Argument persistent_workers: True
+2023-01-05 10:09: Argument pin_memory: True
+2023-01-05 10:09: Argument plot: False
+2023-01-05 10:09: Argument positive_weight: 0.5
+2023-01-05 10:09: Argument prefetch_factor: 2
+2023-01-05 10:09: Argument real_value: True
+2023-01-05 10:09: Argument resolution: [50, 50]
+2023-01-05 10:09: Argument rnn_units: 64
+2023-01-05 10:09: Argument scaleParameters: array([0.1, 0.2, 0.3, 0.4])
+2023-01-05 10:09: Argument scaleParameters_num: 4
+2023-01-05 10:09: Argument seed: 10000
+2023-01-05 10:09: Argument sizeBorder: 1
+2023-01-05 10:09: Argument static_features: ['dem_mean', 'slope_mean', 'roads_distance', 'waterway_distance', 'population_density']
+2023-01-05 10:09: Argument subVertices: 9
+2023-01-05 10:09: Argument teacher_forcing: False
+2023-01-05 10:09: Argument weight_decay: 0.0
+2023-01-05 10:09: Argument window_len: 10
+2023-01-05 10:10: Train Epoch 1: 3/634 Loss: 0.485812
+2023-01-05 10:12: Train Epoch 1: 7/634 Loss: 0.365140
+2023-01-05 10:13: Train Epoch 1: 11/634 Loss: 0.345871
+2023-01-05 10:14: Train Epoch 1: 15/634 Loss: 0.277430
+2023-01-05 10:15: Train Epoch 1: 19/634 Loss: 0.255069
+2023-01-05 10:16: Train Epoch 1: 23/634 Loss: 0.254865
+2023-01-05 10:17: Train Epoch 1: 27/634 Loss: 0.253734
+2023-01-05 10:19: Train Epoch 1: 31/634 Loss: 0.222299
+2023-01-05 10:20: Train Epoch 1: 35/634 Loss: 0.243162
+2023-01-05 10:21: Train Epoch 1: 39/634 Loss: 0.235062
+2023-01-05 10:22: Train Epoch 1: 43/634 Loss: 0.221987
+2023-01-05 10:23: Train Epoch 1: 47/634 Loss: 0.226394
+2023-01-05 10:24: Train Epoch 1: 51/634 Loss: 0.237505
+2023-01-05 10:25: Train Epoch 1: 55/634 Loss: 0.234377
+2023-01-05 10:27: Train Epoch 1: 59/634 Loss: 0.246251
+2023-01-05 10:28: Train Epoch 1: 63/634 Loss: 0.247494
+2023-01-05 10:29: Train Epoch 1: 67/634 Loss: 0.249112
+2023-01-05 10:30: Train Epoch 1: 71/634 Loss: 0.223781
+2023-01-05 10:31: Train Epoch 1: 75/634 Loss: 0.229351
+2023-01-05 10:32: Train Epoch 1: 79/634 Loss: 0.223435
+2023-01-05 10:34: Train Epoch 1: 83/634 Loss: 0.257116
+2023-01-05 10:35: Train Epoch 1: 87/634 Loss: 0.217308
+2023-01-05 10:36: Train Epoch 1: 91/634 Loss: 0.247897
+2023-01-05 10:37: Train Epoch 1: 95/634 Loss: 0.211843
+2023-01-05 10:38: Train Epoch 1: 99/634 Loss: 0.228912
+2023-01-05 10:39: Train Epoch 1: 103/634 Loss: 0.225873
+2023-01-05 10:41: Train Epoch 1: 107/634 Loss: 0.226015
+2023-01-05 10:42: Train Epoch 1: 111/634 Loss: 0.238650
+2023-01-05 10:43: Train Epoch 1: 115/634 Loss: 0.233375
+2023-01-05 10:44: Train Epoch 1: 119/634 Loss: 0.230103
+2023-01-05 10:45: Train Epoch 1: 123/634 Loss: 0.230048
+2023-01-05 10:46: Train Epoch 1: 127/634 Loss: 0.257816
+2023-01-05 10:48: Train Epoch 1: 131/634 Loss: 0.216419
+2023-01-05 10:49: Train Epoch 1: 135/634 Loss: 0.227739
+2023-01-05 10:50: Train Epoch 1: 139/634 Loss: 0.183495
+2023-01-05 10:51: Train Epoch 1: 143/634 Loss: 0.223437
+2023-01-05 10:52: Train Epoch 1: 147/634 Loss: 0.218160
+2023-01-05 10:53: Train Epoch 1: 151/634 Loss: 0.217876
+2023-01-05 10:55: Train Epoch 1: 155/634 Loss: 0.205381
+2023-01-05 10:56: Train Epoch 1: 159/634 Loss: 0.232139
+2023-01-05 10:57: Train Epoch 1: 163/634 Loss: 0.198145
+2023-01-05 10:58: Train Epoch 1: 167/634 Loss: 0.227423
+2023-01-05 10:59: Train Epoch 1: 171/634 Loss: 0.220394
+2023-01-05 11:00: Train Epoch 1: 175/634 Loss: 0.218206
+2023-01-05 11:01: Train Epoch 1: 179/634 Loss: 0.209740
+2023-01-05 11:03: Train Epoch 1: 183/634 Loss: 0.220771
+2023-01-05 11:04: Train Epoch 1: 187/634 Loss: 0.235364
+2023-01-05 11:05: Train Epoch 1: 191/634 Loss: 0.193455
+2023-01-05 11:06: Train Epoch 1: 195/634 Loss: 0.240073
+2023-01-05 11:07: Train Epoch 1: 199/634 Loss: 0.216471
+2023-01-05 11:08: Train Epoch 1: 203/634 Loss: 0.248537
+2023-01-05 11:10: Train Epoch 1: 207/634 Loss: 0.212440
+2023-01-05 11:11: Train Epoch 1: 211/634 Loss: 0.269235
+2023-01-05 11:12: Train Epoch 1: 215/634 Loss: 0.201494
+2023-01-05 11:13: Train Epoch 1: 219/634 Loss: 0.210533
+2023-01-05 11:14: Train Epoch 1: 223/634 Loss: 0.276226
+2023-01-05 11:15: Train Epoch 1: 227/634 Loss: 0.261542
+2023-01-05 11:17: Train Epoch 1: 231/634 Loss: 0.221638
+2023-01-05 11:18: Train Epoch 1: 235/634 Loss: 0.186542
+2023-01-05 11:19: Train Epoch 1: 239/634 Loss: 0.228517
+2023-01-05 11:20: Train Epoch 1: 243/634 Loss: 0.200677
+2023-01-05 11:21: Train Epoch 1: 247/634 Loss: 0.244499
+2023-01-05 11:22: Train Epoch 1: 251/634 Loss: 0.222501
+2023-01-05 11:24: Train Epoch 1: 255/634 Loss: 0.204303
+2023-01-05 11:25: Train Epoch 1: 259/634 Loss: 0.232085
+2023-01-05 11:26: Train Epoch 1: 263/634 Loss: 0.212541
+2023-01-05 11:27: Train Epoch 1: 267/634 Loss: 0.266710
+2023-01-05 11:28: Train Epoch 1: 271/634 Loss: 0.201769
+2023-01-05 11:29: Train Epoch 1: 275/634 Loss: 0.194226
+2023-01-05 11:31: Train Epoch 1: 279/634 Loss: 0.216998
+2023-01-05 11:32: Train Epoch 1: 283/634 Loss: 0.191766
+2023-01-05 11:33: Train Epoch 1: 287/634 Loss: 0.212435
+2023-01-05 11:34: Train Epoch 1: 291/634 Loss: 0.209498
+2023-01-05 11:35: Train Epoch 1: 295/634 Loss: 0.200846
+2023-01-05 11:36: Train Epoch 1: 299/634 Loss: 0.232919
+2023-01-05 11:38: Train Epoch 1: 303/634 Loss: 0.219177
+2023-01-05 11:39: Train Epoch 1: 307/634 Loss: 0.224891
+2023-01-05 11:40: Train Epoch 1: 311/634 Loss: 0.203311
+2023-01-05 11:41: Train Epoch 1: 315/634 Loss: 0.212202
+2023-01-05 11:42: Train Epoch 1: 319/634 Loss: 0.211505
+2023-01-05 11:43: Train Epoch 1: 323/634 Loss: 0.183073
+2023-01-05 11:45: Train Epoch 1: 327/634 Loss: 0.199109
+2023-01-05 11:46: Train Epoch 1: 331/634 Loss: 0.218758
+2023-01-05 11:47: Train Epoch 1: 335/634 Loss: 0.215250
+2023-01-05 11:48: Train Epoch 1: 339/634 Loss: 0.240485
+2023-01-05 11:49: Train Epoch 1: 343/634 Loss: 0.206144
+2023-01-05 11:50: Train Epoch 1: 347/634 Loss: 0.197173
+2023-01-05 11:52: Train Epoch 1: 351/634 Loss: 0.243321
+2023-01-05 11:53: Train Epoch 1: 355/634 Loss: 0.222082
+2023-01-05 11:54: Train Epoch 1: 359/634 Loss: 0.215161
+2023-01-05 11:55: Train Epoch 1: 363/634 Loss: 0.215539
+2023-01-05 11:56: Train Epoch 1: 367/634 Loss: 0.212464
+2023-01-05 11:57: Train Epoch 1: 371/634 Loss: 0.197338
+2023-01-05 11:59: Train Epoch 1: 375/634 Loss: 0.207907
+2023-01-05 12:00: Train Epoch 1: 379/634 Loss: 0.187815
+2023-01-05 12:01: Train Epoch 1: 383/634 Loss: 0.239337
+2023-01-05 12:02: Train Epoch 1: 387/634 Loss: 0.200632
+2023-01-05 12:03: Train Epoch 1: 391/634 Loss: 0.221409
+2023-01-05 12:04: Train Epoch 1: 395/634 Loss: 0.190681
+2023-01-05 12:06: Train Epoch 1: 399/634 Loss: 0.234242
+2023-01-05 12:07: Train Epoch 1: 403/634 Loss: 0.221270
+2023-01-05 12:08: Train Epoch 1: 407/634 Loss: 0.221261
+2023-01-05 12:09: Train Epoch 1: 411/634 Loss: 0.237725
+2023-01-05 12:10: Train Epoch 1: 415/634 Loss: 0.187145
+2023-01-05 12:11: Train Epoch 1: 419/634 Loss: 0.202977
+2023-01-05 12:13: Train Epoch 1: 423/634 Loss: 0.245508
+2023-01-05 12:14: Train Epoch 1: 427/634 Loss: 0.218469
+2023-01-05 12:15: Train Epoch 1: 431/634 Loss: 0.217199
+2023-01-05 12:16: Train Epoch 1: 435/634 Loss: 0.218369
+2023-01-05 12:17: Train Epoch 1: 439/634 Loss: 0.210142
+2023-01-05 12:18: Train Epoch 1: 443/634 Loss: 0.203464
+2023-01-05 12:20: Train Epoch 1: 447/634 Loss: 0.202609
+2023-01-05 12:21: Train Epoch 1: 451/634 Loss: 0.231949
+2023-01-05 12:22: Train Epoch 1: 455/634 Loss: 0.188005
+2023-01-05 12:23: Train Epoch 1: 459/634 Loss: 0.223270
+2023-01-05 12:24: Train Epoch 1: 463/634 Loss: 0.231135
+2023-01-05 12:25: Train Epoch 1: 467/634 Loss: 0.220811
+2023-01-05 12:26: Train Epoch 1: 471/634 Loss: 0.227052
+2023-01-05 12:28: Train Epoch 1: 475/634 Loss: 0.191931
+2023-01-05 12:29: Train Epoch 1: 479/634 Loss: 0.173584
+2023-01-05 12:30: Train Epoch 1: 483/634 Loss: 0.250483
+2023-01-05 12:31: Train Epoch 1: 487/634 Loss: 0.223151
+2023-01-05 12:32: Train Epoch 1: 491/634 Loss: 0.216883
+2023-01-05 12:33: Train Epoch 1: 495/634 Loss: 0.244799
+2023-01-05 12:35: Train Epoch 1: 499/634 Loss: 0.233570
+2023-01-05 12:36: Train Epoch 1: 503/634 Loss: 0.169883
+2023-01-05 12:37: Train Epoch 1: 507/634 Loss: 0.217068
+2023-01-05 12:38: Train Epoch 1: 511/634 Loss: 0.229975
+2023-01-05 12:39: Train Epoch 1: 515/634 Loss: 0.224648
+2023-01-05 12:41: Train Epoch 1: 519/634 Loss: 0.232380
+2023-01-05 12:42: Train Epoch 1: 523/634 Loss: 0.202279
+2023-01-05 12:43: Train Epoch 1: 527/634 Loss: 0.195742
+2023-01-05 12:44: Train Epoch 1: 531/634 Loss: 0.185623
+2023-01-05 12:45: Train Epoch 1: 535/634 Loss: 0.219571
+2023-01-05 12:46: Train Epoch 1: 539/634 Loss: 0.180375
+2023-01-05 12:48: Train Epoch 1: 543/634 Loss: 0.204288
+2023-01-05 12:49: Train Epoch 1: 547/634 Loss: 0.187777
+2023-01-05 12:50: Train Epoch 1: 551/634 Loss: 0.214274
+2023-01-05 12:51: Train Epoch 1: 555/634 Loss: 0.223524
+2023-01-05 12:52: Train Epoch 1: 559/634 Loss: 0.194874
+2023-01-05 12:53: Train Epoch 1: 563/634 Loss: 0.210776
+2023-01-05 12:55: Train Epoch 1: 567/634 Loss: 0.218176
+2023-01-05 12:56: Train Epoch 1: 571/634 Loss: 0.208469
+2023-01-05 12:57: Train Epoch 1: 575/634 Loss: 0.191229
+2023-01-05 12:58: Train Epoch 1: 579/634 Loss: 0.173781
+2023-01-05 12:59: Train Epoch 1: 583/634 Loss: 0.222188
+2023-01-05 13:00: Train Epoch 1: 587/634 Loss: 0.225165
+2023-01-05 13:02: Train Epoch 1: 591/634 Loss: 0.217684
+2023-01-05 13:03: Train Epoch 1: 595/634 Loss: 0.232419
+2023-01-05 13:04: Train Epoch 1: 599/634 Loss: 0.170783
+2023-01-05 13:05: Train Epoch 1: 603/634 Loss: 0.225450
+2023-01-05 13:06: Train Epoch 1: 607/634 Loss: 0.188422
+2023-01-05 13:07: Train Epoch 1: 611/634 Loss: 0.202073
+2023-01-05 13:09: Train Epoch 1: 615/634 Loss: 0.200693
+2023-01-05 13:10: Train Epoch 1: 619/634 Loss: 0.232099
+2023-01-05 13:11: Train Epoch 1: 623/634 Loss: 0.203645
+2023-01-05 13:12: Train Epoch 1: 627/634 Loss: 0.240728
+2023-01-05 13:13: Train Epoch 1: 631/634 Loss: 0.209230

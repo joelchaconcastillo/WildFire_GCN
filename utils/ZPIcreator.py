@@ -19,7 +19,6 @@ import time
 from ripser import ripser
 import scipy.sparse
 import sys
-from persim import plot_diagrams, PersImage
 path = os.getcwd()
 
 #np.set_printoptions(threshold=sys.maxsize, formatter={'float': lambda x: "{0:0.1f}".format(x)})
