@@ -39,10 +39,10 @@ import scipy.sparse
 ##print(args.scaleParameter)
 ##exit(0)
 #####TDA parameters
-maxDimHoles = 2
+maxDimHoles = 1
 window = 10
 alpha = 1
-scaleParameter =  0.1
+scaleParameter =  1.
 sizeBorder = 6
 NVertices = (2*sizeBorder+1)**2
 

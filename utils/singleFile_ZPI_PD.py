@@ -1,9 +1,9 @@
 import sys
 import os
 sys.path.append('/home/joel.chacon/.local/lib/python3.8/site-packages')
-#sys.path.append('/home/joel.chacon/.local/lib/python3.8/site-packages/matplotlib/')
+sys.path.append('/home/joel.chacon/.local/lib/python3.8/site-packages/matplotlib/')
 sys.path.append('/home/joel.chacon/.local/bin')
-#os.environ['MATPLOTLIBRC'] = '/home/joel.chacon/.local/lib/python3.8/site-packages/matplotlib/matplotlibrc'
+os.environ['MATPLOTLIBRC'] = '/home/joel.chacon/.local/lib/python3.8/site-packages/matplotlib/matplotlibrc'
 #print(sys.path)
 from torch.utils.data import Dataset, DataLoader, TensorDataset
 import numpy as np
@@ -180,5 +180,5 @@ zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
 zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
 ZPI = [zigzag_PI_H0, zigzag_PI_H1]
 #print(len(ZPI))
-#np.savez(args.dest+"_zpi_"+"scaleParameter_"+str(args.scaleParameter)+"_maxDimHoles_"+str(args.maxDimHoles)+"_sizeBorder_"+str(args.sizeBorder), zpi=ZPI)
+np.savez(args.dest+"_zpi_"+"scaleParameter_"+str(args.scaleParameter)+"_maxDimHoles_"+str(args.maxDimHoles)+"_sizeBorder_"+str(args.sizeBorder), zpi=ZPI)
 
