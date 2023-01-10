@@ -266,10 +266,10 @@ for (X) in data:
     if (count % 100) == 0:
       # plt.boxplot(naTimes)
       # plt.savefig("NANS.pdf", format="pdf", bbox_inches="tight")
-       plt.plot(np.arange(T), np.mean(naTimes, 0), 'ro')
+       plt.plot(np.arange(T), np.mean(naTimes, 1), 'ro')
        plt.savefig("meanNANS.pdf", format="pdf", bbox_inches="tight")
 
-plt.plot(np.arange(T), np.mean(naTimes, 0), 'ro')
+plt.plot(np.arange(T), np.mean(naTimes, 1), 'ro')
 # plt.savefig("NANS.pdf", format="pdf", bbox_inches="tight")
 plt.savefig("meanNANS.pdf", format="pdf", bbox_inches="tight")
 #plt.show()
