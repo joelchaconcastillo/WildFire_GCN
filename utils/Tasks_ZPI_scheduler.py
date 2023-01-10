@@ -39,10 +39,10 @@ import scipy.sparse
 ##print(args.scaleParameter)
 ##exit(0)
 #####TDA parameters
-maxDimHoles = 1
+maxDimHoles = 2
 window = 10
 alpha = 1
-scaleParameter =  0.2
+scaleParameter =  0.1
 sizeBorder = 6
 NVertices = (2*sizeBorder+1)**2
 
@@ -111,54 +111,11 @@ class loadData(Dataset):
 
    def __getitem__(self, idx):
       path = self.path_list[idx]
-      dynamic = np.load(path)
-      static = np.load(str(path).replace('dynamic', 'static'))
-      if self.access_mode == 'spatial':
-         dynamic = dynamic[self.dynamic_idx]
-         static = static[self.static_idx]
-      elif self.access_mode == 'temporal':
-         dynamic = dynamic[:, self.dynamic_idx, ...]
-         static = static[self.static_idx]
-      else:
-         dynamic = dynamic[:, self.dynamic_idx, ...]
-         static = static[self.static_idx]
-
-      def _min_max_scaling(in_vec, max_vec, min_vec):
-         return (in_vec - min_vec) / (max_vec - min_vec)  ###Warning zero divisions!!!
-
-      dynamic = _min_max_scaling(dynamic, self.mm_dict['max']['dynamic'], self.mm_dict['min']['dynamic'])
-      static = _min_max_scaling(static, self.mm_dict['max']['static'], self.mm_dict['min']['static'])
-
-      if self.access_mode == 'temporal':
-         feat_mean = np.nanmean(dynamic, axis=0)
-         # Find indices that you need to replace
-         inds = np.where(np.isnan(dynamic))
-         # Place column means in the indices. Align the arrays using take
-         dynamic[inds] = np.take(feat_mean, inds[1])
-      elif self.access_mode == 'spatiotemporal':
-         with warnings.catch_warnings():
-            warnings.simplefilter("ignore", category=RuntimeWarning)
-            feat_mean = np.nanmean(dynamic, axis=(2, 3))
-            feat_mean = feat_mean[..., np.newaxis, np.newaxis]
-            feat_mean = np.repeat(feat_mean, dynamic.shape[2], axis=2)
-            feat_mean = np.repeat(feat_mean, dynamic.shape[3], axis=3)
-            dynamic = np.where(np.isnan(dynamic), feat_mean, dynamic)
-      if self.nan_fill:
-         dynamic = np.nan_to_num(dynamic, nan=self.nan_fill)
-         static = np.nan_to_num(static, nan=self.nan_fill)
-
-      if self.clc == 'mode':
-         clc = np.load(str(path).replace('dynamic', 'clc_mode'))
-      elif self.clc == 'vec':
-         clc = np.load(str(path).replace('dynamic', 'clc_vec'))
-         clc = np.nan_to_num(clc, nan=0)
-      else:
-         clc = 0
       path = Path(path)
       dirPath = Path(*path.parts[:-1])
       name = path.stem.split('_')[:-1]
       prefix = dirPath / '_'.join(name)
-      return dynamic, static, clc, str(prefix)
+      return str(prefix)
 
    def __len__(self):
       return len(self.path_list)
@@ -287,10 +244,7 @@ data = loadData(dataset_root = dataset_root,access_mode = access_mode, dynamic_f
 cont = 0
 pwd='/home/joel.chacon/tmp/ZIGZAG_from_files/'
 
-for (dynamic, static, clc, prefix_path) in data:
-   (sizeWindow, _ , patchWidth, patchHeight) = dynamic.shape
-   numberFeatures = len(dynamic_features)+len(static_features)+len(clc)
-   sample = np.zeros((sizeWindow, NVertices, numberFeatures))
+for (prefix_path) in data:
    sourcePath = prefix_path
    prefix_path = '/'.join(prefix_path.split('/')[4:])
    prefix_path = 'data/'+prefix_path

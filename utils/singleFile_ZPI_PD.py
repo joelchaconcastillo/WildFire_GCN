@@ -162,10 +162,12 @@ else:
    clc = 0
 
 (sizeWindow, _ , patchWidth, patchHeight) = dynamic.shape
+#numberFeatures = len(dynamic_features) #+len(static_features)+len(clc)
 numberFeatures = len(dynamic_features)+len(static_features)+len(clc)
 sample = np.zeros((sizeWindow, NVertices, numberFeatures))
 for t in range(sizeWindow):
    X = np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
+   #X = dynamic[t] #np.concatenate((dynamic[t], static, clc), axis=0) ##F, W, H
       #X = np.concatenate((dynamic[t], static), axis=0) ##F, W, H
    X = X[:,12-sizeBorder:13+sizeBorder,12-sizeBorder:13+sizeBorder]
    X = X.reshape(numberFeatures, -1) # F, N
@@ -178,5 +180,5 @@ zigzag_PI_H0 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 0)
 zigzag_PI_H1 = ZZ.zigzag_persistence_images(zigzag_PD, dimensional = 1)
 ZPI = [zigzag_PI_H0, zigzag_PI_H1]
 #print(len(ZPI))
-np.savez(args.dest+"_zpi_"+"scaleParameter_"+str(args.scaleParameter)+"_maxDimHoles_"+str(args.maxDimHoles)+"_sizeBorder_"+str(args.sizeBorder), zpi=ZPI)
+#np.savez(args.dest+"_zpi_"+"scaleParameter_"+str(args.scaleParameter)+"_maxDimHoles_"+str(args.maxDimHoles)+"_sizeBorder_"+str(args.sizeBorder), zpi=ZPI)
 
