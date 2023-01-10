@@ -256,8 +256,6 @@ N=W*H
 naTimes= np.zeros((len(data), T))
 count=0
 for (X) in data:
-    if count>4:
-        break
     print('sample: ',count)
     for t in range(T):
         for f in range(F):
@@ -273,6 +271,6 @@ for (X) in data:
 
 plt.plot(np.arange(T), np.mean(naTimes, 0), 'ro')
 # plt.savefig("NANS.pdf", format="pdf", bbox_inches="tight")
-#plt.savefig("meanNANS.pdf", format="pdf", bbox_inches="tight")
-plt.show()
+plt.savefig("meanNANS.pdf", format="pdf", bbox_inches="tight")
+#plt.show()
 
