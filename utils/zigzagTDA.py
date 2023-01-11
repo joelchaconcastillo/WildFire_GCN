@@ -66,7 +66,7 @@ class zigzagTDA:
            for iS in range(len(ripsAux)):
                splitbyDim[len(ripsAux[iS])-1].append(ripsAux[iS])
            for h in range(self.maxDimHoles+1):
-               for idx in range(min(len(splitbyDim[h]), 2000)):
+               for idx in range(min(len(splitbyDim[h]), 4000)):
                   ripsAux2.append(splitbyDim[h][idx])
            GVRips.append(ripsAux2)
 #       print("  --- End Vietoris-Rips computation")  # Ending

@@ -248,4 +248,11 @@ for (prefix_path) in data:
    sourcePath = prefix_path
    prefix_path = '/'.join(prefix_path.split('/')[4:])
    prefix_path = 'data/'+prefix_path
+
+#   filen = pwd+prefix_path +"_zpi_"+"scaleParameter_"+str(scaleParameter)+"_maxDimHoles_"+str(maxDimHoles)+"_sizeBorder_"+str(sizeBorder)+".npz"
+#   if not os.path.isfile(filen):
+#      # print(filen)
    print("python3 "+pwd+"/utils/singleFile_ZPI_PD.py --source="+sourcePath + " --dest="+pwd+"/"+prefix_path+" --scaleParameter="+str(scaleParameter)+" --maxDimHoles="+str(maxDimHoles)+" --sizeBorder="+str(sizeBorder))
+
+
+
